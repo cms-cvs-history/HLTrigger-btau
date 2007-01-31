@@ -15,7 +15,7 @@ include "Configuration/Examples/data/RecoTracker.cff"
 #CaloMet stuff
 include "RecoMET/METProducers/data/CaloMET.cfi"
 include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
-#replace genCandidates.src = "VtxSmeared"
+replace genCandidates.src = "VtxSmeared"
 
 
 #Tau Trigger related stuff
@@ -32,12 +32,12 @@ include "HLTrigger/btau/data/tau/EcalIsolation.cff"
 include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
 
 include "SimGeneral/HepPDTESSource/data/pdt.cfi"
-module genCandidates = HepMCCandidateProducer {
-    string src = "VtxSmeared"
-    untracked bool verbose = true
-    bool stableOnly = true
-    vstring excludeList = { }
-}
+#module genCandidates = HepMCCandidateProducer {
+#    string src = "VtxSmeared"
+#    untracked bool verbose = true
+#    bool stableOnly = true
+#    vstring excludeList = { }
+#}
 
 # Tracker local reconstruction
 sequence pixel_local = {siPixelClusters & siPixelRecHits }
@@ -45,7 +45,7 @@ sequence siStrip_local = {siStripClusters & siStripMatchedRecHits}
 sequence tracker_local ={pixel_local & siStrip_local}
 
 #Generator sequence 
-sequence tauGenJet = {genParticleCandidates, iterativeCone5GenJets}
+sequence tauGenJet = {genCandidates,genParticleCandidates, iterativeCone5GenJets}
 
 #CaloTaus sequence
 sequence caloTausCreator = {doCalo,caloTowersTau1,icone5Tau1,caloTowersTau2, icone5Tau2, caloTowersTau3, icone5Tau3, caloTowersTau4, icone5Tau4,l2TauJetsProvider}
