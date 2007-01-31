@@ -1,0 +1,6 @@
+module l1extraTaumctruth = l1extramctruth from "L1Trigger/L1ExtraFromMCTruthProd/data/l1extramctruth.cfi"
+replace l1extraTaumctruth.hepmcSource = VtxSmeared
+replace l1extraTaumctruth.jetSource = iterativeCone5GenJets
+replace l1extraTaumctruth.jetFakeTauProb = 1.
+replace l1extraTaumctruth.singleTauMinEt = 10.
+replace l1extraTaumctruth.doubleTauMinEt = 6.
