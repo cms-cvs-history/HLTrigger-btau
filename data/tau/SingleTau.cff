@@ -78,7 +78,7 @@ module filterL25SingleTauCandidate = HLTJetTag {
     InputTag JetTag   = coneIsolationL25SingleTau
     double MinTag = 0.
     double   MaxTag   = 2.
-    int32 MinN     = 1.
+    int32 MinN     = 1
 }
 
 
@@ -106,7 +106,7 @@ module filterL25SingleTau = HLTJetTag {
     InputTag JetTag   = isolatedL25SingleTau
     double MinTag = 1.
     double   MaxTag   = 2.
-    int32 MinN     = 1.
+    int32 MinN     = 1
 }
 
 
@@ -156,6 +156,6 @@ module filterL3SingleTauCandidate = HLTJetTag {
     InputTag JetTag   = coneIsolationL3SingleTau
     double MinTag = 0.
     double   MaxTag   = 2.
-    int32 MinN     = 1.
+    int32 MinN     = 1
 }
 
