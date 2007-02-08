@@ -97,7 +97,7 @@ sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3Double
 
 sequence doubleTrkTau ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau, filterL25DoubleTauToConfirm,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau,l25DoubleTauFilter, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau,filterL3DoubleTau}    
 
-sequence doubleTrkTauNoFilters ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau}    
+sequence doubleTrkTauNoFilters ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau,isolatedL25DoubleTau, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau}    
 
 
 
