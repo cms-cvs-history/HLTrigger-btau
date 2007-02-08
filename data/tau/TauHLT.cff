@@ -116,7 +116,7 @@ sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_loca
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
 
 #Triggers with no HLTFilters! For debugging scope
-sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator,hltMET)&tracker_local&pixelTracks&pixelVertices, singleTauNoFilters }
+sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&pixelTracks&pixelVertices, singleTauNoFilters }
 sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTauNoFilters}
 sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
 
