@@ -74,6 +74,7 @@ sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3Single
 
 
 sequence singleTau = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,l25SingleTauFilter,ckfTracksL3SingleTau,tauJetsMakerL3SingleTau,filterL3SingleTauCandidate}
+sequence singleTauNoFilters = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,isolatedL25SingleTau,ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
 #
 #Double Trk Tau
 #
@@ -96,10 +97,14 @@ sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3Double
 
 sequence doubleTrkTau ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau, filterL25DoubleTauToConfirm,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau,l25DoubleTauFilter, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau,filterL3DoubleTau}    
 
+sequence doubleTrkTauNoFilters ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau,isolatedL25DoubleTau, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau}    
+
 
 
 #Pixel Tau
 sequence doubleCaloPixelTau = {(singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated,filterTauEcalIsolation )&pixel_local&pixelTracks&pixelVertices,associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,filterL25PixelTauIsolated,associatorL25PixelTauNotIsolated,coneIsolationL25PixelTauNotIsolated,isolatedL25PixelTau,filterL25PixelTau }
+
+sequence doubleCaloPixelTauNoFilters = {(singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated )&pixel_local&pixelTracks&pixelVertices,associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,associatorL25PixelTauNotIsolated,coneIsolationL25PixelTauNotIsolated,isolatedL25PixelTau }
 
 
 
@@ -110,4 +115,8 @@ sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator,hltMET)&tracke
 sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
 
-sequence testHLT = {caloTausCreator&tracker_local&pixelTracks&pixelVertices, singleTau } 
+#Triggers with no HLTFilters! For debugging scope
+sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&pixelTracks&pixelVertices, singleTauNoFilters }
+sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTauNoFilters}
+sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
+
