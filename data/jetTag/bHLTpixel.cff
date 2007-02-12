@@ -1,0 +1,14 @@
+    #
+    #   Pixel primary vertices and tracks (used at L2.5 and L3)
+    #
+    #TransientTrackingBuilder
+    include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
+#    include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi" 
+    include "RecoPixelVertexing/PixelTrackFitting/data/PixelTracks.cff"
+    include "RecoPixelVertexing/PixelVertexFinding/data/PixelVertexes.cff"  
+    #
+    #   Regional tracking around etCutJets (used at L3).
+    #
+    include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
+    replace bJetPixelSeedGenerator.JetSrc = etCutJets
+

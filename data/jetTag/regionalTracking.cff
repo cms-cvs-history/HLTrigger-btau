@@ -10,10 +10,10 @@ include "Configuration/Examples/data/RecoTracker.cff"
 
 # Regional track seeding 
 
-include "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
-replace regionalPixelSeedGenerator.ptMin = 1.0
-replace regionalPixelSeedGenerator.deltaEtaRegion = 0.25
-replace regionalPixelSeedGenerator.deltaPhiRegion = 0.25
+module bJetPixelSeedGenerator = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+replace bJetPixelSeedGenerator.ptMin = 1.0
+replace bJetPixelSeedGenerator.deltaEtaRegion = 0.25
+replace bJetPixelSeedGenerator.deltaPhiRegion = 0.25
 
 # Tell track trajectory builder to use regional track seeds.
 # And speed it up by only partially reconstructing tracks. 
@@ -28,7 +28,7 @@ replace regionalCkfTrajectoryBuilder.alwaysUseInvalidHits = false
 # Form track candidates using the trajectory builder and seeds defined above.
 
 module regionalCkfTrackCandidates =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
-replace regionalCkfTrackCandidates.SeedProducer      = "regionalPixelSeedGenerator"
+replace regionalCkfTrackCandidates.SeedProducer      = "bJetPixelSeedGenerator"
 replace regionalCkfTrackCandidates.TrajectoryBuilder = "regionalCkfTrajectoryBuilder"
 
 # Fit tracks using the track candidates defined above.
@@ -38,4 +38,4 @@ replace regionalCtfWithMaterialTracks.src = "regionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
 
-sequence regionalCkfTracks = {regionalPixelSeedGenerator, regionalCkfTrackCandidates, regionalCtfWithMaterialTracks}
+sequence regionalCkfTracks = {bJetPixelSeedGenerator, regionalCkfTrackCandidates, regionalCtfWithMaterialTracks}
