@@ -6,7 +6,8 @@ include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 # This defines the standard tracking modules.
 # (Not all are needed for the regional tracking, but this is a convenient way of getting them.)
 
-include "Configuration/Examples/data/RecoTracker.cff"
+include "RecoTracker/Configuration/data/RecoTracker.cff"
+#include "TrackingTools/Configuration/data/TrackingTools.cff"
 
 # Regional track seeding 
 
