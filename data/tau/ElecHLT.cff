@@ -1,0 +1,46 @@
+#Electron Trigger related stuff
+include "L1TriggerConfig/L1GeometryProducers/data/l1CaloGeometry.cfi"
+include "L1TriggerConfig/L1GeometryProducers/data/l1CaloGeomRecordSource.cff"
+include "RecoEcal/EgammaClusterProducers/data/ecalClusteringSequence.cff"
+include "RecoEgamma/EgammaHLTProducers/data/hltRecoEcalSingleCandidate.cfi"
+include "RecoEgamma/EgammaHLTProducers/data/pixelMatchElectronSequenceForHLT.cff"
+include "RecoEgamma/EgammaHLTProducers/data/pixelMatchElectronTrackingSequenceForHLT.cff"
+include "HLTrigger/Egamma/data/hltSingleL1MatchFilter.cfi"
+include "RecoEgamma/EgammaHLTProducers/data/hltSingleElectronHcalIsol.cfi"
+include "RecoEgamma/EgammaHLTProducers/data/hltSingleElectronTrackIsol.cfi"
+
+include "HLTrigger/Egamma/data/hltSingleElectronEtFilter.cfi"
+replace  hltSingleElectronEtFilter.etcut=5.0
+
+include "HLTrigger/Egamma/data/hltSingleElectronHcalIsolFilter.cfi"
+include "HLTrigger/Egamma/data/hltSingleElectronPixelMatchFilter.cfi"
+include "HLTrigger/Egamma/data/hltSingleElectronTrackIsolFilter.cfi"
+include "HLTrigger/Egamma/data/hltSingleElectronEoverpFilter.cfi"
+include "HLTrigger/Egamma/data/SingleElectron.cff"
+include "HLTrigger/btau/data/tau/ElectronForTau.cff"
+include "Configuration/Examples/data/RecoTracker.cff"
+
+
+
+
+#
+#Sequence ElectronForTau
+#
+
+sequence electronForTau={
+                         l1seedElecTauElectron,
+                         ecalClusteringSequence,
+                         hltRecoEcalSingleCandidate,
+                         hltSingleL1MatchFilter,
+                         hltSingleElectronEtFilter,
+                         hltSingleElectronHcalIsol, hltSingleElectronHcalIsolFilter,
+                         pixelMatchElectronSequenceForHLT,hltSingleElectronPixelMatchFilter,
+                         pixelMatchElectronTrackingSequenceForHLT,
+                         ckftracks,hltSingleElectronTrackIsol,hltSingleElectronTrackIsolFilter,
+                         hltSingleElectronEoverpFilter,
+                         singleElectronPresc
+                         }
+
+
+
+sequence electronL1HLT = {electronForTau}
