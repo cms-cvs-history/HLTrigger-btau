@@ -1,0 +1,39 @@
+
+    #
+    # Write events passing trigger (path bmuHLTpath) to disk
+    #
+
+    module out = PoolOutputModule {
+      untracked string fileName = 'file:bmuHLT.root'
+# Specify trigger paths for which events to be written to disk.
+      untracked PSet SelectEvents = {
+        vstring SelectEvents = {"bmuHLTpath1",
+                                "bmuHLTpath2",
+                                "bmuHLTpath3",
+                                "bmuHLTpath4"}
+      }
+#     untracked uint32 commitInterval = 3
+
+# Keep trigger summary and results of whichever b tags were used in HLT.
+      untracked vstring outputCommands = {
+        "drop *",
+        "keep *_TriggerResults_*_*",
+        "keep *_softMuJetTagsL25_*_*",
+        "keep *_softMuJetTagsL3_*_*"
+      }
+    }
+
+    endpath outpath = { out }
+
+   #
+   # Printout trigger pass/fail and timing summary.
+   #
+
+    untracked PSet options = {
+      untracked bool wantSummary = true  # default is false
+      untracked bool makeTriggerResults = true 
+      vstring listOfTriggers = {"bmuHLTpath1",
+                                "bmuHLTpath2",
+                                "bmuHLTpath3",
+                                "bmuHLTpath4"}
+    }

@@ -1,23 +1,12 @@
-    #
-    #  Tracker hit reconstruction
-    #
+####################################################
+# Reconstruct pixel tracks and vertices from Digis #
+####################################################
 
-    include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
+#  Tracker hit reconstruction
+include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
 
+#   Pixel primary vertices and tracks (used at L2.5 and L3)
+include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing.cff"
 
-    #
-    #   Pixel primary vertices and tracks (used at L2.5 and L3)
-    #
-
-    include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi" 
-    include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing.cff"
-
-    #
-    #   Regional tracking around etCutJets (used at L3).
-    #
-    include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
-    replace bJetPixelSeedGenerator.JetSrc = etCutJets
-
-    sequence bL25trackReco = {trackerlocalreco, recopixelvertexing}
-    sequence bL3trackReco  = {trackerlocalreco, regionalCkfTracks}
+sequence bL25trackReco = {pixeltrackerlocalreco, recopixelvertexing}
 

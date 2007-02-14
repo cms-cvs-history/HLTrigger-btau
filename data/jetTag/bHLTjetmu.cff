@@ -1,6 +1,8 @@
-  #
-    # Additional b tag softmuon reconstruction needed for L2.5 b HLT.
     #
+    # b -> muon tag algorithm needed for L2.5 b HLT.
+    #
+
+    include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
     include "RecoBTag/SoftLepton/data/softLeptonRecord.cff"
 
     module softMuJetTagsL25 = softLeptonJetTags from "RecoBTag/SoftLepton/data/softLepton.cfi"
@@ -10,7 +12,7 @@
     replace softMuJetTagsL25.leptonTagger = "softLeptonBTaggerByDistance"
 
     #
-    # Additional b tag reconstruction needed for L3 soft mu b HLT.
+    # b -> muon tag algorithm needed for L3 soft mu b HLT.
     #
     module softMuJetTagsL3 =  softLeptonJetTags from "RecoBTag/SoftLepton/data/softLepton.cfi"
     replace softMuJetTagsL3.jetTracks = "associatorL3"

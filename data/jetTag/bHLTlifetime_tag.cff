@@ -1,0 +1,19 @@
+#
+# b lifetime tag algorithms for Level 2.5 and 3.
+#
+
+include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
+
+module trackCountingJetTagsL25 = trackCountingJetTags from "RecoBTag/TrackCounting/data/trackCounting.cfi"
+replace trackCountingJetTagsL25.jetTracks = "associatorL25"
+replace trackCountingJetTagsL25.primaryVertex = "pixelVertices" 
+replace trackCountingJetTagsL25.AlgorithmPSet.NthTrack = 2 
+replace trackCountingJetTagsL25.AlgorithmPSet.ImpactParamterType = 0   # Use 3D impact parameter.  
+replace trackCountingJetTagsL25.AlgorithmPSet.MinimumNumberOfHits = 3  # (Pixel tracks only have 3 hits ...)
+
+module trackCountingJetTagsL3 = trackCountingJetTags from "RecoBTag/TrackCounting/data/trackCounting.cfi"
+replace trackCountingJetTagsL3.jetTracks = "associatorL3"
+replace trackCountingJetTagsL3.primaryVertex = "pixelVertices" 
+replace trackCountingJetTagsL3.AlgorithmPSet.NthTrack = 3 
+replace trackCountingJetTagsL3.AlgorithmPSet.ImpactParamterType = 0   # Use 3D impact parameter
+replace trackCountingJetTagsL3.AlgorithmPSet.MinimumNumberOfHits = 8  # (Partially reconstructed tracks don't have many hits ...)
