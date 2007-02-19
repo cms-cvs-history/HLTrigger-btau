@@ -2,8 +2,8 @@
  *
   * See header file for documentation
  *
- *  $Date: 2007/01/31 10:48:56 $
- *  $Revision: 1.1 $
+ *  $Date: 2006/11/18 11:35:53 $
+ *  $Revision: 1.7 $
  *
  *  \author Arnaud Gay, Ian Tomalin
  *
@@ -31,10 +31,10 @@ HLTJetTag::HLTJetTag(const edm::ParameterSet& iConfig) :
   label_   (iConfig.getParameter<std::string>   ("@module_label"))
 {
 
-  edm::LogInfo("") << " TRIGGER CUTS: " << label_ << std::endl
-                    << " Type of tagged jets used: " << jetTag_.encode() << std::endl
-    		<< " Min/Max tag value [" << min_Tag_ << "--" << max_Tag_ << "]" << std::endl
-    		<< " Min no. tagged jets = " << min_N_ << std::endl;
+  LogDebug ("") << " TRIGGER " << label_ << std::endl
+                << " Type of tagged jets used: " << jetTag_.encode() << std::endl
+		<< " Min/Max tag value [" << min_Tag_ << "--" << max_Tag_ << "]" << std::endl
+		<< " Min no. tagged jets = " << min_N_ << std::endl;
 
   //register your products
   produces<reco::HLTFilterObjectWithRefs>();
@@ -42,7 +42,7 @@ HLTJetTag::HLTJetTag(const edm::ParameterSet& iConfig) :
 
 HLTJetTag::~HLTJetTag()
 {
-  edm::LogInfo("") << "Destroyed !";
+  LogDebug("") << "Destroyed!";
 }
 
 //
@@ -57,7 +57,7 @@ HLTJetTag::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
   using namespace edm;
   using namespace reco;
 
-  //  edm::LogInfo("") << "Start at event="<<iEvent.id().event();
+  LogDebug("") << "Start at event="<<iEvent.id().event();
 
   // Needed to store jets used for triggering.
   auto_ptr<HLTFilterObjectWithRefs>
@@ -75,10 +75,10 @@ HLTJetTag::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
   int nTag(0);
   JetTagCollection::const_iterator jet;
   for (jet = jets.begin(); jet != jets.end(); jet++) {
-    edm::LogInfo("") << "Jet " << nJet
-	   	     << " : Et = " << jet->jet().et()
-		     << " , No. of tracks = " << jet->tracks().size()
-		     << " , tag value = " << jet->discriminator();
+    LogTrace("") << "Jet " << nJet
+		 << " : Et = " << jet->jet().et()
+		 << " , No. of tracks = " << jet->tracks().size()
+		 << " , tag value = " << jet->discriminator();
     nJet++;
     //  Check if jet is tagged.
     if ( (min_Tag_ <= jet->discriminator()) && 
@@ -101,8 +101,8 @@ HLTJetTag::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
   // put filter object into the Event
   iEvent.put(filterproduct);
 
-  edm::LogInfo("") <<  label_ << " trigger accept ? = " << accept
-	           << " nTag/nJet = " << nTag << "/" << nJet << std::endl;
+  LogDebug("") <<  label_ << " accept = " << accept
+	       << " nTag/nJet = " << nTag << "/" << nJet;
 
   return accept;
 }

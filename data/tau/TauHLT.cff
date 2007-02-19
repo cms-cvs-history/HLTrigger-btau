@@ -15,7 +15,7 @@ include "Configuration/Examples/data/RecoTracker.cff"
 #CaloMet stuff
 include "RecoMET/METProducers/data/CaloMET.cfi"
 include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
-replace genCandidates.src = "VtxSmeared"
+#replace genCandidates.src = "VtxSmeared"
 
 
 #Tau Trigger related stuff
@@ -32,12 +32,12 @@ include "HLTrigger/btau/data/tau/EcalIsolation.cff"
 include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
 
 include "SimGeneral/HepPDTESSource/data/pdt.cfi"
-#module genCandidates = HepMCCandidateProducer {
-#    string src = "VtxSmeared"
-#    untracked bool verbose = true
-#    bool stableOnly = true
-#    vstring excludeList = { }
-#}
+module genCandidates = HepMCCandidateProducer {
+    string src = "VtxSmeared"
+    untracked bool verbose = true
+    bool stableOnly = true
+    vstring excludeList = { }
+}
 
 # Tracker local reconstruction
 sequence pixel_local = {siPixelClusters & siPixelRecHits }
@@ -45,7 +45,7 @@ sequence siStrip_local = {siStripClusters & siStripMatchedRecHits}
 sequence tracker_local ={pixel_local & siStrip_local}
 
 #Generator sequence 
-sequence tauGenJet = {genCandidates,genParticleCandidates, iterativeCone5GenJets}
+sequence tauGenJet = {genParticleCandidates, iterativeCone5GenJets}
 
 #CaloTaus sequence
 sequence caloTausCreator = {doCalo,caloTowersTau1,icone5Tau1,caloTowersTau2, icone5Tau2, caloTowersTau3, icone5Tau3, caloTowersTau4, icone5Tau4,l2TauJetsProvider}
@@ -74,7 +74,6 @@ sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3Single
 
 
 sequence singleTau = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,l25SingleTauFilter,ckfTracksL3SingleTau,tauJetsMakerL3SingleTau,filterL3SingleTauCandidate}
-sequence singleTauNoFilters = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,isolatedL25SingleTau,ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
 #
 #Double Trk Tau
 #
@@ -97,14 +96,10 @@ sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3Double
 
 sequence doubleTrkTau ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau, filterL25DoubleTauToConfirm,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau,l25DoubleTauFilter, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau,filterL3DoubleTau}    
 
-sequence doubleTrkTauNoFilters ={ckfTracksL25SingleTau,tauJetsMakerL25SingleTau,ckfTracksL25DoubleTau, tauJetsMakerL25DoubleTau,isolatedL25DoubleTau, ckfTracksL3DoubleTau, tauJetsMakerL3DoubleTau}    
-
 
 
 #Pixel Tau
 sequence doubleCaloPixelTau = {(singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated,filterTauEcalIsolation )&pixel_local&pixelTracks&pixelVertices,associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,filterL25PixelTauIsolated,associatorL25PixelTauNotIsolated,coneIsolationL25PixelTauNotIsolated,isolatedL25PixelTau,filterL25PixelTau }
-
-sequence doubleCaloPixelTauNoFilters = {(singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated )&pixel_local&pixelTracks&pixelVertices,associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,associatorL25PixelTauNotIsolated,coneIsolationL25PixelTauNotIsolated,isolatedL25PixelTau }
 
 
 
@@ -115,8 +110,4 @@ sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator,hltMET)&tracke
 sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
 
-#Triggers with no HLTFilters! For debugging scope
-sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&pixelTracks&pixelVertices, singleTauNoFilters }
-sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTauNoFilters}
-sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
-
+sequence testHLT = {caloTausCreator&tracker_local&pixelTracks&pixelVertices, singleTau } 

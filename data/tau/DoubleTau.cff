@@ -60,7 +60,7 @@ module filterL25DoubleTauCandidate = HLTJetTag {
     InputTag JetTag   = coneIsolationL25DoubleTau
     double MinTag = 0.
     double   MaxTag   = 2.
-    int32 MinN     = 1
+    int32 MinN     = 1.
 }
 
 
@@ -76,7 +76,7 @@ module isolatedL25DoubleTau = IsolatedTauJetsSelector{
     double MinimumTransverseMomentumInIsolationRing = 0.
     double MinimumTransverseMomentumLeadingTrack = 6.
     double DeltaZetTrackVertex = 0.2
-    int32	MaximumNumberOfTracksIsolationRing = 0
+    int32	MaximumNumberOfTracksIsolationRing = 0.
     InputTag VertexSrc = pixelVertices
     bool UseVertex = false
 }
@@ -131,7 +131,7 @@ module filterL3DoubleTau = HLTJetTag {
     InputTag JetTag   = coneIsolationL3DoubleTau
     double MinTag = 1.
     double   MaxTag   = 1.
-    int32 MinN     = 2
+    int32 MinN     = 2.
 }
 
 

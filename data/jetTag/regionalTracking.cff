@@ -1,49 +1,41 @@
-####################################################################
-# Reconstruct regional tracks around etCutJets starting from Digis #
-####################################################################
+# Initialize magnetic field and XML
 
-# Define the standard hit and track reconstruction modules.
-# (A few of these like road-search not needed, but do no harm).
+include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"  
 
-include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
-include "RecoTracker/Configuration/data/RecoTracker.cff"
+# This defines the standard tracking modules.
+# (Not all are needed for the regional tracking, but this is a convenient way of getting them.)
 
-# Regional track seeding around jets named etCutJets.
+include "Configuration/Examples/data/RecoTracker.cff"
 
-module bJetRegionalPixelSeedGenerator = 
-  regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
-replace bJetRegionalPixelSeedGenerator.JetSrc = etCutJets
-replace bJetRegionalPixelSeedGenerator.ptMin = 1.0
-replace bJetRegionalPixelSeedGenerator.deltaEtaRegion = 0.25
-replace bJetRegionalPixelSeedGenerator.deltaPhiRegion = 0.25
+# Regional track seeding 
+
+include "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+replace regionalPixelSeedGenerator.ptMin = 1.0
+replace regionalPixelSeedGenerator.deltaEtaRegion = 0.25
+replace regionalPixelSeedGenerator.deltaPhiRegion = 0.25
 
 # Tell track trajectory builder to use regional track seeds.
 # And speed it up by only partially reconstructing tracks. 
 
-es_module bJetRegionalCkfTrajectoryBuilder = 
-  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
-replace bJetRegionalCkfTrajectoryBuilder.ComponentName = "bJetRegionalCkfTrajectoryBuilder"
-replace bJetRegionalCkfTrajectoryBuilder.ptCut                = 1.0
-replace bJetRegionalCkfTrajectoryBuilder.maxNumberOfHits      = 8
-replace bJetRegionalCkfTrajectoryBuilder.maxCand              = 1
-replace bJetRegionalCkfTrajectoryBuilder.alwaysUseInvalidHits = false
+es_module regionalCkfTrajectoryBuilder = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
+replace regionalCkfTrajectoryBuilder.ComponentName        = "regionalCkfTrajectoryBuilder"
+replace regionalCkfTrajectoryBuilder.ptCut                = 1.0
+replace regionalCkfTrajectoryBuilder.maxNumberOfHits      = 8
+replace regionalCkfTrajectoryBuilder.maxCand              = 1
+replace regionalCkfTrajectoryBuilder.alwaysUseInvalidHits = false
 
 # Form track candidates using the trajectory builder and seeds defined above.
 
-module bJetregionalCkfTrackCandidates =  
-  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
-replace bJetregionalCkfTrackCandidates.SeedProducer      = "bJetRegionalPixelSeedGenerator"
-replace bJetregionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalCkfTrajectoryBuilder"
+module regionalCkfTrackCandidates =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+replace regionalCkfTrackCandidates.SeedProducer      = "regionalPixelSeedGenerator"
+replace regionalCkfTrackCandidates.TrajectoryBuilder = "regionalCkfTrajectoryBuilder"
 
 # Fit tracks using the track candidates defined above.
 
-module bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace bJetRegionalCtfWithMaterialTracks.src = "bJetregionalCkfTrackCandidates"
+module regionalCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+replace regionalCtfWithMaterialTracks.src = "regionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
 
-sequence regionalCkfTracks = {bJetRegionalPixelSeedGenerator, 
-                              bJetregionalCkfTrackCandidates, 
-                              bJetRegionalCtfWithMaterialTracks}
-
-sequence bL3trackReco  = {trackerlocalreco, regionalCkfTracks}
+sequence regionalCkfTracks = {regionalPixelSeedGenerator, regionalCkfTrackCandidates, regionalCtfWithMaterialTracks}
