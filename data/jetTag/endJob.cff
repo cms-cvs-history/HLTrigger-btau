@@ -23,7 +23,15 @@
       }
     }
 
-    endpath outpath = { out }
+   #
+   # Get detailed timing info.
+   # (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary)
+   #
+   module printer = AsciiOutputModule{}
+   module pts = PathTimerInserter{}
+   service = PathTimerService{}
+
+   endpath outpath = { pts, printer, out }
 
    #
    # Printout trigger pass/fail and timing summary.
