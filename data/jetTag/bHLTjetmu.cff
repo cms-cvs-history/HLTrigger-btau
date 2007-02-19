@@ -1,21 +1,39 @@
-    #
-    # b -> muon tag algorithm needed for L2.5 b HLT.
-    #
+# get L2muons and L3muons 
+## Local Muon reconstruction
+include "RecoLocalMuon/Configuration/data/RecoLocalMuon.cff"
+#
+## L2 seeds from L1 input
+include "RecoMuon/L2MuonSeedGenerator/data/L2MuonSeeds.cfi"
+#
+## L2 reconstruction
+include "RecoMuon/L2MuonProducer/data/L2Muons.cff"
+#
+## L3 regional reconstruction
+include "RecoMuon/L3MuonProducer/data/L3MuonAlts.cff"
+#
+## Soft Lepton Tagger
+include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
+include "RecoBTag/SoftLepton/data/softLeptonRecord.cff"
 
-    include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
-    include "RecoBTag/SoftLepton/data/softLeptonRecord.cff"
+sequence l2muonreco = { L2MuonSeeds, muonlocalreco, L2Muons}
+sequence l3muonreco = { trackerlocalreco, L3muonAltReco}
+#
+# Additional b tag softmuon reconstruction needed for L2.5 b HLT.
+#
+
 
     module softMuJetTagsL25 = softLeptonJetTags from "RecoBTag/SoftLepton/data/softLepton.cfi"
     replace softMuJetTagsL25.jetTracks = "associatorL25"
     replace softMuJetTagsL25.primaryVertex = "pixelVertices"
-    #replace softMuJetTagsL25.leptons = "globalMuons"
+    replace softMuJetTagsL25.leptons = "L2Muons"
     replace softMuJetTagsL25.leptonTagger = "softLeptonBTaggerByDistance"
 
     #
-    # b -> muon tag algorithm needed for L3 soft mu b HLT.
+    # Additional b tag reconstruction needed for L3 soft mu b HLT.
     #
+
     module softMuJetTagsL3 =  softLeptonJetTags from "RecoBTag/SoftLepton/data/softLepton.cfi"
     replace softMuJetTagsL3.jetTracks = "associatorL3"
     replace softMuJetTagsL3.primaryVertex = "pixelVertices" 
-    #replace softMuJetTagsL3.leptons = "globalMuons"
+    replace softMuJetTagsL3.leptons = "L3muonAltReco"
     #replace softMuJetTagsL3.leptonTagger = "softMuonBTaggerNoIP"
