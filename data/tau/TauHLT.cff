@@ -7,20 +7,20 @@ include "RecoPixelVertexing/PixelVertexFinding/data/PixelVertexes.cfi"
 include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
 #replace ttrhbwr.StripCPE = "Fake"
 
-# This defines the standard tracking modules.
-# (Not all are needed for the regional tracking, but this is a convenient way of getting them.)
-include "Configuration/Examples/data/RecoTracker.cff"
+
 
 
 #CaloMet stuff
-include "RecoMET/METProducers/data/CaloMET.cfi"
-include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
-replace genCandidates.src = "VtxSmeared"
+include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
+
+
+
+#include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
+include "HLTrigger/Configuration/data/common/LocalTracker.cff"
 
 
 #Tau Trigger related stuff
-include "HLTrigger/HLTstaging/data/common/CaloTowers.cff"
-include "HLTrigger/HLTstaging/data/common/LocalTracker.cff"
 include "HLTrigger/btau/data/tau/L1TauEmulation.cfi"
 include "HLTrigger/btau/data/tau/CaloTau.cff"
 include "HLTrigger/btau/data/tau/SingleTau.cff"
@@ -29,15 +29,13 @@ include "HLTrigger/btau/data/tau/PixelTau.cff"
 include "HLTrigger/btau/data/tau/EcalIsolation.cff"
 
 
-include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
+//include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
+//include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
+//replace genCandidates.src = "VtxSmeared"
+
 
 include "SimGeneral/HepPDTESSource/data/pdt.cfi"
-#module genCandidates = HepMCCandidateProducer {
-#    string src = "VtxSmeared"
-#    untracked bool verbose = true
-#    bool stableOnly = true
-#    vstring excludeList = { }
-#}
+
 
 # Tracker local reconstruction
 sequence pixel_local = {siPixelClusters & siPixelRecHits }
@@ -45,7 +43,7 @@ sequence siStrip_local = {siStripClusters & siStripMatchedRecHits}
 sequence tracker_local ={pixel_local & siStrip_local}
 
 #Generator sequence 
-sequence tauGenJet = {genCandidates,genParticleCandidates, iterativeCone5GenJets}
+//sequence tauGenJet = {genCandidates,genParticleCandidates, iterativeCone5GenJets}
 
 #CaloTaus sequence
 sequence caloTausCreator = {doCalo,caloTowersTau1,icone5Tau1,caloTowersTau2, icone5Tau2, caloTowersTau3, icone5Tau3, caloTowersTau4, icone5Tau4,l2TauJetsProvider}
@@ -110,7 +108,7 @@ sequence doubleCaloPixelTauNoFilters = {(singleTauJetCrystalsAssociator,doubleTa
 
 #Trigger  sequences to become trigger path in cfg file
 
-sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
+//sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
 sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator,hltMET)&tracker_local&pixelTracks&pixelVertices, singleTau }
 sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
