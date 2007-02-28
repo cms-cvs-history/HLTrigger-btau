@@ -1,11 +1,11 @@
 #Primary Vertex
 include "RecoPixelVertexing/PixelTrackFitting/data/PixelTracks.cff"
 include "RecoPixelVertexing/PixelVertexFinding/data/PixelVertexes.cfi"
-#replace pixelVertices.NTrkMin = 2
+
 
 #TransientTrackingBuilder
 include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
-#replace ttrhbwr.StripCPE = "Fake"
+
 
 
 
@@ -27,11 +27,6 @@ include "HLTrigger/btau/data/tau/SingleTau.cff"
 include "HLTrigger/btau/data/tau/DoubleTau.cff"
 include "HLTrigger/btau/data/tau/PixelTau.cff"
 include "HLTrigger/btau/data/tau/EcalIsolation.cff"
-
-
-//include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
-//include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
-//replace genCandidates.src = "VtxSmeared"
 
 
 include "SimGeneral/HepPDTESSource/data/pdt.cfi"

@@ -2,13 +2,10 @@ module doubleTauL1SeedFilter = HLTLevel1Seed {
     vstring L1Seeds = {"SingleTau", "DoubleTau"}
     bool andOr      = true
     bool byName     = true
-#    InputTag L1ExtraCollections = l1extraParticles
-#    InputTag L1ExtraParticleMap = l1extraParticleMap
-#    InputTag L1GTReadoutRecord  = l1extraParticleMap
 
-    InputTag L1ExtraCollections = l1extraTaumctruth  // l1extraParticles
-    InputTag L1ExtraParticleMap = l1extraTaumctruth  // l1extraParticleMap
-    InputTag L1GTReadoutRecord  = l1extraTaumctruth  // l1extraParticleMap (later L1GT emulator)
+    InputTag L1ExtraCollections = l1extraParticles
+    InputTag L1ExtraParticleMap = l1extraParticleMap
+    InputTag L1GTReadoutRecord  = l1extraParticleMap
 }
 
 #
