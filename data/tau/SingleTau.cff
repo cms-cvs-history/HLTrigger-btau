@@ -4,12 +4,9 @@ module singleTauL1SeedFilter = HLTLevel1Seed {
     vstring L1Seeds = {"SingleTau"}
     bool andOr      = true
     bool byName     = true
-    InputTag L1ExtraCollections = l1extraTaumctruth  // l1extraParticles
-    InputTag L1ExtraParticleMap = l1extraTaumctruth  // l1extraParticleMap
-    InputTag L1GTReadoutRecord  = l1extraTaumctruth  // l1extraParticleMap (later L1GT emulator)
-#    InputTag L1ExtraCollections = l1extraParticles
-#    InputTag L1ExtraParticleMap = l1extraParticleMap
-#    InputTag L1GTReadoutRecord  = l1extraParticleMap
+    InputTag L1ExtraCollections = l1extraParticles
+    InputTag L1ExtraParticleMap = l1extraParticleMap
+    InputTag L1GTReadoutRecord  = l1extraParticleMap
 }
 
 
@@ -94,7 +91,7 @@ module isolatedL25SingleTau = IsolatedTauJetsSelector{
 	double MatchingCone = 0.1
 	double SignalCone = 0.07
 	double IsolationCone = 0.45
-	double MinimumTransverseMomentumInIsolationRing = 0.
+	double MinimumTransverseMomentumInIsolationRing = 1.
     double MinimumTransverseMomentumLeadingTrack = 25
     double DeltaZetTrackVertex = 0.2
     int32	MaximumNumberOfTracksIsolationRing = 0
