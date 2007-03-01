@@ -11,6 +11,6 @@
     sequence preL2bReco     = {bCalJetsReco}
 
     sequence preL25bRecoMu  = {bL25trackReco,
-                               associatorL25,  l1muonreco, l2muonreco, softMuJetTagsL25}
+                               associatorL25,  l1bmuonreco, l2bmuonreco, softMuJetTagsL25}
 
 

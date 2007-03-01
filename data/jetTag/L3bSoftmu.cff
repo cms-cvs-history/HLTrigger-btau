@@ -12,4 +12,4 @@
 
 
     sequence preL3bRecoMu   = {bL3trackReco,
-                               associatorL3,  l3muonreco, softMuJetTagsL3}
+                               associatorL3,  l3bmuonreco, softMuJetTagsL3}

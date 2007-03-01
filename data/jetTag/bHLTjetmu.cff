@@ -1,35 +1,16 @@
 
-## L1 emulation
-include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
+## L1 emulation, L2, L3 muons
+include "HLTrigger/Muon/data/CommonModules_2x1033_AltNarrowPlusWide.cfi"
 
-# get L1extra muon
-#include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-
-# get L2muons and L3muons 
-## Local Muon reconstruction
-include "RecoLocalMuon/Configuration/data/RecoLocalMuon.cff"
-#
-## L2 seeds from L1 input
-include "RecoMuon/L2MuonSeedGenerator/data/L2MuonSeeds.cfi"
-#
-## L2 reconstruction
-include "RecoMuon/L2MuonProducer/data/L2Muons.cff"
-#
-## L3 regional reconstruction
-include "RecoMuon/L3MuonProducer/data/L3MuonAlts.cff"
-include "RecoMuon/L3MuonProducer/data/L3MuonCandidates.cfi"
-#Use these region sizes for standard HLT running and timing studies
-replace regionalPixelForMuIsoSeeds.deltaEtaRegion = 0.10
-replace regionalPixelForMuIsoSeeds.deltaPhiRegion = 0.10
 
 #
 ## Soft Lepton Tagger
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 include "RecoBTag/SoftLepton/data/softLeptonRecord.cff"
 
-sequence l1muonreco = { l1emulator, l1extra }
-sequence l2muonreco = { L2MuonSeeds, muonlocalreco, L2Muons}
-sequence l3muonreco = { trackerlocalreco, L3muonAltReco}
+sequence l1bmuonreco = { l1emulator, l1extra }
+sequence l2bmuonreco = { L2MuonSeeds, muonlocalreco, L2Muons}
+sequence l3bmuonreco = { doLocalTrackerFromDigis, L3muonAltReco}
 
 #
 # Additional b tag softmuon reconstruction needed for L2.5 b HLT.
