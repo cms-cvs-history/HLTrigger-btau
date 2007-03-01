@@ -3,18 +3,18 @@
 #####################################################
 
 # This does what we want ...
-#  include "HLTrigger/HLTstaging/data/common/CaloTowers.cff"
-#  include "HLTrigger/HLTstaging/data/common/RecoJetMET.cff" 
+  include "HLTrigger/HLTstaging/data/common/CaloTowers.cff"
+  include "HLTrigger/HLTstaging/data/common/RecoJetMET.cff" 
 
 # But this is in an official release area ...
 # (It seems to waste lots of time initialising module hbhereco ?
-include "Configuration/JetMET/data/calorimetry-reconstruction.cff"
-include "Configuration/JetMET/data/calorimetry-caltowers.cff"
-include "Configuration/JetMET/data/calorimetry-jetmet.cff"
+#include "Configuration/JetMET/data/calorimetry-reconstruction.cff"
+#include "Configuration/JetMET/data/calorimetry-caltowers.cff"
+#include "Configuration/JetMET/data/calorimetry-jetmet.cff"
 # Local calorimeter reconstruction.
-sequence doCalo = {caloReco, caloTowersRec}
-# Until CMSSW 1.3.0.pre3 ...
-sequence doHLTJetReco = {iterativeCone5CaloJets}
+#sequence doCalo = {caloReco, caloTowersRec}
+## Until CMSSW 1.3.0.pre3 ...
+#sequence doHLTJetReco = {iterativeCone5CaloJets}
 # After 1.3.0.pre4 ?
 #sequence doHLTJetReco = MCJetCorJetIcone5}
 
