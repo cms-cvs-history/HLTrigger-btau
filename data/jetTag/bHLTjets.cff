@@ -2,9 +2,9 @@
 # Reconstruct jets, starting from calorimeter digis #
 #####################################################
 
-# This does what we want ...
-   include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-   include "HLTrigger/Configuration/data/common/RecoJetMET.cff" 
+# This does what we want ... move to main cfg file
+#   include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+#   include "HLTrigger/Configuration/data/common/RecoJetMET.cff" 
 
 # But this is in an official release area ...
 # (It seems to waste lots of time initialising module hbhereco ?

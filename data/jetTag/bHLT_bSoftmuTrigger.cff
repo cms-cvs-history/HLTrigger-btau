@@ -4,6 +4,9 @@
 
     # reconstruct jets
 
+# This does what we want ...
+   include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+   include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
     include "HLTrigger/btau/data/jetTag/bHLTjets.cff"
     # setup pixel tracks & primary vertex
