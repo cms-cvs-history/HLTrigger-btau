@@ -2,34 +2,20 @@
 # Reconstruct jets, starting from calorimeter digis #
 #####################################################
 
-# This does what we want ... move to main cfg file
-#   include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-#   include "HLTrigger/Configuration/data/common/RecoJetMET.cff" 
-
-# But this is in an official release area ...
-# (It seems to waste lots of time initialising module hbhereco ?
-#include "Configuration/JetMET/data/calorimetry-reconstruction.cff"
-#include "Configuration/JetMET/data/calorimetry-caltowers.cff"
-#include "Configuration/JetMET/data/calorimetry-jetmet.cff"
-# Local calorimeter reconstruction.
-#sequence doCalo = {caloReco, caloTowersRec}
-## Until CMSSW 1.3.0.pre3 ...
-#sequence doHLTJetReco = {iterativeCone5CaloJets}
-# After 1.3.0.pre4 ?
-#sequence doHLTJetReco = MCJetCorJetIcone5}
-
 #
 # Select jets used for regional tracking and considered for b tagging
 #
+
 module highestEtJets = LargestEtCaloJetSelector {
-  InputTag src = iterativeCone5CaloJets   
-  bool filter = false
-  uint32 maxNumber = 2  # Take only 2 highest Et jets
-}
-module etCutJets = EtMinCaloJetSelector {
-  InputTag src = highestEtJets 
-  bool filter = false
-  double etMin = 20.0  # And require jet Et greater than cut.
+    InputTag src = iterativeCone5CaloJets   
+    bool filter = false
+    uint32 maxNumber = 2  # Take only 2 highest Et jets
 }
 
-sequence bCalJetsReco  = {doCalo, doHLTJetReco, highestEtJets, etCutJets}
+module etCutJets = EtMinCaloJetSelector {
+    InputTag src = highestEtJets 
+    bool filter = false
+    double etMin = 20.0  # And require jet Et greater than cut.
+}
+
+sequence bCalJetsReco = { doCalo, doHLTJetReco, highestEtJets, etCutJets }

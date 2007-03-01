@@ -1,16 +1,14 @@
-    #
-    # b HLT modules for Level 2.5 
-    #
+#
+# b HLT modules for Level 2.5 
+#
+module  hltL25bmu = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
+replace hltL25bmu.JetTag = softMuJetTagsL25
+replace hltL25bmu.MinTag = 0.5  # 1 if a lepton is found in the jet, 0 otherwise
 
-    module hltL25bmu = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
-    replace hltL25bmu.JetTag = softMuJetTagsL25
-    replace hltL25bmu.MinTag = 0.5  # 1 if a lepton is found in the jet, 0 otherwise
-   #
-    # Event reconstruction needed for trigger.
-    #
-    sequence preL2bReco     = {bCalJetsReco}
+#
+# Event reconstruction needed for trigger.
+#
+sequence preL2bReco    = { bCalJetsReco }
 
-    sequence preL25bRecoMu  = {bL25trackReco,
-                               associatorL25,  l1bmuonreco, l2bmuonreco, softMuJetTagsL25}
-
-
+sequence preL25bRecoMu = { bL25trackReco,
+                           associatorL25, l1bmuonreco, l2bmuonreco, softMuJetTagsL25 }

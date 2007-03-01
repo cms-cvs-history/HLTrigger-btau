@@ -2,11 +2,10 @@
 # Reconstruct pixel tracks and vertices from Digis #
 ####################################################
 
-#  Tracker hit reconstruction
+# Tracker hit reconstruction
 include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
 
-#   Pixel primary vertices and tracks (used at L2.5 and L3)
+# Pixel primary vertices and tracks (used at L2.5 and L3)
 include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing.cff"
 
 sequence bL25trackReco = {pixeltrackerlocalreco, recopixelvertexing}
-

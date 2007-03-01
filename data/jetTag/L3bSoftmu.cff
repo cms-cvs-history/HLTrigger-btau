@@ -1,15 +1,12 @@
-    # b HLT modules for Level 3.
-    #
+#
+# b HLT modules for Level 3.
+#
+module  hltL3bmu = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
+replace hltL3bmu.JetTag = softMuJetTagsL3
+replace hltL3bmu.MinTag = 0.1
 
-
-    module hltL3bmu = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
-    replace hltL3bmu.JetTag = softMuJetTagsL3
-    replace hltL3bmu.MinTag = 0.1
-
-   #
-    # Event reconstruction needed for trigger.
-    #
-
-
-    sequence preL3bRecoMu   = {bL3trackReco,
-                               associatorL3,  l3bmuonreco, softMuJetTagsL3}
+#
+# Event reconstruction needed for trigger.
+#
+sequence preL3bRecoMu  = { bL3trackReco, 
+                           associatorL3, l3bmuonreco, softMuJetTagsL3 }

@@ -1,47 +1,44 @@
+#
+# Write events passing trigger (path bHLTpath) to disk
+#
+module out = PoolOutputModule {
+    untracked string fileName = 'file:bHLT.root'
+    # Specify trigger paths for which events to be written to disk.
+    untracked PSet SelectEvents = {
+        vstring SelectEvents = { "bHLTpath1",
+                                 "bHLTpath2",
+                                 "bHLTpath3",
+                                 "bHLTpath4" }
+    }
+    #untracked uint32 commitInterval = 3
 
-    #
-    # Write events passing trigger (path bHLTpath) to disk
-    #
-
-    module out = PoolOutputModule {
-      untracked string fileName = 'file:bHLT.root'
-# Specify trigger paths for which events to be written to disk.
-      untracked PSet SelectEvents = {
-        vstring SelectEvents = {"bHLTpath1",
-                                "bHLTpath2",
-                                "bHLTpath3",
-                                "bHLTpath4"}
-      }
-#     untracked uint32 commitInterval = 3
-
-# Keep trigger summary and results of whichever b tags were used in HLT.
-      untracked vstring outputCommands = {
+    # Keep trigger summary and results of whichever b tags were used in HLT.
+    untracked vstring outputCommands = {
         "drop *",
         "keep *_TriggerResults_*_*",
         "keep *_trackCountingJetTagsL25_*_*",
         "keep *_trackCountingJetTagsL3_*_*"
-      }
     }
+}
 
-   #
-   # Get detailed timing info.
-   # (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary)
-   #
-   module printer = AsciiOutputModule{}
-   module pts = PathTimerInserter{}
-   service = PathTimerService{}
+#
+# Get detailed timing info.
+# (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary)
+#
+module printer = AsciiOutputModule{}
+module pts = PathTimerInserter{}
+service = PathTimerService{}
 
-   endpath outpath = { pts, printer, out }
+endpath outpath = { pts, printer, out }
 
-   #
-   # Printout trigger pass/fail and timing summary.
-   #
-
-    untracked PSet options = {
-      untracked bool wantSummary = true  # default is false
-      untracked bool makeTriggerResults = true 
-      vstring listOfTriggers = {"bHLTpath1",
-                                "bHLTpath2",
-                                "bHLTpath3",
-                                "bHLTpath4"}
-    }
+#
+# Printout trigger pass/fail and timing summary.
+#
+untracked PSet options = {
+    untracked bool wantSummary = true  # default is false
+    untracked bool makeTriggerResults = true 
+    vstring listOfTriggers = { "bHLTpath1", 
+                               "bHLTpath2",
+                               "bHLTpath3",
+                               "bHLTpath4" }
+}

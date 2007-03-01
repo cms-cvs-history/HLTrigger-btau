@@ -1,10 +1,11 @@
-
-## L1 emulation, L2, L3 muons
+#
+# L1 emulation, L2, L3 muons
+#
 include "HLTrigger/Muon/data/CommonModules_2x1033_AltNarrowPlusWide.cfi"
 
-
 #
-## Soft Lepton Tagger
+# Soft Lepton Tagger
+#
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 include "RecoBTag/SoftLepton/data/softLeptonRecord.cff"
 
@@ -15,20 +16,17 @@ sequence l3bmuonreco = { doLocalTrackerFromDigis, L3muonAltReco}
 #
 # Additional b tag softmuon reconstruction needed for L2.5 b HLT.
 #
+module softMuJetTagsL25 = softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
+replace softMuJetTagsL25.jetTracks = "associatorL25"
+replace softMuJetTagsL25.primaryVertex = "pixelVertices"
+replace softMuJetTagsL25.leptons = "L2Muons"
+replace softMuJetTagsL25.leptonTagger = "softLeptonBTaggerByDistance"
 
-
-    module softMuJetTagsL25 = softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
-    replace softMuJetTagsL25.jetTracks = "associatorL25"
-    replace softMuJetTagsL25.primaryVertex = "pixelVertices"
-    replace softMuJetTagsL25.leptons = "L2Muons"
-    replace softMuJetTagsL25.leptonTagger = "softLeptonBTaggerByDistance"
-
-    #
-    # Additional b tag reconstruction needed for L3 soft mu b HLT.
-    #
-
-    module softMuJetTagsL3 =  softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
-    replace softMuJetTagsL3.jetTracks = "associatorL3"
-    replace softMuJetTagsL3.primaryVertex = "pixelVertices" 
-    replace softMuJetTagsL3.leptons = "L3Muons"
-    #replace softMuJetTagsL3.leptonTagger = "softMuonBTaggerNoIP"
+#
+# Additional b tag reconstruction needed for L3 soft mu b HLT.
+#
+module softMuJetTagsL3 =  softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
+replace softMuJetTagsL3.jetTracks = "associatorL3"
+replace softMuJetTagsL3.primaryVertex = "pixelVertices" 
+replace softMuJetTagsL3.leptons = "L3Muons"
+#replace softMuJetTagsL3.leptonTagger = "softMuonBTaggerNoIP"
