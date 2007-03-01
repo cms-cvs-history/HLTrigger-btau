@@ -7,3 +7,8 @@
     replace hltL3b.JetTag = trackCountingJetTagsL3
     replace hltL3b.MinTag = 3
 
+    # Reconstruction sequences needed before each trigger.
+
+
+    sequence preL3bReco   = {bL3trackReco,
+                             associatorL3, trackCountingJetTagsL3}

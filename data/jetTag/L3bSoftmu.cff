@@ -6,3 +6,10 @@
     replace hltL3bmu.JetTag = softMuJetTagsL3
     replace hltL3bmu.MinTag = 0.1
 
+   #
+    # Event reconstruction needed for trigger.
+    #
+
+
+    sequence preL3bRecoMu   = {bL3trackReco,
+                               associatorL3,  l3muonreco, softMuJetTagsL3}
