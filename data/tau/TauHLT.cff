@@ -18,6 +18,7 @@ include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
 #include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
 include "HLTrigger/Configuration/data/common/LocalTracker.cff"
+include "Configuration/Examples/data/RecoTracker.cff"
 
 
 #Tau Trigger related stuff
@@ -49,7 +50,7 @@ sequence caloTausCreator = {doCalo,caloTowersTau1,icone5Tau1,caloTowersTau2, ico
 #Single Tau
 #
 
-sequence hltMET = {met, hlt1MET91}
+sequence hltMET = {met, hlt1METSingleTau}
 #L25Trk reconstruction
 sequence ckfTracksL25SingleTau = {l25SingleTauPixelSeeds,ckfTrackCandidatesL25SingleTau,ctfWithMaterialTracksL25SingleTau}
 
@@ -104,7 +105,7 @@ sequence doubleCaloPixelTauNoFilters = {(singleTauJetCrystalsAssociator,doubleTa
 #Trigger  sequences to become trigger path in cfg file
 
 //sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
-sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator,hltMET)&tracker_local&pixelTracks&pixelVertices, singleTau }
+sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator&hltMET)&tracker_local&pixelTracks&pixelVertices, singleTau }
 sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
 
