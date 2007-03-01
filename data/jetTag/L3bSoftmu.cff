@@ -1,0 +1,8 @@
+    # b HLT modules for Level 3.
+    #
+
+
+    module hltL3bmu = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
+    replace hltL3bmu.JetTag = softMuJetTagsL3
+    replace hltL3bmu.MinTag = 0.1
+

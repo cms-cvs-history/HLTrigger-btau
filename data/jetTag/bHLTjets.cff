@@ -3,8 +3,8 @@
 #####################################################
 
 # This does what we want ...
-  include "HLTrigger/HLTstaging/data/common/CaloTowers.cff"
-  include "HLTrigger/HLTstaging/data/common/RecoJetMET.cff" 
+   include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+   include "HLTrigger/Configuration/data/common/RecoJetMET.cff" 
 
 # But this is in an official release area ...
 # (It seems to waste lots of time initialising module hbhereco ?
