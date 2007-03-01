@@ -12,7 +12,7 @@ module singleTauL1SeedFilter = HLTLevel1Seed {
 
 
 #MET CUT
-  module hlt1METSingleTau = HLT1CaloMET {
+  module hlt1MET91 = HLT1CaloMET {
      InputTag inputTag = met
      double MinPt = 91.0
      double MaxEta= -1.0 // negative = no cut
