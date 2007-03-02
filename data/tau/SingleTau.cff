@@ -149,7 +149,7 @@ replace coneIsolationL3SingleTau.vertexSrc = "pixelVertices"
 replace coneIsolationL3SingleTau.useVertex = true
 
 
-module filterL3SingleTauCandidate = HLTJetTag {
+module filterL3SingleTau = HLTJetTag {
     InputTag JetTag   = coneIsolationL3SingleTau
     double MinTag = 0.
     double   MaxTag   = 2.
