@@ -12,6 +12,7 @@ module singleTauL1SeedFilter = HLTLevel1Seed {
 
 
 #MET CUT
+
   module hlt1METSingleTau = HLT1CaloMET {
      InputTag inputTag = met
      double MinPt = 91.0
@@ -66,7 +67,6 @@ module associatorL25SingleTau = JetTracksAssociator {
  
 module coneIsolationL25SingleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL25SingleTau.JetTrackSrc = "associatorL25SingleTau"
-
 
 
 
