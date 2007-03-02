@@ -68,17 +68,6 @@ module coneIsolationL25SingleTau = coneIsolationForHLT from "RecoTauTag/HLTProdu
 replace coneIsolationL25SingleTau.JetTrackSrc = "associatorL25SingleTau"
 
 
-#
-#Filter to trace back isolatedCandidates
-#
-module filterL25SingleTauCandidate = HLTJetTag {
-    InputTag JetTag   = coneIsolationL25SingleTau
-    double MinTag = 0.
-    double   MaxTag   = 2.
-    int32 MinN     = 1
-}
-
-
 
 
 #
