@@ -10,9 +10,9 @@ include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
-#include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
-include "HLTrigger/Configuration/data/common/LocalTracker.cff"
-include "Configuration/Examples/data/RecoTracker.cff"
+include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
+include "RecoTracker/Configuration/data/RecoTracker.cff"
+
 
 #Simulation
 include "SimGeneral/HepPDTESSource/data/pdt.cfi"
