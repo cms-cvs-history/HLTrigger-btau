@@ -32,10 +32,8 @@ sequence ckfTracksL25SingleTau = {l25SingleTauPixelSeeds,ckfTrackCandidatesL25Si
 #L25Tau JetMaker
 sequence tauJetsMakerL25SingleTau = {associatorL25SingleTau, coneIsolationL25SingleTau,isolatedL25SingleTau}
 
-
 #L25SingleTau
 sequence singleTauL25 = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau}
-
 
 #L3Trk reconstruction
 sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3SingleTau,ctfWithMaterialTracksL3SingleTau}
@@ -74,7 +72,6 @@ sequence ckfTracksL3DoubleTau = {l3DoubleTauPixelSeeds,ckfTrackCandidatesL3Doubl
 sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3DoubleTau}
 
 #L3 Double Tau
-
 sequence doubleTauL3 = {ckfTracksL3DoubleTau,tauJetsMakerL3DoubleTau}
 
 
