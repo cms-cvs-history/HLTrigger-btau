@@ -1,6 +1,7 @@
 #Primary Vertex
-include "RecoPixelVertexing/PixelTrackFitting/data/PixelTracks.cff"
-include "RecoPixelVertexing/PixelVertexFinding/data/PixelVertexes.cfi"
+include "HLTrigger/Configuration/data/common/Vertexing.cff"
+#include "RecoPixelVertexing/PixelTrackFitting/data/PixelTracks.cff"
+#include "RecoPixelVertexing/PixelVertexFinding/data/PixelVertexes.cfi"
 
 
 #TransientTrackingBuilder
@@ -10,8 +11,11 @@ include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
-include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
-include "RecoTracker/Configuration/data/RecoTracker.cff"
+# Tracker local reconstruction
+include "HLTrigger/Configuration/data/common/LocalTracker.cff"
+include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
+
+
 
 
 #Simulation

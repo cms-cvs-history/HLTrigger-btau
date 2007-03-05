@@ -1,6 +1,4 @@
-# Tracker local reconstruction
 
-include "HLTrigger/Configuration/data/common/LocalTracker.cff"
 sequence pixel_local   = {doLocalPixelFromDigis}
 sequence siStrip_local = {doLocalStripFromDigis}
 sequence tracker_local = {doLocalTrackerFromDigis}
