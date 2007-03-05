@@ -101,7 +101,7 @@ sequence ecalNotIsolatedPixelTauL25 = {associatorL25PixelTauNotIsolated,coneIsol
 
 sequence doubleCaloPixelTau = {
     (ecalIsolation,filterTauEcalIsolation)
-    &pixel_local&pixelTracks&pixelVertices,
+    &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25,
     filterL25PixelTauIsolated,
     ecalNotIsolatedPixelTauL25,
@@ -110,7 +110,7 @@ sequence doubleCaloPixelTau = {
 
 sequence doubleCaloPixelTauNoFilters = { 
     (ecalIsolation,filterTauEcalIsolation)
-    &pixel_local&pixelTracks&pixelVertices,
+    &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25,
      ecalNotIsolatedPixelTauL25
 }
@@ -119,12 +119,12 @@ sequence doubleCaloPixelTauNoFilters = {
 #Trigger  sequences to become trigger path in cfg file
 
 //sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
-sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator&hltMET)&tracker_local&pixelTracks&pixelVertices, singleTau }
-sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTau}
+sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator&hltMET)&tracker_local&recopixelvertexing, singleTau }
+sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
 
 #Triggers with no HLTFilters! For debugging scope
-sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&pixelTracks&pixelVertices, singleTauNoFilters }
-sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&pixelTracks&pixelVertices, doubleTrkTauNoFilters}
+sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&recopixelvertexing, singleTauNoFilters }
+sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTauNoFilters}
 sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
 

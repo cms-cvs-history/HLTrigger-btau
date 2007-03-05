@@ -4,18 +4,18 @@
 #############################################################
 
 path bmuHLTpath1 = {(preL2bReco, hltL2b1jet) &
-                    (preL2bReco, preL25bRecoMu, hltL25bmu) &
-                    (preL2bReco, preL25bRecoMu, preL3bRecoMu, hltL3bmu)}
+                    (preL25bRecoMu, hltL25bmu) &
+                    (preL3bRecoMu, hltL3bmu)}
 
 path bmuHLTpath2 = {(preL2bReco, hltL2b2jet) &
-                    (preL2bReco, preL25bRecoMu, hltL25bmu) &
-                    (preL2bReco, preL25bRecoMu, preL3bRecoMu, hltL3bmu)}
+                    (preL25bRecoMu, hltL25bmu) &
+                    (preL3bRecoMu, hltL3bmu)}
 
 path bmuHLTpath3 = {(preL2bReco, hltL2b3jet) &
-                    (preL2bReco, preL25bRecoMu, hltL25bmu) &
-                    (preL2bReco, preL25bRecoMu, preL3bRecoMu, hltL3bmu)}
+                    (preL25bRecoMu, hltL25bmu) &
+                    (preL3bRecoMu, hltL3bmu)}
 
 path bmuHLTpath4 = {(preL2bReco, hltL2b4jet) &
-                    (preL2bReco, preL25bRecoMu, hltL25bmu) &
-                    (preL2bReco, preL25bRecoMu, preL3bRecoMu, hltL3bmu)}
+                    (preL25bRecoMu, hltL25bmu) &
+                    (preL3bRecoMu, hltL3bmu)}
 
