@@ -1,7 +1,10 @@
 # Tracker local reconstruction
-sequence pixel_local = {siPixelClusters & siPixelRecHits }
-sequence siStrip_local = {siStripClusters & siStripMatchedRecHits}
-sequence tracker_local ={pixel_local & siStrip_local}
+
+include "HLTrigger/Configuration/data/common/LocalTracker.cff"
+sequence pixel_local   = {doLocalPixelFromDigis}
+sequence siStrip_local = {doLocalStripFromDigis}
+sequence tracker_local = {doLocalTrackerFromDigis}
+
 
 #CaloTaus sequence
 sequence caloTausCreator = {
