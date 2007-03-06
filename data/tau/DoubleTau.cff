@@ -121,15 +121,29 @@ module associatorL3DoubleTau = JetTracksAssociator {
 module coneIsolationL3DoubleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL3DoubleTau.JetTrackSrc = "associatorL3DoubleTau"
 
-#
-#Filter to trace back isolatedCandidates
-#
+
+module isolatedL3DoubleTau = IsolatedTauJetsSelector{
+    
+    VInputTag JetSrc = {coneIsolationL3DoubleTau}
+    double MatchingCone = 0.1
+    double SignalCone = 0.07
+    double IsolationCone = 0.45
+    double MinimumTransverseMomentumInIsolationRing = 1.
+    double MinimumTransverseMomentumLeadingTrack = 6.
+    double DeltaZetTrackVertex = 0.2
+    int32	MaximumNumberOfTracksIsolationRing = 0
+    InputTag VertexSrc = pixelVertices
+    bool UseVertex = false
+}
+
 module filterL3DoubleTau = HLTJetTag {
-    InputTag JetTag   = coneIsolationL3DoubleTau
+    InputTag JetTag   = isolatedL3DoubleTau
     double MinTag = 1.
     double   MaxTag   = 1.
     int32 MinN     = 2
 }
+
+
 
 
 

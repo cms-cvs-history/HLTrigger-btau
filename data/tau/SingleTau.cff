@@ -138,8 +138,22 @@ replace coneIsolationL3SingleTau.vertexSrc = "pixelVertices"
 replace coneIsolationL3SingleTau.useVertex = true
 
 
+module isolatedL3SingleTau = IsolatedTauJetsSelector{
+    
+    VInputTag JetSrc = {coneIsolationL3SingleTau}
+	double MatchingCone = 0.1
+	double SignalCone = 0.07
+	double IsolationCone = 0.45
+	double MinimumTransverseMomentumInIsolationRing = 1.
+    double MinimumTransverseMomentumLeadingTrack = 25
+    double DeltaZetTrackVertex = 0.2
+    int32	MaximumNumberOfTracksIsolationRing = 0
+    InputTag VertexSrc = pixelVertices
+    bool UseVertex = false
+}
+
 module filterL3SingleTau = HLTJetTag {
-    InputTag JetTag   = coneIsolationL3SingleTau
+    InputTag JetTag   = isolatedL3SingleTau
     double MinTag = 0.
     double   MaxTag   = 2.
     int32 MinN     = 1

@@ -40,7 +40,7 @@ sequence singleTauL25 = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau}
 sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3SingleTau,ctfWithMaterialTracksL3SingleTau}
 
 #L3Tau JetMaker
-sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3SingleTau}
+sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3SingleTau,isolatedL3SingleTau }
 
 #L3SingleTau
 sequence singleTauL3 = {ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
@@ -70,7 +70,7 @@ sequence doubleTauL25 = {ckfTracksL25DoubleTau,tauJetsMakerL25DoubleTau}
 sequence ckfTracksL3DoubleTau = {l3DoubleTauPixelSeeds,ckfTrackCandidatesL3DoubleTau,ctfWithMaterialTracksL3DoubleTau}
 
 #L3Tau JetMaker
-sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3DoubleTau}
+sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3DoubleTau,isolatedL3DoubleTau}
 
 #L3 Double Tau
 sequence doubleTauL3 = {ckfTracksL3DoubleTau,tauJetsMakerL3DoubleTau}
