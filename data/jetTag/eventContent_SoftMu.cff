@@ -1,0 +1,7 @@
+block JetTagSoftMuHLT = {
+    untracked vstring outputCommands = {
+        "keep *_TriggerResults_*_*",
+        "keep *_softMuJetTagsL25_*_*",
+        "keep *_softMuJetTagsL3_*_*"
+    }
+}

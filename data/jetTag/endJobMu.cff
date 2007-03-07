@@ -14,12 +14,11 @@ module out = PoolOutputModule {
 
     # Keep trigger summary and results of whichever b tags were used in HLT.
     untracked vstring outputCommands = {
-        "drop *",
-        "keep *_TriggerResults_*_*",
-        "keep *_softMuJetTagsL25_*_*",
-        "keep *_softMuJetTagsL3_*_*"
+        "drop *"
     }
 }
+include "HLTrigger/btau/data/jetTag/eventContent_SoftMu.cff"
+replace out.outputCommands += JetTagSoftMuHLT.outputCommands
 
 #
 # Get detailed timing info.

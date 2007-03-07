@@ -1,0 +1,7 @@
+block JetTagLifetimeHLT
+    untracked vstring outputCommands = {
+        "keep *_TriggerResults_*_*",
+        "keep *_trackCountingJetTagsL25_*_*",
+        "keep *_trackCountingJetTagsL3_*_*"
+    }
+}
