@@ -2,6 +2,8 @@
 # Event reconstruction for HLT
 #
 
+include "Configuration/StandardSequences/data/FakeConditions.cff"
+
 # reconstruct jets
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
