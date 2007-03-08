@@ -18,16 +18,16 @@ replace caloTowersTau4.TauTrigger = l1extraParticles:Tau
 # reconstruct Tau jet using only calo towers in location of L1 1st Tau             
 include "RecoJets/JetProducers/data/IconeJetParameters.cfi"
 
-module icone5Tau1 = iterativeCone5CaloJet from "RecoJets/JetProducers/data/CaloJets.cfi"
+module icone5Tau1 = iterativeCone5CaloJets from "RecoJets/JetProducers/data/CaloJets.cfi"
 replace icone5Tau1.src = caloTowersTau1
 
-module icone5Tau2 = iterativeCone5CaloJet from "RecoJets/JetProducers/data/CaloJets.cfi"
+module icone5Tau2 = iterativeCone5CaloJets from "RecoJets/JetProducers/data/CaloJets.cfi"
 replace icone5Tau2.src = caloTowersTau2
 
-module icone5Tau3 = iterativeCone5CaloJet from "RecoJets/JetProducers/data/CaloJets.cfi"
+module icone5Tau3 = iterativeCone5CaloJets from "RecoJets/JetProducers/data/CaloJets.cfi"
 replace icone5Tau3.src = caloTowersTau3
 
-module icone5Tau4 = iterativeCone5CaloJet from "RecoJets/JetProducers/data/CaloJets.cfi"
+module icone5Tau4 = iterativeCone5CaloJets from "RecoJets/JetProducers/data/CaloJets.cfi"
 replace icone5Tau4.src = caloTowersTau4
 
 
