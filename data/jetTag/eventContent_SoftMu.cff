@@ -1,5 +1,6 @@
+# keep trigger summary and results of whichever b tags were used in HLT
 block JetTagSoftMuHLT = {
-    untracked vstring outputCommands = {
+    vstring outputCommands = {
         "keep *_TriggerResults_*_*",
         "keep *_softMuJetTagsL25_*_*",
         "keep *_softMuJetTagsL3_*_*"
