@@ -25,6 +25,3 @@ include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
 #
 include "HLTrigger/btau/data/jetTag/L2bSoftmu.cff" 
 include "HLTrigger/btau/data/jetTag/L3bSoftmu.cff" 
-
-# Define trigger paths for L2 + L2.5 + L3 trigger paths.  
-include "HLTrigger/btau/data/jetTag/triggerPathMu.cff"
