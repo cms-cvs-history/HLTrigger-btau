@@ -19,7 +19,7 @@ include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
 
 #Simulation
-include "SimGeneral/HepPDTESSource/data/pdt.cfi"
+include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 
 #Tau Trigger related stuff
 include "HLTrigger/btau/data/tau/L1TauEmulation.cfi"
