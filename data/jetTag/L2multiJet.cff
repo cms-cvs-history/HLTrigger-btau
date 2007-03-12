@@ -6,14 +6,14 @@
 
 module  hltL2b1jet = 
   hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
-replace hltL2b1jet.MinPt = 350.0
-#replace hltL2b1jet.MinPt = 80.0
+#replace hltL2b1jet.MinPt = 350.0
+replace hltL2b1jet.MinPt = 80.0
 replace hltL2b1jet.MinN  = 1
 
 module  hltL2b2jet = 
   hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
-replace hltL2b2jet.MinPt = 150.0
-#replace hltL2b2jet.MinPt = 50.0
+#replace hltL2b2jet.MinPt = 150.0
+replace hltL2b2jet.MinPt = 50.0
 replace hltL2b2jet.MinN  = 2
 
 module  hltL2b3jet = 
@@ -23,6 +23,6 @@ replace hltL2b3jet.MinN  = 3
 
 module  hltL2b4jet = 
   hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
-replace hltL2b4jet.MinPt = 55.0
-#replace hltL2b4jet.MinPt = 25.0
+#replace hltL2b4jet.MinPt = 55.0
+replace hltL2b4jet.MinPt = 25.0
 replace hltL2b4jet.MinN  = 4
