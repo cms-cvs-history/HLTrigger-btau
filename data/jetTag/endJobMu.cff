@@ -12,17 +12,21 @@ module out = PoolOutputModule {
     }
     #untracked uint32 commitInterval = 3
 
-    # Keep trigger summary and results of whichever b tags were used in HLT.
     untracked vstring outputCommands = {
         "drop *"
     }
 }
+
+# Keep trigger summary and results of whichever b tags were used in HLT.
 include "HLTrigger/btau/data/jetTag/eventContent_SoftMu.cff"
 replace out.outputCommands += JetTagSoftMuHLT.outputCommands
 
 #
 # Get detailed timing info.
 # (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary)
+# Currently only works properly if you disable SelectEvents and
+# use only one trigger path.
+# Run hltTimingSummary -i bHLT.root after this job.
 #
 module printer = AsciiOutputModule{}
 module pts = PathTimerInserter{}

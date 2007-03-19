@@ -1,6 +1,7 @@
 # keep trigger summary and results of whichever b tags were used in HLT
 block JetTagLifetimeHLT = {
     untracked vstring outputCommands = {
+        "keep HLTPerformanceInfo_*_*_*",
         "keep *_TriggerResults_*_*",
         "keep *_trackCountingJetTagsL25_*_*",
         "keep *_trackCountingJetTagsL3_*_*"
