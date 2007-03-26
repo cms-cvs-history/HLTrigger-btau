@@ -107,7 +107,7 @@ sequence doubleCaloPixelTau = {
 }
 
 sequence doubleCaloPixelTauNoFilters = { 
-    (ecalIsolation,filterTauEcalIsolation)
+    (ecalIsolation)
     &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25,
      ecalNotIsolatedPixelTauL25
