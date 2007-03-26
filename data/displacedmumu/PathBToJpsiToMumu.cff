@@ -73,7 +73,7 @@ include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
 
     sequence jpsitracks = {trackerlocalreco & jpsipixelseed & ckfTrackCandidatesJpsi & ctfWithMaterialTracksJpsi}
 
-# include "SimGeneral/HepPDTESSource/data/pdt.cfi"
+# include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
   
   include "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
   replace allTracks.src = ctfWithMaterialTracksJpsi 	    
