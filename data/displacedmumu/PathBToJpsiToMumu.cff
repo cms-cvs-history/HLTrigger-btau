@@ -38,7 +38,7 @@ include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 # MeasurementTracker
 include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
 
-	module muonCandidateFromHLTFOWR = candidateFromHLTFOWR from "HLTrigger/btau/data/displacedmumu/CandidateFromHLTFOWR.cfi"
+	module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
 	replace muonCandidateFromHLTFOWR.ptMin = 2.0
 	replace muonCandidateFromHLTFOWR.directionSource = hltDiMuonLevel1Seed
 
