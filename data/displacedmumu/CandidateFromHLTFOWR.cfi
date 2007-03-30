@@ -1,7 +1,0 @@
-module candidateFromHLTFOWR = CandidateFromHLTFOWRProducer{
-    double ptMin=1.8
-    double phiCorrection = 0.4
-    InputTag directionSource = hltLevel1Seed
-    string vertexSrc ="pixelVertices"
-	double candMass = 0.1057
-}
