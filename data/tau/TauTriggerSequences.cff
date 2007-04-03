@@ -114,15 +114,28 @@ sequence doubleCaloPixelTauNoFilters = {
 }
 
 
+#New born Calo+SiStrip isolation
+sequence doubleCaloSiStripTau = {
+    (ecalIsolation,filterTauEcalIsolation)
+    &doubleTrkTau
+}
+
+sequence doubleCaloSiStripTauNoFilters = {
+    (ecalIsolation)
+    &doubleTrkTauNoFilters
+}
+
+
 #Trigger  sequences to become trigger path in cfg file
 
 //sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
 sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator&hltMET)&tracker_local&recopixelvertexing, singleTau }
 sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
+sequence caloSiStripTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloSiStripTau}
 
 #Triggers with no HLTFilters! For debugging scope
 sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&recopixelvertexing, singleTauNoFilters }
 sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTauNoFilters}
 sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
-
+sequence caloSiStripTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloSiStripTauNoFilters}
