@@ -1,0 +1,51 @@
+    #
+    # L1 trigger to be used for b soft muon tag HLT.
+    #
+
+    # L1 emulation
+    include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
+#    include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+    # Filter on specified L1 bits.
+    module bhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+    replace bhltL1filter.L1ExtraCollections = l1extraParticles
+    replace bhltL1filter.L1ExtraParticleMap = l1extraParticleMap
+    replace bhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
+    # Say which L1 trigger bits to use here. (Names from L1ParticleMap.cc)
+    replace bmuhltL1filter.L1Seeds = {
+      "SingleIsoEM",
+      "DoubleIsoEM",
+      "SingleRelaxedEM",
+      "DoubleRelaxedEM",
+      "SingleMuon",
+      "DoubleMuon",
+      "SingleTau",
+      "DoubleTau",
+      "SingleJet",
+      "DoubleJet",
+      "TripleJet",
+      "QuadJet",
+      "HT",
+      "MET",
+      "HT+MET",
+      "Jet+MET",
+      "Tau+MET",
+      "Muon+MET",
+      "IsoEM+MET",
+      "Muon+Jet",
+      "IsoEM+Jet",
+      "Muon+Tau",
+      "IsoEM+Tau",
+      "IsoEM+Muon",
+      "SingleJet140",
+      "SingleJet60",
+      "SingleJet20",
+      "MinBias"
+    }
+    # Optionally modify their thresholds here.
+    # Default thresholds in CMSSW
+#    replace l1extraParticleMap.singleJetMinEt = 151.
+#    replace l1extraParticleMap.doubleJetMinEt = 21.
+#    replace l1extraParticleMap.tripleJetMinEt = 71.
+#    replace l1extraParticleMap.quadJetMinEt   = 51.
+
+    sequence L1forBsoftmuHLT = {doL1TfromDigis, bmuhltL1filter}

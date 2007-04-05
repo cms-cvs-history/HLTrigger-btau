@@ -3,6 +3,10 @@
 # followed by L2.5 and L3 b -> mu HLT.                      #
 #############################################################
 
+# Currently, include L1 as seperate path, as we want to study its performance,
+# but don't yet know which L1 bits are useful at L2.
+path L1forbHLT = {L1forBsoftmuHLT}
+
 path bmuHLTpath1 = {(preL2bRecoMu, hltL2b1jet) &
                     (preL25bRecoMu, hltL25bmu) &
                     (preL3bRecoMu, hltL3bmu)}

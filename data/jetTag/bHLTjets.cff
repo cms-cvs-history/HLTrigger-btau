@@ -2,8 +2,12 @@
 # Reconstruct jets, starting from calorimeter digis #
 #####################################################
 
+include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
+sequence preL2bReco = { doCalo, doHLTJetReco }
+
 #
-# Select jets used for regional tracking and considered for b tagging
+# Also select jets used for regional tracking & considered for b tagging
 #
 
 module highestEtJets = LargestEtCaloJetSelector {
@@ -18,4 +22,4 @@ module etCutJets = EtMinCaloJetSelector {
     double etMin = 20.0  # And require jet Et greater than cut.
 }
 
-sequence bCalJetsReco = { doCalo, doHLTJetReco, highestEtJets, etCutJets }
+sequence jetSelForbHLT = {highestEtJets, etCutJets} 

@@ -6,43 +6,35 @@ module out = PoolOutputModule {
     untracked string fileName = 'file:bHLT.root'
     # Specify trigger paths for which events to be written to disk.
     untracked PSet SelectEvents = {
-        vstring SelectEvents = { "bHLTpath1",
-                                 "bHLTpath2",
-                                 "bHLTpath3",
-                                 "bHLTpath4" }
+# Comment out event selection, so timing routines work correctly.
+#        vstring SelectEvents = { "bHLTpath1",
+#                                 "bHLTpath2",
+#                                 "bHLTpath3",
+#                                 "bHLTpath4" }
     }
     #untracked uint32 commitInterval = 3
 
     untracked vstring outputCommands = {
-        "drop *"
+# Drop input objects
+       "drop *"
+# Optionally keep all new objects created by this job.
+#      "keep *_*_*_PROD"
     }
 }
 
 # Keep trigger summary and results of whichever b tags were used in HLT.
+# plus trigger timing and efficiency data.
 include "HLTrigger/btau/data/jetTag/eventContent_Lifetime.cff"
 replace out.outputCommands += JetTagLifetimeHLT.outputCommands
+include "HLTrigger/btau/data/jetTag/eventContent_Stats.cff"
+replace out.outputCommands += JetTagHLTstats.outputCommands
+
 
 #
-# Get detailed timing info.
-# (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary)
-# Currently only works properly if you disable SelectEvents and
-# use only one trigger path.
-# Run hltTimingSummary -i bHLT.root after this job.
+# Produce trigger timing and efficiency statistics.
+# (Several of these only work correctly if SelectEvents is disabled
+# above).
 #
-module printer = AsciiOutputModule{}
-module pts = PathTimerInserter{}
-service = PathTimerService{}
+include "HLTrigger/btau/data/jetTag/triggerStats.cff"
 
-endpath outpath = { pts, printer, out }
-
-#
-# Printout trigger pass/fail and timing summary.
-#
-untracked PSet options = {
-    untracked bool wantSummary = true  # default is false
-    untracked bool makeTriggerResults = true 
-    vstring listOfTriggers = { "bHLTpath1", 
-                               "bHLTpath2",
-                               "bHLTpath3",
-                               "bHLTpath4" }
-}
+endpath outpath = { triggerStats, out }

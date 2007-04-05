@@ -1,9 +1,20 @@
-# keep trigger summary and results of whichever b tags were used in HLT
-block JetTagSoftMuHLT = {
-    vstring outputCommands = {
-        "keep HLTPerformanceInfo_*_*_*",
-        "keep *_TriggerResults_*_*",
+# keep essential info used to construct b HLT.
+block JetTagLifetimeHLT = {
+    untracked vstring outputCommands = {
+# Output of b tags
+        "keep *_etCutJets_*_*",
         "keep *_softMuJetTagsL25_*_*",
-        "keep *_softMuJetTagsL3_*_*"
+        "keep *_softMuJetTagsL3_*_*",
+
+# Output of trigger modules
+        "keep recoHLTFilterObjectWithRefs_*_*_*",
+
+# L1 trigger decision.
+# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
+        "keep l1extraL1ParticleMaps_*_*_*",
+
+# HLT trigger decision.
+# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideEDMPathsAndTriggerBits#Trigger_results_in_the_event
+        "keep edmTriggerResults_*_*_*"
     }
 }

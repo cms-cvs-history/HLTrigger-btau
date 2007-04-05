@@ -6,9 +6,7 @@ replace hltL25b.JetTag = trackCountingJetTagsL25
 replace hltL25b.MinTag = 2.5
 
 #
-# Reconstruction sequences needed before each trigger.
+# Reconstruction sequences needed before trigger.
 #
-sequence preL2bReco  = { bCalJetsReco }
-
-sequence preL25bReco = { bL25trackReco,
+sequence preL25bReco = { jetSelForbHLT, bL25trackReco,
                          associatorL25, trackCountingJetTagsL25 }
