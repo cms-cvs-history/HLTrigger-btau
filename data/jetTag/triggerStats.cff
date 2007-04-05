@@ -7,16 +7,16 @@
 #
 # Get detailed trigger timing and efficiency info.
 # (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary)
-# Run $CMSSW_RELEASE_BASE/test/slc4_ia32_gcc345/hltTimingSummary -i bHLT.root after this job.
+# Run $CMSSW_RELEASE_BASE/test/$SCRAM_ARCH/hltTimingSummary -i bHLT.root after this job.
 #
 module printer = AsciiOutputModule{}
 module pts = PathTimerInserter{}
 service = PathTimerService{}
 
 
-# Get detailed timing info using different tool.
+# Get detailed timing histograms for each module using different tool.
 # (https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideTimeProfileTools_CMSSW_1_3_0)
-# Run analyzeTiming <ROOT file> <process name> <N_bins> <Max_time>
+# Run $CMSSW_RELEASE_BASE/test/$SCRAM_ARCH/hltTimingSummary analyzeTiming <ROOT file> <process name> <N_bins> <Max_time>
 # after this job.
 #
 include "HLTrigger/Timer/data/timer.cfi"

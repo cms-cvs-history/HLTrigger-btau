@@ -6,10 +6,10 @@
     include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
 #    include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
     # Filter on specified L1 bits.
-    module bhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
-    replace bhltL1filter.L1ExtraCollections = l1extraParticles
-    replace bhltL1filter.L1ExtraParticleMap = l1extraParticleMap
-    replace bhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
+    module bmuhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+    replace bmuhltL1filter.L1ExtraCollections = l1extraParticles
+    replace bmuhltL1filter.L1ExtraParticleMap = l1extraParticleMap
+    replace bmuhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
     # Say which L1 trigger bits to use here. (Names from L1ParticleMap.cc)
     replace bmuhltL1filter.L1Seeds = {
       "SingleIsoEM",

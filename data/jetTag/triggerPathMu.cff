@@ -5,21 +5,21 @@
 
 # Currently, include L1 as seperate path, as we want to study its performance,
 # but don't yet know which L1 bits are useful at L2.
-path L1forbHLT = {L1forBsoftmuHLT}
+path L1forbmuHLT = {L1forBsoftmuHLT}
 
-path bmuHLTpath1 = {(preL2bRecoMu, hltL2b1jet) &
+path bmuHLTpath1 = {(preL2bReco, hltL2b1jet) &
                     (preL25bRecoMu, hltL25bmu) &
                     (preL3bRecoMu, hltL3bmu)}
 
-path bmuHLTpath2 = {(preL2bRecoMu, hltL2b2jet) &
+path bmuHLTpath2 = {(preL2bReco, hltL2b2jet) &
                     (preL25bRecoMu, hltL25bmu) &
                     (preL3bRecoMu, hltL3bmu)}
 
-path bmuHLTpath3 = {(preL2bRecoMu, hltL2b3jet) &
+path bmuHLTpath3 = {(preL2bReco, hltL2b3jet) &
                     (preL25bRecoMu, hltL25bmu) &
                     (preL3bRecoMu, hltL3bmu)}
 
-path bmuHLTpath4 = {(preL2bRecoMu, hltL2b4jet) &
+path bmuHLTpath4 = {(preL2bReco, hltL2b4jet) &
                     (preL25bRecoMu, hltL25bmu) &
                     (preL3bRecoMu, hltL3bmu)}
 

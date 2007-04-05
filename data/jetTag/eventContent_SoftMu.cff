@@ -1,5 +1,5 @@
 # keep essential info used to construct b HLT.
-block JetTagLifetimeHLT = {
+block JetTagSoftMuHLT = {
     untracked vstring outputCommands = {
 # Output of b tags
         "keep *_etCutJets_*_*",
