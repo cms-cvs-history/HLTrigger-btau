@@ -13,7 +13,7 @@
 //
 // Original Author:  Emmanuelle PEREZ
 //         Created:  Wed Apr  4 09:15:08 CEST 2007
-// $Id$
+// $Id: GetData.cc,v 1.1 2007/04/07 08:50:55 gennai Exp $
 //
 //
 
@@ -34,7 +34,7 @@
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 #include "DataFormats/Common/interface/DetSetVector.h"
 #include "DataFormats/SiPixelDigi/interface/PixelDigi.h"
-#include <FWCore/Framework/interface/Handle.h>
+#include "DataFormats/Common/interface/Handle.h"
 #include "FWCore/ParameterSet/interface/InputTag.h"
 
 #include "DataFormats/SiStripDigi/interface/SiStripDigi.h"
