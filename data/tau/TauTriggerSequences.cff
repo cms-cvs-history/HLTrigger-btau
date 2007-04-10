@@ -128,4 +128,4 @@ sequence caloSiStripTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&(ecalIsola
 sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&recopixelvertexing, singleTauNoFilters }
 sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTauNoFilters}
 sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
-sequence caloSiStripTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing,doubleCaloSiStripTauNoFilters}
+sequence caloSiStripTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&ecalIsolation&tracker_local&recopixelvertexing,doubleTrkTauNoFilters}
