@@ -9,15 +9,8 @@ module associatorL25PixelTauIsolated = JetTracksAssociator {
 module coneIsolationL25PixelTauIsolated = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
 replace coneIsolationL25PixelTauIsolated.JetTrackSrc = "associatorL25PixelTauIsolated"
 replace coneIsolationL25PixelTauIsolated.MinimumNumberOfHits = 2
-replace coneIsolationL25PixelTauIsolated.useVertex = false
+replace coneIsolationL25PixelTauIsolated.useVertex = true
 
-#Filtering events were Ecal isolated taus are not Pixel Isolated
-module filterL25PixelTauIsolated = HLTJetTag {
-    InputTag JetTag   = coneIsolationL25PixelTauIsolated
-    double MinTag = 1.
-    double   MaxTag   = 1.
-    int32 MinN     = 1
-}
 
 #
 #Selecting Isolated Taus
@@ -34,7 +27,7 @@ module isolatedL25PixelTau = IsolatedTauJetsSelector{
     double DeltaZetTrackVertex = 0.2
     int32	MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
-    bool UseVertex = true
+    bool UseVertex = false
 
 }
 

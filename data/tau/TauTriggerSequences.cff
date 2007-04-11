@@ -6,7 +6,7 @@ sequence tracker_local = {doLocalTrackerFromDigis}
 
 #CaloTaus sequence
 sequence caloTausCreator = {
-    doCalo,
+    doCaloFromDigis,
     caloTowersTau1,
     icone5Tau1,
     caloTowersTau2, 
@@ -94,22 +94,19 @@ sequence doubleTrkTauNoFilters ={ singleTauL25,doubleTauL25,doubleTauL3}
 sequence ecalIsolation ={singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated}
 sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated}
 
-sequence ecalNotIsolatedPixelTauL25 = {associatorL25PixelTauNotIsolated,coneIsolationL25PixelTauNotIsolated,isolatedL25PixelTau}
 
 sequence doubleCaloPixelTau = {
     (ecalIsolation,filterTauEcalIsolation)
     &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25,
-    filterL25PixelTauIsolated,
-    ecalNotIsolatedPixelTauL25,
     filterL25PixelTau
 }
 
 sequence doubleCaloPixelTauNoFilters = { 
     (ecalIsolation)
     &pixel_local&recopixelvertexing,
-    ecalIsolatedPixelTauL25,
-     ecalNotIsolatedPixelTauL25
+    ecalIsolatedPixelTauL25
+
 }
 
 
