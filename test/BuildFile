@@ -8,5 +8,5 @@
 <use name=DataFormats/BTauReco>
 <library file=GetData.cc name=GetData>
   <use name=FWCore/Framework>
- <flags SEAL_PLUGIN_NAME=GetData>
+ <flags EDM_PLUGIN=1>
 </library>
