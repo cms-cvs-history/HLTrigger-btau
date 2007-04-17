@@ -23,7 +23,8 @@ include "HLTrigger/Timer/data/timer.cfi"
 
 
 # Make ROOT histogram in l1extra.root for L1 performance analysis
-include "L1Trigger/L1ExtraTestAnalyzer/data/l1extratest.cfi"
+# (Not as useful at report table below and prints lots of output).
+#include "L1Trigger/L1ExtraTestAnalyzer/data/l1extratest.cfi"
 
 # Make ROOT TTree of HLT filter objects
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTGlobalObject#Implementation
@@ -47,4 +48,5 @@ untracked PSet options = {
     vstring listOfTriggers = { "*" }
 }
 
-sequence triggerStats = { pts, printer, myTimer, l1extratest, hltTree, l1tTR}
+#sequence triggerStats = { pts, printer, myTimer, l1extratest, hltTree, l1tTR}
+sequence triggerStats = { pts, printer, myTimer, hltTree, l1tTR}
