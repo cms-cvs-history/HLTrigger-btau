@@ -26,7 +26,11 @@ module  ecalDoubleTauIsol =  EcalIsolation{
 
 #Divide the jets into two collections: Isolated and not Isolated
 module ecalTauIsolated = EMIsolatedTauJetsSelector{
+<<<<<<< EcalIsolation.cff
+    VInputTag TauSrc= {ecalSingleTauIsol,ecalDoubleTauIsol}
+=======
     VInputTag TauSrc =  {ecalSingleTauIsol,ecalDoubleTauIsol}
+>>>>>>> 1.3
 }    
 
 #Filter to select events with atleast one Isolated jet
