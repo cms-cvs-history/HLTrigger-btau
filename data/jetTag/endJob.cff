@@ -29,6 +29,9 @@ replace out.outputCommands += JetTagLifetimeHLT.outputCommands
 include "HLTrigger/btau/data/jetTag/eventContent_Stats.cff"
 replace out.outputCommands += JetTagHLTstats.outputCommands
 
+# Consider replacing the above by:
+#include "HLTrigger/Configuration/data//HLTrigger_EventContent.cff"
+# except this doesn't keep b RECO objects or L1 output ?
 
 #
 # Produce trigger timing and efficiency statistics.
@@ -36,5 +39,7 @@ replace out.outputCommands += JetTagHLTstats.outputCommands
 # above).
 #
 include "HLTrigger/btau/data/jetTag/triggerStats.cff"
+# Consider replacing the above by:
+#include "HLTrigger/Configuration/data/common/HLT.cff"
 
 endpath outpath = { triggerStats, out }
