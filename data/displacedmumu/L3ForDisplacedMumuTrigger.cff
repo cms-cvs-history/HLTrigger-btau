@@ -1,0 +1,74 @@
+# pv reconstruction
+include "HLTrigger/btau/data/jetTag/bHLTpixel.cff"
+
+# TrackerTracks
+include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
+
+# MeasurementTracker
+include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
+
+###### tracking sequence
+
+# Seeds for tracking
+module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
+	replace muonCandidateFromHLTFOWR.ptMin = 2.0
+	### if you want to use L2 Muons for tracking:
+	replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL2Filtered
+	replace muonCandidateFromHLTFOWR.phiCorrection = 0.
+	### if you don't want to use L2 Muons but L1 Muons as seeds for tracking:
+	#replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL1Filtered
+	#replace muonCandidateFromHLTFOWR.phiCorrection = 4.
+
+module MumuPixelSeed = regionalPixelSeedGeneratorFromCandidate from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeedsFromCandidate.cfi"
+	replace MumuPixelSeed.ptMin = 2.0
+	replace MumuPixelSeed.CandSrc = muonCandidateFromHLTFOWR
+	replace MumuPixelSeed.originRadius = 1.0
+	replace MumuPixelSeed.originHalfLength = 1.0
+	replace MumuPixelSeed.deltaEtaRegion = 0.15
+	replace MumuPixelSeed.deltaPhiRegion = 0.15
+
+# build tracks
+es_module CkfTrajectoryBuilderMumu = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
+	replace CkfTrajectoryBuilderMumu.ComponentName = "CkfTrajectoryBuilderMumu"
+	replace CkfTrajectoryBuilderMumu.ptCut = 2.0
+	replace CkfTrajectoryBuilderMumu.maxCand = 3
+	replace CkfTrajectoryBuilderMumu.maxNumberOfHits = 5
+	replace CkfTrajectoryBuilderMumu.alwaysUseInvalidHits = false
+
+module ckfTrackCandidatesMumu = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+	replace ckfTrackCandidatesMumu.SeedProducer = "MumuPixelSeed"
+	replace ckfTrackCandidatesMumu.TrajectoryBuilder = "CkfTrajectoryBuilderMumu"
+
+
+module ctfWithMaterialTracksMumu = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+	replace ctfWithMaterialTracksMumu.src = "ckfTrackCandidatesMumu"
+ 
+
+# track reco sequence
+
+
+# produce the J/psi (or other mumu) candidate
+
+module allMuTracks  = allTracks  from "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
+	replace allMuTracks.src = ctfWithMaterialTracksMumu 	    
+	replace allMuTracks.particleType = "mu-"
+
+module muTracks = CandSelector {
+	InputTag src = allMuTracks
+	string cut = "pt > 2.5"
+	bool filter = false
+}
+
+module CandFromMumu = CandCombiner {
+	string decay = "muTracks@+ muTracks@-"
+	string cut = "2.95 < mass < 3.25 & pt > 4.0"
+}
+
+include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
+
+sequence pvreco = { pixeltrackerlocalreco & recopixelvertexing }
+sequence Mumutracks = {trackerlocalreco & muonCandidateFromHLTFOWR & MumuPixelSeed & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
+sequence Mumucand = { allMuTracks &  muTracks &  CandFromMumu }
+
+sequence l3displacedMumureco = {pvreco & Mumutracks & Mumucand }
+
