@@ -10,22 +10,33 @@ include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
 ###### tracking sequence
 
 # Seeds for tracking
-module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
-	replace muonCandidateFromHLTFOWR.ptMin = 2.0
-	### if you want to use L2 Muons for tracking:
-	replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL2Filtered
-	replace muonCandidateFromHLTFOWR.phiCorrection = 0.
-	### if you don't want to use L2 Muons but L1 Muons as seeds for tracking:
-	#replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL1Filtered
-	#replace muonCandidateFromHLTFOWR.phiCorrection = 4.
 
-module MumuPixelSeed = regionalPixelSeedGeneratorFromCandidate from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeedsFromCandidate.cfi"
-	replace MumuPixelSeed.ptMin = 2.0
-	replace MumuPixelSeed.CandSrc = muonCandidateFromHLTFOWR
-	replace MumuPixelSeed.originRadius = 1.0
-	replace MumuPixelSeed.originHalfLength = 1.0
-	replace MumuPixelSeed.deltaEtaRegion = 0.15
-	replace MumuPixelSeed.deltaPhiRegion = 0.15
+# Seeds
+module MumupixelseedfromL2 = regionalPixelFromTrkSeeds from "RecoTracker/TkSeedGenerator/data/RegionalPixelFromTrkSeeds.cfi"
+	replace MumupixelseedfromL2.TrkSrc = L2Muons 
+	replace MumupixelseedfromL2.ptMin = 2.0
+	replace MumupixelseedfromL2.vertexZ = 0.0
+	replace MumupixelseedfromL2.originRadius = 1.
+	replace MumupixelseedfromL2.originHalfLength = 15.0
+	replace MumupixelseedfromL2.deltaEtaRegion = 0.15
+	replace MumupixelseedfromL2.deltaPhiRegion = 0.15
+
+#module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
+#	replace muonCandidateFromHLTFOWR.ptMin = 2.0
+#	### if you want to use L2 Muons for tracking:
+#	replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL2Filtered
+#	replace muonCandidateFromHLTFOWR.phiCorrection = 0.
+#	### if you don't want to use L2 Muons but L1 Muons as seeds for tracking:
+#	#replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL1Filtered
+#	#replace muonCandidateFromHLTFOWR.phiCorrection = 4.
+#
+#module MumuPixelSeed = regionalPixelSeedGeneratorFromCandidate from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeedsFromCandidate.cfi"
+#	replace MumuPixelSeed.ptMin = 2.0
+#	replace MumuPixelSeed.CandSrc = muonCandidateFromHLTFOWR
+#	replace MumuPixelSeed.originRadius = 1.0
+#	replace MumuPixelSeed.originHalfLength = 1.0
+#	replace MumuPixelSeed.deltaEtaRegion = 0.15
+#	replace MumuPixelSeed.deltaPhiRegion = 0.15
 
 # build tracks
 es_module CkfTrajectoryBuilderMumu = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
@@ -36,7 +47,7 @@ es_module CkfTrajectoryBuilderMumu = CkfTrajectoryBuilder from "RecoTracker/CkfP
 	replace CkfTrajectoryBuilderMumu.alwaysUseInvalidHits = false
 
 module ckfTrackCandidatesMumu = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
-	replace ckfTrackCandidatesMumu.SeedProducer = "MumuPixelSeed"
+	replace ckfTrackCandidatesMumu.SeedProducer = "MumupixelseedfromL2"
 	replace ckfTrackCandidatesMumu.TrajectoryBuilder = "CkfTrajectoryBuilderMumu"
 
 
@@ -67,7 +78,8 @@ module CandFromMumu = CandCombiner {
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 
 sequence pvreco = { pixeltrackerlocalreco & recopixelvertexing }
-sequence Mumutracks = {trackerlocalreco & muonCandidateFromHLTFOWR & MumuPixelSeed & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
+#sequence Mumutracks = {trackerlocalreco & muonCandidateFromHLTFOWR & MumuPixelSeed & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
+sequence Mumutracks = {trackerlocalreco & MumupixelseedfromL2 & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
 sequence Mumucand = { allMuTracks &  muTracks &  CandFromMumu }
 
 sequence l3displacedMumureco = {pvreco & Mumutracks & Mumucand }
