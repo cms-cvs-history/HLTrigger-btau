@@ -22,7 +22,6 @@ include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 
 #Tau Trigger related stuff
-include "HLTrigger/btau/data/tau/L1TauEmulation.cfi"
 include "HLTrigger/btau/data/tau/CaloTau.cff"
 include "HLTrigger/btau/data/tau/SingleTau.cff"
 include "HLTrigger/btau/data/tau/DoubleTau.cff"

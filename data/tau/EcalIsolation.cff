@@ -26,9 +26,7 @@ module  ecalDoubleTauIsol =  EcalIsolation{
 
 #Divide the jets into two collections: Isolated and not Isolated
 module ecalTauIsolated = EMIsolatedTauJetsSelector{
-    InputTag SingleTau =  ecalSingleTauIsol
-    InputTag DoubleTau =  ecalDoubleTauIsol
-    InputTag L1Code =  l2TauJetsProvider
+    VInputTag TauSrc= {ecalSingleTauIsol,ecalDoubleTauIsol}
 }    
 
 #Filter to select events with atleast one Isolated jet
@@ -36,5 +34,6 @@ module filterTauEcalIsolation = HLT1Tau  {
     InputTag inputTag = ecalTauIsolated:Isolated
     double MinPt = 1.0
     double MaxEta= 5.0
-    int32  MinN  = 1
+    int32  MinN  = 2
 }
+

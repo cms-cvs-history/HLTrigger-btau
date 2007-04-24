@@ -1,7 +1,7 @@
 #L1Seed Filter
 
 module singleTauL1SeedFilter = HLTLevel1Seed {
-    vstring L1Seeds = {"SingleTau"}
+    vstring L1Seeds = {"SingleTauJet100"}
     bool andOr      = true
     bool byName     = true
     InputTag L1ExtraCollections = l1extraParticles
@@ -15,7 +15,7 @@ module singleTauL1SeedFilter = HLTLevel1Seed {
 
   module hlt1METSingleTau = HLT1CaloMET {
      InputTag inputTag = met
-     double MinPt = 91.0
+     double MinPt = 65.0
      double MaxEta= -1.0 // negative = no cut
      int32  MinN  = 1
   }
@@ -34,7 +34,7 @@ module filterL2SingleTauJets = HLT1Tau  {
 # Ckf
 es_module trajBuilderL25 =  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
 replace trajBuilderL25.ComponentName = "trajBuilderL25"
-replace trajBuilderL25.ptCut               = 5.
+replace trajBuilderL25.ptCut               = 5.0
 replace trajBuilderL25.maxNumberOfHits      =7
 replace trajBuilderL25.maxCand = 1
 replace trajBuilderL25.alwaysUseInvalidHits = false

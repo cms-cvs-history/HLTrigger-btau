@@ -6,7 +6,7 @@ sequence tracker_local = {doLocalTrackerFromDigis}
 
 #CaloTaus sequence
 sequence caloTausCreator = {
-    doCalo,
+    doCaloFromDigis,
     caloTowersTau1,
     icone5Tau1,
     caloTowersTau2, 
@@ -92,37 +92,31 @@ sequence doubleTrkTauNoFilters ={ singleTauL25,doubleTauL25,doubleTauL3}
 
 #EcalIsolation
 sequence ecalIsolation ={singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated}
-
-sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated}
-
-sequence ecalNotIsolatedPixelTauL25 = {associatorL25PixelTauNotIsolated,coneIsolationL25PixelTauNotIsolated,isolatedL25PixelTau}
-
+sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
 sequence doubleCaloPixelTau = {
     (ecalIsolation,filterTauEcalIsolation)
     &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25,
-    filterL25PixelTauIsolated,
-    ecalNotIsolatedPixelTauL25,
     filterL25PixelTau
 }
 
 sequence doubleCaloPixelTauNoFilters = { 
     (ecalIsolation)
     &pixel_local&recopixelvertexing,
-    ecalIsolatedPixelTauL25,
-     ecalNotIsolatedPixelTauL25
+    ecalIsolatedPixelTauL25
 }
+
+
 
 
 #Trigger  sequences to become trigger path in cfg file
 
 //sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
 sequence singleTauL1HLT = {(singleTauL1SeedFilter&caloTausCreator&hltMET)&tracker_local&recopixelvertexing, singleTau }
-sequence doubleTrkTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTau}
 sequence caloPixelTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
+sequence caloSiStripTauL1HLT = {doubleTauL1SeedFilter&caloTausCreator&(ecalIsolation,filterTauEcalIsolation)&pixel_local&recopixelvertexing&siStrip_local,doubleTrkTau}
 
 #Triggers with no HLTFilters! For debugging scope
 sequence singleTauL1NoHLT = {(singleTauL1SeedFilter&caloTausCreator)&tracker_local&recopixelvertexing, singleTauNoFilters }
-sequence doubleTrkTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&tracker_local&recopixelvertexing, doubleTrkTauNoFilters}
 sequence caloPixelTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
-
+sequence caloSiStripTauL1NoHLT = {doubleTauL1SeedFilter&caloTausCreator&ecalIsolation&tracker_local&recopixelvertexing,doubleTrkTauNoFilters}
