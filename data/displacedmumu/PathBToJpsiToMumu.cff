@@ -20,7 +20,7 @@ module hltDiMuonLevel1Seed = HLTLevel1Seed {
 
 # HLT Level-1 filter module
 
-//include "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+//include "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 //replace hltLevel1Seed.L1Seeds = {"DoubleMuon"}
 //replace hltLevel1Seed.L1ExtraCollections = l1extraParticles
 //replace hltLevel1Seed.L1ExtraParticleMap = l1extraParticleMap
