@@ -1,5 +1,5 @@
 module doubleTauL1SeedFilter = HLTLevel1Seed {
-    vstring L1Seeds = {"A_SingleTauJet100", "A_DoubleTauJet50"}
+    vstring L1Seeds = {"A_SingleTauJet100", "A_DoubleTauJet30"}
     bool andOr      = true
     bool byName     = true
 
