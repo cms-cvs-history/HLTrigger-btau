@@ -54,10 +54,10 @@ include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
 	
 	es_module CkfTrajectoryBuilderJpsi = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
 	replace CkfTrajectoryBuilderJpsi.ComponentName = "CkfTrajectoryBuilderJpsi"
-	replace CkfTrajectoryBuilderJpsi.ptCut = 2.0
-	replace CkfTrajectoryBuilderJpsi.maxCand = 3
-	replace CkfTrajectoryBuilderJpsi.maxNumberOfHits = 5
-	replace CkfTrajectoryBuilderJpsi.alwaysUseInvalidHits = false
+	replace CkfTrajectoryBuilder.ptCut = 2.0
+	replace CkfTrajectoryBuilder.maxCand = 3
+	replace CkfTrajectoryBuilder.maxNumberOfHits = 5
+	replace CkfTrajectoryBuilder.alwaysUseInvalidHits = false
 	
 	
 	module ckfTrackCandidatesJpsi = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
@@ -75,12 +75,13 @@ include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
 
 # include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
   
-  module allTracksMuons = allTracks from "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
-  replace allTracksMuons.src = ctfWithMaterialTracksJpsi 	    
-  replace allTracksMuons.particleType = "mu-"
+  include "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
+  replace allTracks.src = ctfWithMaterialTracksJpsi 	    
+  replace allTracks.particleType = "mu-"
+   
   
   module muTracks = CandSelector {
-    InputTag src = allTracksMuons
+    InputTag src = allTracks
     string cut = "pt > 2.5"
     bool filter = false
   }
@@ -90,7 +91,7 @@ include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
     string cut = "2.95 < mass < 3.25 & pt > 4.0"
   }
  
-  sequence jpsicand = { allTracksMuons &  muTracks &  jpsiFrommumu }
+  sequence jpsicand = { allTracks &  muTracks &  jpsiFrommumu }
  
   include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
   module displacedJpsiFilter = displacedmumuFilter from "HLTrigger/btau/data/displacedmumu/HLTDisplacedmumuFilter.cfi"
