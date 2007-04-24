@@ -13,7 +13,7 @@
 //
 // Original Author:  Emmanuelle PEREZ
 //         Created:  Wed Apr  4 09:15:08 CEST 2007
-// $Id: GetData.cc,v 1.2 2007/04/10 23:09:22 wmtan Exp $
+// $Id$
 //
 //
 
@@ -22,8 +22,6 @@
 #include <memory>
 #include <vector>
 #include <map>
-#include <string>
-#include <utility>
 
 // user include files
 #include "FWCore/Framework/interface/Frameworkfwd.h"
@@ -36,7 +34,7 @@
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 #include "DataFormats/Common/interface/DetSetVector.h"
 #include "DataFormats/SiPixelDigi/interface/PixelDigi.h"
-#include "DataFormats/Common/interface/Handle.h"
+#include <FWCore/Framework/interface/Handle.h>
 #include "FWCore/ParameterSet/interface/InputTag.h"
 
 #include "DataFormats/SiStripDigi/interface/SiStripDigi.h"
@@ -44,19 +42,9 @@
 #include "DataFormats/EcalDigi/interface/EBDataFrame.h"
 #include "DataFormats/EcalDigi/interface/EEDataFrame.h"
 #include "DataFormats/EcalDigi/interface/ESDataFrame.h"
-
-#include "DataFormats/HcalDigi/interface/HcalDigiCollections.h"
-#include "DataFormats/HcalDigi/interface/HBHEDataFrame.h"
-#include "DataFormats/HcalDigi/interface/HFDataFrame.h"
-#include "DataFormats/HcalDigi/interface/HODataFrame.h"
-#include "CalibFormats/HcalObjects/interface/HcalDbRecord.h"
-#include "CalibFormats/HcalObjects/interface/HcalCoderDb.h"
-#include "CalibFormats/HcalObjects/interface/HcalCalibrations.h"
-#include "Validation/HcalDigis/src/HcalSubdetDigiMonitor.h"
-
 using namespace edm;
 using namespace std;
-using namespace cms;
+
 //
 // class decleration
 //
@@ -111,12 +99,11 @@ GetData::~GetData()
 //
 
 // ------------ method called to produce the data  ------------
-
 void
 GetData::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
-   //TRACKER
+
     edm::Handle< DetSetVector<PixelDigi> >  input;
     iEvent.getByLabel("siPixelDigis", input);
      auto_ptr<DetSetVector<PixelDigi> > NewPixelDigi(new DetSetVector<PixelDigi> );
@@ -129,7 +116,7 @@ GetData::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
      DetSetVector<SiStripDigi>* uu = NewSiDigi.get();
      *uu = *input2.product();
 
-     //ECAL     
+     
      Handle<EBDigiCollection> EcalDigiEB;
      Handle<EEDigiCollection> EcalDigiEE;
      Handle<ESDigiCollection> EcalDigiES;
@@ -140,20 +127,16 @@ GetData::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   
      iEvent.getByLabel( EBdigiCollection_, EcalDigiEB );
      EBdigis = EcalDigiEB.product();
+     LogDebug("DigiInfo") << "total # EBdigis: " << EBdigis->size() ;
      
      iEvent.getByLabel( EEdigiCollection_, EcalDigiEE );
      EEdigis = EcalDigiEE.product();
+     LogDebug("DigiInfo") << "total # EEdigis: " << EEdigis->size() ;
     
     iEvent.getByLabel( ESdigiCollection_, EcalDigiES );
     ESdigis = EcalDigiES.product();
+    LogDebug("DigiInfo") << "total # ESdigis: " << ESdigis->size() ;
    
-    //HCAL
-    edm::Handle<edm::SortedCollection<HBHEDataFrame> > hbhe;
-    edm::Handle<edm::SortedCollection<HODataFrame> > ho;
-    edm::Handle<edm::SortedCollection<HFDataFrame> > hf;
-    iEvent.getByType(hbhe);
-    iEvent.getByType(ho);
-    iEvent.getByType(hf);
 
 
 
