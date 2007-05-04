@@ -1,0 +1,118 @@
+#L1 emulation
+include "RecoJets/Configuration/data/RecoGenJets.cff"
+include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
+
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+include "RecoEcal/Configuration/data/RecoEcal.cff"
+include "RecoEgamma/EgammaHLTProducers/data/hltRecoEcalSingleCandidate.cfi"
+
+#include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+
+## HLT common filter for L1 input
+
+module hltDiMuonLevel1Seed = HLTLevel1Seed {
+		vstring L1Seeds = { "DoubleMuon"}
+		bool andOr      = true
+		bool byName     = true
+            #InputTag L1ExtraCollections = l1extramctruth
+            #InputTag L1ExtraParticleMap = l1extramctruth
+            #InputTag L1GTReadoutRecord = l1extramctruth
+			InputTag L1ExtraCollections = l1extraParticles
+            InputTag L1ExtraParticleMap = l1extraParticleMap
+            InputTag L1GTReadoutRecord = l1extraParticleMap
+}
+
+
+# HLT Level-1 filter module
+
+//include "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
+//replace hltLevel1Seed.L1Seeds = {"DoubleMuon"}
+//replace hltLevel1Seed.L1ExtraCollections = l1extraParticles
+//replace hltLevel1Seed.L1ExtraParticleMap = l1extraParticleMap
+//replace hltLevel1Seed.L1GTReadoutRecord  = l1extraParticleMap
+//replace hltLevel1Seed.L1ExtraCollections = l1extramctruth
+//replace hltLevel1Seed.L1ExtraParticleMap = l1extramctruth
+//replace hltLevel1Seed.L1GTReadoutRecord  = l1extramctruth
+
+# pv reconstruction
+include "HLTrigger/btau/data/jetTag/bHLTpixel.cff"
+
+# TrackerTracks
+include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
+
+# MeasurementTracker
+include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
+
+	module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
+	replace muonCandidateFromHLTFOWR.ptMin = 2.0
+	replace muonCandidateFromHLTFOWR.directionSource = hltDiMuonLevel1Seed
+
+	module jpsipixelseed = regionalPixelSeedGeneratorFromCandidate from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeedsFromCandidate.cfi"
+	replace jpsipixelseed.ptMin = 2.0
+# replace jpsipixelseed.directionSource = hltDiMuonLevel1Seed
+	replace jpsipixelseed.CandSrc = muonCandidateFromHLTFOWR
+	replace jpsipixelseed.originRadius = 1.0
+    replace jpsipixelseed.originHalfLength = 1.0
+    replace jpsipixelseed.deltaEtaRegion = 0.3
+    replace jpsipixelseed.deltaPhiRegion = 0.3
+
+	
+	es_module CkfTrajectoryBuilderJpsi = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
+	replace CkfTrajectoryBuilderJpsi.ComponentName = "CkfTrajectoryBuilderJpsi"
+	replace CkfTrajectoryBuilder.ptCut = 2.0
+	replace CkfTrajectoryBuilder.maxCand = 3
+	replace CkfTrajectoryBuilder.maxNumberOfHits = 5
+	replace CkfTrajectoryBuilder.alwaysUseInvalidHits = false
+	
+	
+	module ckfTrackCandidatesJpsi = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+	replace ckfTrackCandidatesJpsi.SeedProducer = "jpsipixelseed"
+	replace ckfTrackCandidatesJpsi.TrajectoryBuilder = "CkfTrajectoryBuilderJpsi"
+	
+	
+	module ctfWithMaterialTracksJpsi = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+	replace ctfWithMaterialTracksJpsi.src = "ckfTrackCandidatesJpsi"
+ 
+
+// track reco sequence
+
+    sequence jpsitracks = {trackerlocalreco & jpsipixelseed & ckfTrackCandidatesJpsi & ctfWithMaterialTracksJpsi}
+
+# include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
+  
+  include "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
+  replace allTracks.src = ctfWithMaterialTracksJpsi 	    
+  replace allTracks.particleType = "mu-"
+   
+  
+  module muTracks = CandSelector {
+    InputTag src = allTracks
+    string cut = "pt > 2.5"
+    bool filter = false
+  }
+
+  module jpsiFrommumu = CandCombiner {
+    string decay = "muTracks@+ muTracks@-"
+    string cut = "1.5 < mass < 5.369 & pt > 4.0"
+  }
+ 
+  sequence jpsicand = { allTracks &  muTracks &  jpsiFrommumu }
+ 
+  include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
+  module displacedJpsiFilter = displacedmumuFilter from "HLTrigger/btau/data/displacedmumu/HLTDisplacedmumuFilter.cfi"
+  replace displacedJpsiFilter.Src = jpsiFrommumu
+  replace displacedJpsiFilter.MinLxySignificance = 3.0
+  replace displacedJpsiFilter.MaxNormalisedChi2 = 10.0
+  replace displacedJpsiFilter.MinCosinePointingAngle = 0.90 
+ 
+  include "HLTrigger/btau/data/displacedmumu/HLTmumuGammaFilter.cfi"	
+
+  sequence l1dimuonreco = { doL1TfromDigis & hltDiMuonLevel1Seed }
+  
+  sequence pvreco = { pixeltrackerlocalreco & recopixelvertexing }
+  
+  sequence l3displacedJpsireco = { muonCandidateFromHLTFOWR & jpsitracks & jpsicand }
+
+#  sequence ecalClusterPath = {hltSingleEMLevel1Seed & calolocalreco & ecalClusters & hltRecoEcalSingleCandidate} 
+   sequence ecalClusterPath = { calolocalreco & ecalClusters & hltRecoEcalSingleCandidate, BsmumugammaFilter} 	
+  sequence btoJpsitoMumu = { l1dimuonreco & pvreco & l3displacedJpsireco & displacedJpsiFilter & ecalClusterPath }
