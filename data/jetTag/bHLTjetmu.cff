@@ -29,5 +29,4 @@ module softMuJetTagsL3 =  softMuonJetTags from "RecoBTag/SoftLepton/data/softMuo
 replace softMuJetTagsL3.jetTracks = "associatorL3"
 replace softMuJetTagsL3.primaryVertex = "pixelVertices" 
 replace softMuJetTagsL3.leptons = "L3Muons"
-replace softMuJetTagsL3.leptonTagger = "softLeptonBTaggerByPtRel"
 #replace softMuJetTagsL3.leptonTagger = "softMuonBTaggerNoIP"
