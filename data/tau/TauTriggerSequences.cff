@@ -1,12 +1,12 @@
 
-sequence pixel_local   = {doLocalPixelFromDigis}
-sequence siStrip_local = {doLocalStripFromDigis}
-sequence tracker_local = {doLocalTrackerFromDigis}
+sequence pixel_local   = {doLocalPixel}
+sequence siStrip_local = {doLocalStrip}
+sequence tracker_local = {doLocalTracker}
 
 
 #CaloTaus sequence
 sequence caloTausCreator = {
-    doCaloFromDigis,
+    doCalo,
     caloTowersTau1,
     icone5Tau1,
     caloTowersTau2, 
