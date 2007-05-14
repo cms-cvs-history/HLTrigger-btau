@@ -11,19 +11,19 @@ module hltL2bHT = HLTGlobalSumHT {
 }
 
 module  hltL2b1jet = 
-  hlt1CaloJet from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
+  hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b1jet.MinN  = 1
 
 module  hltL2b2jet = 
-  hlt1CaloJet from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
+  hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b2jet.MinN  = 2
 
 module  hltL2b3jet = 
-  hlt1CaloJet from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
+  hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b3jet.MinN  = 3
 
 module  hltL2b4jet = 
-  hlt1CaloJet from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
+  hlt1CaloJet from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b4jet.MinN  = 4
 
 # Luminosity = 2E33 (Physics TDR)
@@ -32,7 +32,7 @@ replace hltL2b4jet.MinN  = 4
 #replace hltL2b3jet.MinPt = 9999999.0
 #replace hltL2b4jet.MinPt = 55.0
 
-# Luminosity for year 2008.
+# Luminosity for year 2008. 
 replace hltL2b1jet.MinPt = 200.0
 replace hltL2b2jet.MinPt = 130.0
 replace hltL2b3jet.MinPt = 70.0
