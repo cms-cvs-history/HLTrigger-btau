@@ -14,7 +14,7 @@ include "HLTrigger/btau/data/jetTag/bHLTassJetTrk.cff"
 include "HLTrigger/btau/data/jetTag/bHLTlifetime_tag.cff"
 
 #
-# L2 transverse energy and jet triggers for 1-4 jets.
+# L2 jet triggers for 1-4 jets respectively.
 #
 include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
 
