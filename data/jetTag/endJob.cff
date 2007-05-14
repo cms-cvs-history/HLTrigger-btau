@@ -7,8 +7,7 @@ module out = PoolOutputModule {
     # Specify trigger paths for which events to be written to disk.
     untracked PSet SelectEvents = {
 # Comment out event selection, so timing routines work correctly.
-#        vstring SelectEvents = { "bHLTpathHT",
-#                                 "bHLTpath1",
+#        vstring SelectEvents = { "bHLTpath1",
 #                                 "bHLTpath2",
 #                                 "bHLTpath3",
 #                                 "bHLTpath4" }
@@ -39,8 +38,8 @@ replace out.outputCommands += JetTagHLTstats.outputCommands
 # (Several of these only work correctly if SelectEvents is disabled
 # above).
 #
-include "HLTrigger/btau/data/jetTag/triggerStats.cff"
+#include "HLTrigger/btau/data/jetTag/triggerStats.cff"
 # Consider replacing the above by:
-#include "HLTrigger/Configuration/data/common/HLT.cff"
+include "HLTrigger/Configuration/data/common/HLT.cff"
 
-endpath outpath = { triggerStats, out }
+endpath outpath = {  out }

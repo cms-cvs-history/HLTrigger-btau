@@ -5,7 +5,7 @@
 # Define the standard hit and track reconstruction modules.
 # (A few of these like road-search not needed, but do no harm).
 
-include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
+include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets named etCutJets.
@@ -46,4 +46,4 @@ sequence regionalCkfTracks = {bJetRegionalPixelSeedGenerator,
                               bJetregionalCkfTrackCandidates, 
                               bJetRegionalCtfWithMaterialTracks}
 
-sequence bL3trackReco  = {trackerlocalreco, regionalCkfTracks}
+sequence bL3trackReco  = {DoLocalTracker, regionalCkfTracks}

@@ -37,8 +37,8 @@ replace out.outputCommands += JetTagHLTstats.outputCommands
 # (Several of these only work correctly if SelectEvents is disabled
 # above).
 #
-include "HLTrigger/btau/data/jetTag/triggerStats.cff"
+######include "HLTrigger/btau/data/jetTag/triggerStats.cff"
 # Consider replacing the above by:
-#include "HLTrigger/Configuration/data/common/HLT.cff"
+include "HLTrigger/Configuration/data/common/HLT.cff"
 
-endpath outpath = { triggerStats, out }
+endpath outpath = {  out }

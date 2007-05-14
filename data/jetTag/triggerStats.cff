@@ -10,8 +10,8 @@
 # Run $CMSSW_RELEASE_BASE/test/$SCRAM_ARCH/hltTimingSummary -i bHLT.root after this job.
 #
 module printer = AsciiOutputModule{}
-module pts = PathTimerInserter{}
-service = PathTimerService{}
+module ptsbMu = PathTimerInserter{}
+#service = PathTimerService{}
 
 
 # Get detailed timing histograms for each module using different tool.
@@ -33,7 +33,7 @@ module hltTree = HLTMakeSummaryObjects { }
 #
 # Print Trigger Report table for all L1 trigger bits.
 #
-module l1tTR = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
+#module l1tTR = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
 #module hltTR = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
 
 
@@ -49,4 +49,4 @@ untracked PSet options = {
 }
 
 #sequence triggerStats = { pts, printer, myTimer, l1extratest, hltTree, l1tTR}
-sequence triggerStats = { pts, printer, myTimer, hltTree, l1tTR}
+sequence triggerStats = { ptsbMu, printer, myTimer, hltTree, l1tTR}

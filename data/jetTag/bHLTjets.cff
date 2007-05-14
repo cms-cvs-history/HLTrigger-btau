@@ -4,8 +4,7 @@
 
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
-# Ignore that reco could be different for jet and HT triggers ...
-sequence preL2bReco = { doCalo, doHLTJetReco, doHLTHTReco }
+sequence preL2bReco = { doCalo, doHLTJetReco }
 
 #
 # Also select jets used for regional tracking & considered for b tagging
