@@ -7,7 +7,8 @@ module out = PoolOutputModule {
     # Specify trigger paths for which events to be written to disk.
     untracked PSet SelectEvents = {
 # Comment out event selection, so timing routines work correctly.
-#        vstring SelectEvents = { "bHLTpath1",
+#        vstring SelectEvents = { "bHLTpathHT",
+#                                 "bHLTpath1",
 #                                 "bHLTpath2",
 #                                 "bHLTpath3",
 #                                 "bHLTpath4" }
