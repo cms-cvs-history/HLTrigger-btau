@@ -11,8 +11,7 @@ include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
-# Tracker local reconstruction
-include "HLTrigger/Configuration/data/common/LocalTracker.cff"
+# Tracker reconstruction
 include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
 
