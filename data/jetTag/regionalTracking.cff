@@ -46,4 +46,4 @@ sequence regionalCkfTracks = {bJetRegionalPixelSeedGenerator,
                               bJetregionalCkfTrackCandidates, 
                               bJetRegionalCtfWithMaterialTracks}
 
-sequence bL3trackReco  = {DoLocalTracker, regionalCkfTracks}
+sequence bL3trackReco  = {doLocalTracker, regionalCkfTracks}
