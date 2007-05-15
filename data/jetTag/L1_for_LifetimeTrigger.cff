@@ -1,10 +1,15 @@
     #
-    # L1 trigger to be used for b lifetime tag HLT.
+    # L1 triggers to be used for b lifetime tag HLT.
     #
 
     # L1 emulation
 #    include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
 #    include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+
+    # L1 emulation and read Digis from disk.
+    include "HLTrigger/Configuration/data/common/HLTSetup.cff"
+
+
     # Filter on specified L1 bits.
     module bhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
     replace bhltL1filter.L1ExtraCollections = l1extraParticles
@@ -12,95 +17,14 @@
     replace bhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
     # Say which L1 trigger bits to use here. (Names from L1ParticleMap.cc)
     replace bhltL1filter.L1Seeds = {
-       "A_SingleMu3",
-       "A_SingleMu10",
-       "A_SingleMu14",
-       "A_SingleMu20",
-       "A_SingleMu25",
-       "A_SingleIsoEG5",
-       "A_SingleIsoEG10",
-       "A_SingleIsoEG15",
-       "A_SingleIsoEG20",
-       "A_SingleIsoEG25",
-       "A_SingleEG5",
-       "A_SingleEG10",
-       "A_SingleEG15",
-       "A_SingleEG20",
-       "A_SingleEG25",
-       "A_SingleJet20",
-       "A_SingleJet60",
-       "A_SingleJet100",
-       "A_SingleJet140",
-       "A_SingleJet180",
-       "A_SingleTauJet20",
-       "A_SingleTauJet60",
-       "A_SingleTauJet100",
-       "A_SingleTauJet140",
-       "A_SingleTauJet180",
-       "A_HTT100",
-       "A_HTT200",
-       "A_HTT300",
-       "A_HTT400",
-       "A_HTT500",
-       "A_ETM20",
-       "A_ETM40",
-       "A_ETM60",
-       "A_ETM80",
-       "A_ETM100",
-       "A_DoubleMu7",
-       "A_DoubleIsoEG10",
-       "A_DoubleEG20",
+       "A_SingleJet150",
        "A_DoubleJet100",
-       "A_DoubleTauJet50",
-       "A_Mu7_IsoEG15",
-       "A_Mu7_EG15",
-       "A_Mu7_Jet100",
-       "A_Mu7_TauJet50",
-       "A_IsoEG10_EG10",
-       "A_IsoEG15_Jet100",
-       "A_IsoEG15_TauJet50",
-       "A_EG15_Jet100",
-       "A_EG15_TauJet50",
-       "A_Jet100_TauJet50",
-       "A_Mu7_HTT300",
-       "A_IsoEG15_HTT300",
-       "A_EG15_HTT300",
-       "A_Jet100_HTT300",
-       "A_TauJet50_HTT300",
-       "A_Mu7_ETM30",
-       "A_IsoEG15_ETM30",
-       "A_EG15_ETM30",
-       "A_Jet100_ETM40",
-       "A_TauJet50_ETM40",
-       "A_HTT200_ETM40",
-       "A_TripleMu7",
-       "A_TripleIsoEG5",
-       "A_TripleEG10",
-       "A_TripleJet70",
-       "A_TripleTauJet50",
-       "A_DoubleMu7_IsoEG5",
-       "A_DoubleMu7_EG5",
-       "A_DoubleIsoEG5_Mu7",
-       "A_DoubleEG5_Mu7",
-       "A_DoubleMu7_HTT150",
-       "A_DoubleIsoEG5_HTT150",
-       "A_DoubleEG5_HTT150",
-       "A_DoubleJet50_HTT150",
-       "A_DoubleTauJet50_HTT150",
-       "A_DoubleMu7_ETM15",
-       "A_DoubleIsoEG5_ETM15",
-       "A_DoubleEG5_ETM15",
-       "A_DoubleJet50_ETM15",
-       "A_DoubleTauJet50_ETM15",
-       "A_QuadJet50",
-       "A_MinBias_HTT10",
-       "A_ZeroBias"
+       "A_TripleJet50",
+       "A_QuadJet20",
+       "A_HTT300"
+
     }
     # Optionally modify their thresholds here.
-    # Default thresholds in CMSSW
 #    replace l1extraParticleMap.singleJetMinEt = 151.
-#    replace l1extraParticleMap.doubleJetMinEt = 21.
-#    replace l1extraParticleMap.tripleJetMinEt = 71.
-#    replace l1extraParticleMap.quadJetMinEt   = 51.
 
-    sequence L1forBlifeHLT = {hltBegin, bhltL1filter}
+    sequence L1forBlifeHLT = {bhltL1filter}
