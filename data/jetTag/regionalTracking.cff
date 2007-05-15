@@ -5,7 +5,7 @@
 # Define the standard hit and track reconstruction modules.
 # (A few of these like road-search not needed, but do no harm).
 
-include "HLTrigger/Configuration/data/common/HLTSetup.cff"
+#include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets named etCutJets.

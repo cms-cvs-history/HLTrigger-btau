@@ -6,7 +6,7 @@
 #    include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
 #    include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 
-    # L1 emulation and read Digis from disk.
+    # L1 emulation, read Digis from disk, and run trigger statistics.
     include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 
 
