@@ -19,12 +19,12 @@ sequence b3jetL1HLT  = { L1forBlifeHLT &
                         (preL25bReco, hltL25b) &
                         (preL3bReco, hltL3b)}
 
-sequence b3jetL1HLT  = { L1forBlifeHLT &
+sequence b4jetL1HLT  = { L1forBlifeHLT &
                         (preL2bReco, hltL2b4jet) &
                         (preL25bReco, hltL25b) &
                         (preL3bReco, hltL3b)}
 
-sequence b4jetL1HLT = { L1forBlifeHLT &
-                       (preL2bReco, hltL2bHT) &
-                       (preL25bReco, hltL25b) &
-                       (preL3bReco, hltL3b)}
+sequence bHTjetL1HLT = { L1forBlifeHLT &
+                        (preL2bReco, hltL2bHT) &
+                        (preL25bReco, hltL25b) &
+                        (preL3bReco, hltL3b)}
