@@ -6,9 +6,13 @@
 
 include "HLTrigger/btau/data/jetTag/triggerSeq.cff"
 
-path bHLTpath1  = {b1jetL1HLT}
-path bHLTpath2  = {b2jetL1HLT}
-path bHLTpath3  = {b3jetL1HLT}
-path bHLTpath4  = {b3jetL1HLT}
+# Have L1 by itself just for debug purposes.
+path L1forbHLT  = {L1forBlifeHLT}
 
-path bHLTpathHT = {bHTL1HLT}
+# These are L1 + HLT
+path bHLTpath1  = {b1jetTrig}
+path bHLTpath2  = {b2jetTrig}
+path bHLTpath3  = {b3jetTrig}
+path bHLTpath4  = {b3jetTrig}
+
+path bHLTpathHT = {bHTTrig}

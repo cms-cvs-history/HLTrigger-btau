@@ -1,21 +1,20 @@
-#############################################################
-# Trigger paths for L2 passing 1, 2, 3 and 4 jet thresholds #
-# followed by L2.5 and L3 b -> mu HLT.                      #
-#############################################################
-
-# Currently, include L1 as seperate path, as we want to study its performance,
-# but don't yet know which L1 bits are useful at L2.
+#########################################################
+# Trigger paths for L1,                                 #
+# then L2 passing HHT or 1, 2, 3 and 4 jet thresholds   #
+# followed by L2.5 and L3 b->mu HLT.                    #
+#########################################################
 
 include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
 
+# Have L1 by itself just for debug purposes.
 path L1forbmuHLT = {L1forBsoftmuHLT}
 
-path bmuHLTpath1 = {bmu1jetL1HLT}
-path bmuHLTpath2 = {bmu2jetL1HLT}
-path bmuHLTpath3 = {bmu3jetL1HLT}
-path bmuHLTpath4 = {bmu4jetL1HLT}
+# These are L1 + HLT
+path bmuHLTpath1 = {bmu1jetTrig}
+path bmuHLTpath2 = {bmu2jetTrig}
+path bmuHLTpath3 = {bmu3jetTrig}
+path bmuHLTpath4 = {bmu4jetTrig}
 
-
-path bmuHLTpathHT = {bmuHTL1HLT}
+path bmuHLTpathHT = {bmuHTTrig}
 
 

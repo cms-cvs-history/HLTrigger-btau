@@ -1,33 +1,31 @@
-#############################################################
-# Trigger sequence for L2 passing 1, 2, 3 and 4 jet thresholds #
-# followed by L2.5 and L3 b -> mu HLT.                      #
-#############################################################
+#########################################################
+# Trigger paths for L1,                                 #
+# then L2 passing HHT or 1, 2, 3 and 4 jet thresholds   #
+# followed by L2.5 and L3 b->mu HLT.                    #
+#########################################################
 
+sequence bmu1jetTrig = {hltBegin& L1forBsoftmuHLT &
+                        (preL2bReco, hltL2b1jetMu) &
+                        (preL25bRecoMu, hltL25bmu) &
+                        (preL3bRecoMuBydR, hltL3bmuBydR)}
 
+sequence bmu2jetTrig = {hltBegin & L1forBsoftmuHLT &
+                        (preL2bReco, hltL2b2jetMu) &
+                        (preL25bRecoMu, hltL25bmu) &
+                        (preL3bRecoMuBydR, hltL3bmuBydR)}
 
+sequence bmu3jetTrig = {hltBegin & L1forBsoftmuHLT &
+                        (preL2bReco, hltL2b3jetMu) &
+                        (preL25bRecoMu, hltL25bmu) &
+                        (preL3bRecoMu, hltL3bmu)}
 
-sequence bmu1jetL1HLT  = {hltBegin& (L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b1jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMuBydR, hltL3bmuBydR)}
+sequence bmu4jetTrig = {hltBegin & L1forBsoftmuHLT &
+                        (preL2bReco, hltL2b4jetMu) &
+                        (preL25bRecoMu, hltL25bmu) &
+                        (preL3bRecoMu, hltL3bmu)}
 
-sequence bmu2jetL1HLT  = {hltBegin & (L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b2jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMuBydR, hltL3bmuBydR)}
-
-sequence bmu3jetL1HLT  = {hltBegin & (L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b3jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMu, hltL3bmu)}
-
-sequence bmu4jetL1HLT  = {hltBegin & (L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b4jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMu, hltL3bmu)}
-
-sequence bmuHTL1HLT  = {hltBegin & (L1JetsforBsoftmuHLT) &
-                    (preL2bReco, hltL2bHTMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMu, hltL3bmu)}
+sequence bmuHTTrig   = {hltBegin & L1JetsforBsoftmuHLT &
+                        (preL2bReco, hltL2bHTMu) &
+                        (preL25bRecoMu, hltL25bmu) &
+                        (preL3bRecoMu, hltL3bmu)}
 
