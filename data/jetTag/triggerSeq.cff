@@ -1,0 +1,30 @@
+#############################################################
+# Trigger paths for L1,                                     #
+# then L2 passing HHT or 1, 2, 3 and 4 jet thresholds       #
+# followed by L2.5 and L3 b HLT.                            #
+#############################################################
+
+sequence b1jetL1HLT  = { L1forBlifeHLT &
+                        (preL2bReco, hltL2b1jet) &
+                        (preL25bReco, hltL25b) &
+                        (preL3bReco, hltL3b)}
+
+sequence b2jetL1HLT  = { L1forBlifeHLT &
+                        (preL2bReco, hltL2b2jet) &
+                        (preL25bReco, hltL25b) &
+                        (preL3bReco, hltL3b)}
+
+sequence b3jetL1HLT  = { L1forBlifeHLT &
+                        (preL2bReco, hltL2b3jet) &
+                        (preL25bReco, hltL25b) &
+                        (preL3bReco, hltL3b)}
+
+sequence b3jetL1HLT  = { L1forBlifeHLT &
+                        (preL2bReco, hltL2b4jet) &
+                        (preL25bReco, hltL25b) &
+                        (preL3bReco, hltL3b)}
+
+sequence b4jetL1HLT = { L1forBlifeHLT &
+                       (preL2bReco, hltL2bHT) &
+                       (preL25bReco, hltL25b) &
+                       (preL3bReco, hltL3b)}
