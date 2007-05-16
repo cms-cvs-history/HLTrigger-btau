@@ -27,8 +27,8 @@ module JpsitoMumuL2Filtered = HLTMuonDimuonFilter {
 	double MaxDz = 9999.
 	int32  ChargeOpt = -1 // 0 nothing , 1 same charge, -1 opposite charge
 	double MinPtPair = 0.
-	double MinPtMax = 2.5
-	double MinPtMin = 2.5
+	double MinPtMax = 4.
+	double MinPtMin = 4.
 	double MinInvMass = 2.0
 	double MaxInvMass = 4.2
 	double MinAcop = 2 // -1
@@ -50,11 +50,11 @@ module displacedJpsitoMumuFilter = displacedmumuFilter from "HLTrigger/btau/data
 
 sequence btoJpsitoMumu = { 
 	#L1 dimuon
-  		l1muonreco & JpsitoMumuL1Seed & JpsitoMumuL1Filtered 
+  		hltBegin & JpsitoMumuL1Seed & JpsitoMumuL1Filtered 
 	#L2 dimuon		
 		& l2muonreco & JpsitoMumuL2Filtered 
 	#L3 displaced dimuon
-		& l3displacedMumureco & displacedJpsitoMumuFilter 
+	& l3displacedMumureco & displacedJpsitoMumuFilter 
 }
   
 sequence btoJpsitoMumunoL1emulation = {
