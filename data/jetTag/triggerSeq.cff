@@ -24,7 +24,7 @@ sequence b4jetL1HLT  = { L1forBlifeHLT &
                         (preL25bReco, hltL25b) &
                         (preL3bReco, hltL3b)}
 
-sequence bHTjetL1HLT = { L1forBlifeHLT &
+sequence bHTL1HLT =    { L1forBlifeHLT &
                         (preL2bReco, hltL2bHT) &
                         (preL25bReco, hltL25b) &
                         (preL3bReco, hltL3b)}
