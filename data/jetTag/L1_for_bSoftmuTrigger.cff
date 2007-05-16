@@ -1,9 +1,8 @@
     #
     # L1 trigger to be used for b soft muon tag HLT.
     #
-
-    # L1 emulation, read Digis from disk and run trigger statistics.
-    include "HLTrigger/Configuration/data/common/HLTSetup.cff"
+    # L1 emulation	
+#    include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 
     # Filter on specified L1 bits.
 
@@ -16,4 +15,21 @@
        "A_Mu10_Jet20"
     }
 
+
+    module bmuhltOnlyJetsL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+    replace bmuhltOnlyJetsL1filter.L1ExtraCollections = l1extraParticles
+    replace bmuhltOnlyJetsL1filter.L1ExtraParticleMap = l1extraParticleMap
+    replace bmuhltOnlyJetsL1filter.L1GTReadoutRecord  = l1extraParticleMap
+    # Say which L1 trigger bits to use here. (Names from L1ParticleMap.cc)
+    replace bmuhltOnlyJetsL1filter.L1Seeds = {
+       "A_SingleJet150",
+       "A_DoubleJet100",
+       "A_TripleJet50",
+       "A_QuadJet20",
+       "A_HTT300"
+    }
+
+
+
     sequence L1forBsoftmuHLT = { bmuhltL1filter}
+    sequence L1JetsforBsoftmuHLT = { bmuhltOnlyJetsL1filter}

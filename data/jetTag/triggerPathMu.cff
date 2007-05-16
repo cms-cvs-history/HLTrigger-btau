@@ -5,25 +5,17 @@
 
 # Currently, include L1 as seperate path, as we want to study its performance,
 # but don't yet know which L1 bits are useful at L2.
-#path L1forbmuHLT = {L1forBsoftmuHLT}
 
-path bmuHLTpath1 = {(L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b1jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMuBydR, hltL3bmuBydR)}
+include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
 
-path bmuHLTpath2 = {(L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b2jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMuBydR, hltL3bmuBydR)}
+path L1forbmuHLT = {L1forBsoftmuHLT}
 
-path bmuHLTpath3 = {(L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b3jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMu, hltL3bmu)}
+path bmuHLTpath1 = {bmu1jetL1HLT}
+path bmuHLTpath2 = {bmu2jetL1HLT}
+path bmuHLTpath3 = {bmu3jetL1HLT}
+path bmuHLTpath4 = {bmu4jetL1HLT}
 
-path bmuHLTpath4 = {(L1forBsoftmuHLT) &
-                    (preL2bReco, hltL2b4jetMu) &
-                    (preL25bRecoMu, hltL25bmu) &
-                    (preL3bRecoMu, hltL3bmu)}
+
+path bmuHLTpathHT = {bmuHTL1HLT}
+
 

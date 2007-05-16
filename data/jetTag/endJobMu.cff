@@ -40,7 +40,7 @@ replace out.outputCommands += JetTagHLTstats.outputCommands
 
 #include "HLTrigger/btau/data/jetTag/triggerStats.cff"
 # This is now done by HLT.cff in the L1 cff file.
-# include "HLTrigger/Configuration/data/common/HLT.cff"
+ include "HLTrigger/Configuration/data/common/HLT.cff"
 
 
 endpath outpath = {  out }
