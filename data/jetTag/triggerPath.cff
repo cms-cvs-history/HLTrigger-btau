@@ -4,7 +4,7 @@
 # followed by L2.5 and L3 b HLT.                            #
 #############################################################
 
-#include "HLTrigger/btau/data/jetTag/triggerSeq.cff"
+include "HLTrigger/btau/data/jetTag/triggerSeq.cff"
 
 path bHLTpath1  = {b1jetL1HLT}
 path bHLTpath2  = {b2jetL1HLT}
