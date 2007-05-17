@@ -1,0 +1,21 @@
+#
+# Event reconstruction for lifetime b tag HLT
+#
+
+# reconstruct calo jets and select those to be used for b tagging.
+include "HLTrigger/btau/data/jetTag/jetReco.cff"
+# setup pixel tracks & primary vertex
+include "HLTrigger/btau/data/jetTag/pixelReco.cff"
+# setup regional tracking around jets.
+include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
+# setup jet-track associators
+include "HLTrigger/btau/data/jetTag/trackAssociator.cff"
+# setup b lifetime tag algorithm.
+include "HLTrigger/btau/data/jetTag/lifetimeTaggers.cff"
+
+# L2 jet triggers for 1-4 jets or missing ET
+include "HLTrigger/btau/data/jetTag/lifetimeL2Jets.cff"
+
+# b HLT modules for Level 2.5 and 3.
+include "HLTrigger/btau/data/jetTag/lifetimeL25.cff"
+include "HLTrigger/btau/data/jetTag/lifetimeL3.cff"
