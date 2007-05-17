@@ -4,7 +4,7 @@
 # followed by L2.5 and L3 b->mu HLT.                    #
 #########################################################
 
-include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
+include "HLTrigger/btau/data/jetTag/softmuonTriggerSequences.cff"
 
 # Have L1 by itself just for debug purposes.
 path L1forbmuHLT = {L1forBsoftmuHLT}
