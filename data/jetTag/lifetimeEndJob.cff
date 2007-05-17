@@ -1,0 +1,26 @@
+#
+# Write events passing trigger (path bHLTpath) to disk
+#
+
+module out = PoolOutputModule {
+    untracked string fileName = 'file:hltLifetimeBTag.root'
+    untracked vstring outputCommands = {
+        # Drop input objects
+        "drop *"
+        # Optionally keep all new objects created by this job.
+        #"keep *_*_*_HLT"
+    }
+}
+
+# Keep trigger summary and results of whichever b tags were used in HLT.
+# plus trigger timing and efficiency data.
+include "HLTrigger/btau/data/jetTag/eventContent_Lifetime.cff"
+replace out.outputCommands += JetTagLifetimeHLT.outputCommands
+include "HLTrigger/btau/data/jetTag/eventContent_Stats.cff"
+replace out.outputCommands += JetTagHLTstats.outputCommands
+
+# Consider replacing the above by:
+#include "HLTrigger/Configuration/data//HLTrigger_EventContent.cff"
+# except this doesn't keep b RECO objects or L1 output ?
+
+endpath outpath = { out }
