@@ -1,3 +1,4 @@
+   module  doubleTauPrescale  = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 module doubleTauL1SeedFilter = HLTLevel1Seed {
     vstring L1Seeds = {"A_DoubleTauJet30"}
     bool andOr      = true
