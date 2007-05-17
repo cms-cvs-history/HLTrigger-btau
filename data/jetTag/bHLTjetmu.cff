@@ -3,7 +3,7 @@
 #
 include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
 
-sequence l1bmuonreco = { l1muonreco }
+#sequence l1bmuonreco = { l1muonreco }      # this just includes hltBegin
 sequence l2bmuonreco = { L2MuonSeeds, doLocalMuon, L2Muons}
 sequence l3bmuonreco = { doLocalTracker, L3muonAltReco}
 
