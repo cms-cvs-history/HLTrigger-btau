@@ -1,7 +1,6 @@
 #
 # Write events passing trigger (path bHLTpath) to disk
 #
-
 module out = PoolOutputModule {
     untracked string fileName = 'file:hltLifetimeBTag.root'
     untracked vstring outputCommands = {
@@ -12,7 +11,7 @@ module out = PoolOutputModule {
     }
 }
 
-# Keep trigger summary and results of whichever b tags were used in HLT.
+# Keep trigger summary and results of whichever b tags were used in HLT,
 # plus trigger timing and efficiency data.
 include "HLTrigger/btau/data/jetTag/eventContent_Lifetime.cff"
 replace out.outputCommands += JetTagLifetimeHLT.outputCommands
