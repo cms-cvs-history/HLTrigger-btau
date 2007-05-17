@@ -1,0 +1,36 @@
+#
+# L2 transverse energy & multi-jet triggers
+#
+
+# Transverse energy trigger
+module hltL2bHTMu = HLTGlobalSumHT {
+    InputTag inputTag   = htMet
+    string   observable = "sumEt"
+    double   Min        = 300.0
+    double   Max        = -1.0
+    int32    MinN       = 1
+}
+
+# Multi-jet triggers
+module  hltL2b1jetMu = hlt1CaloJet 
+    from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
+replace hltL2b1jetMu.MinN  = 1
+
+module  hltL2b2jetMu = hlt1CaloJet 
+    from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
+replace hltL2b2jetMu.MinN  = 2
+
+module  hltL2b3jetMu = hlt1CaloJet 
+    from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
+replace hltL2b3jetMu.MinN  = 3
+
+module  hltL2b4jetMu = hlt1CaloJet 
+    from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
+replace hltL2b4jetMu.MinN  = 4
+
+# tentative thresholds (don't ask)
+replace hltL2b1jetMu.MinPt = 20.0
+replace hltL2b2jetMu.MinPt = 20.0
+replace hltL2b3jetMu.MinPt = 70.0
+replace hltL2b4jetMu.MinPt = 40.0
+
