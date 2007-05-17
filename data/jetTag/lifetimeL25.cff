@@ -8,5 +8,8 @@ replace hltL25b.MinTag = 2.5
 #
 # Reconstruction sequences needed before trigger.
 #
-sequence preL25bReco = { (jetSelForbHLT & bL25trackReco),
-                         associatorL25, trackCountingJetTagsL25 }
+sequence preL25bReco = { 
+    (jetSelForbHLT & bL25trackReco),
+    associatorL25, 
+    trackCountingJetTagsL25 
+}
