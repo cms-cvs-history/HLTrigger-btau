@@ -1,0 +1,16 @@
+# Trigger paths for L1,
+# then L2 passing HT or 1, 2, 3 or 4 jet thresholds,
+# followed by L2.5 and L3 b HLT.
+
+include "HLTrigger/btau/data/jetTag/lifetimeTriggerSequences.cff"
+
+# Have L1 by itself just for debug purposes.
+path L1forbHLT  = { L1forBlifeHLT }
+
+# L1 + HLT trigger paths
+path bHLTpath1  = { b1jetTrig }
+path bHLTpath2  = { b2jetTrig }
+path bHLTpath3  = { b3jetTrig }
+path bHLTpath4  = { b3jetTrig }
+
+path bHLTpathHT = { bHTTrig }
