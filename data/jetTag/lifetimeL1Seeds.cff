@@ -1,0 +1,23 @@
+# L1 triggers to be used for b lifetime tag HLT.
+
+# L1 emulation, read Digis from disk, and run trigger statistics.
+include "HLTrigger/Configuration/data/common/HLTSetup.cff"
+
+# Filter on specified L1 bits.
+module bhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+replace bhltL1filter.L1ExtraCollections = l1extraParticles
+replace bhltL1filter.L1ExtraParticleMap = l1extraParticleMap
+replace bhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
+# Coose the L1 trigger bits to use (names from L1ParticleMap.cc).
+replace bhltL1filter.L1Seeds = {
+    "A_SingleJet150",
+    "A_DoubleJet100",
+    "A_TripleJet50",
+    "A_QuadJet20",
+    "A_HTT300"
+}
+
+# Optionally modify their thresholds here.
+#replace l1extraParticleMap.singleJetMinEt = 151.
+
+sequence L1forBlifeHLT = { bhltL1filter }
