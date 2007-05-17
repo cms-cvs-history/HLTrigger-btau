@@ -6,16 +6,15 @@
 <use name=DataFormats/METReco>
 <use name=DataFormats/BTauReco>
 <use name=FWCore/Framework>
-<use name=FWCore/PluginManager>
+<use name=Foundation/PluginManager>
 <use name=FWCore/ParameterSet>
 <use name=HLTrigger/HLTcore>
 <use name=RecoVertex/KalmanVertexFit>
-<use name=root>
-<flags EDM_PLUGIN=1>
+<flags SEAL_PLUGIN_NAME="HLTriggerbtau">
 <export>
    <lib name=HLTriggerbtau>
    <use name=FWCore/Framework>
-   <use name=FWCore/PluginManager>
+   <use name=Foundation/PluginManager>
    <use name=FWCore/ParameterSet>
    <use name=HLTrigger/HLTcore>
 </export>
