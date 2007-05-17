@@ -1,9 +1,11 @@
 # Trigger sequences for soft muon b tag at HLT:
+#   prescalers
 #   L1 seeds
 #   L2 passing HT or 1-4 multi-jet thresholds
 #   L2.5 and L3 b->mu HLT
 
 sequence bmu1jetTrig = {
+    bmu1jetPrescale &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b1jetMu) &
@@ -12,6 +14,7 @@ sequence bmu1jetTrig = {
 }
 
 sequence bmu2jetTrig = {
+    bmu2jetPrescale &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b2jetMu) &
@@ -20,6 +23,7 @@ sequence bmu2jetTrig = {
 }
 
 sequence bmu3jetTrig = {
+    bmu3jetPrescale &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b3jetMu) &
@@ -28,6 +32,7 @@ sequence bmu3jetTrig = {
 }
 
 sequence bmu4jetTrig = {
+    bmu4jetPrescale &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b4jetMu) &
@@ -36,6 +41,7 @@ sequence bmu4jetTrig = {
 }
 
 sequence bmuHTTrig = {
+    bmuHTPrescale &
     hltBegin & 
     L1JetsforBsoftmuHLT &
     (preL2bReco, hltL2bHTMu) &
