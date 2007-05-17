@@ -15,22 +15,20 @@ module hltL2bHTMu = HLTGlobalSumHT {
 module  hltL2b1jetMu = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b1jetMu.MinN  = 1
+replace hltL2b1jetMu.MinPt = 20.0
 
 module  hltL2b2jetMu = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b2jetMu.MinN  = 2
+replace hltL2b2jetMu.MinPt = 20.0
 
 module  hltL2b3jetMu = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b3jetMu.MinN  = 3
+replace hltL2b3jetMu.MinPt = 70.0
 
 module  hltL2b4jetMu = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b4jetMu.MinN  = 4
-
-# tentative thresholds (don't ask)
-replace hltL2b1jetMu.MinPt = 20.0
-replace hltL2b2jetMu.MinPt = 20.0
-replace hltL2b3jetMu.MinPt = 70.0
 replace hltL2b4jetMu.MinPt = 40.0
 

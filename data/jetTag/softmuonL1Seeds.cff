@@ -10,7 +10,7 @@ module bmuhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1S
 replace bmuhltL1filter.L1ExtraCollections = l1extraParticles
 replace bmuhltL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bmuhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
-# Say which L1 trigger bits to use here. (Names from L1ParticleMap.cc)
+# Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltL1filter.L1Seeds = {
    "A_Mu10_Jet20"
 }
@@ -20,7 +20,7 @@ module bmuhltOnlyJetsL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hl
 replace bmuhltOnlyJetsL1filter.L1ExtraCollections = l1extraParticles
 replace bmuhltOnlyJetsL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bmuhltOnlyJetsL1filter.L1GTReadoutRecord  = l1extraParticleMap
-# Say which L1 trigger bits to use here. (Names from L1ParticleMap.cc)
+# Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltOnlyJetsL1filter.L1Seeds = {
    "A_SingleJet150",
    "A_DoubleJet100",

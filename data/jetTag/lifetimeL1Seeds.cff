@@ -8,7 +8,7 @@ module bhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1See
 replace bhltL1filter.L1ExtraCollections = l1extraParticles
 replace bhltL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
-# Coose the L1 trigger bits to use (names from L1ParticleMap.cc).
+# Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bhltL1filter.L1Seeds = {
     "A_SingleJet150",
     "A_DoubleJet100",
