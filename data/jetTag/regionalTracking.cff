@@ -29,14 +29,15 @@ replace bJetRegionalCkfTrajectoryBuilder.alwaysUseInvalidHits = false
 
 # Form track candidates using the trajectory builder and seeds defined above.
 
-module bJetregionalCkfTrackCandidates =  
-  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+module bJetregionalCkfTrackCandidates = ckfTrackCandidates 
+    from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
 replace bJetregionalCkfTrackCandidates.SeedProducer      = "bJetRegionalPixelSeedGenerator"
 replace bJetregionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalCkfTrajectoryBuilder"
 
 # Fit tracks using the track candidates defined above.
 
-module bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+module bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks 
+    from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
 replace bJetRegionalCtfWithMaterialTracks.src = "bJetregionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
