@@ -1,6 +1,8 @@
-# Trigger paths for L1,
-# then L2 passing HT or 1, 2, 3 or 4 jet thresholds,
-# followed by L2.5 and L3 b HLT.
+# Trigger paths for lifetime (track counting) b tag at HLT:
+#   prescalers
+#   L1 seeds
+#   L2 passing HT or 1-4 multi-jet thresholds
+#   L2.5 and L3 track counting HLT
 
 include "HLTrigger/btau/data/jetTag/lifetimeTriggerSequences.cff"
 
