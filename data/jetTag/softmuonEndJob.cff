@@ -11,9 +11,9 @@ module out = PoolOutputModule {
     }
 }
 
-# Keep trigger summary and results of whichever b tags were used in HLTr,
+# Keep trigger summary and results of whichever b tags were used in HLT,
 # plus trigger timing and efficiency data.
-include "HLTrigger/btau/data/jetTag/eventContent_SoftMu.cff"
+include "HLTrigger/btau/data/jetTag/eventContent_SoftMuon.cff"
 replace out.outputCommands += JetTagSoftMuHLT.outputCommands
 include "HLTrigger/btau/data/jetTag/eventContent_Stats.cff"
 replace out.outputCommands += JetTagHLTstats.outputCommands
