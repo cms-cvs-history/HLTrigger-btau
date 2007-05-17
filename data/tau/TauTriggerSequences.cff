@@ -77,11 +77,11 @@ sequence doubleTauL3 = {ckfTracksL3DoubleTau,tauJetsMakerL3DoubleTau}
 
 
 sequence doubleTrkTau ={
-    singleTauL25, 
-    filterL25DoubleTauToConfirm,
-    doubleTauL25,
-    filterL25DoubleTau, 
-    doubleTauL3,
+    singleTauL25& 
+    filterL25DoubleTauToConfirm&
+    doubleTauL25&
+    filterL25DoubleTau& 
+    doubleTauL3&
     filterL3DoubleTau
 }    
 
@@ -111,7 +111,6 @@ sequence doubleCaloPixelTauNoFilters = {
 
 #Trigger  sequences to become trigger path in cfg file
 
-//sequence l1MCCandidate = {tauGenJet,l1extraTaumctruth} 
 sequence singleTauL1HLT = { hltBegin&(singleTauL1SeedFilter&caloTausCreator&hltMET)&tracker_local&recopixelvertexing&singleTau }
 sequence caloPixelTauL1HLT = { hltBegin&doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
 sequence caloSiStripTauL1HLT = { hltBegin&doubleTauL1SeedFilter&caloTausCreator&(ecalIsolation,filterTauEcalIsolation)&pixel_local&recopixelvertexing&siStrip_local&doubleTrkTau}
