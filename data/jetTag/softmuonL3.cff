@@ -1,12 +1,12 @@
 #
 # b HLT modules for Level 3.
 #
-module  hltL3bmu = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
+module  hltL3bmu = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
 replace hltL3bmu.JetTag = softMuJetTagsL3
 replace hltL3bmu.MinTag = 2     # pT_rel in GeV/c
 
 # no pTrel cut for Sys8 studies / use dR isa
-module  hltL3bmuBydR = hltSoftMuJetTag from "HLTrigger/btau/data/jetTag/hltSoftMuJetTag.cfi"
+module  hltL3bmuBydR = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
 replace hltL3bmuBydR.JetTag = softMuJetdRTagsL3
 replace hltL3bmuBydR.MinTag = 0.4     # dr < X
 
