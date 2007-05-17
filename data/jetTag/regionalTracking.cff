@@ -1,27 +1,26 @@
-####################################################################
-# Reconstruct regional tracks around etCutJets starting from Digis #
-####################################################################
+#
+# Reconstruct regional tracks around etCutJets starting from Digis
+#
 
 # Define the standard hit and track reconstruction modules.
 # (A few of these like road-search not needed, but do no harm).
 
-#include "HLTrigger/Configuration/data/common/HLTSetup.cff"
+include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets named etCutJets.
 
-module bJetRegionalPixelSeedGenerator = 
-  regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+module bJetRegionalPixelSeedGenerator = regionalPixelSeedGenerator 
+    from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
 replace bJetRegionalPixelSeedGenerator.JetSrc = etCutJets
 replace bJetRegionalPixelSeedGenerator.ptMin = 1.0
 replace bJetRegionalPixelSeedGenerator.deltaEtaRegion = 0.25
 replace bJetRegionalPixelSeedGenerator.deltaPhiRegion = 0.25
 
-# Tell track trajectory builder to use regional track seeds.
-# And speed it up by only partially reconstructing tracks. 
-
-es_module bJetRegionalCkfTrajectoryBuilder = 
-  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
+# Tell track trajectory builder to use regional track seeds,
+# and speed it up by only partially reconstructing tracks. 
+es_module bJetRegionalCkfTrajectoryBuilder = CkfTrajectoryBuilder 
+    from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
 replace bJetRegionalCkfTrajectoryBuilder.ComponentName = "bJetRegionalCkfTrajectoryBuilder"
 replace bJetRegionalCkfTrajectoryBuilder.ptCut                = 1.0
 replace bJetRegionalCkfTrajectoryBuilder.maxNumberOfHits      = 8
@@ -42,8 +41,10 @@ replace bJetRegionalCtfWithMaterialTracks.src = "bJetregionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
 
-sequence regionalCkfTracks = {bJetRegionalPixelSeedGenerator, 
-                              bJetregionalCkfTrackCandidates, 
-                              bJetRegionalCtfWithMaterialTracks}
+sequence regionalCkfTracks = {
+    bJetRegionalPixelSeedGenerator, 
+    bJetregionalCkfTrackCandidates, 
+    bJetRegionalCtfWithMaterialTracks
+}
 
-sequence bL3trackReco  = {doLocalTracker, regionalCkfTracks}
+sequence bL3trackReco = { doLocalTracker, regionalCkfTracks }

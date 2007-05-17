@@ -1,14 +1,14 @@
 # keep trigger statistics and timing info.
+
 block JetTagHLTstats = {
     untracked vstring outputCommands = {
-
-# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary
+        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTTimingSummary
         "keep HLTPerformanceInfo_*_*_*",
 
-# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTGlobalObject#Implementation
+        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHLTGlobalObject#Implementation
         "keep *_hltTree_*_*",
 
-# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideTimeProfileTools_CMSSW_1_3_0
+        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideTimeProfileTools_CMSSW_1_3_0
         "keep *_myTimer_*_*"
-   }
+    }
 }
