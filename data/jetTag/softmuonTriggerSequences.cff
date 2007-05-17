@@ -5,7 +5,7 @@
 #   L2.5 and L3 b->mu HLT
 
 sequence bmu1jetTrig = {
-    bmu1jetPrescale &
+    bmu1jetPrescaler &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b1jetMu) &
@@ -14,7 +14,7 @@ sequence bmu1jetTrig = {
 }
 
 sequence bmu2jetTrig = {
-    bmu2jetPrescale &
+    bmu2jetPrescaler &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b2jetMu) &
@@ -23,7 +23,7 @@ sequence bmu2jetTrig = {
 }
 
 sequence bmu3jetTrig = {
-    bmu3jetPrescale &
+    bmu3jetPrescaler &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b3jetMu) &
@@ -32,7 +32,7 @@ sequence bmu3jetTrig = {
 }
 
 sequence bmu4jetTrig = {
-    bmu4jetPrescale &
+    bmu4jetPrescaler &
     hltBegin & 
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b4jetMu) &
@@ -41,7 +41,7 @@ sequence bmu4jetTrig = {
 }
 
 sequence bmuHTTrig = {
-    bmuHTPrescale &
+    bmuHTPrescaler &
     hltBegin & 
     L1JetsforBsoftmuHLT &
     (preL2bReco, hltL2bHTMu) &
