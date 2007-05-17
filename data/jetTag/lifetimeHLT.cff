@@ -1,0 +1,5 @@
+# lifetime-based b-tag HLT
+include "HLTrigger/btau/data/jetTag/lifetimePrescaler.cff"
+include "HLTrigger/btau/data/jetTag/lifetimeL1Seeds.cff"
+include "HLTrigger/btau/data/jetTag/lifetimeTrigger.cff"
+include "HLTrigger/btau/data/jetTag/lifetimeTriggerSequences.cff"

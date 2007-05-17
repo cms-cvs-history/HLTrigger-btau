@@ -1,0 +1,5 @@
+# soft muon-based b-tag HLT
+include "HLTrigger/btau/data/jetTag/softmuonPrescaler.cff"
+include "HLTrigger/btau/data/jetTag/softmuonL1Seeds.cff"
+include "HLTrigger/btau/data/jetTag/softmuonTrigger.cff"
+include "HLTrigger/btau/data/jetTag/softmuonTriggerSequences.cff"
