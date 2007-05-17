@@ -1,11 +1,14 @@
     #
     # L1 trigger to be used for b soft muon tag HLT.
     #
+
+    # prescalers
+    include "HLTrigger/btau/data/jetTag/softmuonPrescaler.cff"
+
     # L1 emulation	
     include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 
     # Filter on specified L1 bits.
-
     module bmuhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
     replace bmuhltL1filter.L1ExtraCollections = l1extraParticles
     replace bmuhltL1filter.L1ExtraParticleMap = l1extraParticleMap
@@ -14,7 +17,6 @@
     replace bmuhltL1filter.L1Seeds = {
        "A_Mu10_Jet20"
     }
-
 
     module bmuhltOnlyJetsL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
     replace bmuhltOnlyJetsL1filter.L1ExtraCollections = l1extraParticles
@@ -28,8 +30,6 @@
        "A_QuadJet20",
        "A_HTT300"
     }
-
-
 
     sequence L1forBsoftmuHLT = { bmuhltL1filter}
     sequence L1JetsforBsoftmuHLT = { bmuhltOnlyJetsL1filter}

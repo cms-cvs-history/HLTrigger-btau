@@ -4,28 +4,48 @@
 # followed by L2.5 and L3 b->mu HLT.                    #
 #########################################################
 
-sequence bmu1jetTrig = {hltBegin& L1forBsoftmuHLT &
-                        (preL2bReco, hltL2b1jetMu) &
-                        (preL25bRecoMu, hltL25bmu) &
-                        (preL3bRecoMuBydR, hltL3bmuBydR)}
+sequence bmu1jetTrig = {
+    bmu1jetPrescaler &
+    hltBegin &
+    L1forBsoftmuHLT &
+    (preL2bReco, hltL2b1jetMu) &
+    (preL25bRecoMu, hltL25bmu) &
+    (preL3bRecoMuBydR, hltL3bmuBydR)
+}
 
-sequence bmu2jetTrig = {hltBegin & L1forBsoftmuHLT &
-                        (preL2bReco, hltL2b2jetMu) &
-                        (preL25bRecoMu, hltL25bmu) &
-                        (preL3bRecoMuBydR, hltL3bmuBydR)}
+sequence bmu2jetTrig = {
+    bmu2jetPrescaler &
+    hltBegin &
+    L1forBsoftmuHLT &
+    (preL2bReco, hltL2b2jetMu) &
+    (preL25bRecoMu, hltL25bmu) &
+    (preL3bRecoMuBydR, hltL3bmuBydR)
+}
 
-sequence bmu3jetTrig = {hltBegin & L1forBsoftmuHLT &
-                        (preL2bReco, hltL2b3jetMu) &
-                        (preL25bRecoMu, hltL25bmu) &
-                        (preL3bRecoMu, hltL3bmu)}
+sequence bmu3jetTrig = {
+    bmu3jetPrescaler &
+    hltBegin &
+    L1forBsoftmuHLT &
+    (preL2bReco, hltL2b3jetMu) &
+    (preL25bRecoMu, hltL25bmu) &
+    (preL3bRecoMu, hltL3bmu)
+}
 
-sequence bmu4jetTrig = {hltBegin & L1forBsoftmuHLT &
-                        (preL2bReco, hltL2b4jetMu) &
-                        (preL25bRecoMu, hltL25bmu) &
-                        (preL3bRecoMu, hltL3bmu)}
+sequence bmu4jetTrig = {
+    bmu4jetPrescaler &
+    hltBegin &
+    L1forBsoftmuHLT &
+    (preL2bReco, hltL2b4jetMu) &
+    (preL25bRecoMu, hltL25bmu) &
+    (preL3bRecoMu, hltL3bmu)
+}
 
-sequence bmuHTTrig   = {hltBegin & L1JetsforBsoftmuHLT &
-                        (preL2bReco, hltL2bHTMu) &
-                        (preL25bRecoMu, hltL25bmu) &
-                        (preL3bRecoMu, hltL3bmu)}
+sequence bmuHTTrig = {
+    bmuHTPrescaler &
+    hltBegin &
+    L1JetsforBsoftmuHLT &
+    (preL2bReco, hltL2bHTMu) &
+    (preL25bRecoMu, hltL25bmu) &
+    (preL3bRecoMu, hltL3bmu)
+}
 
