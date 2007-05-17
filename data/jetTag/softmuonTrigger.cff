@@ -1,0 +1,21 @@
+# 
+# Event reconstruction for HLT
+#
+
+# reconstruct calo jets and select those to be used for b tagging.
+include "HLTrigger/btau/data/jetTag/jetReco.cff"
+# setup jet-track (lepton) associators
+include "HLTrigger/btau/data/jetTag/softmuonAssociator.cff"
+# setup b -> muon tag algorithm.
+include "HLTrigger/btau/data/jetTag/softmuonReco.cff"
+
+#
+# L2 jet triggers for 1-4 jets respectively.
+#
+include "HLTrigger/btau/data/jetTag/softmuonL2Jets.cff" 
+
+#
+# b HLT modules for Level 2.5 and 3.
+#
+include "HLTrigger/btau/data/jetTag/softmuonL25.cff" 
+include "HLTrigger/btau/data/jetTag/softmuonL3.cff" 
