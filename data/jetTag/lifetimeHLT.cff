@@ -14,13 +14,13 @@ include "HLTrigger/btau/data/jetTag/pixelReco.cff"
 include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
 # associate jet to tracks
 include "HLTrigger/btau/data/jetTag/trackAssociator.cff"
-# setup b lifetime tag algorithm
+# setup lifetime taggers
 include "HLTrigger/btau/data/jetTag/lifetimeTaggers.cff"
 
 # L2 jet triggers for 1-4 jets or missing ET
 include "HLTrigger/btau/data/jetTag/lifetimeL2Jets.cff"
 
-# b HLT modules for Level 2.5 and 3.
+# lifetime-based b HLT modules for Level 2.5 and 3.
 include "HLTrigger/btau/data/jetTag/lifetimeL25.cff"
 include "HLTrigger/btau/data/jetTag/lifetimeL3.cff"
 
