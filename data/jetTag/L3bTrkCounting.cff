@@ -5,8 +5,10 @@ module  hltL3b = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
 replace hltL3b.JetTag = trackCountingJetTagsL3
 replace hltL3b.MinTag = 3
 
+module fromL25bJets = getJetsFromHLTobject from "HLTrigger/btau/data/jetTag/getJetsFromHLTobject.cfi"
+
 #
 # Reconstruction sequences needed before each trigger.
 #
-sequence preL3bReco = { bL3trackReco,
+sequence preL3bReco = { fromL25bJets, bL3trackReco,
                         associatorL3, trackCountingJetTagsL3 }

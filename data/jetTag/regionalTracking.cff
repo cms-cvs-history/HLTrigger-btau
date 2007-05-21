@@ -12,7 +12,10 @@ include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 module bJetRegionalPixelSeedGenerator = 
   regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
-replace bJetRegionalPixelSeedGenerator.JetSrc = etCutJets
+# Take iterative cone jets with Et cut.
+#replace bJetRegionalPixelSeedGenerator.JetSrc = etCutJets
+# Take jets tagged as b-jets at L2.5.
+replace bJetRegionalPixelSeedGenerator.JetSrc = fromL25bJets
 replace bJetRegionalPixelSeedGenerator.ptMin = 1.0
 replace bJetRegionalPixelSeedGenerator.deltaEtaRegion = 0.25
 replace bJetRegionalPixelSeedGenerator.deltaPhiRegion = 0.25

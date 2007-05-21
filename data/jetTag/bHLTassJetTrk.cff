@@ -5,4 +5,7 @@ replace associatorL25.jets   = etCutJets # Take jets from previous selection
 
 module associatorL3 = jetTracksAssociator from "RecoBTau/JetTracksAssociator/data/jetTracksAssociator.cfi"
 replace associatorL3.tracks = bJetRegionalCtfWithMaterialTracks
-replace associatorL3.jets   = etCutJets # Take jets from previous selection
+# Take iterative cone jets with Et cut.
+#replace associatorL3.jets = etCutJets
+# Take jets tagged as b-jets at L2.5.
+replace associatorL3.jets = fromL25bJets
