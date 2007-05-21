@@ -3,7 +3,9 @@
 block JetTagLifetimeHLT = {
     untracked vstring outputCommands = {
         # Output of b tags
+        "keep *_highestEtJets_*_*",
         "keep *_etCutJets_*_*",
+        "keep *_fromL25bJets_*_*",
         "keep *_trackCountingJetTagsL25_*_*",
         "keep *_trackCountingJetTagsL3_*_*",
 

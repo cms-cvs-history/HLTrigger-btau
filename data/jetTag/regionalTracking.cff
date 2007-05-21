@@ -1,18 +1,16 @@
-#
-# Reconstruct regional tracks around etCutJets starting from Digis
-#
+# Reconstruct regional tracks around jets b-tagged at L2.5 starting from Digis
 
-# Define the standard hit and track reconstruction modules.
-# (A few of these like road-search not needed, but do no harm).
+# Define the standard hit and track reconstruction modules
+# (a few of these like road-search not needed, but do no harm).
 
 include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 include "RecoTracker/Configuration/data/RecoTracker.cff"
 
-# Regional track seeding around jets named etCutJets.
+# Regional track seeding around jets b-tagged at L2.5.
 
 module bJetRegionalPixelSeedGenerator = regionalPixelSeedGenerator 
     from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
-replace bJetRegionalPixelSeedGenerator.JetSrc = etCutJets
+replace bJetRegionalPixelSeedGenerator.JetSrc = fromL25bJets
 replace bJetRegionalPixelSeedGenerator.ptMin = 1.0
 replace bJetRegionalPixelSeedGenerator.deltaEtaRegion = 0.25
 replace bJetRegionalPixelSeedGenerator.deltaPhiRegion = 0.25
@@ -28,24 +26,24 @@ replace bJetRegionalCkfTrajectoryBuilder.maxCand              = 1
 replace bJetRegionalCkfTrajectoryBuilder.alwaysUseInvalidHits = false
 
 # Form track candidates using the trajectory builder and seeds defined above.
-
 module bJetregionalCkfTrackCandidates = ckfTrackCandidates 
     from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
 replace bJetregionalCkfTrackCandidates.SeedProducer      = "bJetRegionalPixelSeedGenerator"
 replace bJetregionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalCkfTrajectoryBuilder"
 
 # Fit tracks using the track candidates defined above.
-
 module bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks 
     from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
 replace bJetRegionalCtfWithMaterialTracks.src = "bJetregionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
-
 sequence regionalCkfTracks = {
     bJetRegionalPixelSeedGenerator, 
     bJetregionalCkfTrackCandidates, 
     bJetRegionalCtfWithMaterialTracks
 }
 
-sequence bL3trackReco = { doLocalTracker, regionalCkfTracks }
+sequence bL3trackReco = { 
+    doLocalTracker, 
+    regionalCkfTracks 
+}
