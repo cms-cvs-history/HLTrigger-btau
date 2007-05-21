@@ -6,7 +6,7 @@
 module hltL2bHT = HLTGlobalSumHT {
     InputTag inputTag   = htMet
     string   observable = "sumEt"
-    double   Min        = 300.0
+    double   Min        = 370.0
     double   Max        = -1.0
     int32    MinN       = 1
 }
