@@ -1,0 +1,10 @@
+# soft muon-based b-tag HLT
+
+# prescalers and L1 seeds
+include "HLTrigger/btau/data/jetTag/L1_for_bSoftmuTrigger.cff"
+
+# reconstruction and b-tagging
+include "HLTrigger/btau/data/jetTag/bHLT_bSoftmuTrigger.cff"
+
+# define trigger sequences
+include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
