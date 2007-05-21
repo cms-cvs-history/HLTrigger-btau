@@ -25,7 +25,7 @@ replace hltL2b4jetMu.MinN  = 4
 module hltL2bHTMu = HLTGlobalSumHT {
   InputTag inputTag = htMet
   string observable = "sumEt"
-  double   Min = 300.0
+  double   Min = 370.0
   double   Max = -1.0
   int32    MinN = 1
 }
