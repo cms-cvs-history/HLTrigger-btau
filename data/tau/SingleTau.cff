@@ -1,4 +1,5 @@
 #L1Seed Filter
+module  singleTauPrescaler  = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 
 module singleTauL1SeedFilter = HLTLevel1Seed {
     vstring L1Seeds = {"A_SingleTauJet100"}
