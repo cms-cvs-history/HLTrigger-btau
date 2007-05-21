@@ -1,0 +1,3 @@
+module getJetsFromHLTobject = GetJetsFromHLTobject {
+  InputTag jets = hltL25b
+}
