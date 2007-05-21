@@ -4,8 +4,8 @@
 include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
 
 #sequence l1bmuonreco = { l1muonreco }  # this just includes hltBegin
-sequence l2bmuonreco = { L2MuonSeeds, doLocalMuon, L2Muons}
-# recopixelvertexing this is needed by L3muonAltReco
+sequence l2bmuonreco = { doLocalMuon, L2MuonSeeds, L2Muons}
+# recopixelvertexing is needed by L3muonAltReco
 sequence l3bmuonreco = { doLocalTracker, recopixelvertexing, L3muonAltReco}
 
 
