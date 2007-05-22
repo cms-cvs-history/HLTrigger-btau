@@ -26,7 +26,7 @@ module filterL25DoubleTauToConfirm = HLTTauL25DoubleFilter {
 
 module l25DoubleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
 replace l25DoubleTauPixelSeeds.ptMin = 5.0
-replace l25DoubleTauPixelSeeds.JetSrc = l2TauJetsProvider:DoubleTau
+replace l25DoubleTauPixelSeeds.JetSrc = ecalDoubleTauIsolated:Isolated
 
 
 module ckfTrackCandidatesL25DoubleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
@@ -43,7 +43,7 @@ replace ctfWithMaterialTracksL25DoubleTau.src = "ckfTrackCandidatesL25DoubleTau"
 #JetTrackAssociator
 module associatorL25DoubleTau = JetTracksAssociator {
     InputTag tracks = ctfWithMaterialTracksL25DoubleTau
-    InputTag jets   = l2TauJetsProvider:DoubleTau
+    InputTag jets   = ecalDoubleTauIsolated:Isolated
     double coneSize = 0.5
 }
  

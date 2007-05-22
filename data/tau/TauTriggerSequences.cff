@@ -46,6 +46,7 @@ sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3Single
 sequence singleTauL3 = {ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
 
 sequence singleTau = {
+    filterL2SingleTauJets,
     singleTauL25,
     filterL25SingleTau,
     singleTauL3,
@@ -91,7 +92,8 @@ sequence doubleTrkTauNoFilters ={ singleTauL25,doubleTauL25,doubleTauL3}
 #Pixel Tau
 
 #EcalIsolation
-sequence ecalIsolation ={singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,ecalTauIsolated}
+sequence ecalIsolation ={singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator, ecalSingleTauIsol,ecalDoubleTauIsol,
+ecalSingleTauIsolated,ecalDoubleTauIsolated,ecalTauIsolated}
 sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
 sequence doubleCaloPixelTau = {
     (ecalIsolation,filterTauEcalIsolation)

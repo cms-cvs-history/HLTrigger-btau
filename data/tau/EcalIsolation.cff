@@ -29,6 +29,14 @@ module ecalTauIsolated = EMIsolatedTauJetsSelector{
     VInputTag TauSrc= {ecalSingleTauIsol,ecalDoubleTauIsol}
 }    
 
+module ecalSingleTauIsolated = EMIsolatedTauJetsSelector{
+    VInputTag TauSrc= {ecalSingleTauIsol}
+}    
+
+module ecalDoubleTauIsolated = EMIsolatedTauJetsSelector{
+    VInputTag TauSrc= {ecalDoubleTauIsol}
+}    
+
 #Filter to select events with atleast one Isolated jet
 module filterTauEcalIsolation = HLT1Tau  {
     InputTag inputTag = ecalTauIsolated:Isolated
