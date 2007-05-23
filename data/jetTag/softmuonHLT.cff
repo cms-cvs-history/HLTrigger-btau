@@ -1,10 +1,24 @@
 # soft muon-based b-tag HLT
 
-# prescalers and L1 seeds
-include "HLTrigger/btau/data/jetTag/L1_for_bSoftmuTrigger.cff"
+# prescalers
+include "HLTrigger/btau/data/jetTag/softmuonPrescaler.cff"
 
-# reconstruction and b-tagging
-include "HLTrigger/btau/data/jetTag/bHLT_bSoftmuTrigger.cff"
+# L1 seeds
+include "HLTrigger/btau/data/jetTag/softmuonL1Seeds.cff"
+
+# reconstruct calo jets and select those to be used for b tagging
+include "HLTrigger/btau/data/jetTag/jetReco.cff"
+# associate jet to lepton tracks
+include "HLTrigger/btau/data/jetTag/softmuonAssociator.cff"
+# setup soft muon tagers
+include "HLTrigger/btau/data/jetTag/softmuonReco.cff"
+
+# L2 jet triggers for 1-4 jets respectively
+include "HLTrigger/btau/data/jetTag/softmuonL2Jets.cff"
+
+# soft muon-based b HLT modules for Level 2.5 and 3
+include "HLTrigger/btau/data/jetTag/softmuonL25.cff"
+include "HLTrigger/btau/data/jetTag/softmuonL3.cff"
 
 # define trigger sequences
-include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
+include "HLTrigger/btau/data/jetTag/softmuonTriggerSequences.cff"
