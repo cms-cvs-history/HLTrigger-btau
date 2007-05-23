@@ -44,6 +44,6 @@ sequence regionalCkfTracks = {
 }
 
 sequence bL3trackReco = { 
-    doLocalTracker, 
+    (doLocalPixel & doLocalStrip), 
     regionalCkfTracks 
 }

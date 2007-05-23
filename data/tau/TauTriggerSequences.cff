@@ -1,7 +1,7 @@
 
 sequence pixel_local   = {doLocalPixel}
 sequence siStrip_local = {doLocalStrip}
-sequence tracker_local = {doLocalTracker}
+sequence tracker_local = {doLocalPixel & doLocalStrip}
 
 
 #CaloTaus sequence

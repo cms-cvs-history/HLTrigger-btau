@@ -83,6 +83,6 @@ sequence Mumutracks = {muonCandidateFromHLTFOWR & MumuPixelSeed & ckfTrackCandid
 sequence Mumucand = { allMuTracks &  muTracks &  CandFromMumu }
 #sequence Mumucand = { allMuTracks }
 
-#sequence l3displacedMumureco = {doLocalTracker & recopixelvertexing & Mumutracks & Mumucand }
-sequence l3displacedMumureco = {doLocalTracker & recopixelvertexing & Mumutracks & Mumucand }
+#sequence l3displacedMumureco = {(doLocalPixel & doLocalStrip) & recopixelvertexing & Mumutracks & Mumucand }
+sequence l3displacedMumureco = {(doLocalPixel & doLocalStrip) & recopixelvertexing & Mumutracks & Mumucand }
 
