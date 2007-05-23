@@ -24,7 +24,7 @@ module singleTauL1SeedFilter = HLTLevel1Seed {
 #Check the jets are reconstructed at L2
 module filterL2SingleTauJets = HLT1Tau  {
     InputTag inputTag = l2TauJetsProvider:SingleTau
-    double MinPt = 1.0
+    double MinPt = 10.0
     double MaxEta= 5.0
     int32  MinN  = 1
 }
@@ -45,7 +45,7 @@ replace trajBuilderL25.alwaysUseInvalidHits = false
 
 module l25SingleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
 replace l25SingleTauPixelSeeds.ptMin = 5.0
-replace l25SingleTauPixelSeeds.JetSrc = l2TauJetsProvider:SingleTau
+replace l25SingleTauPixelSeeds.JetSrc = ecalSingleTauIsolated:Isolated
 
 
 module ckfTrackCandidatesL25SingleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
@@ -62,7 +62,7 @@ replace ctfWithMaterialTracksL25SingleTau.src = "ckfTrackCandidatesL25SingleTau"
 #JetTrackAssociator
 module associatorL25SingleTau = JetTracksAssociator {
     InputTag tracks = ctfWithMaterialTracksL25SingleTau
-    InputTag jets   = l2TauJetsProvider:SingleTau
+    InputTag jets   = ecalSingleTauIsolated:Isolated
     double coneSize = 0.5
 }
  
@@ -79,8 +79,8 @@ module isolatedL25SingleTau = IsolatedTauJetsSelector{
     
     VInputTag JetSrc = {coneIsolationL25SingleTau}
 	double MatchingCone = 0.1
-	double SignalCone = 0.07
-	double IsolationCone = 0.45
+	double SignalCone = 0.065
+	double IsolationCone = 0.4
 	double MinimumTransverseMomentumInIsolationRing = 1.
     double MinimumTransverseMomentumLeadingTrack = 25
     double DeltaZetTrackVertex = 0.2
@@ -143,8 +143,8 @@ module isolatedL3SingleTau = IsolatedTauJetsSelector{
     
     VInputTag JetSrc = {coneIsolationL3SingleTau}
 	double MatchingCone = 0.1
-	double SignalCone = 0.07
-	double IsolationCone = 0.45
+	double SignalCone = 0.065
+	double IsolationCone = 0.40
 	double MinimumTransverseMomentumInIsolationRing = 1.
     double MinimumTransverseMomentumLeadingTrack = 25
     double DeltaZetTrackVertex = 0.2
