@@ -3,8 +3,7 @@
 #
 module  hltL3b = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
 replace hltL3b.JetTag = trackCountingJetTagsL3
-#replace hltL3b.MinTag = 3
-replace hltL3b.MinTag = 4
+replace hltL3b.MinTag = 3
 
 module fromL25bJets = getJetsFromHLTobject from "HLTrigger/btau/data/jetTag/getJetsFromHLTobject.cfi"
 

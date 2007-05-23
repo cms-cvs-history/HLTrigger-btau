@@ -14,12 +14,6 @@ replace trackCountingJetTagsL25.AlgorithmPSet.MinimumNumberOfHits = 3  # (Pixel 
 module trackCountingJetTagsL3 = trackCountingJetTags from "RecoBTag/TrackCounting/data/trackCounting.cfi"
 replace trackCountingJetTagsL3.jetTracks = "associatorL3"
 replace trackCountingJetTagsL3.primaryVertex = "pixelVertices" 
-#replace trackCountingJetTagsL3.AlgorithmPSet.NthTrack = 3 
+replace trackCountingJetTagsL3.AlgorithmPSet.NthTrack = 3 
 replace trackCountingJetTagsL3.AlgorithmPSet.ImpactParamterType = 0   # Use 3D impact parameter
 replace trackCountingJetTagsL3.AlgorithmPSet.MinimumNumberOfHits = 8  # (Partially reconstructed tracks don't have many hits ...)
-
-# 1st attempt at improvement. No effect.
-#replace trackCountingJetTagsL25.AlgorithmPSet.MaximumLongitudinalImpactParameter = 4.0
-#replace trackCountingJetTagsL3.AlgorithmPSet.MaximumLongitudinalImpactParameter = 4.0
-
-replace trackCountingJetTagsL3.AlgorithmPSet.NthTrack = 2 
