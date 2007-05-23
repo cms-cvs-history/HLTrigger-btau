@@ -13,7 +13,7 @@ include "HLTrigger/btau/data/jetTag/softmuonAssociator.cff"
 # setup soft muon tagers
 include "HLTrigger/btau/data/jetTag/softmuonReco.cff"
 
-# L2 jet triggers for 1-4 jets respectively
+# L2 jet triggers for 1-4 jets or missing ET
 include "HLTrigger/btau/data/jetTag/softmuonL2Jets.cff"
 
 # soft muon-based b HLT modules for Level 2.5 and 3
