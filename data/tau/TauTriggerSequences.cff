@@ -121,7 +121,7 @@ sequence doubleTrkTauNoFilters ={ singleTauL25,doubleTauL25,doubleTauL3}
 #Pixel Tau
 
 #EcalIsolation
-sequence ecalIsolation ={singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalDoubleTauIsol,ecalSingleTauIsolated,ecalDoubleTauIsolated,ecalTauIsolated}
+sequence ecalIsolation ={(singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalDoubleTauIsol,ecalSingleTauIsolated)&(ecalDoubleTauIsolated),ecalTauIsolated}
 sequence ecalIsolationSingleTauMET={singleTauMETJetCrystalsAssociator,ecalSingleTauMETIsol,ecalSingleTauMETIsolated}
 sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
 sequence doubleCaloPixelTau = {
