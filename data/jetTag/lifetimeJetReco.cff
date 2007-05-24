@@ -1,11 +1,4 @@
-#
-# Reconstruct jets, starting from calorimeter digis
-#
-
-include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
-# Ignore that reco could be different for jet and HT triggers ...
-sequence preL2bReco = { doCalo, doHLTJetReco, doHLTHTReco }
+include "HLTrigger/btau/data/jetTag/jetReco.cff"
 
 # Select jets used for regional tracking & considered for b tagging
 module lifetimeHighestEtJets = LargestEtCaloJetShallowCloneSelector {
@@ -20,4 +13,4 @@ module lifetimeEtCutJets = EtMinCaloJetShallowCloneSelector {
     double etMin = 20.0     # ...and require jet Et greater than cut.
 }
 
-sequence jetSelForbHLT = { lifetimeHighestEtJets, lifetimeEtCutJets } 
+sequence lifetimeJetSel = { lifetimeHighestEtJets, lifetimeEtCutJets } 
