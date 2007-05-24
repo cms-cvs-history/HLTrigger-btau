@@ -1,20 +1,20 @@
 # keep essential info used to construct b HLT.
 block JetTagSoftMuHLT = {
     untracked vstring outputCommands = {
-# Output of b tags
-        "keep *_etCutJets_*_*",
+        # Output of b tags
+        "keep *_softmuonEtCutJets_*_*",
         "keep *_softMuJetTagsL25_*_*",
         "keep *_softMuJetTagsL3_*_*",
 
-# Output of trigger modules
+        # Output of trigger modules
         "keep recoHLTFilterObjectWithRefs_*_*_*",
 
-# L1 trigger decision.
-# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
+        # L1 trigger decision.
+        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
         "keep l1extraL1ParticleMaps_*_*_*",
 
-# HLT trigger decision.
-# https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideEDMPathsAndTriggerBits#Trigger_results_in_the_event
+        # HLT trigger decision.
+        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideEDMPathsAndTriggerBits#Trigger_results_in_the_event
         "keep edmTriggerResults_*_*_*"
     }
 }

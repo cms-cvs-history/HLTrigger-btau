@@ -8,16 +8,16 @@ include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 sequence preL2bReco = { doCalo, doHLTJetReco, doHLTHTReco }
 
 # Select jets used for regional tracking & considered for b tagging
-module highestEtJets = LargestEtCaloJetShallowCloneSelector {
+module lifetimeHighestEtJets = LargestEtCaloJetShallowCloneSelector {
     InputTag src     = iterativeCone5CaloJets   
     bool filter      = false
     uint32 maxNumber = 2    # Take only 2 highest Et jets...
 }
 
-module etCutJets = EtMinCaloJetShallowCloneSelector {
-    InputTag src = highestEtJets 
+module lifetimeEtCutJets = EtMinCaloJetShallowCloneSelector {
+    InputTag src = lifetimeHighestEtJets 
     bool filter  = false
     double etMin = 20.0     # ...and require jet Et greater than cut.
 }
 
-sequence jetSelForbHLT = { highestEtJets, etCutJets } 
+sequence jetSelForbHLT = { lifetimeHighestEtJets, lifetimeEtCutJets } 

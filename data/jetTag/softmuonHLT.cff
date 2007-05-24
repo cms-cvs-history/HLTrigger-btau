@@ -7,7 +7,7 @@ include "HLTrigger/btau/data/jetTag/softmuonPrescaler.cff"
 include "HLTrigger/btau/data/jetTag/softmuonL1Seeds.cff"
 
 # reconstruct calo jets and select those to be used for b tagging
-include "HLTrigger/btau/data/jetTag/jetReco.cff"
+include "HLTrigger/btau/data/jetTag/softmuonJetReco.cff"
 # associate jet to lepton tracks
 include "HLTrigger/btau/data/jetTag/softmuonAssociator.cff"
 # setup soft muon tagers
