@@ -3,17 +3,15 @@
 #
 
 # Transverse energy trigger
-
 module hltL2bHT = HLTGlobalSumHT {
     InputTag inputTag   = htMet
     string   observable = "sumEt"
-    double   Min        = 470.0
+    double   Min        = 370.0
     double   Max        = -1.0
     int32    MinN       = 1
 }
 
 # Multi-jet triggers
-
 module  hltL2b1jet = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b1jet.MinN  = 1
@@ -37,13 +35,8 @@ replace hltL2b4jet.MinN  = 4
 #replace hltL2b4jet.MinPt = 55.0
 
 # Luminosity for year 2008. 
-replace hltL2b1jet.MinPt = 180.0
-replace hltL2b2jet.MinPt = 120.0
+replace hltL2b1jet.MinPt = 200.0
+replace hltL2b2jet.MinPt = 130.0
 replace hltL2b3jet.MinPt = 70.0
 replace hltL2b4jet.MinPt = 40.0
 
-# Debug (low)
-#replace hltL2b1jet.MinPt = 50.0
-#replace hltL2b2jet.MinPt = 50.0
-#replace hltL2b3jet.MinPt = 50.0
-#replace hltL2b4jet.MinPt = 30.0
