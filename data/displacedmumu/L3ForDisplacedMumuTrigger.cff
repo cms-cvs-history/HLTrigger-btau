@@ -1,5 +1,5 @@
 # pv reconstruction
-include "HLTrigger/btau/data/jetTag/bHLTpixel.cff"
+include "HLTrigger/btau/data/jetTag/pixelReco.cff"
 
 # TrackerTracks
 include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
