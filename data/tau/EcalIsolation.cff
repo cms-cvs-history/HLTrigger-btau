@@ -4,6 +4,12 @@ module singleTauJetCrystalsAssociator = JetCrystalsAssociator {
       InputTag jets   =l2TauJetsProvider:SingleTau
       double coneSize = 0.5
 }
+# for SingleTauMET
+module singleTauMETJetCrystalsAssociator = JetCrystalsAssociator {
+      InputTag towers = towerMaker
+      InputTag jets   = l2TauJetsProvider:SingleTauMET
+      double coneSize = 0.5
+}
 module doubleTauJetCrystalsAssociator = JetCrystalsAssociator {
     InputTag towers = towerMaker
     InputTag jets   =l2TauJetsProvider:DoubleTau
@@ -15,6 +21,13 @@ module  ecalSingleTauIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauJetCrystalsAssociator
          double SmallCone = 0.13
          double BigCone   = 0.40
+        double Pisol = 5.0
+}
+# for SingleTauMET
+module  ecalSingleTauMETIsol =  EcalIsolation{
+        InputTag JetForFilter = singleTauMETJetCrystalsAssociator
+        double SmallCone = 0.13
+        double BigCone   = 0.40
         double Pisol = 5.0
 }
 module  ecalDoubleTauIsol =  EcalIsolation{
@@ -31,6 +44,10 @@ module ecalTauIsolated = EMIsolatedTauJetsSelector{
 
 module ecalSingleTauIsolated = EMIsolatedTauJetsSelector{
     VInputTag TauSrc= {ecalSingleTauIsol}
+}    
+# for SingleTauMET
+module ecalSingleTauMETIsolated = EMIsolatedTauJetsSelector{
+    VInputTag TauSrc= {ecalSingleTauMETIsol}
 }    
 
 module ecalDoubleTauIsolated = EMIsolatedTauJetsSelector{
@@ -51,5 +68,12 @@ module filterSingleTauEcalIsolation = HLT1Tau  {
     double MinPt = 1.0
     double MaxEta= 5.0
     int32  MinN  = 1
+}
+# for SingleTauMET
+module filterSingleTauMETEcalIsolation = HLT1Tau  {
+    InputTag inputTag = ecalSingleTauMETIsolated:Isolated
+    double MinPt  = 1.0
+    double MaxEta = 5.0
+    int32  MinN   = 1
 }
 
