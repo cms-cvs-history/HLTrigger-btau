@@ -1,4 +1,6 @@
-# Reconstruct regional tracks around jets b-tagged at L2.5 starting from Digis
+###############################################################
+# Reconstruct regional tracks around jets starting from Digis #
+###############################################################
 
 # Define the standard hit and track reconstruction modules
 # (a few of these like road-search not needed, but do no harm).
