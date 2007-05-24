@@ -4,13 +4,13 @@ include "HLTrigger/btau/data/jetTag/jetReco.cff"
 module lifetimeHighestEtJets = LargestEtCaloJetShallowCloneSelector {
     InputTag src     = iterativeCone5CaloJets   
     bool filter      = false
-    uint32 maxNumber = 2    # Take only 2 highest Et jets...
+    uint32 maxNumber = 4    # Take only 4 highest Et jets...
 }
 
 module lifetimeEtCutJets = EtMinCaloJetShallowCloneSelector {
     InputTag src = lifetimeHighestEtJets 
     bool filter  = false
-    double etMin = 20.0     # ...and require jet Et greater than cut.
+    double etMin = 35.0     # ...and require jet Et greater than cut.
 }
 
 sequence lifetimeJetSel = { lifetimeHighestEtJets, lifetimeEtCutJets } 
