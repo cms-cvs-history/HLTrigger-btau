@@ -9,5 +9,5 @@ replace hltL3bmuBydR.JetTag = softMuJetdRTagsL3
 replace hltL3bmuBydR.MinTag = 0.4   # dr < X
 
 # Event reconstruction needed for trigger.
-sequence preL3bRecoMu  = { l3bmuonreco, associatorL3Mu, softMuJetTagsL3 }
-sequence preL3bRecoMuBydR  = { l3bmuonreco, associatorL3Mu, softMuJetdRTagsL3 }
+sequence preL3bRecoMu      = { l3muonrecoNocand, associatorL3Mu, softMuJetTagsL3 }
+sequence preL3bRecoMuBydR  = { l3muonrecoNocand, associatorL3Mu, softMuJetdRTagsL3 }

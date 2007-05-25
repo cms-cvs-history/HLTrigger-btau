@@ -6,8 +6,7 @@ replace hltL25bmu.MinTag = 0.5  # 1 if a lepton is found in the jet, 0 otherwise
 # Event reconstruction needed for trigger.
 sequence preL25bRecoMu = { 
     softmuonJetSel &
-    # l1bmuonreco & 
-    l2bmuonreco, 
+    l2muonrecoNocand,
     associatorL25Mu, 
     softMuJetTagsL25 
 }
