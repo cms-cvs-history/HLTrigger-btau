@@ -1,8 +1,0 @@
-module BsmumugammaFilter = HLTmumuGammaFilter {
-	InputTag CandSrc = hltRecoEcalSingleCandidate
-	InputTag TrigVertex = displacedJpsiFilter
-	double ClusterPtMin = 2.0
-	double MaxDeltaR = 0.7
-	double MinInvMass = 4.0
-	double MaxInvMass = 6.0
-       }
