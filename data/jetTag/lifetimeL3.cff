@@ -10,7 +10,7 @@ module fromL25bJets = getJetsFromHLTobject from "HLTrigger/btau/data/jetTag/getJ
 
 # Reconstruction sequences needed before each trigger.
 sequence preL3bReco = { 
-    fromL25bJets,
+    fromL25bJets&
     bL3trackReco,
     associatorL3, 
     trackCountingJetTagsL3 
