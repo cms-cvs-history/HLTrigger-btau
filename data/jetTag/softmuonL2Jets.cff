@@ -20,7 +20,7 @@ replace hltL2b1jetMu.MinPt = 20.0
 module  hltL2b2jetMu = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"
 replace hltL2b2jetMu.MinN  = 2
-replace hltL2b2jetMu.MinPt = 20.0
+replace hltL2b2jetMu.MinPt = 120.0
 
 module  hltL2b3jetMu = hlt1CaloJet 
     from "HLTrigger/HLTexample/data/hlt1CaloJet.cfi"

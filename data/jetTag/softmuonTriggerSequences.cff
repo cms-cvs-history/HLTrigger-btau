@@ -19,7 +19,7 @@ sequence bmu2jetTrig = {
     L1forBsoftmuHLT &
     (preL2bReco, hltL2b2jetMu) &
     (preL25bRecoMu, hltL25bmu) &
-    (preL3bRecoMuBydR, hltL3bmuBydR)
+    (preL3bRecoMu, hltL3bmu)
 }
 
 sequence bmu3jetTrig = {

@@ -22,7 +22,7 @@ replace bmuhltOnlyJetsL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bmuhltOnlyJetsL1filter.L1GTReadoutRecord  = l1extraParticleMap
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltOnlyJetsL1filter.L1Seeds = {
-   "A_HTT300"
+   "A_HTT250"
 }
 
 sequence L1forBsoftmuHLT = { bmuhltL1filter }
