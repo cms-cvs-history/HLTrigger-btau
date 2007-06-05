@@ -12,7 +12,7 @@ replace bmuhltL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bmuhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltL1filter.L1Seeds = {
-   "A_Mu7_Jet15"
+   "A_Mu5_Jet15"
 }
 
 
