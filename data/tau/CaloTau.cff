@@ -68,7 +68,7 @@ module l2TauJetsProvider = L2TauJetsProvider {
     string L1SingleTauMETTrigger = "A_TauJet30_ETM30"
     string L1DoubleTauTrigger ="A_DoubleTauJet40"
     string L1IsoEMTauTrigger= "A_IsoEG10_TauJet20"
-    string L1MuonTrigger="A_Mu7_TauJet20"
+    string L1MuonTrigger="A_Mu5_TauJet20"
 
     double EtExtraTau = 20.
     double EtMin = 15.
