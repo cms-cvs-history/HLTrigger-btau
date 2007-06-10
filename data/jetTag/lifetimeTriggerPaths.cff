@@ -13,6 +13,8 @@ path L1forbHLT  = { L1forBlifeHLT }
 path bHLTpath1  = { b1jetTrig }
 path bHLTpath2  = { b2jetTrig }
 path bHLTpath3  = { b3jetTrig }
+# This was a big in the V5 HLT study. Should be fixed ...
 path bHLTpath4  = { b3jetTrig }
+#path bHLTpath4  = { b4jetTrig }
 
 path bHLTpathHT = { bHTTrig }

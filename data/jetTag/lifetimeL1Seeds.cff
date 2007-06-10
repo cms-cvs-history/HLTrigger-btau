@@ -9,12 +9,17 @@ replace bhltL1filter.L1ExtraCollections = l1extraParticles
 replace bhltL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
+# The higher thresholds were used for the V5 HLT study.
+# The lower ones are probably better.
 replace bhltL1filter.L1Seeds = {
     "A_SingleJet150",
+#    "A_SingleJet100",
     "A_DoubleJet100",
+#    "A_DoubleJet70",
     "A_TripleJet50",
     "A_QuadJet30",
     "A_HTT300"
+#    "A_HTT250"
 }
 
 # Optionally modify their thresholds here.
