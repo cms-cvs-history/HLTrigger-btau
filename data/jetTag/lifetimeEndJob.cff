@@ -7,7 +7,7 @@ module out = PoolOutputModule {
         # Drop input objects
         "drop *"
         # Optionally keep all new objects created by this job.
-        #"keep *_*_*_HLT"
+        # "keep *_*_*_HLT"
     }
 }
 

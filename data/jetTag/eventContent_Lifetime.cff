@@ -1,9 +1,15 @@
 # keep essential info used to construct b HLT.
 block JetTagLifetimeHLT = {
     untracked vstring outputCommands = {
+        # MC truth
+        "keep edmHepMCProduct_*_*_*",
+
         # Output of b tags
+        "keep *_MCJetCorJetIcone5_*_*",
+        "keep *_iterativeCone5CaloJets_*_*",
         "keep *_lifetimeHighestEtJets_*_*",
         "keep *_lifetimeEtCutJets_*_*",
+        "keep *_htMet_*_*",
         "keep *_fromL25bJets_*_*",
         "keep *_trackCountingJetTagsL25_*_*",
         "keep *_trackCountingJetTagsL3_*_*",
