@@ -21,20 +21,20 @@ module  ecalSingleTauIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauJetCrystalsAssociator
          double SmallCone = 0.13
          double BigCone   = 0.40
-        double Pisol = 5.0
+        double Pisol = 7.0
 }
 # for SingleTauMET
 module  ecalSingleTauMETIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauMETJetCrystalsAssociator
         double SmallCone = 0.13
         double BigCone   = 0.40
-        double Pisol = 5.0
+        double Pisol = 7.0
 }
 module  ecalDoubleTauIsol =  EcalIsolation{
         InputTag JetForFilter = doubleTauJetCrystalsAssociator
          double SmallCone = 0.13
          double BigCone   = 0.40
-        double Pisol = 5.0
+        double Pisol = 7.0
 }
 
 #Divide the jets into two collections: Isolated and not Isolated

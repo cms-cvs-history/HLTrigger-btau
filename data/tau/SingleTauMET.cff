@@ -13,7 +13,7 @@ module singleTauMETL1SeedFilter = HLTLevel1Seed {
 # MET Cut
 module hlt1METSingleTauMET = HLT1CaloMET {
   InputTag inputTag = met
-  double MinPt  = 35.0
+  double MinPt  = 25.0
   double MaxEta = -1.0 // negative = no cut
   int32  MinN   = 1
 }
@@ -51,10 +51,10 @@ replace coneIsolationL25SingleTauMET.JetTrackSrc = "associatorL25SingleTauMET"
 module isolatedL25SingleTauMET = IsolatedTauJetsSelector {
     VInputTag JetSrc = {coneIsolationL25SingleTauMET}
     double MatchingCone = 0.1
-    double SignalCone = 0.07
+    double SignalCone = 0.1
     double IsolationCone = 0.4
     double MinimumTransverseMomentumInIsolationRing = 1.
-    double MinimumTransverseMomentumLeadingTrack = 15.0
+    double MinimumTransverseMomentumLeadingTrack = 10.0
     double DeltaZetTrackVertex = 0.2
     int32  MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
@@ -105,10 +105,10 @@ replace coneIsolationL3SingleTauMET.useVertex = true
 module isolatedL3SingleTauMET = IsolatedTauJetsSelector {
     VInputTag JetSrc = {coneIsolationL3SingleTauMET}
     double MatchingCone = 0.1
-    double SignalCone = 0.07
+    double SignalCone = 0.1
     double IsolationCone = 0.40
     double MinimumTransverseMomentumInIsolationRing = 1.
-    double MinimumTransverseMomentumLeadingTrack = 15.0
+    double MinimumTransverseMomentumLeadingTrack = 10.0
     double DeltaZetTrackVertex = 0.2
     int32  MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
