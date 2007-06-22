@@ -17,7 +17,7 @@ module isolatedL25PixelTau = IsolatedTauJetsSelector{
     
 	VInputTag JetSrc = {coneIsolationL25PixelTauIsolated}
 	double MatchingCone = 0.1
-	double SignalCone = 0.07
+	double SignalCone = 0.1
 	double IsolationCone = 0.3
 	double MinimumTransverseMomentumInIsolationRing = 1.0
     double MinimumTransverseMomentumLeadingTrack = 3.
