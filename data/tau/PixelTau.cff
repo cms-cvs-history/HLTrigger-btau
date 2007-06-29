@@ -28,10 +28,12 @@ module isolatedL25PixelTau = IsolatedTauJetsSelector{
 
 }
 
-module filterL25PixelTau = HLTJetTag {
+module filterL25PixelTau = HLT1Tau {
     InputTag JetTag   = isolatedL25PixelTau
-    double MinTag = 1.
-    double   MaxTag   = 1.
+
+    double MinPt = 10.0
+    double MaxEta= 5.0
+    
     int32 MinN     = 2
 }
 
