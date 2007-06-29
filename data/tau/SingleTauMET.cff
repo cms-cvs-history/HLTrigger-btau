@@ -19,7 +19,7 @@ module hlt1METSingleTauMET = HLT1CaloMET {
 }
 
 # Regional Tk reconstruction for SingleTauMETCollection
-module l25SingleTauMETPixelSeeds = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+module l25SingleTauMETPixelSeeds = regionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l25SingleTauMETPixelSeeds.ptMin = 5.0
 replace l25SingleTauMETPixelSeeds.JetSrc = ecalSingleTauMETIsolated:Isolated
 
@@ -75,7 +75,7 @@ module filterL25SingleTauMET = HLT1Tau {
 #
 # Regional Tk reconstruction for SingleTauMETCollection
 #
-module l3SingleTauMETPixelSeeds = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+module l3SingleTauMETPixelSeeds = regionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3SingleTauMETPixelSeeds.JetSrc = isolatedL25SingleTauMET
 replace l3SingleTauMETPixelSeeds.deltaEtaRegion = 0.5
 replace l3SingleTauMETPixelSeeds.deltaPhiRegion = 0.5

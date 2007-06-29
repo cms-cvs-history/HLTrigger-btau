@@ -24,7 +24,7 @@ module filterL25DoubleTauToConfirm = HLTTauL25DoubleFilter {
 # Regional Tk reconstruction for SingleTauCollection
 #
 
-module l25DoubleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+module l25DoubleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l25DoubleTauPixelSeeds.ptMin = 5.0
 replace l25DoubleTauPixelSeeds.JetSrc = ecalDoubleTauIsolated:Isolated
 
@@ -95,7 +95,7 @@ module filterL25DoubleTau = HLT1Tau {
 #
 # Regional Tk reconstruction for DoubleTauCollection
 #
-module l3DoubleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
+module l3DoubleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3DoubleTauPixelSeeds.JetSrc = isolatedL25DoubleTau
 replace l3DoubleTauPixelSeeds.deltaEtaRegion = 0.5
 replace l3DoubleTauPixelSeeds.deltaPhiRegion = 0.5
