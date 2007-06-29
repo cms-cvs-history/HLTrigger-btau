@@ -54,10 +54,10 @@ replace coneIsolationL25DoubleTau.JetTrackSrc = "associatorL25DoubleTau"
 #
 #Filter to trace back isolatedCandidates
 #
-module filterL25DoubleTauCandidate = HLTJetTag {
+module filterL25DoubleTauCandidate = HLT1Tau {
     InputTag JetTag   = coneIsolationL25DoubleTau
-    double MinTag = 0.
-    double   MaxTag   = 2.
+    double MinPt = 10.0
+    double MaxEta= 5.0
     int32 MinN     = 1
 }
 
@@ -79,10 +79,10 @@ module isolatedL25DoubleTau = IsolatedTauJetsSelector{
     bool UseVertex = false
 }
 
-module filterL25DoubleTau = HLTJetTag {
+module filterL25DoubleTau = HLT1Tau {
     InputTag JetTag   = isolatedL25DoubleTau
-    double MinTag = 1.
-    double   MaxTag   = 1.
+    double MinPt = 10.0
+    double MaxEta= 5.0
     int32 MinN     = 2
 }
 
@@ -137,10 +137,10 @@ module isolatedL3DoubleTau = IsolatedTauJetsSelector{
     bool UseVertex = false
 }
 
-module filterL3DoubleTau = HLTJetTag {
+module filterL3DoubleTau = HLT1Tau {
     InputTag JetTag   = isolatedL3DoubleTau
-    double MinTag = 1.
-    double   MaxTag   = 1.
+ double MinPt = 10.0
+    double MaxEta= 5.0
     int32 MinN     = 2
 }
 

@@ -89,10 +89,10 @@ module isolatedL25SingleTau = IsolatedTauJetsSelector{
     bool UseVertex = false
 }
 
-module filterL25SingleTau = HLTJetTag {
+module filterL25SingleTau = HLT1Tau {
     InputTag JetTag   = isolatedL25SingleTau
-    double MinTag = 1.
-    double   MaxTag   = 2.
+    double MinPt  = 1.0
+    double MaxEta = 5.0
     int32 MinN     = 1
 }
 
@@ -153,10 +153,10 @@ module isolatedL3SingleTau = IsolatedTauJetsSelector{
     bool UseVertex = false
 }
 
-module filterL3SingleTau = HLTJetTag {
+module filterL3SingleTau = HLT1Tau {
     InputTag JetTag   = isolatedL3SingleTau
-    double MinTag = 0.
-    double   MaxTag   = 2.
-    int32 MinN     = 1
+  double MinPt  = 1.0
+    double MaxEta = 5.0
+    int32  MinN   = 1
 }
 
