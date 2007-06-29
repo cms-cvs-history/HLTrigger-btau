@@ -30,8 +30,6 @@ module filterL2SingleTauJets = HLT1Tau  {
 }
 
 
-
-
 # Ckf
 es_module trajBuilderL25 =  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
 replace trajBuilderL25.ComponentName = "trajBuilderL25"
@@ -90,7 +88,7 @@ module isolatedL25SingleTau = IsolatedTauJetsSelector{
 }
 
 module filterL25SingleTau = HLT1Tau {
-    InputTag JetTag   = isolatedL25SingleTau
+    InputTag inputTag   = isolatedL25SingleTau
     double MinPt  = 1.0
     double MaxEta = 5.0
     int32 MinN     = 1
@@ -154,7 +152,7 @@ module isolatedL3SingleTau = IsolatedTauJetsSelector{
 }
 
 module filterL3SingleTau = HLT1Tau {
-    InputTag JetTag   = isolatedL3SingleTau
+    InputTag inputTag   = isolatedL3SingleTau
   double MinPt  = 1.0
     double MaxEta = 5.0
     int32  MinN   = 1
