@@ -43,7 +43,7 @@ replace trajBuilderL25.alwaysUseInvalidHits = false
 
 # Regional Tk reconstruction for SingleTauCollection
 
-module l25SingleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
+module l25SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l25SingleTauPixelSeeds.ptMin = 5.0
 replace l25SingleTauPixelSeeds.JetSrc = ecalSingleTauIsolated:Isolated
 
@@ -109,7 +109,7 @@ replace trajBuilderL3.ComponentName = "trajBuilderL3"
 replace trajBuilderL3.maxNumberOfHits      = 7
 replace trajBuilderL3.alwaysUseInvalidHits = false
 
-module l3SingleTauPixelSeeds = regionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
+module l3SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3SingleTauPixelSeeds.JetSrc = isolatedL25SingleTau
 replace l3SingleTauPixelSeeds.deltaEtaRegion = 0.5
 replace l3SingleTauPixelSeeds.deltaPhiRegion = 0.5
