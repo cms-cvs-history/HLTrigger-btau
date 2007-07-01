@@ -25,8 +25,9 @@ module filterL25DoubleTauToConfirm = HLTTauL25DoubleFilter {
 #
 
 module l25DoubleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25DoubleTauPixelSeeds.ptMin = 5.0
-replace l25DoubleTauPixelSeeds.JetSrc = ecalDoubleTauIsolated:Isolated
+replace l25DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet ={
+InputTag JetSrc = ecalDoubleTauIsolated:Isolated
+}
 
 
 module ckfTrackCandidatesL25DoubleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
@@ -96,9 +97,12 @@ module filterL25DoubleTau = HLT1Tau {
 # Regional Tk reconstruction for DoubleTauCollection
 #
 module l3DoubleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l3DoubleTauPixelSeeds.JetSrc = isolatedL25DoubleTau
-replace l3DoubleTauPixelSeeds.deltaEtaRegion = 0.5
-replace l3DoubleTauPixelSeeds.deltaPhiRegion = 0.5
+replace l3DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet ={
+double    deltaEtaRegion = 0.5
+double deltaPhiRegion = 0.5
+double ptMin = 1.0
+InputTag JetSrc = isolatedL25DoubleTau
+}
 
 
 module ckfTrackCandidatesL3DoubleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
