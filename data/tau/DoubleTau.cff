@@ -25,9 +25,8 @@ module filterL25DoubleTauToConfirm = HLTTauL25DoubleFilter {
 #
 
 module l25DoubleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet ={
-InputTag JetSrc = ecalDoubleTauIsolated:Isolated
-}
+replace l25DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalDoubleTauIsolated:Isolated
+
 
 
 module ckfTrackCandidatesL25DoubleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
@@ -98,10 +97,15 @@ module filterL25DoubleTau = HLT1Tau {
 #
 module l3DoubleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet ={
-double    deltaEtaRegion = 0.5
-double deltaPhiRegion = 0.5
-double ptMin = 1.0
-InputTag JetSrc = isolatedL25DoubleTau
+double deltaEtaRegion = 0.5
+    double deltaPhiRegion = 0.5
+    double ptMin = 1.0
+    double originZPos = 0.0
+    double originRadius = 0.2
+    double originHalfLength = 0.2
+    string vertexSrc ="pixelVertices"
+    bool precise = true
+    InputTag JetSrc = isolatedL25DoubleTau
 }
 
 

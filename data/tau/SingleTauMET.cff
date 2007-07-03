@@ -20,9 +20,8 @@ module hlt1METSingleTauMET = HLT1CaloMET {
 
 # Regional Tk reconstruction for SingleTauMETCollection
 module l25SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet = {
-InputTag JetSrc = ecalSingleTauMETIsolated:Isolated
-}
+replace l25SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauMETIsolated:Isolated
+
 module ckfTrackCandidatesL25SingleTauMET =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
 replace ckfTrackCandidatesL25SingleTauMET.SeedProducer  = "l25SingleTauMETPixelSeeds"
 replace ckfTrackCandidatesL25SingleTauMET.TrajectoryBuilder    = "trajBuilderL25"
@@ -77,9 +76,13 @@ module filterL25SingleTauMET = HLT1Tau {
 #
 module l3SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet = {
-    double deltaEtaRegion = 0.5
-double deltaPhiRegion = 0.5
-double ptMin = 1.0
+ double deltaPhiRegion = 0.5
+    double ptMin = 1.0
+    double originZPos = 0.0
+    double originRadius = 0.2
+    double originHalfLength = 0.2
+    string vertexSrc ="pixelVertices"
+    bool precise = true
 InputTag JetSrc = isolatedL25SingleTauMET
 }
 

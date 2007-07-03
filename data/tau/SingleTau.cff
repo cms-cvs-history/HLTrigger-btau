@@ -42,9 +42,8 @@ replace trajBuilderL25.alwaysUseInvalidHits = false
 # Regional Tk reconstruction for SingleTauCollection
 
 module l25SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet ={
-InputTag JetSrc = ecalSingleTauIsolated:Isolated
-}
+replace l25SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauIsolated:Isolated
+
 
 module ckfTrackCandidatesL25SingleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
 replace ckfTrackCandidatesL25SingleTau.SeedProducer  = "l25SingleTauPixelSeeds"
@@ -109,10 +108,15 @@ replace trajBuilderL3.alwaysUseInvalidHits = false
 
 module l3SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet = {
-double deltaEtaRegion = 0.5
-double deltaPhiRegion = 0.5
-double ptMin = 1.0
-InputTag JetSrc = isolatedL25SingleTau
+    double deltaEtaRegion = 0.5
+    double deltaPhiRegion = 0.5
+    double ptMin = 1.0
+    double originZPos = 0.0
+    double originRadius = 0.2
+    double originHalfLength = 0.2
+    string vertexSrc ="pixelVertices"
+    bool precise = true
+    InputTag JetSrc = isolatedL25SingleTau
 }
 
 
