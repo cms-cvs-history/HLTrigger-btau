@@ -77,6 +77,7 @@ module filterL25SingleTauMET = HLT1Tau {
 module l3SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet = {
  double deltaPhiRegion = 0.5
+ double deltaEtaRegion = 0.5
     double ptMin = 1.0
     double originZPos = 0.0
     double originRadius = 0.2
