@@ -2,7 +2,7 @@
 module singleTauMETPrescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 
 module singleTauMETL1SeedFilter = HLTLevel1Seed {
-    vstring L1Seeds = {"A_TauJet30_ETM30"}
+    vstring L1Seeds = {"L1_TauJet30_ETM30"}
     bool andOr      = true
     bool byName     = true
     InputTag L1ExtraCollections = l1extraParticles

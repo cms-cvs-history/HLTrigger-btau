@@ -64,11 +64,11 @@ module l2TauJetsProvider = L2TauJetsProvider {
     VInputTag JetSrc = { icone5Tau1,icone5Tau2,icone5Tau3,icone5Tau4 }
     InputTag L1ParticleMap = l1extraParticleMap
     InputTag L1Particles = l1extraParticles:Tau
-    string L1SingleTauTrigger = "A_SingleTauJet80"
-    string L1SingleTauMETTrigger = "A_TauJet30_ETM30"
-    string L1DoubleTauTrigger ="A_DoubleTauJet40"
-    string L1IsoEMTauTrigger= "A_IsoEG10_TauJet20"
-    string L1MuonTrigger="A_Mu5_TauJet20"
+    string L1SingleTauTrigger = "L1_SingleTauJet80"
+    string L1SingleTauMETTrigger = "L1_TauJet30_ETM30"
+    string L1DoubleTauTrigger ="L1_DoubleTauJet40"
+    string L1IsoEMTauTrigger= "L1_IsoEG10_TauJet20"
+    string L1MuonTrigger="L1_Mu5_TauJet20"
     double EtExtraTau = 20.
     double EtMin = 15.
 }
