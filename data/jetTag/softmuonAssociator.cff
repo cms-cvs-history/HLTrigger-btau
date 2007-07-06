@@ -1,9 +1,0 @@
-# jetTracksAssociator running on L2.5 jets and L2 muons
-module associatorL25Mu = jetTracksAssociator from "RecoBTau/JetTracksAssociator/data/jetTracksAssociator.cfi"
-replace associatorL25Mu.tracks = L2Muons
-replace associatorL25Mu.jets   = softmuonEtCutJets  # Take jets from previous selection
-
-# jetTracksAssociator running on L2.5 jets and L3 muons
-module associatorL3Mu = jetTracksAssociator from "RecoBTau/JetTracksAssociator/data/jetTracksAssociator.cfi"
-replace associatorL3Mu.tracks = L3Muons
-replace associatorL3Mu.jets   = softmuonEtCutJets   # Take jets from previous selection
