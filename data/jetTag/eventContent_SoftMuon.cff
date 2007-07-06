@@ -3,8 +3,11 @@ block JetTagSoftMuHLT = {
     untracked vstring outputCommands = {
         # Output of b tags
         "keep *_softmuonEtCutJets_*_*",
-        "keep *_softMuJetTagsL25_*_*",
-        "keep *_softMuJetTagsL3_*_*",
+        "keep *_softMuonTagInfosL2_*_*",
+        "keep *_softMuonJetTagsL2_*_*",
+        "keep *_softMuonTagInfosL3_*_*",
+        "keep *_softMuonJetTagsL3_*_*",
+        "keep *_softMuonJetTagsL3ByDistance_*_*",
 
         # Output of trigger modules
         "keep recoHLTFilterObjectWithRefs_*_*_*",

@@ -1,41 +1,59 @@
-#
 # L2 and L3 muons
-#
 include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
 
-#
-# Soft Lepton Tagger
-#
+# Soft Lepton Taggers
+#include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+#include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
+#include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
+#include "Geometry/CaloEventSetup/data/CaloTopology.cfi"
+#include "Geometry/MuonNumbering/data/muonNumberingInitialization.cfi"
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
-include "RecoBTag/SoftLepton/data/softLeptonRecord.cff"
 
-#
-# Additional b tag softmuon reconstruction needed for L2.5 b HLT.
-#
-module softMuJetTagsL25 = softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
-replace softMuJetTagsL25.jetTracks = "associatorL25Mu"
-replace softMuJetTagsL25.refineJetAxis = 0
-replace softMuJetTagsL25.primaryVertex = "none"
-replace softMuJetTagsL25.leptons = "L2Muons"
-replace softMuJetTagsL25.leptonTagger = "softLeptonBTaggerByDistance"
+include "RecoBTau/JetTagProducer/data/jetTagRecord.cfi"
+include "RecoBTag/SoftLepton/data/softLeptonByDistanceES.cfi"
+include "RecoBTag/SoftLepton/data/softLeptonByPtES.cfi"
 
-#
-# Additional b tag reconstruction needed for L3 soft mu b HLT. - by PtREL
-#
-module softMuJetTagsL3 =  softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
-replace softMuJetTagsL3.jetTracks = "associatorL3Mu"
-replace softMuJetTagsL3.refineJetAxis = 0
-replace softMuJetTagsL3.primaryVertex = "none" 
-replace softMuJetTagsL3.leptons = "L3Muons"
-replace softMuJetTagsL3.leptonTagger = "softLeptonBTaggerByPtRel"
+# SoftLeptonTagInfo producer for tagging L2 jets with L2 muons 
+module softMuonTagInfosL2 = SoftLepton {
+    InputTag jets           = softmuonEtCutJets
+    InputTag leptons        = L2Muons
+    InputTag primaryVertex  = none          # use the nominal beam spot and error
+ 
+    PSet algorithmConfiguration = { 
+        double deltaRCut        = 0.4
+        uint32 refineJetAxis    = 0         # use calorimetric jet direction
+        bool   usePrimaryVertex = false     # don't use the primary vertex or compute the lepton IP
+    }
+}
 
-#
-# Additional b tag reconstruction needed for L3 soft mu b HLT. - by dR
-#
-module softMuJetdRTagsL3 =  softMuonJetTags from "RecoBTag/SoftLepton/data/softMuonJetTags.cfi"
-replace softMuJetdRTagsL3.jetTracks = "associatorL3Mu"
-replace softMuJetdRTagsL3.refineJetAxis = 0
-replace softMuJetdRTagsL3.primaryVertex = "none" 
-replace softMuJetdRTagsL3.leptons = "L3Muons"
-replace softMuJetdRTagsL3.leptonTagger = "softLeptonBTaggerByDistance"
+# tag by DeltaR
+module softMuonJetTagsL2 = JetTagProducerSoftLepton {
+    InputTag tagInfo        = softMuonTagInfosL2
+    string   jetTagComputer = "softLeptonByDistance"
+}
+
+# SoftLeptonTagInfo producer for tagging L2 jets with L3 muons 
+module softMuonTagInfosL3 = SoftLepton {
+    InputTag jets           = softmuonEtCutJets
+    InputTag leptons        = L3Muons
+    InputTag primaryVertex  = none          # use the nominal beam spot and error
+ 
+    PSet algorithmConfiguration = { 
+        double deltaRCut        = 0.4
+        uint32 refineJetAxis    = 0         # use calorimetric jet direction
+        bool   usePrimaryVertex = false     # don't use the primary vertex or compute the lepton IP
+    }
+}
+
+# tag by PtRel
+module softMuonJetTagsL3 = JetTagProducerSoftLepton {
+    InputTag tagInfo        = softMuonTagInfosL3
+    string   jetTagComputer = "softLeptonByPt"
+}
+
+# tag bay DeltaR
+module softMuonJetTagsL3ByDistance = JetTagProducerSoftLepton {
+    InputTag tagInfo        = softMuonTagInfosL3
+    string   jetTagComputer = "softLeptonByDistance"
+}
 
