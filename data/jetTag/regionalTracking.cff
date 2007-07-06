@@ -10,12 +10,30 @@ include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets b-tagged at L2.5.
 
-module bJetRegionalPixelSeedGenerator = regionalPixelSeedGenerator 
-    from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeeds.cfi"
-replace bJetRegionalPixelSeedGenerator.JetSrc = fromL25bJets
-replace bJetRegionalPixelSeedGenerator.ptMin = 1.0
-replace bJetRegionalPixelSeedGenerator.deltaEtaRegion = 0.25
-replace bJetRegionalPixelSeedGenerator.deltaPhiRegion = 0.25
+module bJetRegionalPixelSeedGenerator = SeedGeneratorFromRegionHitsEDProducer {
+    PSet RegionFactoryPSet = {
+        string ComponentName = "BJetRegionalPixelSeedGenerator"
+        PSet RegionPSet = {
+            InputTag JetSrc         = fromL25bJets
+            string vertexSrc        = "pixelVertices"
+            bool   precise          = true
+            double ptMin            = 1.0
+            double originRadius     = 0.2
+            double originHalfLength = 0.2
+            double originZPos       = 0.0
+            double deltaEtaRegion   = 0.25
+            double deltaPhiRegion   = 0.25
+        }
+    }
+    PSet SeedComparitorPSet = {
+        string ComponentName = "none" 
+    }
+    PSet OrderedHitsFactoryPSet = {
+        string ComponentName = "StandardHitPairGenerator"
+        string SeedingLayers = "PixelLayerPairs"
+    }
+    string TTRHBuilder =  "WithTrackAngle"
+}
 
 # Tell track trajectory builder to use regional track seeds,
 # and speed it up by only partially reconstructing tracks. 

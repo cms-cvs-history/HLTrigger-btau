@@ -6,23 +6,23 @@ include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 
 # Filter on specified L1 bits.
 
-module bmuhltL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+module bmuhltL1filter = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 replace bmuhltL1filter.L1ExtraCollections = l1extraParticles
 replace bmuhltL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bmuhltL1filter.L1GTReadoutRecord  = l1extraParticleMap
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltL1filter.L1Seeds = {
-   "A_Mu5_Jet15"
+   "L1_Mu5_Jet15"
 }
 
 
-module bmuhltOnlyJetsL1filter = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
+module bmuhltOnlyJetsL1filter = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 replace bmuhltOnlyJetsL1filter.L1ExtraCollections = l1extraParticles
 replace bmuhltOnlyJetsL1filter.L1ExtraParticleMap = l1extraParticleMap
 replace bmuhltOnlyJetsL1filter.L1GTReadoutRecord  = l1extraParticleMap
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltOnlyJetsL1filter.L1Seeds = {
-   "A_HTT250"
+   "L1_HTT250"
 }
 
 sequence L1forBsoftmuHLT = { bmuhltL1filter }
