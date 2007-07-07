@@ -12,7 +12,7 @@ include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 module bJetRegionalPixelSeedGenerator = SeedGeneratorFromRegionHitsEDProducer {
     PSet RegionFactoryPSet = {
-        string ComponentName = "BJetRegionalPixelSeedGenerator"
+        string ComponentName = "TauRegionalPixelSeedGenerator"
         PSet RegionPSet = {
             InputTag JetSrc         = fromL25bJets
             string vertexSrc        = "pixelVertices"
