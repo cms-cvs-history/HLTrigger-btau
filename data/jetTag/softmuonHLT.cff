@@ -9,7 +9,7 @@ include "HLTrigger/btau/data/jetTag/softmuonL1Seeds.cff"
 # reconstruct calo jets and select those to be used for b tagging
 include "HLTrigger/btau/data/jetTag/softmuonJetReco.cff"
 # setup soft muon tagers
-include "HLTrigger/btau/data/jetTag/softmuonReco.cff"
+include "HLTrigger/btau/data/jetTag/softmuonTaggers.cff"
 
 # L2 jet triggers for 1-4 jets or total hadronic ET
 include "HLTrigger/btau/data/jetTag/softmuonL2Jets.cff"

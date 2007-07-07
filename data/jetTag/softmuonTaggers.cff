@@ -27,9 +27,19 @@ module softMuonTagInfosL2 = SoftLepton {
 }
 
 # tag by DeltaR
+es_module softLeptonByDistance05 = LeptonTaggerByDistanceESProducer {
+    string ComponentName = "softLeptonByDistance05"
+
+    PSet JetTagComputerPSet = {
+        # 0.5 is curently the default for softLeptonByDistance
+        # if we don't change this there is no need redefine the es_module
+        double distance = 0.5
+    }
+}
+
 module softMuonJetTagsL2 = JetTagProducerSoftLepton {
     InputTag tagInfo        = softMuonTagInfosL2
-    string   jetTagComputer = "softLeptonByDistance"
+    string   jetTagComputer = "softLeptonByDistance05"
 }
 
 # SoftLeptonTagInfo producer for tagging L2 jets with L3 muons 
@@ -54,6 +64,6 @@ module softMuonJetTagsL3 = JetTagProducerSoftLepton {
 # tag bay DeltaR
 module softMuonJetTagsL3ByDistance = JetTagProducerSoftLepton {
     InputTag tagInfo        = softMuonTagInfosL3
-    string   jetTagComputer = "softLeptonByDistance"
+    string   jetTagComputer = "softLeptonByDistance05"
 }
 
