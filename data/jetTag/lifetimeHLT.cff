@@ -11,7 +11,7 @@ include "HLTrigger/btau/data/jetTag/lifetimeJetReco.cff"
 # reconstruct pixel tracks & primary vertex
 include "HLTrigger/btau/data/jetTag/pixelReco.cff"
 # reconstruct regional tracks around jets
-include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
+include "HLTrigger/btau/data/jetTag/lifetimeRegionalTracking.cff"
 # associate jet to tracks
 include "HLTrigger/btau/data/jetTag/trackAssociator.cff"
 # setup lifetime taggers
