@@ -19,7 +19,7 @@ include "RecoBTag/SoftLepton/data/softLeptonByPtES.cfi"
 # SoftLeptonTagInfo producer for tagging L2 jets with L2 muons 
 module softMuonTagInfosL2 = SoftLepton {
     InputTag jets           = softmuonEtCutJets
-    InputTag leptons        = L2Muons
+    InputTag leptons        = hltL2Muons
     InputTag primaryVertex  = none          # use the nominal beam spot and error
  
     PSet algorithmConfiguration = { 
@@ -48,7 +48,7 @@ module softMuonJetTagsL2 = JetTagProducerSoftLepton {
 # SoftLeptonTagInfo producer for tagging L2 jets with L3 muons 
 module softMuonTagInfosL3 = SoftLepton {
     InputTag jets           = softmuonEtCutJets
-    InputTag leptons        = L3Muons
+    InputTag leptons        = hltL3Muons
     InputTag primaryVertex  = none          # use the nominal beam spot and error
  
     PSet algorithmConfiguration = { 
