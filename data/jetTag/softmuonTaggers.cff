@@ -22,8 +22,9 @@ module softMuonTagInfosL2 = SoftLepton {
     InputTag leptons        = hltL2Muons
     InputTag primaryVertex  = none          # use the nominal beam spot and error
  
-    PSet algorithmConfiguration = { 
-        double deltaRCut        = 0.4
+    PSet algorithmConfiguration = {
+        double leptonChi2Cut    = 0.0       # no chi2/ndof cut
+        double leptonDeltaRCut  = 0.4       # lepton distance from jet axis
         uint32 refineJetAxis    = 0         # use calorimetric jet direction
         bool   usePrimaryVertex = false     # don't use the primary vertex or compute the lepton IP
     }
@@ -51,8 +52,9 @@ module softMuonTagInfosL3 = SoftLepton {
     InputTag leptons        = hltL3Muons
     InputTag primaryVertex  = none          # use the nominal beam spot and error
  
-    PSet algorithmConfiguration = { 
-        double deltaRCut        = 0.4
+    PSet algorithmConfiguration = {
+        double leptonChi2Cut    = 0.0       # no chi2/ndof cut
+        double leptonDeltaRCut  = 0.4       # lepton distance from jet axis
         uint32 refineJetAxis    = 0         # use calorimetric jet direction
         bool   usePrimaryVertex = false     # don't use the primary vertex or compute the lepton IP
     }
