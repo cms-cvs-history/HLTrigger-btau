@@ -4,16 +4,26 @@
 
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 
-module  trackCountingJetTagsL25 = trackCountingTagInfos from "RecoBTag/TrackCounting/data/trackCounting.cfi"
-replace trackCountingJetTagsL25.jetTracks = "associatorL25"
-replace trackCountingJetTagsL25.primaryVertex = "pixelVertices" 
-replace trackCountingJetTagsL25.AlgorithmPSet.NthTrack = 2 
-replace trackCountingJetTagsL25.AlgorithmPSet.ImpactParamterType = 0   # Use 3D impact parameter.  
-replace trackCountingJetTagsL25.AlgorithmPSet.MinimumNumberOfHits = 3  # (Pixel tracks only have 3 hits ...)
+module  hltLifetimeTagInfosL25 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
+replace hltLifetimeTagInfosL25.jetTracks     = "associatorL25"
+replace hltLifetimeTagInfosL25.primaryVertex = "pixelVertices"
+replace hltLifetimeTagInfosL25.computeProbabilities  = false
+replace hltLifetimeTagInfosL25.useDB                 = false
+replace hltLifetimeTagInfosL25.minimumNumberOfHits   = 3
 
-module  trackCountingJetTagsL3 = trackCountingTagInfos from "RecoBTag/TrackCounting/data/trackCounting.cfi"
-replace trackCountingJetTagsL3.jetTracks = "associatorL3"
-replace trackCountingJetTagsL3.primaryVertex = "pixelVertices" 
-replace trackCountingJetTagsL3.AlgorithmPSet.NthTrack = 2 
-replace trackCountingJetTagsL3.AlgorithmPSet.ImpactParamterType = 0   # Use 3D impact parameter
-replace trackCountingJetTagsL3.AlgorithmPSet.MinimumNumberOfHits = 8  # (Partially reconstructed tracks don't have many hits ...)
+# 3D impact parameter, 2nd track
+module  hltLifetimeJetTagsL25 = trackCountingHighEffJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighEffJetTags.cfi"
+# for 3rd track, use          = trackCountingHighPurJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighPurJetTags.cfi"
+replace hltLifetimeJetTagsL25.tagInfo = hltLifetimeTagInfosL25
+
+module  hltLifetimeTagInfosL3 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
+replace hltLifetimeTagInfosL3.jetTracks     = "associatorL3"
+replace hltLifetimeTagInfosL3.primaryVertex = "pixelVertices"
+replace hltLifetimeTagInfosL3.computeProbabilities  = false
+replace hltLifetimeTagInfosL3.useDB                 = false
+replace hltLifetimeTagInfosL3.minimumNumberOfHits   = 8
+
+# 3D impact parameter, 2nd track
+module  hltLifetimeJetTagsL3 = trackCountingHighEffJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighEffJetTags.cfi"
+# for 3rd track, use         = trackCountingHighPurJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighPurJetTags.cfi"
+replace hltLifetimeJetTagsL3.tagInfo = hltLifetimeTagInfosL3

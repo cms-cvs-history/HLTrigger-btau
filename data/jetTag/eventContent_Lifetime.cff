@@ -11,8 +11,10 @@ block JetTagLifetimeHLT = {
         "keep *_lifetimeEtCutJets_*_*",
         "keep *_htMet_*_*",
         "keep *_fromL25bJets_*_*",
-        "keep *_trackCountingJetTagsL25_*_*",
-        "keep *_trackCountingJetTagsL3_*_*",
+        "keep *_hltLifetimeTagInfosL25_*_*",
+        "keep *_hltLifetimeJetTagsL25_*_*",
+        "keep *_hltLifetimeTagInfosL3_*_*",
+        "keep *_hltLifetimeJetTagsL3_*_*",
 
         # Output of trigger modules
         "keep recoHLTFilterObjectWithRefs_*_*_*",
