@@ -1,8 +1,9 @@
 ### RecoMuon flux ##########################################################
-include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
+#include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
+include "HLTrigger/Muon/data/CommonModules.cff"
 
 module JpsitoMumuL1Seed = HLTLevel1Seed {
-	vstring L1Seeds = { "A_DoubleMu3" }
+	vstring L1Seeds = { "L1_DoubleMu3" }
 	bool andOr      = true
 	bool byName     = true
 	InputTag L1ExtraCollections = l1extraParticles
@@ -19,7 +20,7 @@ module JpsitoMumuL1Filtered = HLTMuonL1Filter {
 }
 
 module JpsitoMumuL2Filtered = HLTMuonDimuonFilter {
-	InputTag CandTag = L2MuonCandidates
+	InputTag CandTag = hltL2MuonCandidates
 	bool FastAccept = false
 	double MaxEta = 2.5
 	int32 MinNhits = 0

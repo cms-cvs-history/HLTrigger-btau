@@ -21,22 +21,37 @@ include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 #	replace MumupixelseedfromL2.deltaEtaRegion = 0.15
 #	replace MumupixelseedfromL2.deltaPhiRegion = 0.15
 
-module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
-	replace muonCandidateFromHLTFOWR.ptMin = 3.0
-	### if you want to use L2 Muons for tracking:
-	replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL2Filtered
-	replace muonCandidateFromHLTFOWR.phiCorrection = 0.
-	### if you don't want to use L2 Muons but L1 Muons as seeds for tracking:
-	#replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL1Filtered
-	#replace muonCandidateFromHLTFOWR.phiCorrection = 4.
+include "RecoTracker/TkSeedGenerator/data/GlobalPixelSeeds.cff"
 
-module MumuPixelSeed = regionalPixelSeedGeneratorFromCandidate from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeedsFromCandidate.cfi"
-	replace MumuPixelSeed.ptMin = 3.0
-	replace MumuPixelSeed.CandSrc = muonCandidateFromHLTFOWR
-	replace MumuPixelSeed.originRadius = 1.0
-	replace MumuPixelSeed.originHalfLength = 1.0
-	replace MumuPixelSeed.deltaEtaRegion = 0.15
-	replace MumuPixelSeed.deltaPhiRegion = 0.15
+module MumuPixelSeedFromL2Candidate = globalPixelSeeds from "RecoTracker/TkSeedGenerator/data/GlobalPixelSeeds.cfi"
+replace MumuPixelSeedFromL2Candidate.RegionFactoryPSet.ComponentName = "L3MumuTrackingRegion"
+replace MumuPixelSeedFromL2Candidate.RegionFactoryPSet.RegionPSet = {
+    double ptMin = 3.0
+    double vertexZDefault = 0.0
+    string vertexSrc = "pixelVertices"
+    double originRadius = 1.0
+    double originHalfLength = 1.0
+    double deltaEtaRegion = 0.15
+    double deltaPhiRegion = 0.15
+    InputTag TrkSrc = hltL2Muons
+}
+
+#module muonCandidateFromHLTFOWR = l1MuonCorrector from "HLTrigger/btau/data/displacedmumu/HLTL1MuonCorrector.cfi"
+#	replace muonCandidateFromHLTFOWR.ptMin = 3.0
+#	### if you want to use L2 Muons for tracking:
+#	replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL2Filtered
+#	replace muonCandidateFromHLTFOWR.phiCorrection = 0.
+#	### if you don't want to use L2 Muons but L1 Muons as seeds for tracking:
+#	#replace muonCandidateFromHLTFOWR.directionSource = JpsitoMumuL1Filtered
+#	#replace muonCandidateFromHLTFOWR.phiCorrection = 4.
+
+#module MumuPixelSeed = regionalPixelSeedGeneratorFromCandidate from "RecoTracker/TkSeedGenerator/data/RegionalPixelSeedsFromCandidate.cfi"
+#	replace MumuPixelSeed.ptMin = 3.0
+#	replace MumuPixelSeed.CandSrc = muonCandidateFromHLTFOWR
+#	replace MumuPixelSeed.originRadius = 1.0
+#	replace MumuPixelSeed.originHalfLength = 1.0
+#	replace MumuPixelSeed.deltaEtaRegion = 0.15
+#	replace MumuPixelSeed.deltaPhiRegion = 0.15
 
 # build tracks
 es_module CkfTrajectoryBuilderMumu = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
@@ -47,7 +62,7 @@ es_module CkfTrajectoryBuilderMumu = CkfTrajectoryBuilder from "RecoTracker/CkfP
 	replace CkfTrajectoryBuilderMumu.alwaysUseInvalidHits = false
 
 module ckfTrackCandidatesMumu = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
-	replace ckfTrackCandidatesMumu.SeedProducer = "MumuPixelSeed"
+	replace ckfTrackCandidatesMumu.SeedProducer = "MumuPixelSeedFromL2Candidate"
 	replace ckfTrackCandidatesMumu.TrajectoryBuilder = "CkfTrajectoryBuilderMumu"
 
 
@@ -78,7 +93,8 @@ module CandFromMumu = CandCombiner {
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 
 #sequence pvreco = { pixeltrackerlocalreco & recopixelvertexing }
-sequence Mumutracks = {muonCandidateFromHLTFOWR & MumuPixelSeed & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
+sequence Mumutracks = {MumuPixelSeedFromL2Candidate & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
+#sequence Mumutracks = {muonCandidateFromHLTFOWR & MumuPixelSeed & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
 #sequence Mumutracks = {trackerlocalreco & MumupixelseedfromL2 & ckfTrackCandidatesMumu & ctfWithMaterialTracksMumu}
 sequence Mumucand = { allMuTracks &  muTracks &  CandFromMumu }
 #sequence Mumucand = { allMuTracks }
