@@ -1,0 +1,68 @@
+### RecoMuon flux ##########################################################
+#include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
+include "HLTrigger/Muon/data/CommonModules.cff"
+
+module JpsitoMumuL1Seed = HLTLevel1Seed {
+	vstring L1Seeds = { "L1_DoubleMu3" }
+	bool andOr      = true
+	bool byName     = true
+	InputTag L1ExtraCollections = l1extraParticles
+	InputTag L1ExtraParticleMap = l1extraParticleMap
+	InputTag L1GTReadoutRecord = l1extraParticleMap
+}
+
+module JpsitoMumuL1Filtered = HLTMuonL1Filter {
+	InputTag CandTag = JpsitoMumuL1Seed
+	double MaxEta = 2.5
+	double MinPt = 3.
+	int32 MinQuality = -1
+	int32 MinN = 2
+}
+
+module JpsitoMumuL2Filtered = HLTMuonDimuonFilter {
+	InputTag CandTag = hltL2MuonCandidates
+	bool FastAccept = false
+	double MaxEta = 2.5
+	int32 MinNhits = 0
+	double MaxDr = 100.
+	double MaxDz = 9999.
+	int32  ChargeOpt = -1 // 0 nothing , 1 same charge, -1 opposite charge
+	double MinPtPair = 0.
+	double MinPtMax = 4.
+	double MinPtMin = 4.
+	double MinInvMass = 0.0
+	double MaxInvMass = 10.0
+	double MinAcop = 2 // -1
+	double MaxAcop = 3.15 //3.15
+	double MinPtBalance = -1.
+	double MaxPtBalance = 999999.
+	double NSigmaPt = 0.
+}
+	
+
+# L3 displaced dimuon reco
+include "HLTrigger/btau/data/displacedmumu/L3ForDisplacedMumuTrigger.cff" 
+
+module displacedJpsitoMumuFilter = displacedmumuFilter from "HLTrigger/btau/data/displacedmumu/HLTDisplacedmumuFilter.cfi"
+	replace displacedJpsitoMumuFilter.Src = CandFromMumu
+	replace displacedJpsitoMumuFilter.MinLxySignificance = 3.0
+	replace displacedJpsitoMumuFilter.MaxNormalisedChi2 = 10.0
+	replace displacedJpsitoMumuFilter.MinCosinePointingAngle = 0.90 
+
+sequence btoJpsitoMumu = { 
+	#L1 dimuon
+  		hltBegin & JpsitoMumuL1Seed & JpsitoMumuL1Filtered 
+	#L2 dimuon		
+		& l2muonreco & JpsitoMumuL2Filtered 
+	#L3 displaced dimuon
+	& l3displacedMumureco & displacedJpsitoMumuFilter 
+}
+  
+sequence btoJpsitoMumunoL1emulation = {
+	#L1 dimuon
+		JpsitoMumuL1Seed & JpsitoMumuL1Filtered 
+	#L2 dimuon
+		& l2muonreco  & JpsitoMumuL2Filtered
+	#L3 displaced dimuon
+		& l3displacedMumureco & displacedJpsitoMumuFilter 
+}
