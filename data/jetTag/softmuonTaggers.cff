@@ -1,20 +1,14 @@
 # L2 and L3 muons
 include "HLTrigger/Muon/data/CommonModules.cff"
-# explicit choise (as of 1.6.0-pre3, these all point to .../CommonModules_1032_HLTExercise.cff)
+# explicit choice (as of 1.6.0-pre3, these all point to .../CommonModules_1032_HLTExercise.cff)
 #include "HLTrigger/Muon/data/CommonModules_1032.cff"
 #include "HLTrigger/Muon/data/CommonModules_2x1033.cff"
 
 # Soft Lepton Taggers
-#include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
-#include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
-#include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
-#include "Geometry/CaloEventSetup/data/CaloTopology.cfi"
-#include "Geometry/MuonNumbering/data/muonNumberingInitialization.cfi"
-include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
-
-include "RecoBTau/JetTagProducer/data/jetTagRecord.cfi"
+include "RecoBTau/JetTagProducer/data/jetTags.cff"
 include "RecoBTag/SoftLepton/data/softLeptonByDistanceES.cfi"
 include "RecoBTag/SoftLepton/data/softLeptonByPtES.cfi"
+include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 
 # SoftLeptonTagInfo producer for tagging L2 jets with L2 muons 
 module softMuonTagInfosL2 = SoftLepton {
