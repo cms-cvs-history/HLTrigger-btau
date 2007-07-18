@@ -1,0 +1,29 @@
+
+#
+#Double Trk Tau
+#
+
+#DoublePixel Ta
+
+sequence ecalRelaxedIsolation ={(singleTauJetCrystalsAssociator,ecalSingleRelaxedTauIsol) & (doubleTauJetCrystalsAssociator,ecalDoubleRelaxedTauIsol) ,ecalRelaxedTauIsolated}
+sequence ecalIsolatedPixelRelaxedTauL25 = {associatorL25PixelRelaxedTauIsolated, coneIsolationL25PixelRelaxedTauIsolated,isolatedL25PixelRelaxedTau}
+sequence doublePixelRelaxedTau = {
+    (ecalRelaxedIsolation,filterTauRelaxedEcalIsolation)
+    &pixel_local&recopixelvertexing,
+    ecalIsolatedPixelRelaxedTauL25,
+    filterL25PixelRelaxedTau
+}
+
+sequence doublePixelRelaxedTauNoFilters = { 
+    (ecalRelaxedIsolation)
+    &pixel_local&recopixelvertexing,
+    ecalIsolatedPixelRelaxedTauL25
+}
+
+#Trigger with filters
+sequence doublePixelRelaxedTauL1HLT = { doublePixelRelaxedTauPrescaler&hltBegin&doublePixelRelaxedTauL1SeedFilter&caloTausCreator&doublePixelRelaxedTau}
+
+
+#Triggers with no HLTFilters! For debugging scope
+sequence doublePixelRelaxedTauL1NoHLT = {doublePixelRelaxedTauPrescaler&hltBegin&doubleTauL1SeedFilter&caloTausCreator&doublePixelRelaxedTauNoFilters}
+

@@ -26,9 +26,10 @@ include "HLTrigger/btau/data/tau/SingleTau.cff"
 include "HLTrigger/btau/data/tau/SingleTauMET.cff"
 include "HLTrigger/btau/data/tau/DoubleTau.cff"
 include "HLTrigger/btau/data/tau/PixelTau.cff"
+include "HLTrigger/btau/data/tau/DoublePixelRelaxedTau.cff"
 include "HLTrigger/btau/data/tau/EcalIsolation.cff"
 include "HLTrigger/btau/data/tau/TauTriggerSequences.cff"
-
+include "HLTrigger/btau/data/tau/TauRelaxedTriggerSequences.cff"
 
  
 
