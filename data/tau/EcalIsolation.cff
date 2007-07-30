@@ -20,7 +20,7 @@ module doubleTauJetCrystalsAssociator = JetCrystalsAssociator {
 module  ecalSingleTauIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauJetCrystalsAssociator
          double SmallCone = 0.13
-         double BigCone   = 0.45
+         double BigCone   = 0.4
         double Pisol = 5.0
 }
 module  ecalSingleRelaxedTauIsol =  EcalIsolation{
@@ -34,13 +34,13 @@ module  ecalSingleRelaxedTauIsol =  EcalIsolation{
 module  ecalSingleTauMETIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauMETJetCrystalsAssociator
         double SmallCone = 0.13
-        double BigCone   = 0.45
+        double BigCone   = 0.4
         double Pisol = 5.0
 }
 module  ecalDoubleTauIsol =  EcalIsolation{
         InputTag JetForFilter = doubleTauJetCrystalsAssociator
          double SmallCone = 0.13
-         double BigCone   = 0.45
+         double BigCone   = 0.4
         double Pisol = 5.0
 }
 
