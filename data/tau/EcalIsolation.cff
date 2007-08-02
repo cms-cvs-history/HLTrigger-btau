@@ -1,17 +1,20 @@
 #construct the jet-crystals associator for the single and double Tau collection
 module singleTauJetCrystalsAssociator = JetCrystalsAssociator {
-      InputTag towers = towerMaker
+    InputTag EBRecHits =ecalRecHit:EcalRecHitsEB 
+    InputTag EERecHits =ecalRecHit:EcalRecHitsEE 
       InputTag jets   =l2TauJetsProvider:SingleTau
       double coneSize = 0.5
 }
 # for SingleTauMET
 module singleTauMETJetCrystalsAssociator = JetCrystalsAssociator {
-      InputTag towers = towerMaker
+    InputTag EBRecHits =ecalRecHit:EcalRecHitsEB 
+    InputTag EERecHits =ecalRecHit:EcalRecHitsEE 
       InputTag jets   = l2TauJetsProvider:SingleTauMET
       double coneSize = 0.5
 }
 module doubleTauJetCrystalsAssociator = JetCrystalsAssociator {
-    InputTag towers = towerMaker
+    InputTag EBRecHits =ecalRecHit:EcalRecHitsEB 
+    InputTag EERecHits =ecalRecHit:EcalRecHitsEE 
     InputTag jets   =l2TauJetsProvider:DoubleTau
     double coneSize = 0.5
 }
