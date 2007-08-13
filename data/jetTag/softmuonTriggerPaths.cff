@@ -10,9 +10,8 @@ include "HLTrigger/btau/data/jetTag/softmuonTriggerSequences.cff"
 path L1forbmuHLT = { L1forBsoftmuHLT }
 
 # These are L1 + HLT
-path bmuHLTpath1 = { bmu1jetTrig }
-path bmuHLTpath2 = { bmu2jetTrig }
-path bmuHLTpath3 = { bmu3jetTrig }
-path bmuHLTpath4 = { bmu4jetTrig }
-
-path bmuHLTpathHT = { bmuHTTrig }
+path HLTB1JetMu = { bmu1jetTrig }
+path HLTB2JetMu = { bmu2jetTrig }
+path HLTB3JetMu = { bmu3jetTrig }
+path HLTB4JetMu = { bmu4jetTrig }
+path HLTBHTMu   = { bmuHTTrig }

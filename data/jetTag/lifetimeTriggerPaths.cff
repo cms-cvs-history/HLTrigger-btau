@@ -10,8 +10,8 @@ include "HLTrigger/btau/data/jetTag/lifetimeTriggerSequences.cff"
 path L1forbHLT  = { L1forBlifeHLT }
 
 # L1 + HLT trigger paths
-path bHLTpath1  = { b1jetTrig }
-path bHLTpath2  = { b2jetTrig }
-path bHLTpath3  = { b3jetTrig }
-path bHLTpath4  = { b4jetTrig }
-path bHLTpathHT = { bHTTrig }
+path HLTB1Jet = { b1jetTrig }
+path HLTB2Jet = { b2jetTrig }
+path HLTB3Jet = { b3jetTrig }
+path HLTB4Jet = { b4jetTrig }
+path HLTBHT   = { bHTTrig }
