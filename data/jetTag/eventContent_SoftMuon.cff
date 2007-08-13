@@ -1,23 +1,19 @@
 # keep essential info used to construct b HLT.
 block JetTagSoftMuHLT = {
     untracked vstring outputCommands = {
-        # Output of b tags
-        "keep *_softmuonEtCutJets_*_*",
+        # pre-L2 objects
+        # "keep *_iterativeCone5CaloJets_*_*",
+        # "keep *_softmuonHighestEtJets_*_*",
+        # L2 objects and results
+        "keep *_softmuonEtCutJets_*_*",     # used both at L2 and L3
+        "keep *_hltL2Muons_*_*",
         "keep *_softMuonTagInfosL2_*_*",
         "keep *_softMuonJetTagsL2_*_*",
+        # L3 objects and results
+        "keep *_softmuonEtCutJets_*_*",     # used both at L2 and L3
+        "keep *_hltL3Muons_*_*",
         "keep *_softMuonTagInfosL3_*_*",
         "keep *_softMuonJetTagsL3_*_*",
         "keep *_softMuonJetTagsL3ByDistance_*_*",
-
-        # Output of trigger modules
-        "keep recoHLTFilterObjectWithRefs_*_*_*",
-
-        # L1 trigger decision.
-        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
-        "keep l1extraL1ParticleMaps_*_*_*",
-
-        # HLT trigger decision.
-        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideEDMPathsAndTriggerBits#Trigger_results_in_the_event
-        "keep edmTriggerResults_*_*_*"
     }
 }
