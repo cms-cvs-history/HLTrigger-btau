@@ -1,30 +1,22 @@
 # keep essential info used to construct b HLT.
 block JetTagLifetimeHLT = {
     untracked vstring outputCommands = {
-        # MC truth
-        "keep edmHepMCProduct_*_*_*",
-
-        # Output of b tags
-        "keep *_MCJetCorJetIcone5_*_*",
-        "keep *_iterativeCone5CaloJets_*_*",
-        "keep *_lifetimeHighestEtJets_*_*",
+        # pre-L2 objects
+        # "keep *_iterativeCone5CaloJets_*_*",
+        # "keep *_lifetimeHighestEtJets_*_*",
+        # L2 objects and results
+        "keep *_pixelVertices_*_*",         # used both at L2 and L3
+        "keep *_pixelTracks_*_*",
         "keep *_lifetimeEtCutJets_*_*",
-        "keep *_htMet_*_*",
-        "keep *_fromL25bJets_*_*",
+        "keep *_associatorL25_*_*",
         "keep *_hltLifetimeTagInfosL25_*_*",
         "keep *_hltLifetimeJetTagsL25_*_*",
+        # L3 objects and results
+        "keep *_pixelVertices_*_*",         # used both at L2 and L3
+        "keep *_bJetRegionalCtfWithMaterialTracks_*_*",
+        "keep *_fromL25bJets_*_*",
+        "keep *_associatorL3_*_*",
         "keep *_hltLifetimeTagInfosL3_*_*",
-        "keep *_hltLifetimeJetTagsL3_*_*",
-
-        # Output of trigger modules
-        "keep recoHLTFilterObjectWithRefs_*_*_*",
-
-        # L1 trigger decision.
-        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
-        "keep l1extraL1ParticleMaps_*_*_*",
-
-        # HLT trigger decision.
-        # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideEDMPathsAndTriggerBits#Trigger_results_in_the_event
-        "keep edmTriggerResults_*_*_*"
+        "keep *_hltLifetimeJetTagsL3_*_*"
     }
 }
