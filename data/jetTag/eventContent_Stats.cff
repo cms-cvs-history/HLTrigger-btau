@@ -2,6 +2,9 @@
 
 block JetTagHLTstats = {
     untracked vstring outputCommands = {
+        # MC truth
+        "keep edmHepMCProduct_*_*_*",
+
         # Output of trigger modules
         "keep recoHLTFilterObjectWithRefs_*_*_*",
 
