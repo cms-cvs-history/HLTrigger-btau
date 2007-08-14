@@ -14,6 +14,6 @@ block JetTagSoftMuonHLT = {
         "keep *_hltL3Muons_*_*",
         "keep *_softMuonTagInfosL3_*_*",
         "keep *_softMuonJetTagsL3_*_*",
-        "keep *_softMuonJetTagsL3ByDistance_*_*",
+        "keep *_softMuonJetTagsL3ByDistance_*_*"
     }
 }
