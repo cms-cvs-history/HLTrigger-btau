@@ -1,5 +1,5 @@
 # keep essential info used to construct b HLT.
-block JetTagSoftMuHLT = {
+block JetTagSoftMuonHLT = {
     untracked vstring outputCommands = {
         # pre-L2 objects
         # "keep *_iterativeCone5CaloJets_*_*",

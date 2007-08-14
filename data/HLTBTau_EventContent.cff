@@ -1,0 +1,20 @@
+# Full Event content for btau HLT paths
+block HLTBTauFEVT = {
+    untracked vstring outputCommands = { }
+}
+replace HLTBTauFEVT.outputCommands += JetTagLifetimeHLT.outputCommands
+replace HLTBTauFEVT.outputCommands += JetTagSoftMuonHLT.outputCommands
+
+# RECO content for btau HLT paths
+block HLTBTauRECO = {
+    untracked vstring outputCommands = { }
+}
+replace HLTBTauRECO.outputCommands += JetTagLifetimeHLT.outputCommands
+replace HLTBTauRECO.outputCommands += JetTagSoftMuonHLT.outputCommands
+
+# AOD content for btau HLT paths
+block HLTBTauAOD = {
+    untracked vstring outputCommands = { }
+}
+replace HLTBTauAOD.outputCommands += JetTagLifetimeHLT.outputCommands
+replace HLTBTauAOD.outputCommands += JetTagSoftMuonHLT.outputCommands

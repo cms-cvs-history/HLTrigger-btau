@@ -14,7 +14,7 @@ module out = PoolOutputModule {
 # Keep trigger summary and results of whichever b tags were used in HLT,
 # plus trigger timing and efficiency data.
 include "HLTrigger/btau/data/jetTag/eventContent_SoftMuon.cff"
-replace out.outputCommands += JetTagSoftMuHLT.outputCommands
+replace out.outputCommands += JetTagSoftMuonHLT.outputCommands
 include "HLTrigger/btau/data/jetTag/eventContent_Stats.cff"
 replace out.outputCommands += JetTagHLTstats.outputCommands
 
