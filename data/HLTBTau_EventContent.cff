@@ -1,3 +1,6 @@
+include "HLTrigger/btau/data/jetTag/eventContent_Lifetime.cff"
+include "HLTrigger/btau/data/jetTag/eventContent_SoftMuon.cff"
+
 # Full Event content for btau HLT paths
 block HLTBTauFEVT = {
     untracked vstring outputCommands = { }
