@@ -1,5 +1,6 @@
 include "HLTrigger/btau/data/jetTag/eventContent_Lifetime.cff"
 include "HLTrigger/btau/data/jetTag/eventContent_SoftMuon.cff"
+include "HLTrigger/btau/data/displacedmumu/eventContent_DisplacedMumu.cff"
 
 # Full Event content for btau HLT paths
 block HLTBTauFEVT = {
@@ -7,6 +8,7 @@ block HLTBTauFEVT = {
 }
 replace HLTBTauFEVT.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += JetTagSoftMuonHLT.outputCommands
+replace HLTBTauFEVT.outputCommands += DisplacedMumuHLT.outputCommands
 
 # RECO content for btau HLT paths
 block HLTBTauRECO = {
@@ -14,6 +16,7 @@ block HLTBTauRECO = {
 }
 replace HLTBTauRECO.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauRECO.outputCommands += JetTagSoftMuonHLT.outputCommands
+replace HLTBTauRECO.outputCommands += DisplacedMumuHLT.outputCommands
 
 # AOD content for btau HLT paths
 block HLTBTauAOD = {
@@ -21,3 +24,4 @@ block HLTBTauAOD = {
 }
 replace HLTBTauAOD.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauAOD.outputCommands += JetTagSoftMuonHLT.outputCommands
+replace HLTBTauAOD.outputCommands += DisplacedMumuHLT.outputCommands
