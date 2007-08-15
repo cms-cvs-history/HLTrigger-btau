@@ -1,0 +1,12 @@
+# keep essential info used to construct b to Jpsi HLT.
+block DisplacedMumuHLT = {
+    untracked vstring outputCommands = {
+        "keep *_displacedJpsitoMumuFilter_*_*",    
+        "keep *_MumuPixelSeedFromL2Candidate_*_*",
+        "keep *_ckfTrackCandidatesMumu_*_*",
+        "keep *_ctfWithMaterialTracksMumu_*_*",
+        "keep *_allMuTracks_*_*",
+		"keep *_muTracks_*_*",
+		"keep *_CandFromMumu_*_*",
+    }
+}
