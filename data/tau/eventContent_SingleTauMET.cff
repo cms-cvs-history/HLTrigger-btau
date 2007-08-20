@@ -1,0 +1,21 @@
+# keep essential info used to construct Tau HLT.
+block SingleTauMETHLT = {
+untracked vstring outputCommands = {
+	"keep *_pixelVertices_*_*",         # used both at L2.5 and L3
+        "keep *_pixelTracks_*_*",
+	"keep *_icone5Tau1_*_*",
+	"keep *_icone5Tau2_*_*",
+	"keep *_icone5Tau3_*_*",
+	"keep *_icone5Tau4_*_*",
+	"keep *_l2TauJetsProvider_*_*",
+	"keep *_ecalSingleTauMETIsolated_*_*",
+	"keep *_met_*_*",
+	"keep *_ctfWithMaterialTracksL25SingleTauMET_*_*",
+	"keep *_associatorL25SingleTauMET_*_*",
+	"keep *_coneIsolationL25SingleTauMET_*_*",
+	"keep *_isolatedL25SingleTauMET_*_*",
+	"keep *_ctfWithMaterialTracksL3SingleTauMET_*_*",
+	"keep *_associatorL3SingleTauMET_*_*",
+	"keep *_coneIsolationL3SingleTauMET_*_*",
+	"keep *_isolatedL3SingleTauMET_*_*"
+    }
