@@ -41,7 +41,7 @@ module JpsitoMumuL2Filtered = HLTMuonDimuonFilter {
 	
 
 # L3 displaced dimuon reco
-include "HLTrigger/btau/data/displacedmumu/L3ForDisplacedMumuTrigger.cff" 
+include "HLTrigger/btau/data/displacedmumu/L3ForDisplacedMumuLooseTrigger.cff" 
 
 module displacedJpsitoMumuFilter = displacedmumuFilter from "HLTrigger/btau/data/displacedmumu/HLTDisplacedmumuFilter.cfi"
 	replace displacedJpsitoMumuFilter.Src = CandFromMumu
