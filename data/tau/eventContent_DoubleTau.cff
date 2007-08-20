@@ -11,5 +11,6 @@ block DoubleTauHLT = {
 	"keep *_ecalTauIsolated_*_*",
 	"keep *_associatorL25PixelTauIsolated_*_*",
 	"keep *_coneIsolationL25PixelTauIsolated_*_*",
-	"keep *_isolatedL25PixelTau_*_*_"
+	"keep *_isolatedL25PixelTau_*_*"
     }
+}

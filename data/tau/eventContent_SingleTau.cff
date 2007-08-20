@@ -1,6 +1,6 @@
 # keep essential info used to construct Tau HLT.
 block SingleTauHLT = {
-untracked vstring outputCommands = {
+    untracked vstring outputCommands = {
 	"keep *_pixelVertices_*_*",         # used both at L2.5 and L3
         "keep *_pixelTracks_*_*",
 	"keep *_icone5Tau1_*_*",
@@ -19,3 +19,4 @@ untracked vstring outputCommands = {
 	"keep *_coneIsolationL3SingleTau_*_*",
 	"keep *_isolatedL3SingleTau_*_*"
     }
+}
