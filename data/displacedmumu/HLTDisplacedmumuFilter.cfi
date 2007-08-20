@@ -1,6 +1,0 @@
-module displacedmumuFilter = HLTDisplacedmumuFilter {
-    double MinLxySignificance = 3.0
-    double MaxNormalisedChi2 = 10.0
-    double MinCosinePointingAngle = 0.90
-	InputTag Src = jpsiFrommumu
-}

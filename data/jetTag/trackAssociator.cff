@@ -1,9 +1,0 @@
-# jetTracksAssociator running on L2.5 jets and pixel-only tracks (pixel triplets)
-module associatorL25 = jetTracksAssociator from "RecoBTau/JetTracksAssociator/data/jetTracksAssociator.cfi"
-replace associatorL25.tracks = pixelTracks
-replace associatorL25.jets   = lifetimeEtCutJets    # Take iterative cone jets with Et cut
-
-# jetTracksAssociator running on jets passing L2.5 and regionally reconstructed tracks
-module associatorL3 = jetTracksAssociator from "RecoBTau/JetTracksAssociator/data/jetTracksAssociator.cfi"
-replace associatorL3.tracks = bJetRegionalCtfWithMaterialTracks
-replace associatorL3.jets   = fromL25bJets  # Take jets b-tagged at L2.5
