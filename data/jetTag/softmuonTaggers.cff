@@ -15,6 +15,7 @@ module softMuonTagInfosL2 = SoftLepton {
     InputTag jets           = softmuonEtCutJets
     InputTag leptons        = hltL2Muons
     InputTag primaryVertex  = none          # use the nominal beam spot and error
+    double   leptonQuality  = 0.0           # used only for reco::Muons
  
     PSet algorithmConfiguration = {
         double leptonChi2Cut    = 0.0       # no chi2/ndof cut
@@ -45,6 +46,7 @@ module softMuonTagInfosL3 = SoftLepton {
     InputTag jets           = softmuonEtCutJets
     InputTag leptons        = hltL3Muons
     InputTag primaryVertex  = none          # use the nominal beam spot and error
+    double   leptonQuality  = 0.0           # used only for reco::Muons
  
     PSet algorithmConfiguration = {
         double leptonChi2Cut    = 0.0       # no chi2/ndof cut
