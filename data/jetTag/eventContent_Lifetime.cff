@@ -1,18 +1,20 @@
 # keep essential info used to construct b HLT.
 block JetTagLifetimeHLT = {
     untracked vstring outputCommands = {
-        # pre-L2 objects
-        # "keep *_iterativeCone5CaloJets_*_*",
-        # "keep *_lifetimeHighestEtJets_*_*",
-        # L2 objects and results
-        "keep *_pixelVertices_*_*",         # used both at L2 and L3
+        # L2 objects
+        "keep *_htMet_*_*",
+        "keep *_MCJetCorJetIcone5_*_*",
+        # L2.5 objects and results
+        "keep *_iterativeCone5CaloJets_*_*",
+        "keep *_lifetimeHighestEtJets_*_*",
+        "keep *_lifetimeEtCutJets_*_*",
+        "keep *_pixelVertices_*_*",       
         "keep *_pixelTracks_*_*",
         "keep *_lifetimeEtCutJets_*_*",
         "keep *_associatorL25_*_*",
         "keep *_hltLifetimeTagInfosL25_*_*",
         "keep *_hltLifetimeJetTagsL25_*_*",
         # L3 objects and results
-        "keep *_pixelVertices_*_*",         # used both at L2 and L3
         "keep *_bJetRegionalCtfWithMaterialTracks_*_*",
         "keep *_fromL25bJets_*_*",
         "keep *_associatorL3_*_*",
