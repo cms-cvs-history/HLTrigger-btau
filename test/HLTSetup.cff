@@ -8,7 +8,7 @@ include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 //
-sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
+sequence hltBegin = { hltGetDigi}
 
 
 /*
