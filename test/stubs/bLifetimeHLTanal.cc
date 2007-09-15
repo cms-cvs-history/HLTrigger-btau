@@ -9,6 +9,7 @@
 
 #include "DataFormats/JetReco/interface/CaloJet.h"
 #include "DataFormats/METReco/interface/MET.h"
+#include "DataFormats/METReco/interface/METFwd.h"`
 #include "DataFormats/BTauReco/interface/JetTag.h"
 #include "PhysicsTools/Utilities/interface/EtComparator.h"
 #include "DataFormats/HLTReco/interface/HLTFilterObject.h"
