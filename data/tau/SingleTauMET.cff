@@ -18,30 +18,20 @@ module hlt1METSingleTauMET = HLT1CaloMET {
   int32  MinN   = 1
 }
 
-# Regional Tk reconstruction for SingleTauMETCollection
-module l25SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauMETIsolated:Isolated
-
-module ckfTrackCandidatesL25SingleTauMET =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL25SingleTauMET.SeedProducer  = "l25SingleTauMETPixelSeeds"
-replace ckfTrackCandidatesL25SingleTauMET.TrajectoryBuilder    = "trajBuilderL25"
-
-module ctfWithMaterialTracksL25SingleTauMET = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL25SingleTauMET.src = "ckfTrackCandidatesL25SingleTauMET"
-
 #
 # Calculate Isolation for SingleTauMETCollection
 #
 
 # JetTrackAssociator
 module associatorL25SingleTauMET = JetTracksAssociator {
-    InputTag tracks = ctfWithMaterialTracksL25SingleTauMET
+    InputTag tracks = pixelTracks
     InputTag jets   = ecalSingleTauMETIsolated:Isolated
     double coneSize = 0.5
 }
  
 module coneIsolationL25SingleTauMET = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL25SingleTauMET.JetTrackSrc = "associatorL25SingleTauMET"
+replace coneIsolationL25SingleTauMET.MinimumNumberOfHits = 2
 
 #
 # Selecting Isolated Taus
@@ -50,10 +40,10 @@ replace coneIsolationL25SingleTauMET.JetTrackSrc = "associatorL25SingleTauMET"
 module isolatedL25SingleTauMET = IsolatedTauJetsSelector {
     VInputTag JetSrc = {coneIsolationL25SingleTauMET}
     double MatchingCone = 0.1
-    double SignalCone = 0.065
+    double SignalCone = 0.1
     double IsolationCone = 0.4
     double MinimumTransverseMomentumInIsolationRing = 1.
-    double MinimumTransverseMomentumLeadingTrack = 15.0
+    double MinimumTransverseMomentumLeadingTrack = 3.
     double DeltaZetTrackVertex = 0.2
     int32  MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices

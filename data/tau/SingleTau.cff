@@ -30,11 +30,6 @@ module filterL2SingleTauJets = HLT1Tau  {
 }
 
 
-
-#
-#Calculate Isolation for SingleTau Collection
-#
-
 #JetTrackAssociator
 module associatorL25SingleTau = JetTracksAssociator {
     InputTag tracks = pixelTracks
@@ -44,7 +39,7 @@ module associatorL25SingleTau = JetTracksAssociator {
  
 module coneIsolationL25SingleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL25SingleTau.JetTrackSrc = "associatorL25SingleTau"
-replace coneIsolationL25PixelTauIsolated.MinimumNumberOfHits = 2
+replace coneIsolationL25SingleTau.MinimumNumberOfHits = 2
 
 
 #
