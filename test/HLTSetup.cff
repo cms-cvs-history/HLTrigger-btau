@@ -1,82 +1,26 @@
 //
-// Four cases of running the HLT table - pick one and only one:
 //
-
-
-// 1: from Digis on input file, running L1
-include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
-//
-sequence hltBegin = { hltGetDigi}
-
-
-/*
-// 2: from Raw+L1Extra on input file - needs raw2digi unpacking but no L1
-module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
-replace hltGetRaw.RawDataCollection = source
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-//
-// HLTLevel1Seed instance to mimick getData functionality for L1 products:
-module  l1seedBegin = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
-replace l1seedBegin.L1Seeds = { }
-replace l1seedBegin.L1ExtraCollections = l1extraParticles
-replace l1seedBegin.L1ExtraParticleMap = l1extraParticleMap
-replace l1seedBegin.L1GTReadoutRecord  = l1extraParticleMap
-//
-sequence hltBegin = { hltGetRaw & l1seedBegin}
-*/
-
-/*
-// 3: from Raw on input (file or online) - needs raw2digi unpacking and L1
-module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
-replace hltGetRaw.RawDataCollection = source
-include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-//
-sequence hltBegin = { hltGetRaw  }
-*/
-
-/*
-// 4: from Digis on input via Raw on the fly - needs digi2raw and raw2digi and L1
-include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-//
-sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , l1emulator , l1extra) }
-*/
-
-
-//
-// Each HLT path must start with hltBegin (or put it after the HLTPrescaler
-// module but only if that is the first module on the path)
+// Four cases (1,2,3,4) of running the HLT table - pick one and only one!
 //
 
 //
-// For proper timing measurements, we'd like to separate out processing which
-// is common to all HLT paths and which should not count against the time budget
-// (such as reading products from file or creating the Raw product on the fly).
-// This is put into a separate path run before all other paths - subsequent
-// paths then simply re-use the EDProducts already produced!
-//
-// Make sure path HLTBegin does not accept any event
-module  prescalerBegin = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace prescalerBegin.prescaleFactor = 4294967295 // = 2**32-1
-path HLTBegin = {hltBegin , prescalerBegin}
-//
-// Note: path HLTBegin should be excluded from HLTtable timing considerations
-// Note: path HLTBegin must of course be removed from the HLT table for online running
+// 1: from Digis on input file, running L1Emulator and L1Extra
+ include "HLTrigger/Configuration/data/common/HLTSetupCase1.cff"
 //
 
 //
-// Load common files
+// 2: from Raw+L1 on input file - needs raw2digi unpacking
+//include "HLTrigger/Configuration/data/common/HLTSetupCase2.cff"
 //
-include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
-include "HLTrigger/Configuration/data/common/Vertexing.cff"
 
 //
-// Epilogue with endpath of modules for HLT:
-include "HLTrigger/Configuration/data/common/HLTEndpath.cff"
+// 3: from "online Raw" on input (file or online) - needs raw2digi and L1Extra
+// include "HLTrigger/Configuration/data/common/HLTSetupCase3.cff"
+// -- case 3 is not yet defined in detail so does not work yet!
+//
+
+//
+// 4: from Digis on input via Raw on the fly - needs digi2raw, raw2digi and L1
+// include "HLTrigger/Configuration/data/common/HLTSetupCase4.cff"
+// -- case 4 will not work unless L1 digis are on the input file!
 //
