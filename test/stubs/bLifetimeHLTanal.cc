@@ -212,7 +212,7 @@ bool bLifetimeHLTanal::analyzeHLT(const edm::Event& iEvent, const edm::EventSetu
       //      string name = hlt.name(j);
       string name = hltNames.triggerName(j);
       //      cout<<j<<" "<<tns_.getTrigPath[j]<<" "<<tns_.getTrigPathModule[j, hlt[j].index [j]]<<" "<<hlt[j].state()<<endl;
-      if (hlt[j].accept()) cout<<j<<" "<<name<<" passed"<<endl;
+      //      if (hlt[j].accept()) cout<<j<<" "<<name<<" passed"<<endl;
       map<string, float>::const_iterator hltBitCode; 
       hltBitCode = hltBits.find(name);
       if (hltBitCode != hltBits.end()) { 

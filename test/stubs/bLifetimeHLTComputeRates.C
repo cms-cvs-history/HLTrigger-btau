@@ -11,12 +11,12 @@
 using namespace std;
 
 // If true make efficiency plots. Otherwise make rate plots.
-const bool writeEffiPlots = false;
+const bool writeEffiPlots = true;
 
 // Which data to look at ? (Choose only one !).
 const bool STUDY_MB = false;
-const bool STUDY_TT = false;
-const bool STUDY_QCD = true;
+const bool STUDY_TT = true;
+const bool STUDY_QCD = false;
 
 const unsigned int NFILES = 15;
 const unsigned int NJETS = 4;
