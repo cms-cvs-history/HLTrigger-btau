@@ -30,27 +30,6 @@ module filterL2SingleTauJets = HLT1Tau  {
 }
 
 
-# Ckf
-es_module trajBuilderL25 =  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
-replace trajBuilderL25.ComponentName = "trajBuilderL25"
-replace trajBuilderL25.ptCut               = 5.0
-replace trajBuilderL25.maxNumberOfHits      =7
-replace trajBuilderL25.maxCand = 1
-replace trajBuilderL25.alwaysUseInvalidHits = false
-
-
-# Regional Tk reconstruction for SingleTauCollection
-
-module l25SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauIsolated:Isolated
-
-
-module ckfTrackCandidatesL25SingleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL25SingleTau.SeedProducer  = "l25SingleTauPixelSeeds"
-replace ckfTrackCandidatesL25SingleTau.TrajectoryBuilder    = "trajBuilderL25"
-
-module ctfWithMaterialTracksL25SingleTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL25SingleTau.src = "ckfTrackCandidatesL25SingleTau"
 
 #
 #Calculate Isolation for SingleTau Collection
@@ -58,14 +37,14 @@ replace ctfWithMaterialTracksL25SingleTau.src = "ckfTrackCandidatesL25SingleTau"
 
 #JetTrackAssociator
 module associatorL25SingleTau = JetTracksAssociator {
-    InputTag tracks = ctfWithMaterialTracksL25SingleTau
+    InputTag tracks = pixelTracks
     InputTag jets   = ecalSingleTauIsolated:Isolated
     double coneSize = 0.5
 }
  
 module coneIsolationL25SingleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL25SingleTau.JetTrackSrc = "associatorL25SingleTau"
-
+replace coneIsolationL25PixelTauIsolated.MinimumNumberOfHits = 2
 
 
 #
@@ -79,7 +58,7 @@ module isolatedL25SingleTau = IsolatedTauJetsSelector{
 	double SignalCone = 0.065
 	double IsolationCone = 0.4
 	double MinimumTransverseMomentumInIsolationRing = 1.
-    double MinimumTransverseMomentumLeadingTrack = 20
+    double MinimumTransverseMomentumLeadingTrack = 3.
     double DeltaZetTrackVertex = 0.2
     int32	MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
