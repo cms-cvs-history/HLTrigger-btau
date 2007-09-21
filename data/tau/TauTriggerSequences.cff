@@ -29,10 +29,8 @@ sequence hltMET2 = {met, hlt1METSingleTauMET} //Filter for the MET at L2
 
 
 #L25Tau JetMaker
-sequence tauJetsMakerL25SingleTau = {associatorL25SingleTau, coneIsolationL25SingleTau,isolatedL25SingleTau}
+sequence singleTauL25 = {associatorL25SingleTau, coneIsolationL25SingleTau,isolatedL25SingleTau}
 
-#L25SingleTau
-sequence singleTauL25 = {tauJetsMakerL25SingleTau}
 
 #L3Trk reconstruction
 sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3SingleTau,ctfWithMaterialTracksL3SingleTau}
@@ -57,10 +55,7 @@ sequence singleTauNoFilters = {singleTauL25,singleTauL3}
 #
 
 #L25Tau JetMaker
-sequence tauJetsMakerL25SingleTauMET = {associatorL25SingleTauMET,coneIsolationL25SingleTauMET,isolatedL25SingleTauMET}
-
-#L25SingleTauMET
-sequence singleTauMETL25 = {ckfTracksL25SingleTauMET,tauJetsMakerL25SingleTauMET}
+sequence singleTauMETL25= {associatorL25SingleTauMET,coneIsolationL25SingleTauMET,isolatedL25SingleTauMET}
 
 #L3Trk reconstruction
 sequence ckfTracksL3SingleTauMET = {l3SingleTauMETPixelSeeds,ckfTrackCandidatesL3SingleTauMET,ctfWithMaterialTracksL3SingleTauMET}

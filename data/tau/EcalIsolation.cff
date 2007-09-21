@@ -22,37 +22,31 @@ module doubleTauJetCrystalsAssociator = JetCrystalsAssociator {
 #Produce the EMIsolatedTauTagInfoCollection
 module  ecalSingleTauIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauJetCrystalsAssociator
-         double SmallCone = 0.13
-         double BigCone   = 0.4
-        double Pisol = 5.0
+         double SmallCone = 0.15
+         double BigCone   = 0.5
+        double Pisol = 10000.0
 }
 module  ecalSingleRelaxedTauIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauJetCrystalsAssociator
-         double SmallCone = 0.13
+         double SmallCone = 0.15
          double BigCone   = 0.5
-        double Pisol = 5.0
+        double Pisol = 10000.0
 }
 
 # for SingleTauMET
 module  ecalSingleTauMETIsol =  EcalIsolation{
         InputTag JetForFilter = singleTauMETJetCrystalsAssociator
-        double SmallCone = 0.13
-        double BigCone   = 0.4
-        double Pisol = 5.0
+        double SmallCone = 0.15
+        double BigCone   = 0.5
+        double Pisol = 1000000.0
 }
 module  ecalDoubleTauIsol =  EcalIsolation{
         InputTag JetForFilter = doubleTauJetCrystalsAssociator
-         double SmallCone = 0.13
-         double BigCone   = 0.4
-        double Pisol = 5.0
+         double SmallCone = 0.15
+         double BigCone   = 0.5
+        double Pisol = 100000.0
 }
 
-module  ecalDoubleRelaxedTauIsol =  EcalIsolation{
-        InputTag JetForFilter = doubleTauJetCrystalsAssociator
-         double SmallCone = 0.13
-         double BigCone   = 0.5
-        double Pisol = 5.0
-}
 
 #Divide the jets into two collections: Isolated and not Isolated
 module ecalTauIsolated = EMIsolatedTauJetsSelector{
@@ -71,9 +65,6 @@ module ecalDoubleTauIsolated = EMIsolatedTauJetsSelector{
     VInputTag TauSrc= {ecalDoubleTauIsol}
 }    
 
-module ecalRelaxedTauIsolated = EMIsolatedTauJetsSelector{
-    VInputTag TauSrc= {ecalSingleRelaxedTauIsol,ecalDoubleRelaxedTauIsol}
-}    
 
 
 
