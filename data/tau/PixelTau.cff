@@ -1,5 +1,5 @@
 #JetTrackAssociator
-module associatorL25PixelTauIsolated = JetTracksAssociator {
+module associatorL25PixelTauIsolated = JetTracksAssociatorAtVertex {
     InputTag tracks = pixelTracks
     InputTag jets   = ecalTauIsolated:Isolated
     double coneSize = 0.5

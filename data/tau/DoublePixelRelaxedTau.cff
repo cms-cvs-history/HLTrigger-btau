@@ -12,7 +12,7 @@ module doublePixelRelaxedTauL1SeedFilter = HLTLevel1Seed {
 
 
 #JetTrackAssociator
-module associatorL25PixelRelaxedTauIsolated = JetTracksAssociator {
+module associatorL25PixelRelaxedTauIsolated = JetTracksAssociatorAtVertex {
     InputTag tracks = pixelTracks
     InputTag jets   = ecalRelxedTauIsolated:Isolated
     double coneSize = 0.5

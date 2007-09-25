@@ -41,7 +41,7 @@ replace ctfWithMaterialTracksL25DoubleTau.src = "ckfTrackCandidatesL25DoubleTau"
 #
 
 #JetTrackAssociator
-module associatorL25DoubleTau = JetTracksAssociator {
+module associatorL25DoubleTau = JetTracksAssociatorAtVertex {
     InputTag tracks = ctfWithMaterialTracksL25DoubleTau
     InputTag jets   = ecalDoubleTauIsolated:Isolated
     double coneSize = 0.5
@@ -121,7 +121,7 @@ replace ctfWithMaterialTracksL3DoubleTau.src = "ckfTrackCandidatesL3DoubleTau"
 #
 
 #JetTrackAssociator
-module associatorL3DoubleTau = JetTracksAssociator {
+module associatorL3DoubleTau = JetTracksAssociatorAtVertex {
     InputTag tracks = ctfWithMaterialTracksL3DoubleTau
     InputTag jets   = isolatedL25DoubleTau
     double coneSize = 0.5

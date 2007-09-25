@@ -5,7 +5,6 @@ include "HLTrigger/Muon/data/CommonModules.cff"
 #include "HLTrigger/Muon/data/CommonModules_2x1033.cff"
 
 # Soft Lepton Taggers
-include "RecoBTau/JetTagProducer/data/jetTags.cff"
 include "RecoBTag/SoftLepton/data/softLeptonByDistanceES.cfi"
 include "RecoBTag/SoftLepton/data/softLeptonByPtES.cfi"
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
@@ -36,7 +35,7 @@ es_module softLeptonByDistance05 = LeptonTaggerByDistanceESProducer {
     }
 }
 
-module softMuonJetTagsL2 = JetTagProducerSoftLepton {
+module softMuonJetTagsL2 = JetTagProducer {
     InputTag tagInfo        = softMuonTagInfosL2
     string   jetTagComputer = "softLeptonByDistance05"
 }
@@ -57,13 +56,13 @@ module softMuonTagInfosL3 = SoftLepton {
 }
 
 # tag by PtRel
-module softMuonJetTagsL3 = JetTagProducerSoftLepton {
+module softMuonJetTagsL3 = JetTagProducer {
     InputTag tagInfo        = softMuonTagInfosL3
     string   jetTagComputer = "softLeptonByPt"
 }
 
 # tag bay DeltaR
-module softMuonJetTagsL3ByDistance = JetTagProducerSoftLepton {
+module softMuonJetTagsL3ByDistance = JetTagProducer {
     InputTag tagInfo        = softMuonTagInfosL3
     string   jetTagComputer = "softLeptonByDistance05"
 }

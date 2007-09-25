@@ -2,7 +2,6 @@
 # b lifetime tag algorithms for Level 2.5 and 3.
 #
 
-include "RecoBTau/JetTagProducer/data/jetTags.cff"
 include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
 
 module  hltLifetimeTagInfosL25 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
@@ -13,8 +12,8 @@ replace hltLifetimeTagInfosL25.useDB                = false
 replace hltLifetimeTagInfosL25.minimumNumberOfHits  = 3
 
 # 3D impact parameter, 2nd track
-module  hltLifetimeJetTagsL25 = trackCountingHighEffJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighEffJetTags.cfi"
-# for 3rd track, use          = trackCountingHighPurJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighPurJetTags.cfi"
+module  hltLifetimeJetTagsL25 = trackCountingHighEffJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffJetTags.cfi"
+# for 3rd track, use          = trackCountingHighPurJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighPurJetTags.cfi"
 replace hltLifetimeJetTagsL25.tagInfo = hltLifetimeTagInfosL25
 
 module  hltLifetimeTagInfosL3 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
@@ -25,6 +24,6 @@ replace hltLifetimeTagInfosL3.useDB                 = false
 replace hltLifetimeTagInfosL3.minimumNumberOfHits   = 8
 
 # 3D impact parameter, 2nd track
-module  hltLifetimeJetTagsL3 = trackCountingHighEffJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighEffJetTags.cfi"
-# for 3rd track, use         = trackCountingHighPurJetTags from "RecoBTau/JetTagProducer/data/trackCountingHighPurJetTags.cfi"
+module  hltLifetimeJetTagsL3 = trackCountingHighEffJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffJetTags.cfi"
+# for 3rd track, use         = trackCountingHighPurJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighPurJetTags.cfi"
 replace hltLifetimeJetTagsL3.tagInfo = hltLifetimeTagInfosL3
