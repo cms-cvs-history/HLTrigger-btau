@@ -2,7 +2,7 @@
 # b lifetime tag algorithms for Level 2.5 and 3.
 #
 
-include "TrackingTools/TransientTrack/data/TransientTrackBuilder.cfi"
+include "RecoBTag/ImpactParameter/data/impactParameter.cff"
 
 module  hltLifetimeTagInfosL25 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
 replace hltLifetimeTagInfosL25.jetTracks            = "associatorL25"
