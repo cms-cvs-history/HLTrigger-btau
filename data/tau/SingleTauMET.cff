@@ -1,14 +1,11 @@
 # L1Seed Filter
 module singleTauMETPrescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 
-module singleTauMETL1SeedFilter = HLTLevel1Seed {
-    vstring L1Seeds = {"L1_TauJet30_ETM30"}
-    bool andOr      = true
-    bool byName     = true
-    InputTag L1ExtraCollections = l1extraParticles
-    InputTag L1ExtraParticleMap = l1extraParticleMap
-    InputTag L1GTReadoutRecord  = l1extraParticleMap
-}
+
+module  singleTauMETL1SeedFilter = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
+replace singleTauMETL1SeedFilter.L1SeedsLogicalExpression = "L1_TauJet30_ETM30"
+
+
 
 # MET Cut
 module hlt1METSingleTauMET = HLT1CaloMET {
