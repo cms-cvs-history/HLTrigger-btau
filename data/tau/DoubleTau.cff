@@ -1,153 +1,43 @@
-   module  doubleTauPrescaler  = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-
+module  doubleTauPrescaler  = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 module doubleTauL1SeedFilter = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
 replace doubleTauL1SeedFilter.L1SeedsLogicalExpression = "L1_DoubleTauJet40"
 
-
-#
-#Filter to confirm L1 SingleTau decision
-#
-
-module filterL25DoubleTauToConfirm = HLTTauL25DoubleFilter {
-    InputTag JetTag   = coneIsolationL25SingleTau
-    InputTag L1Code = l2TauJetsProvider
-}
-
-
-
-#
-# Regional Tk reconstruction for SingleTauCollection
-#
-
-module l25DoubleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalDoubleTauIsolated:Isolated
-
-
-
-module ckfTrackCandidatesL25DoubleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL25DoubleTau.SeedProducer  = "l25DoubleTauPixelSeeds"
-replace ckfTrackCandidatesL25DoubleTau.TrajectoryBuilder    = "trajBuilderL25"
-
-module ctfWithMaterialTracksL25DoubleTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL25DoubleTau.src = "ckfTrackCandidatesL25DoubleTau"
-
-#
-#Calculate Isolation for DoubleTau Collection
-#
-
 #JetTrackAssociator
-module associatorL25DoubleTau = JetTracksAssociatorAtVertex {
-    InputTag tracks = ctfWithMaterialTracksL25DoubleTau
-    InputTag jets   = ecalDoubleTauIsolated:Isolated
+module associatorL25PixelTauIsolated = JetTracksAssociatorAtVertex {
+    InputTag tracks = pixelTracks
+    InputTag jets   = ecalTauIsolated:Isolated
     double coneSize = 0.5
 }
- 
-module coneIsolationL25DoubleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
-replace coneIsolationL25DoubleTau.JetTrackSrc = "associatorL25DoubleTau"
 
-
-#
-#Filter to trace back isolatedCandidates
-#
-module filterL25DoubleTauCandidate = HLT1Tau {
-    InputTag inputTag   = coneIsolationL25DoubleTau
-    double MinPt = 10.0
-    double MaxEta= 5.0
-    int32 MinN     = 1
-}
-
+module coneIsolationL25PixelTauIsolated = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
+replace coneIsolationL25PixelTauIsolated.JetTrackSrc = "associatorL25PixelTauIsolated"
+replace coneIsolationL25PixelTauIsolated.MinimumNumberOfHits = 2
 
 #
 #Selecting Isolated Taus
 #
-module isolatedL25DoubleTau = IsolatedTauJetsSelector{
+
+module isolatedL25PixelTau = IsolatedTauJetsSelector{
     
-    VInputTag JetSrc = {coneIsolationL25DoubleTau,coneIsolationL25SingleTau}
-    double MatchingCone = 0.1
-    double SignalCone = 0.07
-    double IsolationCone = 0.30
-    double MinimumTransverseMomentumInIsolationRing = 1.
-    double MinimumTransverseMomentumLeadingTrack = 6.
+	VInputTag JetSrc = {coneIsolationL25PixelTauIsolated}
+	double MatchingCone = 0.1
+	double SignalCone = 0.07
+	double IsolationCone = 0.3
+	double MinimumTransverseMomentumInIsolationRing = 1.0
+    double MinimumTransverseMomentumLeadingTrack = 3.
     double DeltaZetTrackVertex = 0.2
     int32	MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
     bool UseVertex = false
+
 }
 
-module filterL25DoubleTau = HLT1Tau {
-    InputTag inputTag   = isolatedL25DoubleTau
+module filterL25PixelTau = HLT1Tau {
+    InputTag inputTag   = isolatedL25PixelTau
+
     double MinPt = 10.0
     double MaxEta= 5.0
-    int32 MinN     = 2
-}
-
-
-
-#
-# Starting L3 DoubleTau
-#
-
-#
-# Regional Tk reconstruction for DoubleTauCollection
-#
-module l3DoubleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l3DoubleTauPixelSeeds.RegionFactoryPSet.RegionPSet ={
-double deltaEtaRegion = 0.5
-    double deltaPhiRegion = 0.5
-    double ptMin = 1.0
-    double originZPos = 0.0
-    double originRadius = 0.2
-    double originHalfLength = 0.2
-    string vertexSrc ="pixelVertices"
-    bool precise = true
-    InputTag JetSrc = isolatedL25DoubleTau
-}
-
-
-module ckfTrackCandidatesL3DoubleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL3DoubleTau.SeedProducer  = "l3DoubleTauPixelSeeds"
-replace ckfTrackCandidatesL3DoubleTau.TrajectoryBuilder    = "trajBuilderL3"
-
-module ctfWithMaterialTracksL3DoubleTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL3DoubleTau.src = "ckfTrackCandidatesL3DoubleTau"
-
-#
-#Calculate Isolation for DoubleTau Collection
-#
-
-#JetTrackAssociator
-module associatorL3DoubleTau = JetTracksAssociatorAtVertex {
-    InputTag tracks = ctfWithMaterialTracksL3DoubleTau
-    InputTag jets   = isolatedL25DoubleTau
-    double coneSize = 0.5
-}
- 
-module coneIsolationL3DoubleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
-replace coneIsolationL3DoubleTau.JetTrackSrc = "associatorL3DoubleTau"
-
-
-module isolatedL3DoubleTau = IsolatedTauJetsSelector{
     
-    VInputTag JetSrc = {coneIsolationL3DoubleTau}
-    double MatchingCone = 0.1
-    double SignalCone = 0.07
-    double IsolationCone = 0.30
-    double MinimumTransverseMomentumInIsolationRing = 1.
-    double MinimumTransverseMomentumLeadingTrack = 6.
-    double DeltaZetTrackVertex = 0.2
-    int32	MaximumNumberOfTracksIsolationRing = 0
-    InputTag VertexSrc = pixelVertices
-    bool UseVertex = false
-}
-
-module filterL3DoubleTau = HLT1Tau {
-    InputTag inputTag   = isolatedL3DoubleTau
- double MinPt = 10.0
-    double MaxEta= 5.0
     int32 MinN     = 2
 }
-
-
-
-
 
