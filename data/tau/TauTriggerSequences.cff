@@ -14,8 +14,7 @@ sequence caloTausCreator = {
     caloTowersTau3, 
     icone5Tau3, 
     caloTowersTau4, 
-    icone5Tau4,
-    l2TauJetsProvider
+    icone5Tau4
 }
 
 
@@ -83,57 +82,23 @@ sequence singleTauMET = {
 }
 sequence singleTauMETNoFilters = {singleTauMETL25,singleTauMETL3}
 
-#
-#Double Trk Tau
-#
-
-#L25Trk reconstruction
-sequence ckfTracksL25DoubleTau = {l25DoubleTauPixelSeeds,ckfTrackCandidatesL25DoubleTau,ctfWithMaterialTracksL25DoubleTau}
-
-#L25Tau JetMaker
-sequence tauJetsMakerL25DoubleTau = {associatorL25DoubleTau, coneIsolationL25DoubleTau,isolatedL25DoubleTau}
-
-#L25DoubleTau
-sequence doubleTauL25 = {ckfTracksL25DoubleTau,tauJetsMakerL25DoubleTau}
-
-#L3Trk reconstruction
-sequence ckfTracksL3DoubleTau = {l3DoubleTauPixelSeeds,ckfTrackCandidatesL3DoubleTau,ctfWithMaterialTracksL3DoubleTau}
-
-#L3Tau JetMaker
-sequence tauJetsMakerL3DoubleTau = {associatorL3DoubleTau, coneIsolationL3DoubleTau,isolatedL3DoubleTau}
-
-#L3 Double Tau
-sequence doubleTauL3 = {ckfTracksL3DoubleTau,tauJetsMakerL3DoubleTau}
-
-
-sequence doubleTrkTau ={
-    singleTauL25& 
-    filterL25DoubleTauToConfirm&
-    doubleTauL25&
-    filterL25DoubleTau& 
-    doubleTauL3&
-    filterL3DoubleTau
-}    
-
-sequence doubleTrkTauNoFilters ={ singleTauL25,doubleTauL25,doubleTauL3}   
 
 
 #Pixel Tau
 
 #EcalIsolation
-#sequence ecalIsolation ={(singleTauJetCrystalsAssociator,doubleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalDoubleTauIsol,ecalSingleTauIsolated)&(ecalDoubleTauIsolated),ecalTauIsolated}
 sequence ecalIsolation ={(singleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalSingleTauIsolated) & (doubleTauJetCrystalsAssociator,ecalDoubleTauIsol,ecalDoubleTauIsolated) ,ecalTauIsolated}
 sequence ecalIsolationSingleTauMET={singleTauMETJetCrystalsAssociator,ecalSingleTauMETIsol,ecalSingleTauMETIsolated}
-sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
+
 sequence doubleCaloPixelTau = {
-    (ecalIsolation,filterTauEcalIsolation)
+    (ecalDoubleTauIsolation,filterDoubleTauEcalIsolation)
     &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25,
     filterL25PixelTau
 }
 
 sequence doubleCaloPixelTauNoFilters = { 
-    (ecalIsolation)
+    (ecalDoubleTauIsolation)
     &pixel_local&recopixelvertexing,
     ecalIsolatedPixelTauL25
 }
@@ -145,11 +110,11 @@ sequence doubleCaloPixelTauNoFilters = {
 
 sequence singleTauL1HLT = { singleTauPrescaler&hltBegin&(singleTauL1SeedFilter&caloTausCreator&hltMET)&ecalIsolation&filterSingleTauEcalIsolation&tracker_local&recopixelvertexing&singleTau }
 sequence singleTauMETL1HLT = {singleTauMETPrescaler&hltBegin&(singleTauMETL1SeedFilter&caloTausCreator&hltMET2)&ecalIsolationSingleTauMET&filterSingleTauMETEcalIsolation&tracker_local&recopixelvertexing&singleTauMET}
-sequence caloPixelTauL1HLT = { doubleTauPrescaler&hltBegin&doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTau}
-sequence caloSiStripTauL1HLT = { doubleTauPrescaler&hltBegin&doubleTauL1SeedFilter&caloTausCreator&(ecalIsolation,filterTauEcalIsolation)&pixel_local&recopixelvertexing&siStrip_local&doubleTrkTau}
+sequence caloPixelTauL1HLT = { doubleTauPrescaler&hltBegin&doubleTauL1SeedFilter&caloTausCreator&l2DoubleTauJets&doubleCaloPixelTau}
+
 
 #Triggers with no HLTFilters! For debugging scope
 sequence singleTauL1NoHLT = {hltBegin&(singleTauL1SeedFilter&caloTausCreator)&ecalIsolation&tracker_local&recopixelvertexing&singleTauNoFilters }
 sequence singleTauMETL1NoHLT = {hltBegin&(singleTauMETL1SeedFilter&caloTausCreator)&ecalIsolationSingleTauMET&tracker_local&recopixelvertexing&singleTauMETNoFilters}
-sequence caloPixelTauL1NoHLT = {hltBegin&doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
+sequence caloPixelTauL1NoHLT = {hltBegin&doubleTauL1SeedFilter&caloTausCreator&l2DoubleTauJets&doubleCaloPixelTauNoFilters}
 sequence caloSiStripTauL1NoHLT = {hltBegin&doubleTauL1SeedFilter&caloTausCreator&ecalIsolation&tracker_local&recopixelvertexing&doubleTrkTauNoFilters}

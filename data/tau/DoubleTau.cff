@@ -1,11 +1,42 @@
 module  doubleTauPrescaler  = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+
+#L1 SeedFilter
 module doubleTauL1SeedFilter = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
 replace doubleTauL1SeedFilter.L1SeedsLogicalExpression = "L1_DoubleTauJet40"
 
-#JetTrackAssociator
+#L2Jets Producer
+module l2DoubleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
+replace l2DoubleTauJets.L1TauTrigger = "doubleTauL1SeedFilter"
+
+#L2 Ecal Isolation
+module doubleTauJetCrystalsAssociator = JetCrystalsAssociator {
+    InputTag EBRecHits =ecalRecHit:EcalRecHitsEB 
+    InputTag EERecHits =ecalRecHit:EcalRecHitsEE 
+    InputTag jets   =l2DoubleTauJets
+    double coneSize = 0.5
+}
+module  ecalDoubleTauIsol =  EcalIsolation{
+        InputTag JetForFilter = doubleTauJetCrystalsAssociator
+         double SmallCone = 0.13
+         double BigCone   = 0.4
+        double Pisol = 5.0
+}
+module ecalDoubleTauIsolated = EMIsolatedTauJetsSelector{
+    VInputTag TauSrc= {ecalDoubleTauIsol}
+}
+
+#Filter to select events with atleast two Isolated jets
+module filterDoubleTauEcalIsolation = HLT1Tau  {
+    InputTag inputTag = ecalDoubleTauIsolated:Isolated
+    double MinPt = 1.0
+    double MaxEta= 5.0
+    int32  MinN  = 2
+}
+
+#L2.5 Pixel Isolation
 module associatorL25PixelTauIsolated = JetTracksAssociatorAtVertex {
     InputTag tracks = pixelTracks
-    InputTag jets   = ecalTauIsolated:Isolated
+    InputTag jets   = ecalDoubleTauIsolated:Isolated
     double coneSize = 0.5
 }
 
@@ -13,9 +44,8 @@ module coneIsolationL25PixelTauIsolated = coneIsolationForHLT from "RecoTauTag/H
 replace coneIsolationL25PixelTauIsolated.JetTrackSrc = "associatorL25PixelTauIsolated"
 replace coneIsolationL25PixelTauIsolated.MinimumNumberOfHits = 2
 
-#
+
 #Selecting Isolated Taus
-#
 
 module isolatedL25PixelTau = IsolatedTauJetsSelector{
     
@@ -41,3 +71,6 @@ module filterL25PixelTau = HLT1Tau {
     int32 MinN     = 2
 }
 
+#Sequences
+sequence ecalDoubleTauIsolation ={(doubleTauJetCrystalsAssociator,ecalDoubleTauIsol,ecalDoubleTauIsolated)}
+sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
