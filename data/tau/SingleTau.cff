@@ -16,7 +16,7 @@ module hlt1METSingleTau = HLT1CaloMET {
 
 #L2Jets Producer
 module l2SingleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
-replace l2SiongleTauJets.L1TauTrigger = "singleTauL1SeedFilter"
+replace l2SingleTauJets.L1TauTrigger = "singleTauL1SeedFilter"
 
 #construct the jet-crystals associator for the single and double Tau collection
 module singleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
