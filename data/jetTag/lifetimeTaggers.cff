@@ -1,25 +1,27 @@
+#
 # b lifetime tag algorithms for Level 2.5 and 3.
+#
 
 include "RecoBTag/ImpactParameter/data/impactParameter.cff"
 
-# L2.5 IP-based tag info
 module  hltLifetimeTagInfosL25 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
-replace hltLifetimeTagInfosL25.jetTracks                = "associatorL25"
-replace hltLifetimeTagInfosL25.primaryVertex            = "pixelVertices"
-replace hltLifetimeTagInfosL25.computeProbabilities     = false
-replace hltLifetimeTagInfosL25.minimumNumberOfHits      = 3
+replace hltLifetimeTagInfosL25.jetTracks            = "associatorL25"
+replace hltLifetimeTagInfosL25.primaryVertex        = "pixelVertices"
+replace hltLifetimeTagInfosL25.computeProbabilities = false
+replace hltLifetimeTagInfosL25.useDB                = false
+replace hltLifetimeTagInfosL25.minimumNumberOfHits  = 3
 
 # 3D impact parameter, 2nd track
 module  hltLifetimeJetTagsL25 = trackCountingHighEffJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffJetTags.cfi"
 # for 3rd track, use          = trackCountingHighPurJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighPurJetTags.cfi"
 replace hltLifetimeJetTagsL25.tagInfo = hltLifetimeTagInfosL25
 
-# L3 IP-based tag info
 module  hltLifetimeTagInfosL3 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
-replace hltLifetimeTagInfosL3.jetTracks                 = "associatorL3"
-replace hltLifetimeTagInfosL3.primaryVertex             = "pixelVertices"
-replace hltLifetimeTagInfosL3.computeProbabilities      = false
-replace hltLifetimeTagInfosL3.minimumNumberOfHits       = 8
+replace hltLifetimeTagInfosL3.jetTracks             = "associatorL3"
+replace hltLifetimeTagInfosL3.primaryVertex         = "pixelVertices"
+replace hltLifetimeTagInfosL3.computeProbabilities  = false
+replace hltLifetimeTagInfosL3.useDB                 = false
+replace hltLifetimeTagInfosL3.minimumNumberOfHits   = 8
 
 # 3D impact parameter, 2nd track
 module  hltLifetimeJetTagsL3 = trackCountingHighEffJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffJetTags.cfi"
