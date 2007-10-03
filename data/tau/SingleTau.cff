@@ -19,11 +19,11 @@ module l2SingleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2
 replace l2SiongleTauJets.L1TauTrigger = "singleTauL1SeedFilter"
 
 #construct the jet-crystals associator for the single and double Tau collection
-module singleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+module singleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
 replace singleTauJetCrystalsAssociator.jets   =l2SingleTauJets
 
 #Produce the EMIsolatedTauTagInfoCollection
-module  ecalSingleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+module  ecalSingleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalSingleTauIsol.JetForFilter = singleTauJetCrystalsAssociator
 
 module ecalSingleTauIsolated = EMIsolatedTauJetsSelector{
@@ -189,7 +189,7 @@ sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3Single
 #L3SingleTau
 sequence singleTauL3 = {ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
 
-sequence ecalSingleTauIsolation ={(singleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalSingleTauIsolated)}
+sequence ecalIsolationSingleTau ={(singleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalSingleTauIsolated)}
 
 sequence singleTau = {
     singleTauL25,

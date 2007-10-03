@@ -9,10 +9,10 @@ module l2DoubleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2
 replace l2DoubleTauJets.L1TauTrigger = "doubleTauL1SeedFilter"
 
 #L2 Ecal Isolation
-module doubleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+module doubleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
 replace doubleTauJetCrystalsAssociator.jets   =l2DoubleTauJets
 
-module  ecalDoubleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+module  ecalDoubleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalDoubleTauIsol.JetForFilter = doubleTauJetCrystalsAssociator
 
 module ecalDoubleTauIsolated = EMIsolatedTauJetsSelector{

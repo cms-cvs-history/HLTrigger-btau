@@ -18,11 +18,11 @@ module l2SingleTauMETJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data
 replace l2SingleTauMETJets.L1TauTrigger = "L1_TauJet30_ETM30"
 
 #construct the jet-crystals associator for the single and double Tau collection
-module singleTauMETJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+module singleTauMETJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
 replace singleTauMETJetCrystalsAssociator.jets   =l2SingleTauMETJets
 
 #Produce the EMIsolatedTauTagInfoCollection
-module  ecalSingleTauMETIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+module  ecalSingleTauMETIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalSingleTauMETIsol.JetForFilter = singleTauMETJetCrystalsAssociator
 
 # for SingleTauMET

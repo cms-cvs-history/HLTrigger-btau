@@ -1,10 +1,4 @@
 #Ecal Isolation
-module jetCrystalsAssociator = JetCrystalsAssociator {
-    InputTag EBRecHits =ecalRecHit:EcalRecHitsEB 
-    InputTag EERecHits =ecalRecHit:EcalRecHitsEE 
-    InputTag jets   =DUMMYJETS
-    double coneSize = 0.5
-}
 
 module  ecalIsolation =  EcalIsolation{
         InputTag JetForFilter = jetCrystalsAssociator

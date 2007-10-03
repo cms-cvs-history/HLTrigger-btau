@@ -33,7 +33,7 @@ doubleTauPrescaler&hltBegin&
 doubleTauL1SeedFilter&caloTausCreator&
 l2DoubleTauJets&
 (ecalIsolationDoubleTau,filterDoubleTauEcalIsolation)&
-&pixel_local&recopixelvertexing&
+pixel_local&recopixelvertexing&
 doubleCaloPixelTau
 }
 
