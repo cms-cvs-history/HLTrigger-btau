@@ -1,11 +1,9 @@
-# L1Seed Filter
+#Prescaler
 module singleTauMETPrescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 
-
+# L1Seed Filter
 module  singleTauMETL1SeedFilter = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
 replace singleTauMETL1SeedFilter.L1SeedsLogicalExpression = "L1_TauJet30_ETM30"
-
-
 
 # MET Cut
 module hlt1METSingleTauMET = HLT1CaloMET {
@@ -13,6 +11,31 @@ module hlt1METSingleTauMET = HLT1CaloMET {
   double MinPt  = 35.0
   double MaxEta = -1.0 // negative = no cut
   int32  MinN   = 1
+}
+
+#L2Jets Producer
+module l2SingleTauMETJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
+replace l2SingleTauMETJets.L1TauTrigger = "L1_TauJet30_ETM30"
+
+#construct the jet-crystals associator for the single and double Tau collection
+module singleTauMETJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+replace singleTauMETJetCrystalsAssociator.jets   =l2SingleTauMETJets
+
+#Produce the EMIsolatedTauTagInfoCollection
+module  ecalSingleTauMETIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+replace ecalSingleTauMETIsol.JetForFilter = singleTauMETJetCrystalsAssociator
+
+# for SingleTauMET
+module ecalSingleTauMETIsolated = EMIsolatedTauJetsSelector{
+    VInputTag TauSrc= {ecalSingleTauMETIsol}
+}
+
+# for SingleTauMET
+module filterSingleTauMETEcalIsolation = HLT1Tau  {
+    InputTag inputTag = ecalSingleTauMETIsolated:Isolated
+    double MinPt  = 1.0
+    double MaxEta = 5.0
+    int32  MinN   = 1
 }
 
 # Regional Tk reconstruction for SingleTauMETCollection
@@ -125,3 +148,35 @@ module filterL3SingleTauMET = HLT1Tau {
     double MaxEta= 5.0
     int32 MinN    = 1
 }
+
+#
+# sequences
+#
+
+sequence ecalIsolationSingleTauMET={singleTauMETJetCrystalsAssociator,ecalSingleTauMETIsol,ecalSingleTauMETIsolated}
+
+#L25Trk reconstruction
+sequence ckfTracksL25SingleTauMET = {l25SingleTauMETPixelSeeds,ckfTrackCandidatesL25SingleTauMET,ctfWithMaterialTracksL25SingleTauMET}
+
+#L25Tau JetMaker
+sequence tauJetsMakerL25SingleTauMET = {associatorL25SingleTauMET,coneIsolationL25SingleTauMET,isolatedL25SingleTauMET}
+
+#L25SingleTauMET
+sequence singleTauMETL25 = {ckfTracksL25SingleTauMET,tauJetsMakerL25SingleTauMET}
+
+#L3Trk reconstruction
+sequence ckfTracksL3SingleTauMET = {l3SingleTauMETPixelSeeds,ckfTrackCandidatesL3SingleTauMET,ctfWithMaterialTracksL3SingleTauMET}
+
+#L3Tau JetMaker
+sequence tauJetsMakerL3SingleTauMET = {associatorL3SingleTauMET,coneIsolationL3SingleTauMET,isolatedL3SingleTauMET}
+
+#L3SingleTauMET
+sequence singleTauMETL3 = {ckfTracksL3SingleTauMET,tauJetsMakerL3SingleTauMET}
+
+sequence singleTauMET = {
+    singleTauMETL25,
+    filterL25SingleTauMET,
+    singleTauMETL3,
+    filterL3SingleTauMET
+}
+sequence singleTauMETNoFilters = {singleTauMETL25,singleTauMETL3}

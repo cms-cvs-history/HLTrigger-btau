@@ -9,18 +9,12 @@ module l2DoubleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2
 replace l2DoubleTauJets.L1TauTrigger = "doubleTauL1SeedFilter"
 
 #L2 Ecal Isolation
-module doubleTauJetCrystalsAssociator = JetCrystalsAssociator {
-    InputTag EBRecHits =ecalRecHit:EcalRecHitsEB 
-    InputTag EERecHits =ecalRecHit:EcalRecHitsEE 
-    InputTag jets   =l2DoubleTauJets
-    double coneSize = 0.5
-}
-module  ecalDoubleTauIsol =  EcalIsolation{
-        InputTag JetForFilter = doubleTauJetCrystalsAssociator
-         double SmallCone = 0.13
-         double BigCone   = 0.4
-        double Pisol = 5.0
-}
+module doubleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+replace doubleTauJetCrystalsAssociator.jets   =l2DoubleTauJets
+
+module  ecalDoubleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+replace ecalDoubleTauIsol.JetForFilter = doubleTauJetCrystalsAssociator
+
 module ecalDoubleTauIsolated = EMIsolatedTauJetsSelector{
     VInputTag TauSrc= {ecalDoubleTauIsol}
 }
@@ -72,5 +66,15 @@ module filterL25PixelTau = HLT1Tau {
 }
 
 #Sequences
-sequence ecalDoubleTauIsolation ={(doubleTauJetCrystalsAssociator,ecalDoubleTauIsol,ecalDoubleTauIsolated)}
+sequence ecalIsolationDoubleTau ={(doubleTauJetCrystalsAssociator,ecalDoubleTauIsol,ecalDoubleTauIsolated)}
 sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
+
+sequence doubleCaloPixelTau = {    
+    ecalIsolatedPixelTauL25,
+    filterL25PixelTau
+}
+
+sequence doubleCaloPixelTauNoFilters = { 
+    ecalIsolatedPixelTauL25
+}
+

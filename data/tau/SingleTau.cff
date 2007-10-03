@@ -1,30 +1,44 @@
-#L1Seed Filter
+#Prescaler
 module  singleTauPrescaler  = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 
-
+#L1Seed Filter
 module  singleTauL1SeedFilter = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
 replace singleTauL1SeedFilter.L1SeedsLogicalExpression = "L1_SingleTauJet80"
 
 
 #MET CUT
+module hlt1METSingleTau = HLT1CaloMET {
+    InputTag inputTag = met
+    double MinPt = 65.0
+    double MaxEta= -1.0 // negative = no cut
+    int32  MinN  = 1
+}
 
-  module hlt1METSingleTau = HLT1CaloMET {
-     InputTag inputTag = met
-     double MinPt = 65.0
-     double MaxEta= -1.0 // negative = no cut
-     int32  MinN  = 1
-  }
+#L2Jets Producer
+module l2SingleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
+replace l2SiongleTauJets.L1TauTrigger = "singleTauL1SeedFilter"
 
-#Check the jets are reconstructed at L2
-module filterL2SingleTauJets = HLT1Tau  {
-    InputTag inputTag = l2TauJetsProvider:SingleTau
-    double MinPt = 10.0
+#construct the jet-crystals associator for the single and double Tau collection
+module singleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+replace singleTauJetCrystalsAssociator.jets   =l2SingleTauJets
+
+#Produce the EMIsolatedTauTagInfoCollection
+module  ecalSingleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cff"
+replace ecalSingleTauIsol.JetForFilter = singleTauJetCrystalsAssociator
+
+module ecalSingleTauIsolated = EMIsolatedTauJetsSelector{
+    VInputTag TauSrc= {ecalSingleTauIsol}
+}  
+
+#Filter to select events with atleast one Isolated jet
+module filterSingleTauEcalIsolation = HLT1Tau  {
+    InputTag inputTag = ecalSingleTauIsolated:Isolated
+    double MinPt = 1.0
     double MaxEta= 5.0
     int32  MinN  = 1
 }
 
-
-# Ckf
+# CKF Regional reconstruction
 es_module trajBuilderL25 =  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
 replace trajBuilderL25.ComponentName = "trajBuilderL25"
 replace trajBuilderL25.ptCut               = 5.0
@@ -34,7 +48,6 @@ replace trajBuilderL25.alwaysUseInvalidHits = false
 
 
 # Regional Tk reconstruction for SingleTauCollection
-
 module l25SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l25SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauIsolated:Isolated
 
@@ -67,12 +80,11 @@ replace coneIsolationL25SingleTau.JetTrackSrc = "associatorL25SingleTau"
 #
 
 module isolatedL25SingleTau = IsolatedTauJetsSelector{
-    
     VInputTag JetSrc = {coneIsolationL25SingleTau}
-	double MatchingCone = 0.1
-	double SignalCone = 0.065
-	double IsolationCone = 0.4
-	double MinimumTransverseMomentumInIsolationRing = 1.
+    double MatchingCone = 0.1
+    double SignalCone = 0.065
+    double IsolationCone = 0.4
+    double MinimumTransverseMomentumInIsolationRing = 1.
     double MinimumTransverseMomentumLeadingTrack = 20
     double DeltaZetTrackVertex = 0.2
     int32	MaximumNumberOfTracksIsolationRing = 0
@@ -141,10 +153,10 @@ replace coneIsolationL3SingleTau.useVertex = true
 module isolatedL3SingleTau = IsolatedTauJetsSelector{
     
     VInputTag JetSrc = {coneIsolationL3SingleTau}
-	double MatchingCone = 0.1
-	double SignalCone = 0.065
-	double IsolationCone = 0.40
-	double MinimumTransverseMomentumInIsolationRing = 1.
+    double MatchingCone = 0.1
+    double SignalCone = 0.065
+    double IsolationCone = 0.40
+    double MinimumTransverseMomentumInIsolationRing = 1.
     double MinimumTransverseMomentumLeadingTrack = 20
     double DeltaZetTrackVertex = 0.2
     int32	MaximumNumberOfTracksIsolationRing = 0
@@ -159,3 +171,31 @@ module filterL3SingleTau = HLT1Tau {
     int32  MinN   = 1
 }
 
+#L25Trk reconstruction
+sequence ckfTracksL25SingleTau = {l25SingleTauPixelSeeds,ckfTrackCandidatesL25SingleTau,ctfWithMaterialTracksL25SingleTau}
+
+#L25Tau JetMaker
+sequence tauJetsMakerL25SingleTau = {associatorL25SingleTau, coneIsolationL25SingleTau,isolatedL25SingleTau}
+
+#L25SingleTau
+sequence singleTauL25 = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau}
+
+#L3Trk reconstruction
+sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3SingleTau,ctfWithMaterialTracksL3SingleTau}
+
+#L3Tau JetMaker
+sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3SingleTau,isolatedL3SingleTau }
+
+#L3SingleTau
+sequence singleTauL3 = {ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
+
+sequence ecalSingleTauIsolation ={(singleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalSingleTauIsolated)}
+
+sequence singleTau = {
+    singleTauL25,
+    filterL25SingleTau,
+    singleTauL3,
+    filterL3SingleTau
+}
+
+sequence singleTauNoFilters = {singleTauL25,singleTauL3}

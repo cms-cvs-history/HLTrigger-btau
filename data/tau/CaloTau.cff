@@ -59,6 +59,18 @@ module icone5Tau4 = IterativeConeJetProducer {
 replace icone5Tau4.src = caloTowersTau4
 
 
+#CaloTaus sequence
+sequence caloTausCreator = {
+    doCalo,
+    caloTowersTau1,
+    icone5Tau1,
+    caloTowersTau2, 
+    icone5Tau2, 
+    caloTowersTau3, 
+    icone5Tau3, 
+    caloTowersTau4, 
+    icone5Tau4
+}
 
 
 
