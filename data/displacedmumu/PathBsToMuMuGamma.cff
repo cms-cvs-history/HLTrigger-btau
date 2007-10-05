@@ -10,8 +10,18 @@ include "RecoEgamma/EgammaHLTProducers/data/hltRecoEcalSingleCandidate.cfi"
 
 ## HLT common filter for L1 input
 
-module  hltDiMuonLevel1Seed = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
-    replace hltDiMuonLevel1Seed.L1SeedsLogicalExpression = "L1_DoubleMu3"
+module hltDiMuonLevel1Seed = HLTLevel1Seed {
+		vstring L1Seeds = { "DoubleMuon"}
+		bool andOr      = true
+		bool byName     = true
+            #InputTag L1ExtraCollections = l1extramctruth
+            #InputTag L1ExtraParticleMap = l1extramctruth
+            #InputTag L1GTReadoutRecord = l1extramctruth
+			InputTag L1ExtraCollections = l1extraParticles
+            InputTag L1ExtraParticleMap = l1extraParticleMap
+            InputTag L1GTReadoutRecord = l1extraParticleMap
+}
+
 
 # HLT Level-1 filter module
 

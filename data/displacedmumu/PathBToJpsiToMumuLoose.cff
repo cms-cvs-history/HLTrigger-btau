@@ -2,8 +2,14 @@
 #include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
 include "HLTrigger/Muon/data/CommonModules.cff"
 
-module  JpsitoMumuL1Seed = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
-    replace JpsitoMumuL1Seed.L1SeedsLogicalExpression = "L1_DoubleMu3"
+module JpsitoMumuL1Seed = HLTLevel1Seed {
+	vstring L1Seeds = { "L1_DoubleMu3" }
+	bool andOr      = true
+	bool byName     = true
+	InputTag L1ExtraCollections = l1extraParticles
+	InputTag L1ExtraParticleMap = l1extraParticleMap
+	InputTag L1GTReadoutRecord = l1extraParticleMap
+}
 
 module JpsitoMumuL1Filtered = HLTMuonL1Filter {
 	InputTag CandTag = JpsitoMumuL1Seed
