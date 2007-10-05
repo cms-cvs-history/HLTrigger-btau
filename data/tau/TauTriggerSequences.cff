@@ -3,12 +3,159 @@ sequence pixel_local   = {doLocalPixel}
 sequence siStrip_local = {doLocalStrip}
 sequence tracker_local = {doLocalPixel&doLocalStrip}
 
+#################################################################################
+# 
+# Electron+tau ( as of HLT exercise 2007 )
+#
+sequence hltL2TauJetsElectronTau = {
+ caloTausCreator,hltL2TauJetsProviderElectronTau
+}
 
-sequence hltMET = {met, hlt1METSingleTau} //Filter for the MET at L2
+sequence hltTracksL25ElectronTau = {
+ hltTauRegionalPixelSeedL25ElectronTau,
+ hltCkfTrackCandidatesL25ElectronTau,
+ hltCtfWithMaterialTracksL25ElectronTau
+}
+
+sequence hltTauJetsL25ElectronTau = {
+ hltJetTracksAssociatorAtVertexL25ElectronTau,
+ hltConeIsolationL25ElectronTau,
+ hltIsolatedTauJetsSelectorL25ElectronTau
+}
+
+sequence hltL25ElectronTau = {
+ hltTracksL25ElectronTau,
+ hltTauJetsL25ElectronTau
+}
+
+sequence hltTracksL3ElectronTau = {
+ hltTauRegionalPixelSeedsL3ElectronTau,
+ hltCkfTrackCandidatesL3ElectronTau,
+ hltCtfWithMaterialTracksL3ElectronTau
+}
+  
+sequence hltTauJetsL3ElectronTau = {
+ hltJetTracksAssociatorAtVertexL3ElectronTau,
+ hltConeIsolationL3ElectronTau,
+ hltIsolatedTauJetsSelectorL3ElectronTau
+}
+
+sequence hltL3ElectronTau = {
+ hltTracksL3ElectronTau,
+ hltTauJetsL3ElectronTau
+}
+
+# Sequences to go into trigger path sequences ( defined in xchannel/data/ )
+
+sequence hltTauForElectronTau = {
+ hltL2TauJetsElectronTau                 &
+#  doLocalPixel                            & 
+#  doLocalStrip                            & 
+ recopixelvertexing                      & 
+ hltL25ElectronTau                       &
+ hltFilterIsolatedTauJetsL25ElectronTau  &
+ hltL3ElectronTau                        &
+ hltFilterIsolatedTauJetsL3ElectronTau 
+}
+
+sequence hltTauForElectronTauNoFilter = {
+ hltL2TauJetsElectronTau       &
+#  doLocalPixel                  & 
+#  doLocalStrip                  & 
+ recopixelvertexing            & 
+ hltL25ElectronTau             &
+ hltL3ElectronTau        
+}
+
+#
+# Sequences for ecal. isolation + pixel tracks
+#
+
+# electron+tau
+sequence hltEcalIsolatedTauJetsElectronTau = { 
+ hltJetCrystalsAssociatorElectronTau,
+ hltEcalIsolationElectronTau,
+ hltEMIsolatedTauJetsSelectorElectronTau 
+}
+
+sequence hltPixelTrackIsolatedTauJetsElectronTau = {
+ hltJetsPixelTracksAssociatorElectronTau, 
+ hltPixelTrackConeIsolationElectronTau,
+ hltPixelTrackIsolatedTauJetsSelectorElectronTau
+}
+
+# Sequences to go into trigger path sequences ( defined in xchannel/data/ )
+
+sequence hltPixelTauForElectronTau = {
+ hltL2TauJetsElectronTau                        &
+ hltEcalIsolatedTauJetsElectronTau              &
+ hltFilterEcalIsolatedTauJetsElectronTau        &
+ doLocalPixel                                   & 
+ doLocalStrip                                   & 
+ recopixelvertexing                             & 
+ hltPixelTrackIsolatedTauJetsElectronTau        &
+ hltFilterPixelTrackIsolatedTauJetsElectronTau
+}
+
+sequence hltPixelTauForElectronTauNoFilter = {
+ hltL2TauJetsElectronTau                        &
+ hltEcalIsolatedTauJetsElectronTau              &
+ doLocalPixel                                   & 
+ doLocalStrip                                   & 
+ recopixelvertexing                             & 
+ hltPixelTrackIsolatedTauJetsElectronTau
+}
+
+#################################################################################
+#
+# Muon+tau ( HLT exercise )
+#
+
+sequence hltL2TauJetsMuonTau = {
+ caloTausCreator,hltL2TauJetsProviderMuonTau
+}
+
+sequence hltEcalIsolatedTauJetsMuonTau = { 
+ hltJetCrystalsAssociatorMuonTau,
+ hltEcalIsolationMuonTau,
+ hltEMIsolatedTauJetsSelectorMuonTau 
+}
+
+sequence hltPixelTrackMuonTau = {
+ hltJetsPixelTracksAssociatorMuonTau, 
+ hltPixelTrackConeIsolationMuonTau,
+ hltPixelTrackIsolatedTauJetsSelectorMuonTau
+}
+
+sequence hltPixelTauForMuonTau = {
+ hltL2TauJetsMuonTau                            &
+ hltEcalIsolatedTauJetsMuonTau                  &
+ hltFilterEcalIsolatedTauJetsMuonTau            &
+ doLocalPixel                                   & 
+ doLocalStrip                                   & 
+ recopixelvertexing                             & 
+ hltPixelTrackMuonTau                           &
+ hltFilterPixelTrackIsolatedTauJetsMuonTau
+}
+
+# Sequences to go into trigger path sequences ( defined in xchannel/data/ )
+
+sequence hltPixelTauForMuonTauNoFilter = {
+ hltL2TauJetsMuonTau                            &
+ hltEcalIsolatedTauJetsMuonTau                  &
+ doLocalPixel                                   & 
+ doLocalStrip                                   & 
+ recopixelvertexing                             & 
+ hltPixelTrackMuonTauNoFilter
+}
+
+#################################################################################
+#
+# single-tau, single-tau+MET and double-tau ( HLT exercise )
+#
+
+sequence hltMET  = {met, hlt1METSingleTau} //Filter for the MET at L2
 sequence hltMET2 = {met, hlt1METSingleTauMET} //Filter for the MET at L2
-
-
-#Trigger  sequences to become trigger path in cfg file
 
 sequence singleTauL1HLT = { 
 singleTauPrescaler&hltBegin&

@@ -1,0 +1,71 @@
+##########################################################
+#
+# Authors: S. Gennai, S. Greder, K. Petridis, P. Trueb
+#
+##########################################################
+
+#
+# Level 2
+# 
+ 
+# Get level 2 jets from L1 trigger 
+module hltL2TauJetsProviderMuonTau = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
+ replace hltL2TauJetsProviderMuonTau.L1TauTrigger = "hltLevel1GTSeedMuonTau"
+
+# Construct the jet-crystals associator for the lepton-tau collection
+module hltJetCrystalsAssociatorMuonTau = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
+ replace hltJetCrystalsAssociatorMuonTau.jets = hltL2TauJetsProviderMuonTau
+
+# Produce the EMIsolatedTauTagInfoCollection
+module hltEcalIsolationMuonTau = ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
+ replace hltEcalIsolationMuonTau.JetForFilter = hltJetCrystalsAssociatorMuonTau
+
+# Produces out of EMIsolatedTauTagInfoCollection into isolated/non-isolated collections
+module hltEMIsolatedTauJetsSelectorMuonTau = EMIsolatedTauJetsSelector {
+ VInputTag TauSrc = { hltEcalIsolationMuonTau }
+}  
+  
+# Filter to select events with atleast one Isolated jet
+module hltFilterEcalIsolatedTauJetsMuonTau = HLT1Tau  {
+    InputTag inputTag = hltEMIsolatedTauJetsSelectorMuonTau:Isolated
+    double   MinPt    = 1.
+    double   MaxEta   = 5.
+    int32    MinN     = 1
+}
+
+# Pixel Isolation
+module hltJetsPixelTracksAssociatorMuonTau = JetTracksAssociatorAtVertex {
+    InputTag tracks   = pixelTracks
+    InputTag jets     = hltEMIsolatedTauJetsSelectorMuonTau:Isolated
+    double   coneSize = 0.5
+}
+
+module hltPixelTrackConeIsolationMuonTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
+ replace hltPixelTrackConeIsolationMuonTau.JetTrackSrc = "hltJetsPixelTracksAssociatorMuonTau"
+ replace hltPixelTrackConeIsolationMuonTau.MinimumNumberOfHits                   = 2
+ replace hltPixelTrackConeIsolationMuonTau.MinimumTransverseMomentumLeadingTrack = 3.
+ replace hltPixelTrackConeIsolationMuonTau.useVertex                             = true
+
+# Selecting isolated taus
+module hltPixelTrackIsolatedTauJetsSelectorMuonTau = IsolatedTauJetsSelector {
+    VInputTag JetSrc = { hltPixelTrackConeIsolationMuonTau }
+    double    MatchingCone                             = 0.1
+    double    SignalCone                               = 0.07
+    double    IsolationCone                            = 0.3
+    double    MinimumTransverseMomentumInIsolationRing = 1.0
+    double    MinimumTransverseMomentumLeadingTrack    = 3.
+    double    DeltaZetTrackVertex                      = 0.2
+    int32     MaximumNumberOfTracksIsolationRing       = 0
+    InputTag  VertexSrc                                = pixelVertices
+#    bool      UseVertex                                = true
+    bool      UseVertex                                = false
+}
+
+# Select events with at least 1 tau
+module hltFilterPixelTrackIsolatedTauJetsMuonTau = HLT1Tau {
+    InputTag inputTag = hltPixelTrackIsolatedTauJetsSelectorMuonTau
+    double   MinPt  = 0.
+    double   MaxEta = 5.0
+    int32    MinN   = 1
+}
+
