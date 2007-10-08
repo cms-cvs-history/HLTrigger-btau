@@ -1,0 +1,9 @@
+# jet tracks associator at vertex running on L2.5 jets and pixel-only tracks (pixel triplets)
+module  lifetimeAssociatorL25 = ic5JetTracksAssociatorAtVertex from "RecoJets/JetAssociationProducers/data/ic5JetTracksAssociatorAtVertex.cfi"
+replace lifetimeAssociatorL25.tracks = pixelTracks
+replace lifetimeAssociatorL25.jets   = lifetimeEtCutJets    # Take iterative cone jets with Et cut
+
+# jet tracks associator at vertex running on jets passing L2.5 and regionally reconstructed tracks
+module  lifetimeAssociatorL3 = ic5JetTracksAssociatorAtVertex from "RecoJets/JetAssociationProducers/data/ic5JetTracksAssociatorAtVertex.cfi"
+replace lifetimeAssociatorL3.tracks = bJetRegionalCtfWithMaterialTracks
+replace lifetimeAssociatorL3.jets   = fromL25bJets  # Take jets b-tagged at L2.5

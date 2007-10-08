@@ -4,7 +4,7 @@ include "RecoBTag/ImpactParameter/data/impactParameter.cff"
 
 # L2.5 IP-based tag info
 module  hltLifetimeTagInfosL25 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
-replace hltLifetimeTagInfosL25.jetTracks                = "associatorL25"
+replace hltLifetimeTagInfosL25.jetTracks                = "lifetimeAssociatorL25"
 replace hltLifetimeTagInfosL25.primaryVertex            = "pixelVertices"
 replace hltLifetimeTagInfosL25.computeProbabilities     = false
 replace hltLifetimeTagInfosL25.minimumNumberOfHits      = 3
@@ -16,7 +16,7 @@ replace hltLifetimeBJetTagsL25.tagInfo = hltLifetimeTagInfosL25
 
 # L3 IP-based tag info
 module  hltLifetimeTagInfosL3 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
-replace hltLifetimeTagInfosL3.jetTracks                 = "associatorL3"
+replace hltLifetimeTagInfosL3.jetTracks                 = "lifetimeAssociatorL3"
 replace hltLifetimeTagInfosL3.primaryVertex             = "pixelVertices"
 replace hltLifetimeTagInfosL3.computeProbabilities      = false
 replace hltLifetimeTagInfosL3.minimumNumberOfHits       = 8

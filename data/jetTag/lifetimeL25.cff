@@ -6,7 +6,7 @@ replace hltL25b.MinTag = 3.5
 # Reconstruction sequences needed before trigger.
 sequence preL25bReco = { 
     (lifetimeJetSel & bL25trackReco),
-    associatorL25, 
+    lifetimeAssociatorL25, 
     hltLifetimeTagInfosL25,
     hltLifetimeBJetTagsL25
 }

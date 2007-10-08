@@ -11,13 +11,13 @@ block JetTagLifetimeHLT = {
         "keep *_pixelVertices_*_*",       
         "keep *_pixelTracks_*_*",
         "keep *_lifetimeEtCutJets_*_*",
-        "keep *_associatorL25_*_*",
+        "keep *_lifetimeAssociatorL25_*_*",
         "keep *_hltLifetimeTagInfosL25_*_*",
         "keep *_hltLifetimeBJetTagsL25_*_*",
         # L3 objects and results
         "keep *_bJetRegionalCtfWithMaterialTracks_*_*",
         "keep *_fromL25bJets_*_*",
-        "keep *_associatorL3_*_*",
+        "keep *_lifetimeAssociatorL3_*_*",
         "keep *_hltLifetimeTagInfosL3_*_*",
         "keep *_hltLifetimeBJetTagsL3_*_*"
     }
