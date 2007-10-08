@@ -26,7 +26,7 @@ module softMuonTagInfosL2 = SoftLepton {
 }
 
 # tag by DeltaR
-module softMuonJetTagsL2 = JetTagProducer {
+module softMuonBJetTagsL2 = JetTagProducer {
     InputTag tagInfo        = softMuonTagInfosL2
     string   jetTagComputer = "softLeptonByDistance"
 }
@@ -47,13 +47,13 @@ module softMuonTagInfosL3 = SoftLepton {
 }
 
 # tag by PtRel
-module softMuonJetTagsL3 = JetTagProducer {
+module softMuonBJetTagsL3 = JetTagProducer {
     InputTag tagInfo        = softMuonTagInfosL3
     string   jetTagComputer = "softLeptonByPt"
 }
 
 # tag by DeltaR
-module softMuonJetTagsL3ByDistance = JetTagProducer {
+module softMuonBJetTagsL3ByDistance = JetTagProducer {
     InputTag tagInfo        = softMuonTagInfosL3
     string   jetTagComputer = "softLeptonByDistance"
 }

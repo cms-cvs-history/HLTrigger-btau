@@ -1,6 +1,6 @@
 # b HLT modules for Level 2.5 
 module  hltL25b = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
-replace hltL25b.JetTag = hltLifetimeJetTagsL25
+replace hltL25b.JetTag = hltLifetimeBJetTagsL25
 replace hltL25b.MinTag = 3.5
 
 # Reconstruction sequences needed before trigger.
@@ -8,5 +8,5 @@ sequence preL25bReco = {
     (lifetimeJetSel & bL25trackReco),
     associatorL25, 
     hltLifetimeTagInfosL25,
-    hltLifetimeJetTagsL25
+    hltLifetimeBJetTagsL25
 }
