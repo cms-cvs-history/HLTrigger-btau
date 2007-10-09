@@ -146,7 +146,7 @@ sequence hltPixelTauForMuonTauNoFilter = {
  doLocalPixel                                   & 
  doLocalStrip                                   & 
  recopixelvertexing                             & 
- hltPixelTrackMuonTauNoFilter
+ hltPixelTrackMuonTau
 }
 
 #################################################################################
