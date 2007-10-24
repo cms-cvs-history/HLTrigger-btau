@@ -50,11 +50,3 @@ module softMuonBJetTagsL3ByDistance = JetTagProducer {
     string   jetTagComputer = "softLeptonByDistance"
 }
 
-# temporary fix to work around a bug in JetTagComputer in 1.7.0-pre6
-es_module softLeptonByDistanceL25 = softLeptonByDistance from "RecoBTag/SoftLepton/data/softLeptonByDistanceES.cfi"
-replace softLeptonByDistanceL25.ComponentName = "softLeptonByDistanceL25"
-replace softMuonBJetTagsL2.jetTagComputer = "softLeptonByDistanceL25"
-
-es_module softLeptonByDistanceL3 = softLeptonByDistance from "RecoBTag/SoftLepton/data/softLeptonByDistanceES.cfi"
-replace softLeptonByDistanceL3.ComponentName = "softLeptonByDistanceL3"
-replace softMuonBJetTagsL3ByDistance.jetTagComputer = "softLeptonByDistanceL3"
