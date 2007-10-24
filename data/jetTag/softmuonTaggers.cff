@@ -12,17 +12,13 @@ include "RecoBTag/SoftLepton/data/softLeptonByPtES.cfi"
 
 # SoftLeptonTagInfo producer for tagging L2 jets with L2 muons 
 module softMuonTagInfosL2 = SoftLepton {
-    InputTag jets           = softmuonEtCutJets
-    InputTag leptons        = hltL2Muons
-    InputTag primaryVertex  = nominal       # use the nominal beam spot and error
-    double   leptonQuality  = 0.0           # used only for reco::Muons
- 
-    PSet algorithmConfiguration = {
-        double leptonChi2Cut    = 0.0       # no chi2/ndof cut
-        double leptonDeltaRCut  = 0.4       # lepton distance from jet axis
-        uint32 refineJetAxis    = 0         # use calorimetric jet direction
-        bool   usePrimaryVertex = false     # don't use the primary vertex or compute the lepton IP
-    }
+    InputTag jets             = softmuonEtCutJets
+    uint32   refineJetAxis    = 0               # use calorimetric jet direction
+    InputTag primaryVertex    = nominal         # use the nominal beam spot and error
+    InputTag leptons          = hltL2Muons
+    double   leptonDeltaRCut  = 0.4             # lepton distance from jet axis
+    double   leptonChi2Cut    = 9999.           # no chi2/ndof cut
+    double   leptonQualityCut = 0.0             # used only for reco::Muons
 }
 
 # tag by DeltaR
@@ -33,17 +29,13 @@ module softMuonBJetTagsL2 = JetTagProducer {
 
 # SoftLeptonTagInfo producer for tagging L2 jets with L3 muons 
 module softMuonTagInfosL3 = SoftLepton {
-    InputTag jets           = softmuonEtCutJets
-    InputTag leptons        = hltL3Muons
-    InputTag primaryVertex  = nominal       # use the nominal beam spot and error
-    double   leptonQuality  = 0.0           # used only for reco::Muons
- 
-    PSet algorithmConfiguration = {
-        double leptonChi2Cut    = 0.0       # no chi2/ndof cut
-        double leptonDeltaRCut  = 0.4       # lepton distance from jet axis
-        uint32 refineJetAxis    = 0         # use calorimetric jet direction
-        bool   usePrimaryVertex = false     # don't use the primary vertex or compute the lepton IP
-    }
+    InputTag jets             = softmuonEtCutJets
+    uint32   refineJetAxis    = 0               # use calorimetric jet direction
+    InputTag primaryVertex    = nominal         # use the nominal beam spot and error
+    InputTag leptons          = hltL3Muons
+    double   leptonDeltaRCut  = 0.4             # lepton distance from jet axis
+    double   leptonChi2Cut    = 0.0             # no chi2/ndof cut
+    double   leptonQualityCut = 0.0             # used only for reco::Muons
 }
 
 # tag by PtRel
