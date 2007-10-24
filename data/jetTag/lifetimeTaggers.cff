@@ -25,3 +25,12 @@ replace hltLifetimeTagInfosL3.minimumNumberOfHits       = 8
 module  hltLifetimeBJetTagsL3 = trackCountingHighEffBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffBJetTags.cfi"
 # for 3rd track, use          = trackCountingHighPurBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighPurBJetTags.cfi"
 replace hltLifetimeBJetTagsL3.tagInfo = hltLifetimeTagInfosL3
+
+# temporary fix to work around a bug in JetTagComputer in 1.7.0-pre6
+es_module trackCountingL25 = trackCounting3D2nd from "RecoBTag/ImpactParameter/data/trackCounting3D2ndComputer.cfi"
+replace trackCountingL25.ComponentName = "trackCountingL25"
+replace hltLifetimeBJetTagsL25.jetTagComputer = "trackCountingL25"
+
+es_module trackCountingL3 = trackCounting3D2nd from "RecoBTag/ImpactParameter/data/trackCounting3D2ndComputer.cfi"
+replace trackCountingL3.ComponentName = "trackCountingL3"
+replace hltLifetimeBJetTagsL3.jetTagComputer = "trackCountingL3"
