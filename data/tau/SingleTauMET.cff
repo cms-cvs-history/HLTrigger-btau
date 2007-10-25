@@ -184,7 +184,7 @@ sequence singleTauMETNoFilters = {singleTauMETL25,singleTauMETL3}
 //HLTTau 
 module singleTauMETHLTOpen = hltTauProducer from "HLTrigger/btau/data/tau/TauHLTOpen.cfi" 
 replace   singleTauMETHLTOpen.L2EcalIsoJets = ecalSingleTauMETIsol
-replace  singleTauMETHLTOpen.L25TrackIsoJets = isolatedL25SingleTauMET:Isolated
-replace  singleTauMETHLTOpen.L3TrackIsoJets = isolatedL3SingleTauMET:Isolated
+replace  singleTauMETHLTOpen.L25TrackIsoJets = isolatedL25SingleTauMET
+replace  singleTauMETHLTOpen.L3TrackIsoJets = isolatedL3SingleTauMET
 replace singleTauMETHLTOpen.SignalCone = 0.065
 replace singleTauMETHLTOpen.IsolationCone = 0.4
