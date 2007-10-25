@@ -191,7 +191,8 @@ hltBegin&(singleTauL1SeedFilter&caloTausCreator)&
 l2SingleTauJets&
 ecalIsolationSingleTau&
 tracker_local&recopixelvertexing&
-singleTauNoFilters 
+singleTauNoFilters &
+singleTauHLTOpen
 }
 
 sequence singleTauMETL1NoHLT = {
@@ -199,7 +200,8 @@ hltBegin&(singleTauMETL1SeedFilter&caloTausCreator)&
 l2SingleTauMETJets&
 ecalIsolationSingleTauMET&
 tracker_local&recopixelvertexing&
-singleTauMETNoFilters
+singleTauMETNoFilters&
+singleTauMETHLTOpen
 }
 
 sequence caloPixelTauL1NoHLT = {
@@ -207,6 +209,7 @@ hltBegin&
 doubleTauL1SeedFilter&caloTausCreator&
 l2DoubleTauJets&
 ecalIsolationDoubleTau&
-doubleCaloPixelTauNoFilters
+doubleCaloPixelTauNoFilters&
+doubleTauHLTOpen
 }
 

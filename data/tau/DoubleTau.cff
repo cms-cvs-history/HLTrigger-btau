@@ -78,3 +78,10 @@ sequence doubleCaloPixelTauNoFilters = {
     ecalIsolatedPixelTauL25
 }
 
+//HLTTau 
+module doubleTauHLTOpen = hltTauProducer from "HLTrigger/btau/data/tau/TauHLTOpen.cfi" 
+replace   doubleTauHLTOpen.L2EcalIsoJets = ecalDoubleTauIsolated:Isolated
+replace  doubleTauHLTOpen.L25TrackIsoJets = isolatedL25PixelTau:Isolated
+replace  doubleTauHLTOpen.L3TrackIsoJets = isolatedL25PixelTau:Isolated
+replace doubleTauHLTOpen.SignalCone = 0.07
+replace doubleTauHLTOpen.IsolationCone = 0.3
