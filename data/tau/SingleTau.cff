@@ -205,7 +205,7 @@ sequence singleTauNoFilters = {singleTauL25,singleTauL3}
 //HLTTau 
 module singleTauHLTOpen = hltTauProducer from "HLTrigger/btau/data/tau/TauHLTOpen.cfi" 
 replace   singleTauHLTOpen.L2EcalIsoJets = ecalSingleTauIsol
-replace  singleTauHLTOpen.L25TrackIsoJets = isolatedL25SingleTau:Isolated
+replace  singleTauHLTOpen.L25TrackIsoJets = isolatedL25SingleTau
 replace singleTauHLTOpen.SignalCone = 0.065
 replace singleTauHLTOpen.IsolationCone = 0.4
-replace  singleTauHLTOpen.L3TrackIsoJets = isolatedL3SingleTau:Isolated
+replace  singleTauHLTOpen.L3TrackIsoJets = isolatedL3SingleTau
