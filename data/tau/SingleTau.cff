@@ -90,6 +90,7 @@ module isolatedL25SingleTau = IsolatedTauJetsSelector{
     int32	MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
     bool UseVertex = false
+    bool UseInHLTOpen = false
 }
 
 module filterL25SingleTau = HLT1Tau {
@@ -162,6 +163,7 @@ module isolatedL3SingleTau = IsolatedTauJetsSelector{
     int32	MaximumNumberOfTracksIsolationRing = 0
     InputTag VertexSrc = pixelVertices
     bool UseVertex = false
+    bool UseInHLTOpen = false
 }
 
 module filterL3SingleTau = HLT1Tau {

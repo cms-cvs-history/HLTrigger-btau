@@ -59,6 +59,7 @@ module hltPixelTrackIsolatedTauJetsSelectorMuonTau = IsolatedTauJetsSelector {
     InputTag  VertexSrc                                = pixelVertices
 #    bool      UseVertex                                = true
     bool      UseVertex                                = false
+    bool UseInHLTOpen                                  = false
 }
 
 # Select events with at least 1 tau
