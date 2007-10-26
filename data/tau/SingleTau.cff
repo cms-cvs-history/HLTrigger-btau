@@ -39,13 +39,16 @@ module filterSingleTauEcalIsolation = HLT1Tau  {
 }
 
 # CKF Regional reconstruction
-es_module trajBuilderL25 =  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
-replace trajBuilderL25.ComponentName = "trajBuilderL25"
-replace trajBuilderL25.ptCut               = 5.0
-replace trajBuilderL25.maxNumberOfHits      =7
-replace trajBuilderL25.maxCand = 1
-replace trajBuilderL25.alwaysUseInvalidHits = false
+es_module trajFilterL25 = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
+  replace trajFilterL25.ComponentName = "trajFilterL25"
+  replace trajFilterL25.filterPSet.pPCut           = 5.0
+  replace trajFilterL25.filterPSet.maxNumberOfHits = 7
 
+es_module trajBuilderL25 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
+  replace trajBuilderL25.ComponentName = "trajBuilderL25"
+  replace trajBuilderL25.trajectoryFilterName = "trajFilterL25"
+  replace trajBuilderL25.maxCand              = 1
+  replace trajBuilderL25.alwaysUseInvalidHits = false
 
 # Regional Tk reconstruction for SingleTauCollection
 module l25SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
@@ -105,13 +108,15 @@ module filterL25SingleTau = HLT1Tau {
 # Starting L3 SingleTau
 #
 
-#
 # Regional Tk reconstruction for SingleTauCollection
-#
-es_module trajBuilderL3 =  CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
-replace trajBuilderL3.ComponentName = "trajBuilderL3"
-replace trajBuilderL3.maxNumberOfHits      = 7
-replace trajBuilderL3.alwaysUseInvalidHits = false
+es_module trajFilterL3 = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
+  replace trajFilterL3.ComponentName = "trajFilterL3"
+  replace trajFilterL3.filterPSet.maxNumberOfHits = 7
+
+es_module trajBuilderL3 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
+  replace trajBuilderL3.ComponentName = "trajBuilderL3"
+  replace trajBuilderL3.trajectoryFilterName = "trajFilterL3"
+  replace trajBuilderL3.alwaysUseInvalidHits = false
 
 module l3SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
 replace l3SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet = {
