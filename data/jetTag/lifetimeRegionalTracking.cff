@@ -5,7 +5,7 @@
 # Define the standard hit and track reconstruction modules
 # (a few of these like road-search not needed, but do no harm).
 
-include "HLTrigger/Configuration/data/common/HLTSetup.cff"
+# include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets b-tagged at L2.5.
@@ -37,30 +37,29 @@ module bJetRegionalPixelSeedGenerator = SeedGeneratorFromRegionHitsEDProducer {
 
 # Tell track trajectory builder to use regional track seeds,
 # and speed it up by only partially reconstructing tracks. 
-es_module bJetRegionalTrajectoryFilter = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
-  replace bJetRegionalTrajectoryFilter.ComponentName = "bJetRegionalTrajectoryFilter"
-  replace bJetRegionalTrajectoryFilter.filterPSet.minPt           = 1.0
-  replace bJetRegionalTrajectoryFilter.filterPSet.maxNumberOfHits = 8 
-
-es_module bJetRegionalTrajectoryBuilder = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
-  replace bJetRegionalTrajectoryBuilder.ComponentName        = "bJetRegionalTrajectoryBuilder"
-  replace bJetRegionalTrajectoryBuilder.trajectoryFilterName = "bJetRegionalTrajectoryFilter"
-  replace bJetRegionalTrajectoryBuilder.maxCand              = 1
-  replace bJetRegionalTrajectoryBuilder.alwaysUseInvalidHits = false
+es_module bJetRegionalCkfTrajectoryBuilder = CkfTrajectoryBuilder 
+    from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
+replace bJetRegionalCkfTrajectoryBuilder.ComponentName = "bJetRegionalCkfTrajectoryBuilder"
+replace bJetRegionalCkfTrajectoryBuilder.ptCut                = 1.0
+replace bJetRegionalCkfTrajectoryBuilder.maxNumberOfHits      = 8
+replace bJetRegionalCkfTrajectoryBuilder.maxCand              = 1
+replace bJetRegionalCkfTrajectoryBuilder.alwaysUseInvalidHits = false
 
 # Form track candidates using the trajectory builder and seeds defined above.
-module  bJetRegionalCkfTrackCandidates = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
-replace bJetRegionalCkfTrackCandidates.SeedProducer      = "bJetRegionalPixelSeedGenerator"
-replace bJetRegionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalTrajectoryBuilder"
+module bJetregionalCkfTrackCandidates = ckfTrackCandidates 
+    from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+replace bJetregionalCkfTrackCandidates.SeedProducer      = "bJetRegionalPixelSeedGenerator"
+replace bJetregionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalCkfTrajectoryBuilder"
 
 # Fit tracks using the track candidates defined above.
-module  bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace bJetRegionalCtfWithMaterialTracks.src = "bJetRegionalCkfTrackCandidates"
+module bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks 
+    from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+replace bJetRegionalCtfWithMaterialTracks.src = "bJetregionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
 sequence regionalCkfTracks = {
     bJetRegionalPixelSeedGenerator, 
-    bJetRegionalCkfTrackCandidates, 
+    bJetregionalCkfTrackCandidates, 
     bJetRegionalCtfWithMaterialTracks
 }
 
