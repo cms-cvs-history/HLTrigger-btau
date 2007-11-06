@@ -9,10 +9,3 @@
 <use name=FWCore/ParameterSet>
 <use name=DataFormats/L1Trigger>
 <use name=DataFormats/JetReco>
-
-<library file=stubs/*.cc name=testHLTriggerbtau>
-  <use name=FWCore/Framework>
-  <flags EDM_PLUGIN=1>
-</library>
-
-
