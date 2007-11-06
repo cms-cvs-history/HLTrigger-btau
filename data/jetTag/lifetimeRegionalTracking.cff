@@ -1,11 +1,7 @@
-###############################################################
-# Reconstruct regional tracks around jets starting from Digis #
-###############################################################
+# Reconstruct regional tracks around jets starting from Digis
 
 # Define the standard hit and track reconstruction modules
 # (a few of these like road-search not needed, but do no harm).
-
-# include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets b-tagged at L2.5.
