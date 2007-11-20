@@ -75,7 +75,7 @@ module ctfWithMaterialTracksMumu = ctfWithMaterialTracks from "RecoTracker/Track
 
 # produce the J/psi (or other mumu) candidate
 
-module allMuTracks  = allTracks  from "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
+module allMuTracks  = allTracks  from "PhysicsTools/RecoAlgos/data/allTracks.cfi"
 	replace allMuTracks.src = ctfWithMaterialTracksMumu 	    
 	replace allMuTracks.particleType = "mu-"
 
