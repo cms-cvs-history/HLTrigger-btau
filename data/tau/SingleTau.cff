@@ -167,3 +167,11 @@ module filterL3SingleTau = HLT1Tau {
     int32  MinN   = 1
 }
 
+#HLTOpen
+module singleTauHLTOpen = hltTauProducer from "HLTrigger/btau/data/tau/TauHLTOpen.cfi" 
+ replace   singleTauHLTOpen.L2EcalIsoJets = ecalSingleTauIsol
+ replace  singleTauHLTOpen.L25TrackIsoJets = isolatedL25SingleTau
+ replace  singleTauHLTOpen.L3TrackIsoJets = isolatedL3SingleTau
+ replace singleTauHLTOpen.SignalCone = 0.65
+ replace singleTauHLTOpen.IsolationCone = 0.4
+replace singleTauHLTOpen.PtLeadTk = 15.

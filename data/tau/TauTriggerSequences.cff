@@ -150,7 +150,7 @@ sequence caloPixelTauL1HLT = { doubleTauPrescaler&hltBegin&doubleTauL1SeedFilter
 sequence caloSiStripTauL1HLT = { doubleTauPrescaler&hltBegin&doubleTauL1SeedFilter&caloTausCreator&(ecalIsolation,filterTauEcalIsolation)&pixel_local&recopixelvertexing&siStrip_local&doubleTrkTau}
 
 #Triggers with no HLTFilters! For debugging scope
-sequence singleTauL1NoHLT = {hltBegin&(singleTauL1SeedFilter&caloTausCreator)&ecalIsolation&tracker_local&recopixelvertexing&singleTauNoFilters }
+sequence singleTauL1NoHLT = {hltBegin&(singleTauL1SeedFilter&caloTausCreator)&ecalIsolation&tracker_local&recopixelvertexing&singleTauNoFilters&singleTauHLTOpen }
 sequence singleTauMETL1NoHLT = {hltBegin&(singleTauMETL1SeedFilter&caloTausCreator)&ecalIsolationSingleTauMET&tracker_local&recopixelvertexing&singleTauMETNoFilters}
 sequence caloPixelTauL1NoHLT = {hltBegin&doubleTauL1SeedFilter&caloTausCreator&doubleCaloPixelTauNoFilters}
 sequence caloSiStripTauL1NoHLT = {hltBegin&doubleTauL1SeedFilter&caloTausCreator&ecalIsolation&tracker_local&recopixelvertexing&doubleTrkTauNoFilters}
