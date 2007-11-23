@@ -31,8 +31,8 @@ replace mmkPixelSeedFromL2Candidate.RegionFactoryPSet.RegionPSet = {
 # -- Tracking
 es_module mmCkfTrajectoryFilter = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
   replace mmCkfTrajectoryFilter.ComponentName = "mmCkfTrajectoryFilter"
-  replace mmCkfTrajectoryFilter.filterPSet.minPt           = 3.0
-  replace mmCkfTrajectoryFilter.filterPSet.maxNumberOfHits = 5
+  replace mmCkfTrajectoryFilter.filterPset.minPt           = 3.0
+  replace mmCkfTrajectoryFilter.filterPset.maxNumberOfHits = 5
 
 es_module mmkCkfTrajectoryBuilder = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
   replace mmkCkfTrajectoryBuilder.ComponentName        = "mmkCkfTrajectoryBuilder"

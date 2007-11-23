@@ -54,11 +54,15 @@ replace MumuPixelSeedFromL2Candidate.RegionFactoryPSet.RegionPSet = {
 #	replace MumuPixelSeed.deltaPhiRegion = 0.15
 
 # build tracks
+es_module CkfTrajectoryFilterMumu = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
+	replace CkfTrajectoryFilterMumu.ComponentName = "CkfTrajectoryFilterMumu"
+	replace CkfTrajectoryFilterMumu.filterPset.minPt           = 3.0
+	replace CkfTrajectoryFilterMumu.filterPset.maxNumberOfHits = 5
+
 es_module CkfTrajectoryBuilderMumu = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
-	replace CkfTrajectoryBuilderMumu.ComponentName = "CkfTrajectoryBuilderMumu"
-	replace CkfTrajectoryBuilderMumu.ptCut = 3.0
-	replace CkfTrajectoryBuilderMumu.maxCand = 3
-	replace CkfTrajectoryBuilderMumu.maxNumberOfHits = 5
+	replace CkfTrajectoryBuilderMumu.ComponentName        = "CkfTrajectoryBuilderMumu"
+	replace CkfTrajectoryBuilderMumu.trajectoryFilterName = "CkfTrajectoryFilterMumu"
+	replace CkfTrajectoryBuilderMumu.maxCand              = 3
 	replace CkfTrajectoryBuilderMumu.alwaysUseInvalidHits = false
 
 module ckfTrackCandidatesMumu = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"

@@ -48,8 +48,8 @@ replace jpsipixelseed.deltaPhiRegion = 0.3
 
 es_module CkfTrajectoryFilterJpsi = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
   replace CkfTrajectoryFilterJpsi.ComponentName              = "CkfTrajectoryFilterJpsi"
-  replace CkfTrajectoryFilterJpsi.filterPSet.minPt           = 2.0
-  replace CkfTrajectoryFilterJpsi.filterPSet.maxNumberOfHits = 5
+  replace CkfTrajectoryFilterJpsi.filterPset.minPt           = 2.0
+  replace CkfTrajectoryFilterJpsi.filterPset.maxNumberOfHits = 5
 
 es_module CkfTrajectoryBuilderJpsi = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
   replace CkfTrajectoryBuilderJpsi.ComponentName        = "CkfTrajectoryBuilderJpsi"

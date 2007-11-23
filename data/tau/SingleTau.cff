@@ -41,8 +41,8 @@ module filterSingleTauEcalIsolation = HLT1Tau  {
 # CKF Regional reconstruction
 es_module trajFilterL25 = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
   replace trajFilterL25.ComponentName = "trajFilterL25"
-  replace trajFilterL25.filterPSet.pPCut           = 5.0
-  replace trajFilterL25.filterPSet.maxNumberOfHits = 7
+  replace trajFilterL25.filterPset.pPCut           = 5.0
+  replace trajFilterL25.filterPset.maxNumberOfHits = 7
 
 es_module trajBuilderL25 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
   replace trajBuilderL25.ComponentName = "trajBuilderL25"
@@ -111,7 +111,7 @@ module filterL25SingleTau = HLT1Tau {
 # Regional Tk reconstruction for SingleTauCollection
 es_module trajFilterL3 = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
   replace trajFilterL3.ComponentName = "trajFilterL3"
-  replace trajFilterL3.filterPSet.maxNumberOfHits = 7
+  replace trajFilterL3.filterPset.maxNumberOfHits = 7
 
 es_module trajBuilderL3 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
   replace trajBuilderL3.ComponentName = "trajBuilderL3"
