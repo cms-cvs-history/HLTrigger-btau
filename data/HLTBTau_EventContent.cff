@@ -17,7 +17,6 @@ replace HLTBTauFEVT.outputCommands += DisplacedMumuHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += SingleTauHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += SingleTauMETHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += DoubleTauHLT.outputCommands
-replace HLTBTauFEVT.outputCommands += DoubleTauSiStripHLT.outputCommands
 
 
 
@@ -31,16 +30,8 @@ replace HLTBTauRECO.outputCommands += DisplacedMumuHLT.outputCommands
 replace HLTBTauRECO.outputCommands += SingleTauHLT.outputCommands
 replace HLTBTauRECO.outputCommands += SingleTauMETHLT.outputCommands
 replace HLTBTauRECO.outputCommands += DoubleTauHLT.outputCommands
-replace HLTBTauRECO.outputCommands += DoubleTauSiStripHLT.outputCommands
 
 # AOD content for btau HLT paths
 block HLTBTauAOD = {
     untracked vstring outputCommands = { }
 }
-replace HLTBTauAOD.outputCommands += JetTagLifetimeHLT.outputCommands
-replace HLTBTauAOD.outputCommands += JetTagSoftMuonHLT.outputCommands
-replace HLTBTauAOD.outputCommands += DisplacedMumuHLT.outputCommands
-replace HLTBTauAOD.outputCommands += SingleTauHLT.outputCommands
-replace HLTBTauAOD.outputCommands += SingleTauMETHLT.outputCommands
-replace HLTBTauAOD.outputCommands += DoubleTauHLT.outputCommands
-replace HLTBTauAOD.outputCommands += DoubleTauSiStripHLT.outputCommands
