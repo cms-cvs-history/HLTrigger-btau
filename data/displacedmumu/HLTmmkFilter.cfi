@@ -47,7 +47,7 @@ module mmkCkfTrackCandidates = ckfTrackCandidates from "RecoTracker/CkfPattern/d
 module mmkCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
   replace mmkCtfWithMaterialTracks.src = "mmkCkfTrackCandidates"
 
-module allmmkConeTrackCands  = allTracks  from "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
+module allmmkConeTrackCands  = allTracks  from "PhysicsTools/RecoAlgos/data/allTracks.cfi"
   replace allmmkConeTrackCands.src = mmkCtfWithMaterialTracks
 
 
