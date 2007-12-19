@@ -9,7 +9,19 @@ include "HLTrigger/btau/data/tau/eventContent_DoubleTauSiStrip.cff"
 
 # Full Event content for btau HLT paths
 block HLTBTauFEVT = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { 
+#Calorimeter
+	"keep *_caloTowers_*_*",
+	"keep *_towerMaker_*_*",
+
+#Si Pixel hits
+    "keep *_siPixelRecHits_*_*",
+
+#Si Strip hits
+    "keep *_siStripRecHits_*_*",
+    "keep *_siStripMatchedRecHits_*_*"
+
+    }
 }
 replace HLTBTauFEVT.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += JetTagSoftMuonHLT.outputCommands
@@ -34,4 +46,20 @@ replace HLTBTauRECO.outputCommands += DoubleTauHLT.outputCommands
 # AOD content for btau HLT paths
 block HLTBTauAOD = {
     untracked vstring outputCommands = { }
+
+  VInputTag triggerCollections = {
+#Tau
+	isolatedL3SingleTau,
+	isolatedL3SingleTauMET,
+	isolatedL25PixelTau
+    }
+
+    VInputTag triggerFilters = {
+#Tau
+filterL3SingleTau,
+filterL3SingleTauMET,
+filterL25PixelTau
+
+    }
+
 }
