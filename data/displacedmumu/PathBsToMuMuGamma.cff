@@ -72,7 +72,7 @@ replace ctfWithMaterialTracksJpsi.src = "ckfTrackCandidatesJpsi"
 
 # include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
   
-  include "PhysicsTools/RecoAlgos/data/allTracks.cfi"
+  include "PhysicsTools/RecoCandAlgos/data/allTracks.cfi"
   replace allTracks.src = ctfWithMaterialTracksJpsi 	    
   replace allTracks.particleType = "mu-"
    
