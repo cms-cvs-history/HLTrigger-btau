@@ -7,9 +7,6 @@ block JetTagHLTstats = {
         # MC truth (new format)
         "keep *_genParticleCandidates_*_*",
 
-        # Output of trigger modules
-        "keep recoHLTFilterObjectWithRefs_*_*_*",
-
         # L1 trigger decision.
         # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
         "keep l1extraL1ParticleMaps_*_*_*",
