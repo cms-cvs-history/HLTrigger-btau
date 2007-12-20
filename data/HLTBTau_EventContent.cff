@@ -6,7 +6,6 @@ include "HLTrigger/btau/data/tau/eventContent_SingleTauMET.cff"
 include "HLTrigger/btau/data/tau/eventContent_DoubleTau.cff"
 include "HLTrigger/btau/data/tau/eventContent_DoubleTauSiStrip.cff"
 
-
 # Full Event content for btau HLT paths
 block HLTBTauFEVT = {
     untracked vstring outputCommands = { 
@@ -30,8 +29,6 @@ replace HLTBTauFEVT.outputCommands += SingleTauHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += SingleTauMETHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += DoubleTauHLT.outputCommands
 
-
-
 # RECO content for btau HLT paths
 block HLTBTauRECO = {
     untracked vstring outputCommands = { }
@@ -47,19 +44,21 @@ replace HLTBTauRECO.outputCommands += DoubleTauHLT.outputCommands
 block HLTBTauAOD = {
     untracked vstring outputCommands = { }
 
-  VInputTag triggerCollections = {
-#Tau
-	isolatedL3SingleTau,
-	isolatedL3SingleTauMET,
-	isolatedL25PixelTau
-    }
+	VInputTag triggerCollections = {
+		#Tau
+		isolatedL3SingleTau,
+		isolatedL3SingleTauMET,
+		isolatedL25PixelTau		
+		#displacedMumu
+		hltMuTracks
+	}
 
     VInputTag triggerFilters = {
-#Tau
-filterL3SingleTau,
-filterL3SingleTauMET,
-filterL25PixelTau
-
+		#Tau
+		filterL3SingleTau,
+		filterL3SingleTauMET,
+		filterL25PixelTau
+		#displacedMumu
+		displacedJpsitoMumuFilter
     }
-
 }

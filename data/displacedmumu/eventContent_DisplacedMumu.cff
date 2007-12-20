@@ -3,10 +3,8 @@ block DisplacedMumuHLT = {
     untracked vstring outputCommands = {
         "keep *_displacedJpsitoMumuFilter_*_*",    
         "keep *_MumuPixelSeedFromL2Candidate_*_*",
-        "keep *_ckfTrackCandidatesMumu_*_*",
-        "keep *_ctfWithMaterialTracksMumu_*_*",
-        "keep *_allMuTracks_*_*",
-        "keep *_muTracks_*_*",
-        "keep *_CandFromMumu_*_*"
+        "keep *_hltCkfTrackCandidatesMumu_*_*",
+        "keep *_hltCtfWithMaterialTracksMumu_*_*",
+        "keep *_hltMuTracks_*_*"
     }
 }
