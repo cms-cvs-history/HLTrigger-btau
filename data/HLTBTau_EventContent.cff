@@ -9,17 +9,16 @@ include "HLTrigger/btau/data/tau/eventContent_DoubleTauSiStrip.cff"
 # Full Event content for btau HLT paths
 block HLTBTauFEVT = {
     untracked vstring outputCommands = { 
-#Calorimeter
-	"keep *_caloTowers_*_*",
-	"keep *_towerMaker_*_*",
+        # Calorimeter
+        "keep *_caloTowers_*_*",
+        "keep *_towerMaker_*_*",
 
-#Si Pixel hits
-    "keep *_siPixelRecHits_*_*",
+        # Si Pixel hits
+        "keep *_siPixelRecHits_*_*",
 
-#Si Strip hits
-    "keep *_siStripRecHits_*_*",
-    "keep *_siStripMatchedRecHits_*_*"
-
+        # Si Strip hits
+        "keep *_siStripRecHits_*_*",
+        "keep *_siStripMatchedRecHits_*_*"
     }
 }
 replace HLTBTauFEVT.outputCommands += JetTagLifetimeHLT.outputCommands
@@ -44,21 +43,33 @@ replace HLTBTauRECO.outputCommands += DoubleTauHLT.outputCommands
 block HLTBTauAOD = {
     untracked vstring outputCommands = { }
 
-	VInputTag triggerCollections = {
-		#Tau
-		isolatedL3SingleTau,
-		isolatedL3SingleTauMET,
-		isolatedL25PixelTau,
-		#displacedMumu
-		hltMuTracks
-	}
+    VInputTag triggerCollections = {
+        # tau
+        isolatedL3SingleTau,
+        isolatedL3SingleTauMET,
+        isolatedL25PixelTau,
+
+        # btag
+        hltLifetimeBJetTagsL3,
+        softMuonBJetTagsL3,
+        softMuonBJetTagsL3ByDistance,
+
+        # displacedMumu
+        hltMuTracks
+    }
 
     VInputTag triggerFilters = {
-		#Tau
-		filterL3SingleTau,
-		filterL3SingleTauMET,
-		filterL25PixelTau,
-		#displacedMumu
-		displacedJpsitoMumuFilter
+        # tau
+        filterL3SingleTau,
+        filterL3SingleTauMET,
+        filterL25PixelTau,
+
+        # btag
+        hltL3b,
+        hltL3bmu,
+        hltL3bmuBydR 
+
+        # displacedMumu
+        displacedJpsitoMumuFilter
     }
 }
