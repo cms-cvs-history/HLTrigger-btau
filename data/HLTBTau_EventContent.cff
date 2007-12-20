@@ -67,7 +67,7 @@ block HLTBTauAOD = {
         # btag
         hltL3b,
         hltL3bmu,
-        hltL3bmuBydR 
+        hltL3bmuBydR,
 
         # displacedMumu
         displacedJpsitoMumuFilter
