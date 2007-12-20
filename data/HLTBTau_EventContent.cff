@@ -48,7 +48,7 @@ block HLTBTauAOD = {
 		#Tau
 		isolatedL3SingleTau,
 		isolatedL3SingleTauMET,
-		isolatedL25PixelTau		
+		isolatedL25PixelTau,
 		#displacedMumu
 		hltMuTracks
 	}
@@ -57,7 +57,7 @@ block HLTBTauAOD = {
 		#Tau
 		filterL3SingleTau,
 		filterL3SingleTauMET,
-		filterL25PixelTau
+		filterL25PixelTau,
 		#displacedMumu
 		displacedJpsitoMumuFilter
     }
