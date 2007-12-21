@@ -50,9 +50,8 @@ block HLTBTauAOD = {
         isolatedL25PixelTau,
 
         # btag
-        hltLifetimeBJetTagsL3,
-        softMuonBJetTagsL3,
-        softMuonBJetTagsL3ByDistance,
+        fromL25bJets,
+        softmuonEtCutJets,
 
         # displacedMumu
         hltMuTracks
