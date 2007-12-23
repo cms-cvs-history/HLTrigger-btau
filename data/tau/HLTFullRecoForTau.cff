@@ -150,6 +150,3 @@ include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 # Tracker reconstruction
 include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
-sequence pixel_local   = {doLocalPixel}
-sequence siStrip_local = {doLocalStrip}
-sequence tracker_local = {doLocalPixel&doLocalStrip}
