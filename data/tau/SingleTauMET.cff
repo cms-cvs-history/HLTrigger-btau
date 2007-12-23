@@ -17,10 +17,6 @@ module hlt1METSingleTauMET = HLT1CaloMET {
 module l2SingleTauMETJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
 replace l2SingleTauMETJets.L1TauTrigger = "singleTauMETL1SeedFilter"
 
-#construct the jet-crystals associator for the single and double Tau collection
-module singleTauMETJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
-replace singleTauMETJetCrystalsAssociator.jets   =l2SingleTauMETJets
-
 #Produce the EMIsolatedTauTagInfoCollection
 module  ecalSingleTauMETIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalSingleTauMETIsol.JetForFilter = singleTauMETJetCrystalsAssociator
@@ -38,16 +34,6 @@ module filterSingleTauMETEcalIsolation = HLT1Tau  {
     int32  MinN   = 1
 }
 
-# Regional Tk reconstruction for SingleTauMETCollection
-module l25SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauMETIsolated:Isolated
-
-module ckfTrackCandidatesL25SingleTauMET =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL25SingleTauMET.SeedProducer  = "l25SingleTauMETPixelSeeds"
-replace ckfTrackCandidatesL25SingleTauMET.TrajectoryBuilder    = "trajBuilderL25"
-
-module ctfWithMaterialTracksL25SingleTauMET = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL25SingleTauMET.src = "ckfTrackCandidatesL25SingleTauMET"
 
 #
 # Calculate Isolation for SingleTauMETCollection
@@ -92,28 +78,6 @@ module filterL25SingleTauMET = HLT1Tau {
 # Starting L3 SingleTauMET
 #
 
-#
-# Regional Tk reconstruction for SingleTauMETCollection
-#
-module l3SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l3SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet = {
- double deltaPhiRegion = 0.5
- double deltaEtaRegion = 0.5
-    double ptMin = 1.0
-    double originZPos = 0.0
-    double originRadius = 0.2
-    double originHalfLength = 0.2
-    string vertexSrc ="pixelVertices"
-    bool precise = true
-InputTag JetSrc = isolatedL25SingleTauMET
-}
-
-module ckfTrackCandidatesL3SingleTauMET =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL3SingleTauMET.SeedProducer  = "l3SingleTauMETPixelSeeds"
-replace ckfTrackCandidatesL3SingleTauMET.TrajectoryBuilder    = "trajBuilderL3"
-
-module ctfWithMaterialTracksL3SingleTauMET = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL3SingleTauMET.src = "ckfTrackCandidatesL3SingleTauMET"
 
 #
 # Calculate Isolation for SingleTauMET Collection
@@ -176,9 +140,9 @@ sequence tauJetsMakerL3SingleTauMET = {associatorL3SingleTauMET,coneIsolationL3S
 sequence singleTauMETL3 = {ckfTracksL3SingleTauMET,tauJetsMakerL3SingleTauMET}
 
 sequence singleTauMET = {
-    singleTauMETL25,
-    filterL25SingleTauMET,
-    singleTauMETL3,
+    singleTauMETL25&
+    filterL25SingleTauMET&
+    singleTauMETL3&
     filterL3SingleTauMET
 }
 sequence singleTauMETNoFilters = {singleTauMETL25,singleTauMETL3}

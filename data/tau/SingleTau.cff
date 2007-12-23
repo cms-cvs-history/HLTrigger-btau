@@ -18,10 +18,6 @@ module hlt1METSingleTau = HLT1CaloMET {
 module l2SingleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
 replace l2SingleTauJets.L1TauTrigger = "singleTauL1SeedFilter"
 
-#construct the jet-crystals associator for the single and double Tau collection
-module singleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
-replace singleTauJetCrystalsAssociator.jets   =l2SingleTauJets
-
 #Produce the EMIsolatedTauTagInfoCollection
 module  ecalSingleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalSingleTauIsol.JetForFilter = singleTauJetCrystalsAssociator
@@ -38,29 +34,8 @@ module filterSingleTauEcalIsolation = HLT1Tau  {
     int32  MinN  = 1
 }
 
-# CKF Regional reconstruction
-es_module trajFilterL25 = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
-  replace trajFilterL25.ComponentName = "trajFilterL25"
-  replace trajFilterL25.filterPset.minPt           = 5.0
-  replace trajFilterL25.filterPset.maxNumberOfHits = 7
-
-es_module trajBuilderL25 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
-  replace trajBuilderL25.ComponentName = "trajBuilderL25"
-  replace trajBuilderL25.trajectoryFilterName = "trajFilterL25"
-  replace trajBuilderL25.maxCand              = 1
-  replace trajBuilderL25.alwaysUseInvalidHits = false
-
-# Regional Tk reconstruction for SingleTauCollection
-module l25SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l25SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet.JetSrc = ecalSingleTauIsolated:Isolated
 
 
-module ckfTrackCandidatesL25SingleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL25SingleTau.SeedProducer  = "l25SingleTauPixelSeeds"
-replace ckfTrackCandidatesL25SingleTau.TrajectoryBuilder    = "trajBuilderL25"
-
-module ctfWithMaterialTracksL25SingleTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL25SingleTau.src = "ckfTrackCandidatesL25SingleTau"
 
 #
 #Calculate Isolation for SingleTau Collection
@@ -108,36 +83,6 @@ module filterL25SingleTau = HLT1Tau {
 # Starting L3 SingleTau
 #
 
-# Regional Tk reconstruction for SingleTauCollection
-es_module trajFilterL3 = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
-  replace trajFilterL3.ComponentName = "trajFilterL3"
-  replace trajFilterL3.filterPset.maxNumberOfHits = 7
-
-es_module trajBuilderL3 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi" 
-  replace trajBuilderL3.ComponentName = "trajBuilderL3"
-  replace trajBuilderL3.trajectoryFilterName = "trajFilterL3"
-  replace trajBuilderL3.alwaysUseInvalidHits = false
-
-module l3SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
-replace l3SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet = {
-    double deltaEtaRegion = 0.5
-    double deltaPhiRegion = 0.5
-    double ptMin = 1.0
-    double originZPos = 0.0
-    double originRadius = 0.2
-    double originHalfLength = 0.2
-    string vertexSrc ="pixelVertices"
-    bool precise = true
-    InputTag JetSrc = isolatedL25SingleTau
-}
-
-
-module ckfTrackCandidatesL3SingleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
-replace ckfTrackCandidatesL3SingleTau.SeedProducer  = "l3SingleTauPixelSeeds"
-replace ckfTrackCandidatesL3SingleTau.TrajectoryBuilder    = "trajBuilderL3"
-
-module ctfWithMaterialTracksL3SingleTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace ctfWithMaterialTracksL3SingleTau.src = "ckfTrackCandidatesL3SingleTau"
 
 #
 #Calculate Isolation for SingleTau Collection
@@ -199,13 +144,13 @@ sequence singleTauL3 = {ckfTracksL3SingleTau,tauJetsMakerL3SingleTau}
 sequence ecalIsolationSingleTau ={(singleTauJetCrystalsAssociator,ecalSingleTauIsol,ecalSingleTauIsolated)}
 
 sequence singleTau = {
-    singleTauL25,
-    filterL25SingleTau,
-    singleTauL3,
+    singleTauL25 &
+    filterL25SingleTau &
+    singleTauL3 &
     filterL3SingleTau
 }
 
-sequence singleTauNoFilters = {singleTauL25,singleTauL3}
+sequence singleTauNoFilters = {singleTauL25&singleTauL3}
 
 
 

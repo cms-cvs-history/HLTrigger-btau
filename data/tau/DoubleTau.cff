@@ -8,9 +8,6 @@ replace doubleTauL1SeedFilter.L1SeedsLogicalExpression = "L1_DoubleTauJet40"
 module l2DoubleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
 replace l2DoubleTauJets.L1TauTrigger = "doubleTauL1SeedFilter"
 
-#L2 Ecal Isolation
-module doubleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
-replace doubleTauJetCrystalsAssociator.jets   =l2DoubleTauJets
 
 module  ecalDoubleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalDoubleTauIsol.JetForFilter = doubleTauJetCrystalsAssociator
@@ -69,7 +66,7 @@ sequence ecalIsolationDoubleTau ={(doubleTauJetCrystalsAssociator,ecalDoubleTauI
 sequence ecalIsolatedPixelTauL25 = {associatorL25PixelTauIsolated, coneIsolationL25PixelTauIsolated,isolatedL25PixelTau}
 
 sequence doubleCaloPixelTau = {    
-    ecalIsolatedPixelTauL25,
+    ecalIsolatedPixelTauL25 &
     filterL25PixelTau
 }
 
