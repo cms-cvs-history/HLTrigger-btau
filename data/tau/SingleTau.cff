@@ -123,17 +123,11 @@ module filterL3SingleTau = HLT1Tau {
     int32  MinN   = 1
 }
 
-#L25Trk reconstruction
-sequence ckfTracksL25SingleTau = {l25SingleTauPixelSeeds,ckfTrackCandidatesL25SingleTau,ctfWithMaterialTracksL25SingleTau}
-
 #L25Tau JetMaker
 sequence tauJetsMakerL25SingleTau = {associatorL25SingleTau, coneIsolationL25SingleTau,isolatedL25SingleTau}
 
 #L25SingleTau
 sequence singleTauL25 = {ckfTracksL25SingleTau,tauJetsMakerL25SingleTau}
-
-#L3Trk reconstruction
-sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3SingleTau,ctfWithMaterialTracksL3SingleTau}
 
 #L3Tau JetMaker
 sequence tauJetsMakerL3SingleTau = {associatorL3SingleTau, coneIsolationL3SingleTau,isolatedL3SingleTau }
