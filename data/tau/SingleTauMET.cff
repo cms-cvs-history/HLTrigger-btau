@@ -121,17 +121,13 @@ module filterL3SingleTauMET = HLT1Tau {
 
 sequence ecalIsolationSingleTauMET={singleTauMETJetCrystalsAssociator,ecalSingleTauMETIsol,ecalSingleTauMETIsolated}
 
-#L25Trk reconstruction
-sequence ckfTracksL25SingleTauMET = {l25SingleTauMETPixelSeeds,ckfTrackCandidatesL25SingleTauMET,ctfWithMaterialTracksL25SingleTauMET}
-
 #L25Tau JetMaker
 sequence tauJetsMakerL25SingleTauMET = {associatorL25SingleTauMET,coneIsolationL25SingleTauMET,isolatedL25SingleTauMET}
 
 #L25SingleTauMET
 sequence singleTauMETL25 = {ckfTracksL25SingleTauMET,tauJetsMakerL25SingleTauMET}
 
-#L3Trk reconstruction
-sequence ckfTracksL3SingleTauMET = {l3SingleTauMETPixelSeeds,ckfTrackCandidatesL3SingleTauMET,ctfWithMaterialTracksL3SingleTauMET}
+
 
 #L3Tau JetMaker
 sequence tauJetsMakerL3SingleTauMET = {associatorL3SingleTauMET,coneIsolationL3SingleTauMET,isolatedL3SingleTauMET}

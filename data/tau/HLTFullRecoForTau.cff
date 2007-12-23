@@ -1,3 +1,4 @@
+
 #--------------------------------
 #Regional reconstruction for HLT
 #Trajectory Builders
@@ -47,6 +48,9 @@ module ctfWithMaterialTracksL25SingleTau = ctfWithMaterialTracks from
 "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
 replace ctfWithMaterialTracksL25SingleTau.src = "ckfTrackCandidatesL25SingleTau"
 
+#L25Trk reconstruction
+sequence ckfTracksL25SingleTau = {l25SingleTauPixelSeeds,ckfTrackCandidatesL25SingleTau,ctfWithMaterialTracksL25SingleTau}
+
 #Level 3.0
 module l3SingleTauPixelSeeds = tauRegionalPixelSeedGenerator from 
 "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
@@ -70,6 +74,10 @@ module ctfWithMaterialTracksL3SingleTau = ctfWithMaterialTracks from
 "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
 replace ctfWithMaterialTracksL3SingleTau.src = "ckfTrackCandidatesL3SingleTau"
 
+#L3Trk reconstruction
+sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3SingleTau,ctfWithMaterialTracksL3SingleTau}
+
+
 #-------------------------
 #SingleTauMET
 #JetCrystalsAssociator
@@ -90,6 +98,9 @@ module ctfWithMaterialTracksL25SingleTauMET = ctfWithMaterialTracks from
 "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
 replace ctfWithMaterialTracksL25SingleTauMET.src = "ckfTrackCandidatesL25SingleTauMET"
 
+#L25Trk reconstruction
+sequence ckfTracksL25SingleTauMET = {l25SingleTauMETPixelSeeds,ckfTrackCandidatesL25SingleTauMET,ctfWithMaterialTracksL25SingleTauMET}
+
 #Level 3.0
 module l3SingleTauMETPixelSeeds = tauRegionalPixelSeedGenerator from 
 "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
@@ -109,10 +120,11 @@ module ckfTrackCandidatesL3SingleTauMET =  ckfTrackCandidates from "RecoTracker/
 replace ckfTrackCandidatesL3SingleTauMET.SeedProducer  = "l3SingleTauMETPixelSeeds"
 replace ckfTrackCandidatesL3SingleTauMET.TrajectoryBuilder    = "trajBuilderL3"
 
-module ctfWithMaterialTracksL3SingleTauMET = ctfWithMaterialTracks from 
-"RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+module ctfWithMaterialTracksL3SingleTauMET = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
 replace ctfWithMaterialTracksL3SingleTauMET.src = "ckfTrackCandidatesL3SingleTauMET"
 
+#L3Trk reconstruction
+sequence ckfTracksL3SingleTauMET = {l3SingleTauMETPixelSeeds,ckfTrackCandidatesL3SingleTauMET,ctfWithMaterialTracksL3SingleTauMET}
 
 #--------------------------
 #DoubleTau
@@ -138,3 +150,6 @@ include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 # Tracker reconstruction
 include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
+sequence pixel_local   = {doLocalPixel}
+sequence siStrip_local = {doLocalStrip}
+sequence tracker_local = {doLocalPixel&doLocalStrip}
