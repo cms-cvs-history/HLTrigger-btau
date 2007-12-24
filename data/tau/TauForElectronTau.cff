@@ -167,7 +167,7 @@ module hltPixelTrackIsolatedTauJetsSelectorElectronTau = IsolatedTauJetsSelector
     int32     MaximumNumberOfTracksIsolationRing       = 0
     InputTag  VertexSrc                                = pixelVertices
     bool      UseVertex                                = false
-
+    bool UseInHLTOpen                                  = false
 }
 
 module hltFilterPixelTrackIsolatedTauJetsElectronTau = HLT1Tau {
