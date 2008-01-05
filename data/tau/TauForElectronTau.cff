@@ -11,7 +11,7 @@
 # Get level 2 jets from L1 trigger 
 module hltL2TauJetsProviderElectronTau = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
  replace hltL2TauJetsProviderElectronTau.L1TauTrigger = "hltLevel1GTSeedElectronTau"
-
+replace  hltL2TauJetsProviderElectronTau.JetSrc = { icone5Tau1Regional ,icone5Tau2Regional,icone5Tau3Regional,icone5Tau4Regional }
 #
 # L25 ElectronTau
 #
@@ -126,6 +126,8 @@ module hltFilterIsolatedTauJetsL3ElectronTau = HLT1Tau {
 # Construct the jet-crystals associator for the lepton-tau collection
 module hltJetCrystalsAssociatorElectronTau = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
  replace hltJetCrystalsAssociatorElectronTau.jets = hltL2TauJetsProviderElectronTau
+replace hltJetCrystalsAssociatorElectronTau.EBRecHits = ecalRecHitAll:EcalRecHitsEB
+ replace hltJetCrystalsAssociatorElectronTau.EERecHits = ecalRecHitAll:EcalRecHitsEE
 
 # Produce the EMIsolatedTauTagInfoCollection
 module hltEcalIsolationElectronTau = ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"

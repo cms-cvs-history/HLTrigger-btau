@@ -2,18 +2,22 @@
 module caloTowersTau1 = caloTowerMakerHLT from "RecoTauTag/HLTProducers/data/caloTowerMakerHLT.cfi"
 replace caloTowersTau1.TauId = 0
 replace caloTowersTau1.TauTrigger = l1extraParticles:Tau
+replace caloTowersTau1.towers = "towerMakerForAll"
 
 module caloTowersTau2 = caloTowerMakerHLT from "RecoTauTag/HLTProducers/data/caloTowerMakerHLT.cfi"
 replace caloTowersTau2.TauId = 1
 replace caloTowersTau2.TauTrigger = l1extraParticles:Tau
+replace caloTowersTau2.towers = "towerMakerForAll"
 
 module caloTowersTau3 = caloTowerMakerHLT from "RecoTauTag/HLTProducers/data/caloTowerMakerHLT.cfi"
 replace caloTowersTau3.TauId = 2
 replace caloTowersTau3.TauTrigger = l1extraParticles:Tau
+replace caloTowersTau3.towers = "towerMakerForAll"
 
 module caloTowersTau4 = caloTowerMakerHLT from "RecoTauTag/HLTProducers/data/caloTowerMakerHLT.cfi"
 replace caloTowersTau4.TauId = 3
 replace caloTowersTau4.TauTrigger = l1extraParticles:Tau
+replace caloTowersTau4.towers = "towerMakerForAll"
     
 # reconstruct Tau jet using only calo towers in location of L1 1st Tau             
 #include "RecoJets/JetProducers/data/IconeJetParameters.cfi"

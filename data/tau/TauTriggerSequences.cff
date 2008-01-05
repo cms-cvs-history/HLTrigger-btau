@@ -1,3 +1,4 @@
+
 sequence pixel_local   = {doLocalPixel}
 sequence siStrip_local = {doLocalStrip}
 sequence tracker_local = {doLocalPixel&doLocalStrip}
@@ -176,7 +177,7 @@ singleTauMET
 
 sequence caloPixelTauL1HLT = { 
 doubleTauPrescaler&hltBegin&
-doubleTauL1SeedFilter&caloTausCreator&
+doubleTauL1SeedFilter&caloTausCreatorRegional&
 l2DoubleTauJets&
 (ecalIsolationDoubleTau,filterDoubleTauEcalIsolation)&
 pixel_local&recopixelvertexing&

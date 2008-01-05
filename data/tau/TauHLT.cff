@@ -1,5 +1,6 @@
 #Tau Trigger related stuff
 include "HLTrigger/btau/data/tau/CaloTau.cff"
+include "HLTrigger/btau/data/tau/CaloTauRegional.cff"
 include "HLTrigger/btau/data/tau/SingleTau.cff"
 include "HLTrigger/btau/data/tau/SingleTauMET.cff"
 include "HLTrigger/btau/data/tau/DoubleTau.cff"

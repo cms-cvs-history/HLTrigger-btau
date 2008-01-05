@@ -33,6 +33,8 @@ es_module trajBuilderL3 = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data
 #JetCrystalsAssociator
 module singleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
 replace singleTauJetCrystalsAssociator.jets   =l2SingleTauJets
+replace singleTauJetCrystalsAssociator.EBRecHits = ecalRecHitAll:EcalRecHitsEB
+replace singleTauJetCrystalsAssociator.EERecHits = ecalRecHitAll:EcalRecHitsEE
 
 # Regional Tk reconstruction for SingleTauCollection
 #Level 2.5
@@ -83,6 +85,8 @@ sequence ckfTracksL3SingleTau = {l3SingleTauPixelSeeds,ckfTrackCandidatesL3Singl
 #JetCrystalsAssociator
 module singleTauMETJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
 replace singleTauMETJetCrystalsAssociator.jets   =l2SingleTauMETJets
+replace singleTauMETJetCrystalsAssociator.EBRecHits = ecalRecHitAll:EcalRecHitsEB
+replace singleTauMETJetCrystalsAssociator.EERecHits = ecalRecHitAll:EcalRecHitsEE
 
 #Regional Track reconstruction
 #Level 2.5
@@ -131,7 +135,8 @@ sequence ckfTracksL3SingleTauMET = {l3SingleTauMETPixelSeeds,ckfTrackCandidatesL
 #JetCrystalsAssociator
 module doubleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
 replace doubleTauJetCrystalsAssociator.jets   =l2DoubleTauJets
-
+replace doubleTauJetCrystalsAssociator.EBRecHits = ecalRegionalTausRecHit:EcalRecHitsEB
+replace doubleTauJetCrystalsAssociator.EERecHits = ecalRegionalTausRecHit:EcalRecHitsEE
 
 
 #-------------

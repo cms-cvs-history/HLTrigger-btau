@@ -7,7 +7,7 @@ replace doubleTauL1SeedFilter.L1SeedsLogicalExpression = "L1_DoubleTauJet40"
 #L2Jets Producer
 module l2DoubleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
 replace l2DoubleTauJets.L1TauTrigger = "doubleTauL1SeedFilter"
-
+replace l2DoubleTauJets.JetSrc = { icone5Tau1Regional ,icone5Tau2Regional,icone5Tau3Regional,icone5Tau4Regional }
 
 module  ecalDoubleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalDoubleTauIsol.JetForFilter = doubleTauJetCrystalsAssociator
