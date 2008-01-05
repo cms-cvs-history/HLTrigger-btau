@@ -8,7 +8,7 @@ sequence tracker_local = {doLocalPixel&doLocalStrip}
 # Electron+tau ( as of HLT exercise 2007 )
 #
 sequence hltL2TauJetsElectronTau = {
- caloTausCreator,hltL2TauJetsProviderElectronTau
+ caloTausCreatorRegional,hltL2TauJetsProviderElectronTau
 }
 
 sequence hltTracksL25ElectronTau = {
@@ -112,7 +112,7 @@ sequence hltPixelTauForElectronTauNoFilter = {
 #
 
 sequence hltL2TauJetsMuonTau = {
- caloTausCreator,hltL2TauJetsProviderMuonTau
+ caloTausCreatorRegional,hltL2TauJetsProviderMuonTau
 }
 
 sequence hltEcalIsolatedTauJetsMuonTau = { 
@@ -159,7 +159,7 @@ sequence hltMET2 = {met, hlt1METSingleTauMET} //Filter for the MET at L2
 
 sequence singleTauL1HLT = { 
 singleTauPrescaler&hltBegin&
-(singleTauL1SeedFilter&caloTausCreator&hltMET)&
+(singleTauL1SeedFilter&caloTausCreatorRegional&hltMET)&
 l2SingleTauJets&
 ecalIsolationSingleTau&filterSingleTauEcalIsolation&
 tracker_local&recopixelvertexing&
@@ -168,7 +168,7 @@ singleTau
 
 sequence singleTauMETL1HLT = {
 singleTauMETPrescaler&hltBegin&
-(singleTauMETL1SeedFilter&caloTausCreator&hltMET2)&
+(singleTauMETL1SeedFilter&caloTausCreatorRegional&hltMET2)&
 l2SingleTauMETJets&
 ecalIsolationSingleTauMET&filterSingleTauMETEcalIsolation&
 tracker_local&recopixelvertexing&
@@ -187,7 +187,7 @@ doubleCaloPixelTau
 
 #Triggers with no HLTFilters! For debugging scope
 sequence singleTauL1NoHLT = {
-hltBegin&(singleTauL1SeedFilter&caloTausCreator)&
+hltBegin&(singleTauL1SeedFilter&caloTausCreatorRegional)&
 l2SingleTauJets&
 ecalIsolationSingleTau&
 tracker_local&recopixelvertexing&
@@ -196,7 +196,7 @@ singleTauHLTOpen
 }
 
 sequence singleTauMETL1NoHLT = {
-hltBegin&(singleTauMETL1SeedFilter&caloTausCreator)&
+hltBegin&(singleTauMETL1SeedFilter&caloTausCreatorRegional)&
 l2SingleTauMETJets&
 ecalIsolationSingleTauMET&
 tracker_local&recopixelvertexing&
@@ -206,7 +206,7 @@ singleTauMETHLTOpen
 
 sequence caloPixelTauL1NoHLT = {
 hltBegin&
-doubleTauL1SeedFilter&caloTausCreator&
+doubleTauL1SeedFilter&caloTausCreatorRegional&
 l2DoubleTauJets&
 ecalIsolationDoubleTau&
 doubleCaloPixelTauNoFilters&
