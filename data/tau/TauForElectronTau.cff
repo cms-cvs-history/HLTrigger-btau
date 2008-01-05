@@ -12,22 +12,6 @@
 module hltL2TauJetsProviderElectronTau = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
  replace hltL2TauJetsProviderElectronTau.L1TauTrigger = "hltLevel1GTSeedElectronTau"
 replace  hltL2TauJetsProviderElectronTau.JetSrc = { icone5Tau1Regional ,icone5Tau2Regional,icone5Tau3Regional,icone5Tau4Regional }
-#
-# L25 ElectronTau
-#
-
-# Regional track reconstruction
-module hltTauRegionalPixelSeedL25ElectronTau = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
- replace hltTauRegionalPixelSeedL25ElectronTau.RegionFactoryPSet.RegionPSet.ptMin  = 5.0
- replace hltTauRegionalPixelSeedL25ElectronTau.RegionFactoryPSet.RegionPSet.JetSrc = hltL2TauJetsProviderElectronTau
-
-# see SingleTau.cff for trajBuilderL25 definition
-module hltCkfTrackCandidatesL25ElectronTau = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
- replace hltCkfTrackCandidatesL25ElectronTau.SeedProducer      = "hltTauRegionalPixelSeedL25ElectronTau"
- replace hltCkfTrackCandidatesL25ElectronTau.TrajectoryBuilder = "trajBuilderL25"
-
-module hltCtfWithMaterialTracksL25ElectronTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
- replace hltCtfWithMaterialTracksL25ElectronTau.src = "hltCkfTrackCandidatesL25ElectronTau"
 
 # Calo. jet-track associator
 module hltJetTracksAssociatorAtVertexL25ElectronTau = JetTracksAssociatorAtVertex {
@@ -62,23 +46,6 @@ module hltFilterIsolatedTauJetsL25ElectronTau = HLT1Tau {
     int32  MinN   = 1
 }
 
-#
-# L3 ElectronTau
-#
-
-# Regional Tk reconstruction for ElectronTauCollection 
-module hltTauRegionalPixelSeedsL3ElectronTau = tauRegionalPixelSeedGenerator from "RecoTauTag/HLTProducers/data/TauRegionalPixelSeedGenerator.cfi"
- replace hltTauRegionalPixelSeedsL3ElectronTau.RegionFactoryPSet.RegionPSet.JetSrc = hltIsolatedTauJetsSelectorL25ElectronTau
- replace hltTauRegionalPixelSeedsL3ElectronTau.RegionFactoryPSet.RegionPSet.ptMin          = 1.0
- replace hltTauRegionalPixelSeedsL3ElectronTau.RegionFactoryPSet.RegionPSet.deltaEtaRegion = 0.5
- replace hltTauRegionalPixelSeedsL3ElectronTau.RegionFactoryPSet.RegionPSet.deltaPhiRegion = 0.5
-
-module hltCkfTrackCandidatesL3ElectronTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
- replace hltCkfTrackCandidatesL3ElectronTau.SeedProducer      = "hltTauRegionalPixelSeedsL3ElectronTau"
- replace hltCkfTrackCandidatesL3ElectronTau.TrajectoryBuilder = "trajBuilderL3"
-
-module hltCtfWithMaterialTracksL3ElectronTau = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
- replace hltCtfWithMaterialTracksL3ElectronTau.src = "hltCkfTrackCandidatesL3ElectronTau"
 
 # Calo. jet-track associator
 module hltJetTracksAssociatorAtVertexL3ElectronTau = JetTracksAssociatorAtVertex {
@@ -123,11 +90,6 @@ module hltFilterIsolatedTauJetsL3ElectronTau = HLT1Tau {
 # module hltTauJetsProviderL2ElectronTau = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
 #  replace hltTauJetsProviderL2ElectronTau.L1TauTrigger = "hltETauL1Seed"
 # 
-# Construct the jet-crystals associator for the lepton-tau collection
-module hltJetCrystalsAssociatorElectronTau = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
- replace hltJetCrystalsAssociatorElectronTau.jets = hltL2TauJetsProviderElectronTau
-replace hltJetCrystalsAssociatorElectronTau.EBRecHits = ecalRecHitAll:EcalRecHitsEB
- replace hltJetCrystalsAssociatorElectronTau.EERecHits = ecalRecHitAll:EcalRecHitsEE
 
 # Produce the EMIsolatedTauTagInfoCollection
 module hltEcalIsolationElectronTau = ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"

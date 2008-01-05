@@ -11,11 +11,6 @@ sequence hltL2TauJetsElectronTau = {
  caloTausCreatorRegional,hltL2TauJetsProviderElectronTau
 }
 
-sequence hltTracksL25ElectronTau = {
- hltTauRegionalPixelSeedL25ElectronTau,
- hltCkfTrackCandidatesL25ElectronTau,
- hltCtfWithMaterialTracksL25ElectronTau
-}
 
 sequence hltTauJetsL25ElectronTau = {
  hltJetTracksAssociatorAtVertexL25ElectronTau,
@@ -28,11 +23,6 @@ sequence hltL25ElectronTau = {
  hltTauJetsL25ElectronTau
 }
 
-sequence hltTracksL3ElectronTau = {
- hltTauRegionalPixelSeedsL3ElectronTau,
- hltCkfTrackCandidatesL3ElectronTau,
- hltCtfWithMaterialTracksL3ElectronTau
-}
   
 sequence hltTauJetsL3ElectronTau = {
  hltJetTracksAssociatorAtVertexL3ElectronTau,
