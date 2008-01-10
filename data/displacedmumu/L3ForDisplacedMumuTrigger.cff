@@ -6,7 +6,6 @@ include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
 # MeasurementTracker
 include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
-include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 ###### tracking sequence
 
 # Seeds for tracking

@@ -1,0 +1,4 @@
+# configuration needed to run the displaced mumu HLT with Full Reconstruction
+
+# L3 displaced dimuon reco
+include "HLTrigger/btau/data/displacedmumu/L3ForDisplacedMumuTrigger.cff" 

@@ -66,12 +66,10 @@ module ctfWithMaterialTracksJpsi = ctfWithMaterialTracks from "RecoTracker/Track
 replace ctfWithMaterialTracksJpsi.src = "ckfTrackCandidatesJpsi"
  
 
-// track reco sequence
+#track reco sequence
 
-    sequence jpsitracks = {trackerlocalreco & jpsipixelseed & ckfTrackCandidatesJpsi & ctfWithMaterialTracksJpsi}
+  sequence jpsitracks = {trackerlocalreco & jpsipixelseed & ckfTrackCandidatesJpsi & ctfWithMaterialTracksJpsi}
 
-# include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
-  
   include "PhysicsTools/RecoAlgos/data/allTracks.cfi"
   replace allTracks.src = ctfWithMaterialTracksJpsi 	    
   replace allTracks.particleType = "mu-"
@@ -106,5 +104,5 @@ replace ctfWithMaterialTracksJpsi.src = "ckfTrackCandidatesJpsi"
   sequence l3displacedJpsireco = { muonCandidateFromHLTFOWR & jpsitracks & jpsicand }
 
 #  sequence ecalClusterPath = {hltSingleEMLevel1Seed & calolocalreco & ecalClusters & hltRecoEcalSingleCandidate} 
-   sequence ecalClusterPath = { calolocalreco & ecalClusters & hltRecoEcalSingleCandidate, BsmumugammaFilter} 	
+  sequence ecalClusterPath = { calolocalreco & ecalClusters & hltRecoEcalSingleCandidate, BsmumugammaFilter} 	
   sequence btoJpsitoMumu = { l1dimuonreco & pvreco & l3displacedJpsireco & displacedJpsiFilter & ecalClusterPath }
