@@ -8,6 +8,9 @@ include "HLTrigger/btau/data/tau/TauForElectronTau.cff"
 include "HLTrigger/btau/data/tau/TauForMuonTau.cff"
 include "HLTrigger/btau/data/tau/TauTriggerSequences.cff"
 
+#CaloTowerws
+include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+
 # Full Reco 
 #include "HLTrigger/btau/data/tau/HLTFullRecoForTau.cff"
 

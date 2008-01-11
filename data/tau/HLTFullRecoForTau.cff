@@ -149,7 +149,6 @@ include "HLTrigger/Configuration/data/common/Vertexing.cff"
 include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
 
 #CaloMet stuff
-include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
 # Tracker reconstruction
