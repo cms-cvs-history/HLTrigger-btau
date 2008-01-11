@@ -9,7 +9,11 @@ include "HLTrigger/btau/data/jetTag/lifetimeL1Seeds.cff"
 # reconstruct calo jets and select those to be used for b tagging
 include "HLTrigger/btau/data/jetTag/lifetimeJetReco.cff"
 
-# pixel reconstruction and (regional) tracking have been moved into HLTFullRecoForB.cff / HLTFastRecoForB.cff
+# Full Reco
+#include "HLTrigger/btau/data/jetTag/HLTFullRecoForB.cff"
+
+# Fast Reco
+#include "FastSimulation/HighLevelTrigger/data/btau/HLTFastRecoForB.cff"
 
 # associate jet to tracks
 include "HLTrigger/btau/data/jetTag/lifetimeTrackAssociator.cff"

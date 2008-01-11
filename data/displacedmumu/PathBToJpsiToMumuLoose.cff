@@ -2,6 +2,12 @@
 #include "HLTrigger/Muon/data/CommonModules_2x1033.cfi"
 include "HLTrigger/Muon/data/CommonModules.cff"
 
+# Full Reco
+#include "HLTrigger/btau/data/displacedmumu/HLTFullRecoForDisplacedMuMu.cff"
+
+# Fast Reco
+#include "FastSimulation/HighLevelTrigger/data/btau/HLTFastRecoForB.cff"
+
 module  JpsitoMumuL1Seed = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
     replace JpsitoMumuL1Seed.L1SeedsLogicalExpression = "L1_DoubleMu3"
 

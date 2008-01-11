@@ -1,4 +1,4 @@
-#Tau Trigger related stuff
+# Tau Trigger related stuff
 include "HLTrigger/btau/data/tau/CaloTau.cff"
 include "HLTrigger/btau/data/tau/CaloTauRegional.cff"
 include "HLTrigger/btau/data/tau/SingleTau.cff"
@@ -8,7 +8,8 @@ include "HLTrigger/btau/data/tau/TauForElectronTau.cff"
 include "HLTrigger/btau/data/tau/TauForMuonTau.cff"
 include "HLTrigger/btau/data/tau/TauTriggerSequences.cff"
 
-#FullReco 
-include "HLTrigger/btau/data/tau/HLTFullRecoForTau.cff"
+# Full Reco 
+#include "HLTrigger/btau/data/tau/HLTFullRecoForTau.cff"
 
-
+# Fast Reco
+#include "FastSimulation/HighLevelTrigger/data/btau/HLTFastRecoForTau.cff"
