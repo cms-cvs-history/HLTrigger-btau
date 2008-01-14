@@ -149,7 +149,7 @@ sequence hltMET2 = {met, hlt1METSingleTauMET} //Filter for the MET at L2
 
 sequence singleTauL1HLT = { 
 singleTauPrescaler&hltBegin&
-(singleTauL1SeedFilter&caloTausCreatorRegional&hltMET)&
+(singleTauL1SeedFilter&caloTausCreator&hltMET)&
 l2SingleTauJets&
 ecalIsolationSingleTau&filterSingleTauEcalIsolation&
 tracker_local&recopixelvertexing&
@@ -158,7 +158,7 @@ singleTau
 
 sequence singleTauMETL1HLT = {
 singleTauMETPrescaler&hltBegin&
-(singleTauMETL1SeedFilter&caloTausCreatorRegional&hltMET2)&
+(singleTauMETL1SeedFilter&caloTausCreator&hltMET2)&
 l2SingleTauMETJets&
 ecalIsolationSingleTauMET&filterSingleTauMETEcalIsolation&
 tracker_local&recopixelvertexing&

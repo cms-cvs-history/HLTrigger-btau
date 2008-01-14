@@ -17,7 +17,7 @@ module hlt1METSingleTau = HLT1CaloMET {
 #L2Jets Producer
 module l2SingleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2TauJetsProvider.cfi"
 replace l2SingleTauJets.L1TauTrigger = "singleTauL1SeedFilter"
-replace l2SingleTauJets.JetSrc = { icone5Tau1Regional ,icone5Tau2Regional,icone5Tau3Regional,icone5Tau4Regional }
+replace l2SingleTauJets.JetSrc = { icone5Tau1,icone5Tau2,icone5Tau3,icone5Tau4 }
 
 #Produce the EMIsolatedTauTagInfoCollection
 module  ecalSingleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
