@@ -4,48 +4,48 @@
 #   L2 passing HT or 1-4 multi-jet thresholds
 #   L2.5 and L3 track counting HLT
 
-sequence b1jetTrig = {
-    b1jetPrescaler &
+sequence hltBLifetime1jet = {
+    prescalerBLifetime1jet &
     hltBegin &
-    bhltL1filter &
-    (preL2bReco,  hltL2b1jet) &
-    (preL25bReco, hltL25b) &
-    (preL3bReco,  hltL3b)
+    hltBLifetimeL1seeds &
+    (hltBCommonL2reco,  hltBLifetime1jetL2filter) &
+    (hltBLifetimeL25reco, hltBLifetimeL25filter) &
+    (hltBLifetimeL3reco,  hltBLifetimeL3filter)
 }
 
-sequence b2jetTrig = {
-    b2jetPrescaler &
+sequence hltBLifetime2jet = {
+    prescalerBLifetime2jet &
     hltBegin &
-    bhltL1filter &
-    (preL2bReco,  hltL2b2jet) &
-    (preL25bReco, hltL25b) &
-    (preL3bReco,  hltL3b)
+    hltBLifetimeL1seeds &
+    (hltBCommonL2reco,  hltBLifetime2jetL2filter) &
+    (hltBLifetimeL25reco, hltBLifetimeL25filter) &
+    (hltBLifetimeL3reco,  hltBLifetimeL3filter)
 }
 
-sequence b3jetTrig = {
-    b3jetPrescaler &
+sequence hltBLifetime3jet = {
+    prescalerBLifetime3jet &
     hltBegin &
-    bhltL1filter &
-    (preL2bReco,  hltL2b3jet) &
-    (preL25bReco, hltL25b) &
-    (preL3bReco,  hltL3b)
+    hltBLifetimeL1seeds &
+    (hltBCommonL2reco,  hltBLifetime3jetL2filter) &
+    (hltBLifetimeL25reco, hltBLifetimeL25filter) &
+    (hltBLifetimeL3reco,  hltBLifetimeL3filter)
 }
 
-sequence b4jetTrig = {
-    b4jetPrescaler &
+sequence hltBLifetime4jet = {
+    prescalerBLifetime4jet &
     hltBegin &
-    bhltL1filter &
-    (preL2bReco,  hltL2b4jet) &
-    (preL25bReco, hltL25b) &
-    (preL3bReco,  hltL3b)
+    hltBLifetimeL1seeds &
+    (hltBCommonL2reco,  hltBLifetime4jetL2filter) &
+    (hltBLifetimeL25reco, hltBLifetimeL25filter) &
+    (hltBLifetimeL3reco,  hltBLifetimeL3filter)
 }
 
-sequence bHTTrig = {
-    bHTPrescaler &
+sequence hltBLifetimeHT = {
+    prescalerBLifetimeHT &
     hltBegin &
-    bhltL1filter &
-    (preL2bReco,  hltL2bHT) &
-    (preL25bReco, hltL25b) &
-    (preL3bReco,  hltL3b)
+    hltBLifetimeL1seeds &
+    (hltBCommonL2reco,  hltBLifetimeHTL2filter) &
+    (hltBLifetimeL25reco, hltBLifetimeL25filter) &
+    (hltBLifetimeL3reco,  hltBLifetimeL3filter)
 }
 

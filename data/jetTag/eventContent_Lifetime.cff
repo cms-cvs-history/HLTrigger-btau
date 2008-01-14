@@ -6,19 +6,19 @@ block JetTagLifetimeHLT = {
         "keep *_MCJetCorJetIcone5_*_*",
         # L2.5 objects and results
         "keep *_iterativeCone5CaloJets_*_*",
-        "keep *_lifetimeHighestEtJets_*_*",
-        "keep *_lifetimeEtCutJets_*_*",
+        "keep *_hltBLifetimeHighestEtJets_*_*",
+        "keep *_hltBLifetimeL25Jets_*_*",
         "keep *_pixelVertices_*_*",       
         "keep *_pixelTracks_*_*",
-        "keep *_lifetimeEtCutJets_*_*",
-        "keep *_lifetimeAssociatorL25_*_*",
-        "keep *_hltLifetimeTagInfosL25_*_*",
-        "keep *_hltLifetimeBJetTagsL25_*_*",
+        "keep *_hltBLifetimeL25Jets_*_*",
+        "keep *_hltBLifetimeL25Associator_*_*",
+        "keep *_hltBLifetimeL25TagInfos_*_*",
+        "keep *_hltBLifetimeL25BJetTags_*_*",
         # L3 objects and results
-        "keep *_bJetRegionalCtfWithMaterialTracks_*_*",
-        "keep *_fromL25bJets_*_*",
-        "keep *_lifetimeAssociatorL3_*_*",
-        "keep *_hltLifetimeTagInfosL3_*_*",
-        "keep *_hltLifetimeBJetTagsL3_*_*"
+        "keep *_hltBLifetimeRegionalCtfWithMaterialTracks_*_*",
+        "keep *_hltBLifetimeL3Jets_*_*",
+        "keep *_hltBLifetimeL3Associator_*_*",
+        "keep *_hltBLifetimeL3TagInfos_*_*",
+        "keep *_hltBLifetimeL3BJetTags_*_*"
     }
 }

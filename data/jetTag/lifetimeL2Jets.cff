@@ -4,7 +4,7 @@
 
 # Transverse energy trigger
 
-module hltL2bHT = HLTGlobalSumHT {
+module hltBLifetimeHTL2filter = HLTGlobalSumHT {
     InputTag inputTag   = htMet
     string   observable = "sumEt"
     double   Min        = 470.0
@@ -14,36 +14,36 @@ module hltL2bHT = HLTGlobalSumHT {
 
 # Multi-jet triggers
 
-module  hltL2b1jet = hlt1CaloJet 
+module  hltBLifetime1jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b1jet.MinN  = 1
+replace hltBLifetime1jetL2filter.MinN  = 1
 
-module  hltL2b2jet = hlt1CaloJet 
+module  hltBLifetime2jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b2jet.MinN  = 2
+replace hltBLifetime2jetL2filter.MinN  = 2
 
-module  hltL2b3jet = hlt1CaloJet 
+module  hltBLifetime3jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b3jet.MinN  = 3
+replace hltBLifetime3jetL2filter.MinN  = 3
 
-module  hltL2b4jet = hlt1CaloJet 
+module  hltBLifetime4jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b4jet.MinN  = 4
+replace hltBLifetime4jetL2filter.MinN  = 4
 
 # Luminosity = 2E33 (Physics TDR)
-#replace hltL2b1jet.MinPt = 350.0
-#replace hltL2b2jet.MinPt = 150.0
-#replace hltL2b3jet.MinPt = 9999999.0
-#replace hltL2b4jet.MinPt = 55.0
+#replace hltBLifetime1jetL2filter.MinPt = 350.0
+#replace hltBLifetime2jetL2filter.MinPt = 150.0
+#replace hltBLifetime3jetL2filter.MinPt = 9999999.0
+#replace hltBLifetime4jetL2filter.MinPt = 55.0
 
 # Luminosity for year 2008. 
-replace hltL2b1jet.MinPt = 180.0
-replace hltL2b2jet.MinPt = 120.0
-replace hltL2b3jet.MinPt = 70.0
-replace hltL2b4jet.MinPt = 40.0
+replace hltBLifetime1jetL2filter.MinPt = 180.0
+replace hltBLifetime2jetL2filter.MinPt = 120.0
+replace hltBLifetime3jetL2filter.MinPt = 70.0
+replace hltBLifetime4jetL2filter.MinPt = 40.0
 
 # Debug (low)
-#replace hltL2b1jet.MinPt = 50.0
-#replace hltL2b2jet.MinPt = 50.0
-#replace hltL2b3jet.MinPt = 50.0
-#replace hltL2b4jet.MinPt = 30.0
+#replace hltBLifetime1jetL2filter.MinPt = 50.0
+#replace hltBLifetime2jetL2filter.MinPt = 50.0
+#replace hltBLifetime3jetL2filter.MinPt = 50.0
+#replace hltBLifetime4jetL2filter.MinPt = 30.0

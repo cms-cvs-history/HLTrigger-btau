@@ -11,8 +11,8 @@ include "RecoBTag/SoftLepton/data/softLeptonByDistanceES.cfi"
 include "RecoBTag/SoftLepton/data/softLeptonByPtES.cfi"
 
 # SoftLeptonTagInfo producer for tagging L2 jets with L2 muons 
-module softMuonTagInfosL2 = SoftLepton {
-    InputTag jets             = softmuonEtCutJets
+module hltBSoftmuonL25TagInfos = SoftLepton {
+    InputTag jets             = hltBSoftmuonL25Jets
     uint32   refineJetAxis    = 0               # use calorimetric jet direction
     InputTag primaryVertex    = nominal         # use the nominal beam spot and error
     InputTag leptons          = hltL2Muons
@@ -22,14 +22,14 @@ module softMuonTagInfosL2 = SoftLepton {
 }
 
 # tag by DeltaR
-module softMuonBJetTagsL2 = JetTagProducer {
-    InputTag tagInfo        = softMuonTagInfosL2
+module hltBSoftmuonL25BJetTags = JetTagProducer {
+    InputTag tagInfo        = hltBSoftmuonL25TagInfos
     string   jetTagComputer = "softLeptonByDistance"
 }
 
 # SoftLeptonTagInfo producer for tagging L2 jets with L3 muons 
-module softMuonTagInfosL3 = SoftLepton {
-    InputTag jets             = softmuonEtCutJets
+module hltBSoftmuonL3TagInfos = SoftLepton {
+    InputTag jets             = hltBSoftmuonL25Jets
     uint32   refineJetAxis    = 0               # use calorimetric jet direction
     InputTag primaryVertex    = nominal         # use the nominal beam spot and error
     InputTag leptons          = hltL3Muons
@@ -39,14 +39,14 @@ module softMuonTagInfosL3 = SoftLepton {
 }
 
 # tag by PtRel
-module softMuonBJetTagsL3 = JetTagProducer {
-    InputTag tagInfo        = softMuonTagInfosL3
+module hltBSoftmuonL3BJetTags = JetTagProducer {
+    InputTag tagInfo        = hltBSoftmuonL3TagInfos
     string   jetTagComputer = "softLeptonByPt"
 }
 
 # tag by DeltaR
-module softMuonBJetTagsL3ByDistance = JetTagProducer {
-    InputTag tagInfo        = softMuonTagInfosL3
+module hltBSoftmuonL3BJetTagsByDR = JetTagProducer {
+    InputTag tagInfo        = hltBSoftmuonL3TagInfos
     string   jetTagComputer = "softLeptonByDistance"
 }
 

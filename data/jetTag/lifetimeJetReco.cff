@@ -1,16 +1,16 @@
 include "HLTrigger/btau/data/jetTag/jetReco.cff"
 
 # Select jets used for regional tracking & considered for b tagging
-module lifetimeHighestEtJets = LargestEtCaloJetSelector {
+module hltBLifetimeHighestEtJets = LargestEtCaloJetSelector {
     InputTag src     = iterativeCone5CaloJets   
     bool filter      = false
     uint32 maxNumber = 4    # Take only 4 highest Et jets...
 }
 
-module lifetimeEtCutJets = EtMinCaloJetSelector {
-    InputTag src = lifetimeHighestEtJets 
+module hltBLifetimeL25Jets = EtMinCaloJetSelector {
+    InputTag src = hltBLifetimeHighestEtJets 
     bool filter  = false
     double etMin = 35.0     # ...and require jet Et greater than cut.
 }
 
-sequence lifetimeJetSel = { lifetimeHighestEtJets, lifetimeEtCutJets } 
+sequence hltBLifetimeL25jetselection = { hltBLifetimeHighestEtJets, hltBLifetimeL25Jets } 

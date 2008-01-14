@@ -9,4 +9,4 @@ include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing.cff"
 #include "RecoTracker/TkSeedingLayers/data/MixedLayerTriplets.cfi"
 #replace pixelTracks.OrderedHitsFactoryPSet.SeedingLayers="MixedLayerTriplets"
 
-sequence bL25trackReco = { doLocalPixel & recopixelvertexing }
+sequence hltBLifetimeL25tracking = { doLocalPixel & recopixelvertexing }

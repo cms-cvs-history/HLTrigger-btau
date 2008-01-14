@@ -3,25 +3,25 @@
 include "RecoBTag/ImpactParameter/data/impactParameter.cff"
 
 # L2.5 IP-based tag info
-module  hltLifetimeTagInfosL25 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
-replace hltLifetimeTagInfosL25.jetTracks                = "lifetimeAssociatorL25"
-replace hltLifetimeTagInfosL25.primaryVertex            = "pixelVertices"
-replace hltLifetimeTagInfosL25.computeProbabilities     = false
-replace hltLifetimeTagInfosL25.minimumNumberOfHits      = 3
+module  hltBLifetimeL25TagInfos = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
+replace hltBLifetimeL25TagInfos.jetTracks                = "hltBLifetimeL25Associator"
+replace hltBLifetimeL25TagInfos.primaryVertex            = "pixelVertices"
+replace hltBLifetimeL25TagInfos.computeProbabilities     = false
+replace hltBLifetimeL25TagInfos.minimumNumberOfHits      = 3
 
 # 3D impact parameter, 2nd track
-module  hltLifetimeBJetTagsL25 = trackCountingHighEffBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffBJetTags.cfi"
+module  hltBLifetimeL25BJetTags = trackCountingHighEffBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffBJetTags.cfi"
 # for 3rd track, use           = trackCountingHighPurBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighPurBJetTags.cfi"
-replace hltLifetimeBJetTagsL25.tagInfo = hltLifetimeTagInfosL25
+replace hltBLifetimeL25BJetTags.tagInfo = hltBLifetimeL25TagInfos
 
 # L3 IP-based tag info
-module  hltLifetimeTagInfosL3 = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
-replace hltLifetimeTagInfosL3.jetTracks                 = "lifetimeAssociatorL3"
-replace hltLifetimeTagInfosL3.primaryVertex             = "pixelVertices"
-replace hltLifetimeTagInfosL3.computeProbabilities      = false
-replace hltLifetimeTagInfosL3.minimumNumberOfHits       = 8
+module  hltBLifetimeL3TagInfos = impactParameterTagInfos from "RecoBTag/ImpactParameter/data/impactParameter.cfi"
+replace hltBLifetimeL3TagInfos.jetTracks                 = "hltBLifetimeL3Associator"
+replace hltBLifetimeL3TagInfos.primaryVertex             = "pixelVertices"
+replace hltBLifetimeL3TagInfos.computeProbabilities      = false
+replace hltBLifetimeL3TagInfos.minimumNumberOfHits       = 8
 
 # 3D impact parameter, 2nd track
-module  hltLifetimeBJetTagsL3 = trackCountingHighEffBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffBJetTags.cfi"
+module  hltBLifetimeL3BJetTags = trackCountingHighEffBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighEffBJetTags.cfi"
 # for 3rd track, use          = trackCountingHighPurBJetTags from "RecoBTag/ImpactParameter/data/trackCountingHighPurBJetTags.cfi"
-replace hltLifetimeBJetTagsL3.tagInfo = hltLifetimeTagInfosL3
+replace hltBLifetimeL3BJetTags.tagInfo = hltBLifetimeL3TagInfos

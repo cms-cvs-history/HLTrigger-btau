@@ -6,11 +6,11 @@ include "RecoTracker/Configuration/data/RecoTracker.cff"
 
 # Regional track seeding around jets b-tagged at L2.5.
 
-module bJetRegionalPixelSeedGenerator = SeedGeneratorFromRegionHitsEDProducer {
+module hltBLifetimeRegionalPixelSeedGenerator = SeedGeneratorFromRegionHitsEDProducer {
     PSet RegionFactoryPSet = {
         string ComponentName = "TauRegionalPixelSeedGenerator"
         PSet RegionPSet = {
-            InputTag JetSrc         = fromL25bJets
+            InputTag JetSrc         = hltBLifetimeL3Jets
             string vertexSrc        = "pixelVertices"
             bool   precise          = true
             double ptMin            = 1.0
@@ -45,22 +45,22 @@ es_module bJetRegionalTrajectoryBuilder = CkfTrajectoryBuilder from "RecoTracker
   replace bJetRegionalTrajectoryBuilder.alwaysUseInvalidHits = false
 
 # Form track candidates using the trajectory builder and seeds defined above.
-module  bJetRegionalCkfTrackCandidates = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
-replace bJetRegionalCkfTrackCandidates.SeedProducer      = "bJetRegionalPixelSeedGenerator"
-replace bJetRegionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalTrajectoryBuilder"
+module  hltBLifetimeRegionalCkfTrackCandidates = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+replace hltBLifetimeRegionalCkfTrackCandidates.SeedProducer      = "hltBLifetimeRegionalPixelSeedGenerator"
+replace hltBLifetimeRegionalCkfTrackCandidates.TrajectoryBuilder = "bJetRegionalTrajectoryBuilder"
 
 # Fit tracks using the track candidates defined above.
-module  bJetRegionalCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
-replace bJetRegionalCtfWithMaterialTracks.src = "bJetRegionalCkfTrackCandidates"
+module  hltBLifetimeRegionalCtfWithMaterialTracks = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+replace hltBLifetimeRegionalCtfWithMaterialTracks.src = "hltBLifetimeRegionalCkfTrackCandidates"
 
 # Define regional reconstruction path.
-sequence regionalCkfTracks = {
-    bJetRegionalPixelSeedGenerator, 
-    bJetRegionalCkfTrackCandidates, 
-    bJetRegionalCtfWithMaterialTracks
+sequence hltBLifetimeRegionalTracks = {
+    hltBLifetimeRegionalPixelSeedGenerator, 
+    hltBLifetimeRegionalCkfTrackCandidates, 
+    hltBLifetimeRegionalCtfWithMaterialTracks
 }
 
-sequence bL3trackReco = { 
+sequence hltBLifetimeL3tracking = { 
     (doLocalPixel & doLocalStrip), 
-    regionalCkfTracks 
+    hltBLifetimeRegionalTracks 
 }

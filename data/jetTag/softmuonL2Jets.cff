@@ -3,7 +3,7 @@
 #
 
 # Transverse energy trigger
-module hltL2bHTMu = HLTGlobalSumHT {
+module hltBSoftmuonHTL2filter = HLTGlobalSumHT {
     InputTag inputTag   = htMet
     string   observable = "sumEt"
     double   Min        = 370.0
@@ -12,23 +12,23 @@ module hltL2bHTMu = HLTGlobalSumHT {
 }
 
 # Multi-jet triggers
-module  hltL2b1jetMu = hlt1CaloJet 
+module  hltBSoftmuon1jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b1jetMu.MinN  = 1
-replace hltL2b1jetMu.MinPt = 20.0
+replace hltBSoftmuon1jetL2filter.MinN  = 1
+replace hltBSoftmuon1jetL2filter.MinPt = 20.0
 
-module  hltL2b2jetMu = hlt1CaloJet 
+module  hltBSoftmuon2jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b2jetMu.MinN  = 2
-replace hltL2b2jetMu.MinPt = 120.0
+replace hltBSoftmuon2jetL2filter.MinN  = 2
+replace hltBSoftmuon2jetL2filter.MinPt = 120.0
 
-module  hltL2b3jetMu = hlt1CaloJet 
+module  hltBSoftmuon3jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b3jetMu.MinN  = 3
-replace hltL2b3jetMu.MinPt = 70.0
+replace hltBSoftmuon3jetL2filter.MinN  = 3
+replace hltBSoftmuon3jetL2filter.MinPt = 70.0
 
-module  hltL2b4jetMu = hlt1CaloJet 
+module  hltBSoftmuon4jetL2filter = hlt1CaloJet 
     from "HLTrigger/HLTfilters/data/hlt1CaloJet.cfi"
-replace hltL2b4jetMu.MinN  = 4
-replace hltL2b4jetMu.MinPt = 40.0
+replace hltBSoftmuon4jetL2filter.MinN  = 4
+replace hltBSoftmuon4jetL2filter.MinPt = 40.0
 

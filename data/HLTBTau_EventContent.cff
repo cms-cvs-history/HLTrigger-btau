@@ -50,8 +50,8 @@ block HLTBTauAOD = {
         isolatedL25PixelTau,
 
         # btag
-        fromL25bJets,
-        softmuonEtCutJets,
+        hltBLifetimeL3Jets,
+        hltBSoftmuonL25Jets,
 
         # displacedMumu
         hltMuTracks
@@ -64,9 +64,9 @@ block HLTBTauAOD = {
         filterL25PixelTau,
 
         # btag
-        hltL3b,
-        hltL3bmu,
-        hltL3bmuBydR,
+        hltBLifetimeL3filter,
+        hltBSoftmuonL3filter,
+        hltBSoftmuonByDRL3filter,
 
         # displacedMumu
         displacedJpsitoMumuFilter
