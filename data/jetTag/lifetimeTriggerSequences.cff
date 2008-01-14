@@ -7,7 +7,7 @@
 sequence b1jetTrig = {
     b1jetPrescaler &
     hltBegin &
-    L1forBlifeHLT &
+    bhltL1filter &
     (preL2bReco,  hltL2b1jet) &
     (preL25bReco, hltL25b) &
     (preL3bReco,  hltL3b)
@@ -16,7 +16,7 @@ sequence b1jetTrig = {
 sequence b2jetTrig = {
     b2jetPrescaler &
     hltBegin &
-    L1forBlifeHLT &
+    bhltL1filter &
     (preL2bReco,  hltL2b2jet) &
     (preL25bReco, hltL25b) &
     (preL3bReco,  hltL3b)
@@ -25,7 +25,7 @@ sequence b2jetTrig = {
 sequence b3jetTrig = {
     b3jetPrescaler &
     hltBegin &
-    L1forBlifeHLT &
+    bhltL1filter &
     (preL2bReco,  hltL2b3jet) &
     (preL25bReco, hltL25b) &
     (preL3bReco,  hltL3b)
@@ -34,7 +34,7 @@ sequence b3jetTrig = {
 sequence b4jetTrig = {
     b4jetPrescaler &
     hltBegin &
-    L1forBlifeHLT &
+    bhltL1filter &
     (preL2bReco,  hltL2b4jet) &
     (preL25bReco, hltL25b) &
     (preL3bReco,  hltL3b)
@@ -43,7 +43,7 @@ sequence b4jetTrig = {
 sequence bHTTrig = {
     bHTPrescaler &
     hltBegin &
-    L1forBlifeHLT &
+    bhltL1filter &
     (preL2bReco,  hltL2bHT) &
     (preL25bReco, hltL25b) &
     (preL3bReco,  hltL3b)

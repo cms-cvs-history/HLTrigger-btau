@@ -7,7 +7,7 @@
 include "HLTrigger/btau/data/jetTag/lifetimeTriggerSequences.cff"
 
 # Have L1 by itself just for debug purposes.
-path L1forbHLT  = { hltBegin, L1forBlifeHLT }
+path L1forbHLT  = { hltBegin, bhltL1filter }
 
 # L1 + HLT trigger paths
 path HLTB1Jet = { b1jetTrig }
