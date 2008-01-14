@@ -10,7 +10,7 @@ sequence bmu1jetTrig = {
     bmuhltL1filter &
     (preL2bReco, hltL2b1jetMu) &
     (preL25bRecoMu, hltL25bmu) &
-    (preL3bRecoMuBydR, hltL3bmuBydR)
+    (preL3bRecoMu, hltL3bmuBydR)
 }
 
 sequence bmu2jetTrig = {

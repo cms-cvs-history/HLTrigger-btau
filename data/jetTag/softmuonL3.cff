@@ -9,5 +9,4 @@ replace hltL3bmuBydR.JetTag = softMuonBJetTagsL3ByDistance
 replace hltL3bmuBydR.MinTag = 0.5   # 1 if dR < 0.5, 0 otherwise
 
 # Event reconstruction needed for trigger.
-sequence preL3bRecoMu      = { l3muonrecoNocand, softMuonTagInfosL3, softMuonBJetTagsL3 }
-sequence preL3bRecoMuBydR  = { l3muonrecoNocand, softMuonTagInfosL3, softMuonBJetTagsL3ByDistance }
+sequence preL3bRecoMu  = { l3muonrecoNocand, softMuonTagInfosL3, softMuonBJetTagsL3, softMuonBJetTagsL3ByDistance }
