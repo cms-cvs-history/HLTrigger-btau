@@ -18,6 +18,12 @@ module l2SingleTauMETJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data
 replace l2SingleTauMETJets.L1TauTrigger = "singleTauMETL1SeedFilter"
 replace l2SingleTauMETJets.JetSrc = { icone5Tau1,icone5Tau2,icone5Tau3,icone5Tau4}
 
+#JetCrystalsAssociator
+module singleTauMETJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
+replace singleTauMETJetCrystalsAssociator.jets   =l2SingleTauMETJets
+replace singleTauMETJetCrystalsAssociator.EBRecHits = ecalRecHitAll:EcalRecHitsEB
+replace singleTauMETJetCrystalsAssociator.EERecHits = ecalRecHitAll:EcalRecHitsEE
+
 #Produce the EMIsolatedTauTagInfoCollection
 module  ecalSingleTauMETIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalSingleTauMETIsol.JetForFilter = singleTauMETJetCrystalsAssociator
@@ -26,6 +32,7 @@ replace ecalSingleTauMETIsol.JetForFilter = singleTauMETJetCrystalsAssociator
 module ecalSingleTauMETIsolated = EMIsolatedTauJetsSelector{
     VInputTag TauSrc= {ecalSingleTauMETIsol}
 }
+
 
 # for SingleTauMET
 module filterSingleTauMETEcalIsolation = HLT1Tau  {

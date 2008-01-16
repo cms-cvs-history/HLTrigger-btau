@@ -9,6 +9,12 @@ module l2DoubleTauJets = l2TauJetsProvider from "RecoTauTag/HLTProducers/data/L2
 replace l2DoubleTauJets.L1TauTrigger = "doubleTauL1SeedFilter"
 replace l2DoubleTauJets.JetSrc = { icone5Tau1Regional ,icone5Tau2Regional,icone5Tau3Regional,icone5Tau4Regional }
 
+#JetCrystalsAssociator
+module doubleTauJetCrystalsAssociator = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
+replace doubleTauJetCrystalsAssociator.jets   =l2DoubleTauJets
+replace doubleTauJetCrystalsAssociator.EBRecHits = ecalRegionalTausRecHit:EcalRecHitsEB
+replace doubleTauJetCrystalsAssociator.EERecHits = ecalRegionalTausRecHit:EcalRecHitsEE
+
 module  ecalDoubleTauIsol =  ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"
 replace ecalDoubleTauIsol.JetForFilter = doubleTauJetCrystalsAssociator
 
