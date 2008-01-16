@@ -13,6 +13,13 @@ module hltL2TauJetsProviderMuonTau = l2TauJetsProvider from "RecoTauTag/HLTProdu
  replace hltL2TauJetsProviderMuonTau.L1TauTrigger = "hltLevel1GTSeedMuonTau"
 replace hltL2TauJetsProviderMuonTau.JetSrc = { icone5Tau1Regional ,icone5Tau2Regional,icone5Tau3Regional,icone5Tau4Regional }
 
+# Construct the jet-crystals associator for the lepton-tau collection
+module hltJetCrystalsAssociatorMuonTau = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
+ replace hltJetCrystalsAssociatorMuonTau.jets = hltL2TauJetsProviderMuonTau
+replace hltJetCrystalsAssociatorMuonTau.EBRecHits = ecalRecHitAll:EcalRecHitsEB
+ replace hltJetCrystalsAssociatorMuonTau.EERecHits = ecalRecHitAll:EcalRecHitsEE
+
+
 
 # Produce the EMIsolatedTauTagInfoCollection
 module hltEcalIsolationMuonTau = ecalIsolation from "HLTrigger/btau/data/tau/EcalIsolation.cfi"

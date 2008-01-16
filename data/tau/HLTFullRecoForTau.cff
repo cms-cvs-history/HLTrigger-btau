@@ -202,9 +202,3 @@ sequence hltTracksL3ElectronTau = {
 
 #Muon+Tau
 
-# Construct the jet-crystals associator for the lepton-tau collection
-module hltJetCrystalsAssociatorMuonTau = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
- replace hltJetCrystalsAssociatorMuonTau.jets = hltL2TauJetsProviderMuonTau
-replace hltJetCrystalsAssociatorMuonTau.EBRecHits = ecalRecHitAll:EcalRecHitsEB
- replace hltJetCrystalsAssociatorMuonTau.EERecHits = ecalRecHitAll:EcalRecHitsEE
-
