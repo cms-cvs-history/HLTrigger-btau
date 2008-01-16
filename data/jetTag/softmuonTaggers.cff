@@ -17,7 +17,7 @@ module hltBSoftmuonL25TagInfos = SoftLepton {
     InputTag primaryVertex    = nominal         # use the nominal beam spot and error
     InputTag leptons          = hltL2Muons
     double   leptonDeltaRCut  = 0.4             # lepton distance from jet axis
-    double   leptonChi2Cut    = 9999.           # no chi2/ndof cut
+    double   leptonChi2Cut    = 0.0             # no chi2/ndof cut
     double   leptonQualityCut = 0.0             # used only for reco::Muons
 }
 
