@@ -180,13 +180,6 @@ module hltCtfWithMaterialTracksL3ElectronTau = ctfWithMaterialTracks from "RecoT
  replace hltCtfWithMaterialTracksL3ElectronTau.src = "hltCkfTrackCandidatesL3ElectronTau"
 
 
-#  ECAL ISOLATION BUSINESS. IN TEST FOR NOW, SHOULD BECOME DEFAULT
-# Construct the jet-crystals associator for the lepton-tau collection
-module hltJetCrystalsAssociatorElectronTau = jetCrystalsAssociator from "HLTrigger/btau/data/tau/JetCrystalsAssociator.cfi"
- replace hltJetCrystalsAssociatorElectronTau.jets = hltL2TauJetsProviderElectronTau
-replace hltJetCrystalsAssociatorElectronTau.EBRecHits = ecalRecHitAll:EcalRecHitsEB
- replace hltJetCrystalsAssociatorElectronTau.EERecHits = ecalRecHitAll:EcalRecHitsEE
-
 
 sequence hltTracksL25ElectronTau = {
  hltTauRegionalPixelSeedL25ElectronTau,
