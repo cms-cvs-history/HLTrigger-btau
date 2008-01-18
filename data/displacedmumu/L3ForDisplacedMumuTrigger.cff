@@ -46,7 +46,7 @@ module hltCtfWithMaterialTracksMumu = ctfWithMaterialTracks from "RecoTracker/Tr
 	replace hltCtfWithMaterialTracksMumu.src = "hltCkfTrackCandidatesMumu"
  
 # produce ChargedCandidates from tracks
-
+include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 module hltMuTracks = ConcreteChargedCandidateProducer {
   InputTag src = hltCtfWithMaterialTracksMumu
   string particleType = "mu-"
