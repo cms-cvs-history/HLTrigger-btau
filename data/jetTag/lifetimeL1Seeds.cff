@@ -7,13 +7,12 @@ include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 module bhltL1filter = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 # The higher thresholds were used for the V5 HLT study.
-# The lower ones are probably better.
 replace bhltL1filter.L1Seeds = {
-    "L1_SingleJet150",      # "L1_SingleJet100",
-    "L1_DoubleJet100",      # "L1_DoubleJet70",
+    "L1_SingleJet150",
+    "L1_DoubleJet100",
     "L1_TripleJet50",
-    "L1_QuadJet30",
-    "L1_HTT300"             # "L1_HTT250"
+    "L1_QuadJet40",
+    "L1_HTT300"
 }
 
 sequence L1forBlifeHLT = { bhltL1filter }

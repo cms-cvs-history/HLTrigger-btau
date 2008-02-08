@@ -16,7 +16,7 @@ replace bmuhltL1filter.L1Seeds = {
 module bmuhltOnlyJetsL1filter = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 # Choose the L1 trigger bits to use (names from L1ParticleMap.cc).
 replace bmuhltOnlyJetsL1filter.L1Seeds = {
-   "L1_HTT250"
+   "L1_HTT300"
 }
 
 sequence L1forBsoftmuHLT = { bmuhltL1filter }
