@@ -20,7 +20,8 @@ replace caloTowersTau4.TauTrigger = l1extraParticles:Tau
 replace caloTowersTau4.towers = "towerMakerForAll"
     
 # reconstruct Tau jet using only calo towers in location of L1 1st Tau             
-#include "RecoJets/JetProducers/data/IconeJetParameters.cfi"
+include "RecoJets/JetProducers/data/IconeJetParameters.cfi"
+include "RecoJets/JetProducers/data/CaloJetParameters.cfi"
 
 
 
