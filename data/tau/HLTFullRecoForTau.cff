@@ -58,9 +58,9 @@ replace l3SingleTauPixelSeeds.RegionFactoryPSet.RegionPSet = {
     double originZPos = 0.0
     double originRadius = 0.2
     double originHalfLength = 0.2
-    string vertexSrc ="pixelVertices"
     bool precise = true
-    InputTag JetSrc = isolatedL25SingleTau
+    InputTag JetSrc    = isolatedL25SingleTau
+    InputTag vertexSrc = pixelVertices
 }
 
 module ckfTrackCandidatesL3SingleTau =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
@@ -105,9 +105,9 @@ replace l3SingleTauMETPixelSeeds.RegionFactoryPSet.RegionPSet = {
     double originZPos = 0.0
     double originRadius = 0.2
     double originHalfLength = 0.2
-    string vertexSrc ="pixelVertices"
     bool precise = true
-InputTag JetSrc = isolatedL25SingleTauMET
+    InputTag JetSrc = isolatedL25SingleTauMET
+    InputTag vertexSrc = pixelVertices
 }
 
 module ckfTrackCandidatesL3SingleTauMET =  ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"    
