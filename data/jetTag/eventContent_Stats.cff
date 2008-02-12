@@ -5,7 +5,7 @@ block JetTagHLTstats = {
         # MC truth (old format - can soon drop)
         "keep edmHepMCProduct_*_*_*",
         # MC truth (new format)
-        "keep *_genParticleCandidates_*_*",
+        "keep *_genParticles_*_*",
 
         # L1 trigger decision.
         # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideL1Extra
