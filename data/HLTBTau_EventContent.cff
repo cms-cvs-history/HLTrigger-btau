@@ -1,6 +1,7 @@
 include "HLTrigger/btau/data/jetTag/eventContent_Lifetime.cff"
 include "HLTrigger/btau/data/jetTag/eventContent_SoftMuon.cff"
 include "HLTrigger/btau/data/displacedmumu/eventContent_DisplacedMumu.cff"
+include "HLTrigger/btau/data/displacedmumu/eventContent_Mumuk.cff"
 include "HLTrigger/btau/data/tau/eventContent_SingleTau.cff"
 include "HLTrigger/btau/data/tau/eventContent_SingleTauMET.cff"
 include "HLTrigger/btau/data/tau/eventContent_DoubleTau.cff"
@@ -24,6 +25,7 @@ block HLTBTauFEVT = {
 replace HLTBTauFEVT.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += JetTagSoftMuonHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += DisplacedMumuHLT.outputCommands
+replace HLTBTauFEVT.outputCommands += MumukHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += SingleTauHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += SingleTauMETHLT.outputCommands
 replace HLTBTauFEVT.outputCommands += DoubleTauHLT.outputCommands
@@ -35,6 +37,7 @@ block HLTBTauRECO = {
 replace HLTBTauRECO.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauRECO.outputCommands += JetTagSoftMuonHLT.outputCommands
 replace HLTBTauRECO.outputCommands += DisplacedMumuHLT.outputCommands
+replace HLTBTauRECO.outputCommands += MumukHLT.outputCommands
 replace HLTBTauRECO.outputCommands += SingleTauHLT.outputCommands
 replace HLTBTauRECO.outputCommands += SingleTauMETHLT.outputCommands
 replace HLTBTauRECO.outputCommands += DoubleTauHLT.outputCommands
@@ -54,7 +57,11 @@ block HLTBTauAOD = {
         hltBSoftmuonL25Jets,
 
         # displacedMumu
-        hltMuTracks
+        hltMuTracks,
+        
+        # Mumuk
+        hltMuTracks,
+        hltMumukAllConeTracks
     }
 
     VInputTag triggerFilters = {
@@ -69,6 +76,9 @@ block HLTBTauAOD = {
         hltBSoftmuonByDRL3filter,
 
         # displacedMumu
-        displacedJpsitoMumuFilter
+        displacedJpsitoMumuFilter,
+        
+        #Mumuk
+        hltmmkFilter
     }
 }

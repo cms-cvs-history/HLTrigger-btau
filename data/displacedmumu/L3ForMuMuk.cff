@@ -1,0 +1,63 @@
+# ----------------------------------
+# -- Tracking around mu mu direction
+# ----------------------------------
+
+# Seeds for tracking
+
+include "RecoTracker/TkSeedGenerator/data/GlobalPixelSeeds.cff"
+
+module hltMumukPixelSeedFromL2Candidate = globalPixelSeeds from "RecoTracker/TkSeedGenerator/data/GlobalPixelSeeds.cfi"
+replace hltMumukPixelSeedFromL2Candidate.RegionFactoryPSet.ComponentName = "L3MumuTrackingRegion"
+replace hltMumukPixelSeedFromL2Candidate.RegionFactoryPSet.RegionPSet = {
+    double ptMin = 3.0
+    double vertexZDefault = 0.0
+    string vertexSrc = "pixelVertices"
+    double originRadius = 1.0
+    double originHalfLength = 1.0
+    double deltaEtaRegion = 0.15
+    double deltaPhiRegion = 0.15
+    InputTag TrkSrc = hltL2Muons
+}
+
+# build tracks
+es_module hltCkfTrajectoryFilterMumuk = trajectoryFilterESProducer from "TrackingTools/TrajectoryFiltering/data/TrajectoryFilterESProducer.cfi"
+	replace hltCkfTrajectoryFilterMumuk.ComponentName = "hltCkfTrajectoryFilterMumuk"
+	replace hltCkfTrajectoryFilterMumuk.filterPset.minPt           = 3.0
+	replace hltCkfTrajectoryFilterMumuk.filterPset.maxNumberOfHits = 5
+
+es_module hltCkfTrajectoryBuilderMumuk = CkfTrajectoryBuilder from "RecoTracker/CkfPattern/data/CkfTrajectoryBuilderESProducer.cfi"
+	replace hltCkfTrajectoryBuilderMumuk.ComponentName        = "hltCkfTrajectoryBuilderMumuk"
+	replace hltCkfTrajectoryBuilderMumuk.trajectoryFilterName = "hltCkfTrajectoryFilterMumuk"
+	replace hltCkfTrajectoryBuilderMumuk.maxCand              = 3
+	replace hltCkfTrajectoryBuilderMumuk.alwaysUseInvalidHits = false
+
+module hltCkfTrackCandidatesMumuk = ckfTrackCandidates from "RecoTracker/CkfPattern/data/CkfTrackCandidates.cfi"
+	replace hltCkfTrackCandidatesMumuk.SeedProducer = "hltMumukPixelSeedFromL2Candidate"
+	replace hltCkfTrackCandidatesMumuk.TrajectoryBuilder = "hltCkfTrajectoryBuilderMumuk"
+
+module hltCtfWithMaterialTracksMumuk = ctfWithMaterialTracks from "RecoTracker/TrackProducer/data/CTFFinalFitWithMaterial.cfi"
+	replace hltCtfWithMaterialTracksMumuk.src = "hltCkfTrackCandidatesMumuk"
+
+# produce ChargedCandidates from tracks
+include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
+module hltMumukAllConeTracks = ConcreteChargedCandidateProducer {
+  InputTag src = hltCtfWithMaterialTracksMumuk
+  string particleType = "mu-"
+}
+
+sequence hltMumukTracking = {
+	hltMumukPixelSeedFromL2Candidate 
+	& hltCkfTrackCandidatesMumuk
+	& hltCtfWithMaterialTracksMumuk
+	}
+
+sequence hltMumukCandidates = {
+	hltMumukAllConeTracks
+	}
+
+sequence l3MumukReco = {
+	(doLocalPixel & doLocalStrip) 
+	& recopixelvertexing 
+	& hltMumukTracking 
+	& hltMumukCandidates
+	}
