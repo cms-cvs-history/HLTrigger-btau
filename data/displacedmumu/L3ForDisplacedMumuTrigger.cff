@@ -2,7 +2,7 @@
 include "HLTrigger/btau/data/jetTag/pixelReco.cff"
 
 # TrackerTracks
-include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
+// include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
 # MeasurementTracker
 include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
