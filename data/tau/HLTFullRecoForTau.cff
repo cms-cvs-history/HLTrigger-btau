@@ -136,7 +136,7 @@ include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
 # Tracker reconstruction
-include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
+// include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 
 #
 #XChannels
