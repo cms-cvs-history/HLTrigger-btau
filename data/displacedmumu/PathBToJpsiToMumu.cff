@@ -19,27 +19,30 @@ module JpsitoMumuL1Filtered = HLTMuonL1Filter {
 	int32 MinN = 2
 }
 
-module JpsitoMumuL2Filtered = HLTMuonDimuonFilter {
-      InputTag BeamSpotTag = offlineBeamSpot
-	InputTag CandTag = hltL2MuonCandidates
-	bool FastAccept = false
-	double MaxEta = 2.5
-	int32 MinNhits = 0
-	double MaxDr = 100.
-	double MaxDz = 9999.
-	int32  ChargeOpt = -1 // 0 nothing , 1 same charge, -1 opposite charge
-	double MinPtPair = 0.
-	double MinPtMax = 4.
-	double MinPtMin = 4.
-	double MinInvMass = 1.0
-	double MaxInvMass = 1000
-	double MinAcop = 2 // -1
-	double MaxAcop = 3.15 //3.15
-	double MinPtBalance = -1.
-	double MaxPtBalance = 999999.
-	double NSigmaPt = 0.
+
+module JpsitoMumuL2Filtered = HLTMuonDimuonL2Filter {
+      InputTag CandTag = hltL2MuonCandidates
+      InputTag SeedTag = hltL2MuonSeeds
+      InputTag PreviousCandTag = JpsitoMumuL1Filtered
+
+      bool FastAccept = false
+      double MaxEta = 2.5
+      #int32 MinNhits = 4
+      int32 MinNhits = 0
+      double MaxDr = 100.
+      double MaxDz = 9999.
+      int32  ChargeOpt = -1
+      double MinPtPair = 0.
+      double MinPtMax = 4.
+      double MinPtMin = 4.
+      double MinInvMass = 0.0
+      double MaxInvMass = 10.0
+      double MinAcop = 2.0
+      double MaxAcop = 3.15
+      double MinPtBalance = -1.0
+      double MaxPtBalance = 999999.
+      double NSigmaPt = 0.
 }
-	
 
 module displacedJpsitoMumuFilter = HLTDisplacedmumuFilter{
 	bool FastAccept = false
