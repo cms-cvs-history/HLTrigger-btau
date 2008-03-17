@@ -20,6 +20,7 @@ module JpsitoMumuL1Filtered = HLTMuonL1Filter {
 }
 	
 module JpsitoMumuL2Filtered = HLTMuonDimuonL2Filter {
+      InputTag BeamSpotTag = offlineBeamSpot
       InputTag CandTag = hltL2MuonCandidates
       InputTag SeedTag = hltL2MuonSeeds
       InputTag PreviousCandTag = JpsitoMumuL1Filtered
