@@ -77,7 +77,8 @@ sequence MumuknoL1emulation = {
 		& l3displacedMumureco & displacedMuMukFilter 
 }
 
-include "HLTrigger/btau/data/displacedmumu/L3ForMuMuk.cff"
+# as requested from FastSim move this include to HLTrigger/btau/data/displacedmumu/HLTFullRecoForDisplacedMuMu.cff.
+#include "HLTrigger/btau/data/displacedmumu/L3ForMuMuk.cff"
 
 # ---------------------
 # -- mmk-Filter setup
