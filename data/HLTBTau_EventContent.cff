@@ -13,7 +13,7 @@ block HLTBTauFEVT = {
         # Calorimeter
 	  "keep *_caloTowersTau*_*_*",
         "keep *_towerMakerForAll_*_*",
-        "keep *_towerMakerForTaus_*_*"   
+        "keep *_towerMakerForTaus_*_*",
 
         # Si Pixel hits
         "keep *_siPixelRecHits_*_*",
