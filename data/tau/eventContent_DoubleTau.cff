@@ -1,14 +1,9 @@
 # keep essential info used to construct Tau HLT.
 block DoubleTauHLT = {
     untracked vstring outputCommands = {
-	"keep *_pixelVertices_*_*",         # used both at L2.5 and L3
-        "keep *_pixelTracks_*_*",
-	"keep *_icone5Tau1*_*_*",
-	"keep *_icone5Tau2*_*_*",
-	"keep *_icone5Tau3*_*_*",
-	"keep *_icone5Tau4*_*_*",
-	"keep *_l2TauJetsProvider_*_*",
-	"keep *_ecalTauIsolated_*_*",
+    	"keep *_l2DoubleTauJets_*_*",
+"keep *_l2DoubleTauIsolation*_*_*", //L2 isolation producer and selector
+
 	"keep *_associatorL25PixelTauIsolated_*_*",
 	"keep *_coneIsolationL25PixelTauIsolated_*_*",
 	"keep *_isolatedL25PixelTau_*_*"
