@@ -99,7 +99,6 @@ module associatorL3SingleTauMET = JetTracksAssociatorAtVertex {
 }
 module coneIsolationL3SingleTauMET = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL3SingleTauMET.JetTrackSrc = associatorL3SingleTauMET
-replace coneIsolationL3SingleTauMET.vertexSrc = "pixelVertices"
 replace coneIsolationL3SingleTauMET.useVertex = true
 
 module isolatedL3SingleTauMET = IsolatedTauJetsSelector {

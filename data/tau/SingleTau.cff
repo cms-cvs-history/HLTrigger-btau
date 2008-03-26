@@ -105,7 +105,6 @@ module associatorL3SingleTau = JetTracksAssociatorAtVertex {
  
 module coneIsolationL3SingleTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
 replace coneIsolationL3SingleTau.JetTrackSrc = associatorL3SingleTau
-replace coneIsolationL3SingleTau.vertexSrc = "pixelVertices"
 replace coneIsolationL3SingleTau.useVertex = true
 
 
