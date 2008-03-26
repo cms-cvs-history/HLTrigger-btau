@@ -38,7 +38,7 @@ module associatorL25PixelTauIsolated = JetTracksAssociatorAtVertex {
 }
 
 module coneIsolationL25PixelTauIsolated = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
-replace coneIsolationL25PixelTauIsolated.JetTrackSrc = "associatorL25PixelTauIsolated"
+replace coneIsolationL25PixelTauIsolated.JetTrackSrc = associatorL25PixelTauIsolated
 replace coneIsolationL25PixelTauIsolated.MinimumNumberOfHits = 2
 replace coneIsolationL25PixelTauIsolated.MaximumTransverseImpactParameter = 1.
 

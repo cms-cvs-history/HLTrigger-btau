@@ -46,7 +46,7 @@ module hltJetsPixelTracksAssociatorMuonTau = JetTracksAssociatorAtVertex {
 }
 
 module hltPixelTrackConeIsolationMuonTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
- replace hltPixelTrackConeIsolationMuonTau.JetTrackSrc = "hltJetsPixelTracksAssociatorMuonTau"
+ replace hltPixelTrackConeIsolationMuonTau.JetTrackSrc = hltJetsPixelTracksAssociatorMuonTau
  replace hltPixelTrackConeIsolationMuonTau.MinimumNumberOfHits                   = 2
  replace hltPixelTrackConeIsolationMuonTau.MinimumTransverseMomentumLeadingTrack = 3.
  replace hltPixelTrackConeIsolationMuonTau.useVertex                             = true
@@ -62,7 +62,6 @@ module hltPixelTrackIsolatedTauJetsSelectorMuonTau = IsolatedTauJetsSelector {
     double    DeltaZetTrackVertex                      = 0.2
     int32     MaximumNumberOfTracksIsolationRing       = 0
     InputTag  VertexSrc                                = pixelVertices
-#    bool      UseVertex                                = true
     bool      UseVertex                                = false
     bool UseInHLTOpen                                  = false
 }

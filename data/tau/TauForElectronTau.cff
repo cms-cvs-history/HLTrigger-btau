@@ -15,14 +15,14 @@ replace  hltL2TauJetsProviderElectronTau.JetSrc = { icone5Tau1Regional ,icone5Ta
 
 # Calo. jet-track associator
 module hltJetTracksAssociatorAtVertexL25ElectronTau = JetTracksAssociatorAtVertex {
-    InputTag tracks = hltCtfWithMaterialTracksL25ElectronTau
+    InputTag tracks = pixelTracks
     InputTag jets   = hltL2TauJetsProviderElectronTau
     double coneSize = 0.5
 }
 
 # Cone isolation
 module hltConeIsolationL25ElectronTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
- replace hltConeIsolationL25ElectronTau.JetTrackSrc = "hltJetTracksAssociatorAtVertexL25ElectronTau"
+ replace hltConeIsolationL25ElectronTau.JetTrackSrc = hltJetTracksAssociatorAtVertexL25ElectronTau
 
 # Select isolated taus
 module hltIsolatedTauJetsSelectorL25ElectronTau = IsolatedTauJetsSelector {
@@ -123,7 +123,7 @@ module hltJetsPixelTracksAssociatorElectronTau = JetTracksAssociatorAtVertex {
 }
 
 module hltPixelTrackConeIsolationElectronTau = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"
-replace hltPixelTrackConeIsolationElectronTau.JetTrackSrc = "hltJetsPixelTracksAssociatorElectronTau"
+replace hltPixelTrackConeIsolationElectronTau.JetTrackSrc = hltJetsPixelTracksAssociatorElectronTau
 replace hltPixelTrackConeIsolationElectronTau.MinimumNumberOfHits = 2
 
 # Selecting isolated taus

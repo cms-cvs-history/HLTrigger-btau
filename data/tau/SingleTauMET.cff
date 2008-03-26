@@ -55,7 +55,7 @@ module associatorL25SingleTauMET = JetTracksAssociatorAtVertex {
 }
  
 module coneIsolationL25SingleTauMET = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
-replace coneIsolationL25SingleTauMET.JetTrackSrc = "associatorL25SingleTauMET"
+replace coneIsolationL25SingleTauMET.JetTrackSrc = associatorL25SingleTauMET
 
 #
 # Selecting Isolated Taus
@@ -98,7 +98,7 @@ module associatorL3SingleTauMET = JetTracksAssociatorAtVertex {
     double coneSize = 0.5
 }
 module coneIsolationL3SingleTauMET = coneIsolationForHLT from "RecoTauTag/HLTProducers/data/coneIsolationForHLT.cfi"    
-replace coneIsolationL3SingleTauMET.JetTrackSrc = "associatorL3SingleTauMET"
+replace coneIsolationL3SingleTauMET.JetTrackSrc = associatorL3SingleTauMET
 replace coneIsolationL3SingleTauMET.vertexSrc = "pixelVertices"
 replace coneIsolationL3SingleTauMET.useVertex = true
 
