@@ -1,17 +1,17 @@
 # keep essential info used to construct Tau HLT.
 block SingleTauMETHLT = {
-untracked vstring outputCommands = {
-	"keep *_l2SingleTauMETJets_*_*",
-"keep *_l2SingleTauMETIsolation*_*_*", //L2 isolation producer and selector
+    untracked vstring outputCommands = {
+        "keep *_hltL2SingleTauMETJets_*_*",
+        "keep *_hltL2SingleTauMETIsolation*_*_*",       # L2 isolation producer and selector
 
-	"keep *_met_*_*",
-	"keep *_associatorL25SingleTauMET_*_*",
-	"keep *_coneIsolationL25SingleTauMET_*_*",
-	"keep *_isolatedL25SingleTauMET_*_*",
-	"keep *_ctfWithMaterialTracksL3SingleTauMET_*_*",
-	"keep *_associatorL3SingleTauMET_*_*",
-	"keep *_coneIsolationL3SingleTauMET_*_*",
-	"keep *_isolatedL3SingleTauMET_*_*"
+        "keep *_hltMet_*_*",
+        "keep *_hltAssociatorL25SingleTauMET_*_*",
+        "keep *_hltConeIsolationL25SingleTauMET_*_*",
+        "keep *_hltIsolatedL25SingleTauMET_*_*",
+        "keep *_hltCtfWithMaterialTracksL3SingleTauMET_*_*",
+        "keep *_hltAssociatorL3SingleTauMET_*_*",
+        "keep *_hltConeIsolationL3SingleTauMET_*_*",
+        "keep *_hltIsolatedL3SingleTauMET_*_*"
     }
 }
 

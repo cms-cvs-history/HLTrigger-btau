@@ -2,9 +2,10 @@
 block JetTagSoftMuonHLT = {
     untracked vstring outputCommands = {
         # pre-L2 objects
-        # "keep *_iterativeCone5CaloJets_*_*",
-        # "keep *_hltBSoftmuonHighestEtJets_*_*",
+        "keep *_hltHtMet_*_*",
+        "keep *_hltIterativeCone5CaloJets_*_*",
         # L2 objects and results
+        "keep *_hltBSoftmuonHighestEtJets_*_*",
         "keep *_hltBSoftmuonL25Jets_*_*",     # used both at L2 and L3
         "keep *_hltL2Muons_*_*",
         "keep *_hltBSoftmuonL25TagInfos_*_*",

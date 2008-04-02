@@ -11,28 +11,26 @@ include "HLTrigger/btau/data/tau/eventContent_DoubleTauSiStrip.cff"
 block HLTBTauFEVT = {
     untracked vstring outputCommands = { 
         # Calorimeter
-	  "keep *_caloTowersTau*_*_*",
-        "keep *_towerMakerForAll_*_*",
-        "keep *_towerMakerForTaus_*_*",
+        "keep *_hltCaloTowersTau*_*_*",
+        "keep *_hltTowerMakerForAll_*_*",
+        "keep *_hltTowerMakerForTaus_*_*",
 
         # Si Pixel hits
-        "keep *_siPixelRecHits_*_*",
+        "keep *_hltSiPixelRecHits_*_*",
 
-	#Pixel Reco
-	"keep *_pixelVertices_*_*",         # used both at L2.5 and L3
-        "keep *_pixelTracks_*_*",
+        # Pixel Reco
+        "keep *_hltPixelVertices_*_*",         # used both at L2.5 and L3
+        "keep *_hltPixelTracks_*_*",
         
-	# Si Strip hits
-        "keep *_siStripRecHits_*_*",
-        "keep *_siStripMatchedRecHits_*_*",
+        # Si Strip hits
+        "keep *_hltSiStripRecHits_*_*",
+        "keep *_hltSiStripMatchedRecHits_*_*",
 
-#CaloReco as input of L2 Tau
-	"keep *_icone5Tau1*_*_*",
-	"keep *_icone5Tau2*_*_*",
-	"keep *_icone5Tau3*_*_*",
-	"keep *_icone5Tau4*_*_*"
-
-
+        # CaloReco as input of L2 Tau
+        "keep *_hltIcone5Tau1*_*_*",
+        "keep *_hltIcone5Tau2*_*_*",
+        "keep *_hltIcone5Tau3*_*_*",
+        "keep *_hltIcone5Tau4*_*_*"
     }
 }
 replace HLTBTauFEVT.outputCommands += JetTagLifetimeHLT.outputCommands
@@ -47,22 +45,21 @@ replace HLTBTauFEVT.outputCommands += DoubleTauHLT.outputCommands
 block HLTBTauRECO = {
     untracked vstring outputCommands = { 
 
- # Calorimeter
-        "keep *_caloTowersTau*_*_*",
-        "keep *_towerMakerForAll_*_*",
-        "keep *_towerMakerForTaus_*_*",
+        # Calorimeter
+        "keep *_hltCaloTowersTau*_*_*",
+        "keep *_hltTowerMakerForAll_*_*",
+        "keep *_hltTowerMakerForTaus_*_*",
 
-	#Pixel Reco
-	"keep *_pixelVertices_*_*",         # used both at L2.5 and L3
-        "keep *_pixelTracks_*_*",
+        # Pixel Reco
+        "keep *_hltPixelVertices_*_*",         # used both at L2.5 and L3
+        "keep *_hltPixelTracks_*_*",
 
-#CaloReco as input of L2 Tau
-	"keep *_icone5Tau1*_*_*",
-	"keep *_icone5Tau2*_*_*",
-	"keep *_icone5Tau3*_*_*",
-	"keep *_icone5Tau4*_*_*"
-
-}
+        # CaloReco as input of L2 Tau
+        "keep *_hltIcone5Tau1*_*_*",
+        "keep *_hltIcone5Tau2*_*_*",
+        "keep *_hltIcone5Tau3*_*_*",
+        "keep *_hltIcone5Tau4*_*_*"
+    }
 }
 replace HLTBTauRECO.outputCommands += JetTagLifetimeHLT.outputCommands
 replace HLTBTauRECO.outputCommands += JetTagSoftMuonHLT.outputCommands
@@ -78,9 +75,9 @@ block HLTBTauAOD = {
 
     VInputTag triggerCollections = {
         # tau
-        isolatedL3SingleTau,
-        isolatedL3SingleTauMET,
-        isolatedL25PixelTau,
+        hltIsolatedL3SingleTau,
+        hltIsolatedL3SingleTauMET,
+        hltIsolatedL25PixelTau,
 
         # btag
         hltBLifetimeL3Jets,
