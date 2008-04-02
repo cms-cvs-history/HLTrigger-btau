@@ -75,9 +75,9 @@ block HLTBTauAOD = {
 
     VInputTag triggerCollections = {
         # tau
-        hltIsolatedL3SingleTau,
-        hltIsolatedL3SingleTauMET,
-        hltIsolatedL25PixelTau,
+        hltIsolatedL3SingleTau*,
+        hltIsolatedL3SingleTauMET*,
+        hltIsolatedL25PixelTau*,
 
         # btag
         hltBLifetimeL3Jets,
@@ -93,9 +93,9 @@ block HLTBTauAOD = {
 
     VInputTag triggerFilters = {
         # tau
-        filterL3SingleTau,
-        filterL3SingleTauMET,
-        filterL25PixelTau,
+        filterL3SingleTau*,
+        filterL3SingleTauMET*,
+        filterL25PixelTau*,
 
         # btag
         hltBLifetimeL3filter,

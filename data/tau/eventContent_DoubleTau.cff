@@ -4,8 +4,8 @@ block DoubleTauHLT = {
         "keep *_hltL2DoubleTauJets_*_*",
         "keep *_hltL2DoubleTauIsolation*_*_*",          # L2 isolation producer and selector
 
-        "keep *_hltAssociatorL25PixelTauIsolated_*_*",
-        "keep *_hltConeIsolationL25PixelTauIsolated_*_*",
-        "keep *_hltIsolatedL25PixelTau_*_*"
+        "keep *_hltAssociatorL25PixelTauIsolated*_*_*",
+        "keep *_hltConeIsolationL25PixelTauIsolated*_*_*",
+        "keep *_hltIsolatedL25PixelTau*_*_*"
     }
 }
