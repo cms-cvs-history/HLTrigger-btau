@@ -99,6 +99,9 @@ block HLTBTauAOD = {
         filterL3SingleTau,
         filterL3SingleTauMET,
         filterL25PixelTau,
+        filterL3SingleTauRelaxed,
+        filterL3SingleTauMETRelaxed,
+        filterL25PixelTauRelaxed,
 
         # btag
         hltBLifetimeL3filter,
