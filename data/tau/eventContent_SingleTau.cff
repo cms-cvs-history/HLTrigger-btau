@@ -3,7 +3,7 @@ block SingleTauHLT = {
     untracked vstring outputCommands = {
         "keep *_hltL2SingleTauJets_*_*",
         "keep *_hltL2SingleTauIsolation*_*_*",          # L2 isolation producer and selector     
-        "keep *_hltMet_*_*",
+        "keep *_hltMet*_*_*",
         "keep *_hltCtfWithMaterialTracksL25SingleTau_*_*",
         "keep *_hltAssociatorL25SingleTau*_*_*",
         "keep *_hltConeIsolationL25SingleTau*_*_*",
