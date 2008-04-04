@@ -96,12 +96,12 @@ block HLTBTauAOD = {
 
     VInputTag triggerFilters = {
         # tau
-        filterL3SingleTau,
-        filterL3SingleTauMET,
-        filterL25PixelTau,
-        filterL3SingleTauRelaxed,
-        filterL3SingleTauMETRelaxed,
-        filterL25PixelTauRelaxed,
+        hltFilterL3SingleTau,
+        hltFilterL3SingleTauMET,
+        hltFilterL25PixelTau,
+        hltFilterL3SingleTauRelaxed,
+        hltFilterL3SingleTauMETRelaxed,
+        hltFilterL25PixelTauRelaxed,
 
         # btag
         hltBLifetimeL3filter,
