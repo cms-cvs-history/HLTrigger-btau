@@ -109,7 +109,8 @@ block HLTBTauAOD = {
         hltBSoftmuonByDRL3filter,
 
         # displacedMumu
-        displacedJpsitoMumuFilter,
+        hltDisplacedJpsitoMumuFilter,
+				hltDisplacedJpsitoMumuFilterRelaxed,	
         
         #Mumuk
         hltmmkFilter
