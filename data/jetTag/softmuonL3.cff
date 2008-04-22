@@ -2,11 +2,13 @@
 module  hltBSoftmuonL3filter = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
 replace hltBSoftmuonL3filter.JetTag = hltBSoftmuonL3BJetTags
 replace hltBSoftmuonL3filter.MinTag = 0.7       # pT_rel in GeV/c
+replace hltBSoftmuonL3filter.SaveTag = true
 
 # no pTrel cut for Sys8 studies / use dR isa
 module  hltBSoftmuonByDRL3filter = hltJetTag from "HLTrigger/btau/data/jetTag/hltJetTag.cfi"
 replace hltBSoftmuonByDRL3filter.JetTag = hltBSoftmuonL3BJetTagsByDR
 replace hltBSoftmuonByDRL3filter.MinTag = 0.5   # 1 if dR < 0.5, 0 otherwise
+replace hltBSoftmuonByDRL3filter.SaveTag = true
 
 # Event reconstruction needed for trigger.
 sequence hltBSoftmuonL3reco  = { l3muonrecoNocand, hltBSoftmuonL3TagInfos, hltBSoftmuonL3BJetTags, hltBSoftmuonL3BJetTagsByDR }

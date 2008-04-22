@@ -2,5 +2,6 @@ module hltJetTag = HLTJetTag {
     InputTag JetTag   = taggedJetCollection
     double   MinTag   = 2.0
     double   MaxTag   = 99999.
-    int32    MinN     = 1
+    int32    MinJets  = 1
+    bool     SaveTag  = false
 }

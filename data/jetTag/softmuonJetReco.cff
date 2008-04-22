@@ -2,7 +2,7 @@ include "HLTrigger/btau/data/jetTag/jetReco.cff"
 
 # Select jets used for regional tracking & considered for b tagging
 module hltBSoftmuonHighestEtJets = LargestEtCaloJetSelector {
-    InputTag src     = iterativeCone5CaloJets   
+    InputTag src     = hltIterativeCone5CaloJets   
     bool filter      = false
     uint32 maxNumber = 2    # Take only 2 highest Et jets...
 }
