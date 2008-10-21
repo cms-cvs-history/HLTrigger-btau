@@ -1,5 +1,0 @@
-//
-include "HLTrigger/btau/data/displacedmumu/HLTFullRecoForDisplacedMuMu.cff"
-include "HLTrigger/btau/data/jetTag/HLTFullRecoForB.cff"
-include "HLTrigger/btau/data/tau/HLTFullRecoForTau.cff"
-//
