@@ -1,3 +1,0 @@
-module getJetsFromHLTobject = GetJetsFromHLTobject {
-  InputTag jets = hltBLifetimeL25filter
-}

@@ -1,8 +1,0 @@
-# L1 trigger to be used for b soft muon tag HLT.
-
-# Filter on specified L1 bits.
-module  hltBSoftmuonNjetL1seeds = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
-replace hltBSoftmuonNjetL1seeds.L1SeedsLogicalExpression = "L1_Mu5_Jet15"
-
-module  hltBSoftmuonHTL1seeds = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
-replace hltBSoftmuonHTL1seeds.L1SeedsLogicalExpression = "L1_HTT300"

@@ -1,6 +1,0 @@
-# configuration needed to run the btag at HLT with Full Reconstruction
-
-# reconstruct pixel tracks & primary vertex
-include "HLTrigger/btau/data/jetTag/pixelReco.cff"
-# reconstruct regional tracks around jets
-include "HLTrigger/btau/data/jetTag/lifetimeRegionalTracking.cff"

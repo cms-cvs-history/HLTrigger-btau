@@ -1,8 +1,0 @@
-# HLT prescalers for softmuon triggers
-module prescalerBSoftmuon1jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBSoftmuon2jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBSoftmuon3jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBSoftmuon4jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBSoftmuonHT   = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-
-replace prescalerBSoftmuon1jet.prescaleFactor = 20

@@ -1,6 +1,0 @@
-# HLT prescalers for lifetime triggers
-module prescalerBLifetime1jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBLifetime2jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBLifetime3jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBLifetime4jet = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-module prescalerBLifetimeHT   = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"

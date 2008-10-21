@@ -1,5 +1,0 @@
-# L1 triggers to be used for b lifetime tag HLT.
-
-# Choose the L1 trigger bits to use
-module  hltBLifetimeL1seeds = hltLevel1GTSeed from "HLTrigger/HLTfilters/data/hltLevel1GTSeed.cfi"
-replace hltBLifetimeL1seeds.L1SeedsLogicalExpression = "L1_SingleJet150 OR L1_DoubleJet100 OR L1_TripleJet50 OR L1_QuadJet40 OR L1_HTT300"
