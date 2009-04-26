@@ -100,7 +100,7 @@ bool HLTDisplacedmumuFilter::filter(edm::Event& iEvent, const edm::EventSetup& i
 	
 	// get hold of muon trks
 	Handle<RecoChargedCandidateCollection> mucands;
-	if(saveTag_)filterobject->addCollectionTag(src_);
+	if(saveTag_)filterobject->addCollectionTag(src_, static_cast<const HLTFilter &> (*this));
 	iEvent.getByLabel (src_,mucands);
 	
 	//get the transient track builder:

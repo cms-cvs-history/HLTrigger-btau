@@ -4,8 +4,8 @@
  *  tagged multi-jet trigger for b and tau. 
  *  It should be run after the normal multi-jet trigger.
  *
- *  $Date: 2008/04/22 14:58:44 $
- *  $Revision: 1.8 $
+ *  $Date: 2008/04/23 11:57:53 $
+ *  $Revision: 1.9 $
  *
  *  \author Arnaud Gay, Ian Tomalin
  *  \maintainer Andrea Bocci
@@ -76,7 +76,7 @@ HLTJetTag::filter(edm::Event& event, const edm::EventSetup& setup)
     const edm::Provenance & jets_data = * h_jets.provenance();
     edm::InputTag jets_name( jets_data.moduleLabel(), jets_data.productInstanceName(), jets_data.processName() );
 
-    filterproduct->addCollectionTag( jets_name );
+    filterproduct->addCollectionTag( jets_name , static_cast<const HLTFilter &> (*this));
   }
 
   // Look at all jets in decreasing order of Et.

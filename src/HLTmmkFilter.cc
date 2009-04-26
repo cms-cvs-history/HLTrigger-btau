@@ -107,8 +107,8 @@ bool HLTmmkFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
   iEvent.getByLabel (trkCandLabel_,trkcands);
   
   if(saveTag_){
-    filterobject->addCollectionTag(muCandLabel_);
-    filterobject->addCollectionTag(trkCandLabel_);
+    filterobject->addCollectionTag(muCandLabel_, static_cast<const HLTFilter &> (*this));
+    filterobject->addCollectionTag(trkCandLabel_, static_cast<const HLTFilter &> (*this));
   }
   
   double e1,e2,e3;
